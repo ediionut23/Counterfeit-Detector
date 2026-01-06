@@ -1,0 +1,147 @@
+
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>GNN Interactive Explanation</title>
+            <script src="https://3Dmol.csb.pitt.edu/build/3Dmol-min.js"></script>
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+            <style>
+                body { margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; overflow: hidden; background-color: #1a1a1a; }
+                #container { width: 100vw; height: 100vh; position: relative; }
+                
+                #info-panel {
+                    position: absolute;
+                    top: 20px;
+                    right: 20px;
+                    width: 300px;
+                    background: rgba(255, 255, 255, 0.90);
+                    border-radius: 12px;
+                    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+                    padding: 20px;
+                    transition: all 0.3s ease;
+                    backdrop-filter: blur(10px);
+                    border: 1px solid rgba(255,255,255,0.2);
+                    display: none;
+                }
+                
+                #info-panel.visible { display: block; animation: slideIn 0.3s ease-out; }
+                
+                @keyframes slideIn {
+                    from { opacity: 0; transform: translateX(20px); }
+                    to { opacity: 1; transform: translateX(0); }
+                }
+
+                h2 { margin-top: 0; color: #333; font-size: 18px; border-bottom: 2px solid #ff4757; padding-bottom: 10px; }
+                
+                .stat-row { display: flex; justify-content: space-between; margin: 10px 0; font-size: 14px; }
+                .stat-label { font-weight: 600; color: #666; }
+                .stat-value { font-weight: 700; color: #2f3542; }
+                
+                .rank-badge { 
+                    background: #ff4757; color: white; padding: 4px 10px; border-radius: 20px; font-size: 12px; font-weight: bold;
+                    display: inline-block; margin-bottom: 10px;
+                }
+                
+                #group-name { color: #1e90ff; font-weight: bold; font-size: 15px; margin-top: 5px; }
+                
+                .instruction {
+                    position: absolute;
+                    bottom: 20px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    color: rgba(255,255,255,0.6);
+                    font-size: 14px;
+                    pointer-events: none;
+                    text-align: center;
+                }
+            </style>
+        </head>
+        <body>
+            <div id="container"></div>
+            
+            <div class="instruction">
+                Click on <strong>Colored Atoms</strong> to see AI Explanation.<br>
+                Drag to Rotate | Scroll to Zoom
+            </div>
+
+            <div id="info-panel">
+                <div id="rank-display" class="rank-badge">RANK #1</div>
+                <h2>Atom Analysis</h2>
+                
+                <div class="stat-row">
+                    <span class="stat-label">Element:</span>
+                    <span id="atom-type" class="stat-value">C</span>
+                </div>
+                
+                <div class="stat-row">
+                    <span class="stat-label">Functional Group:</span>
+                    <span id="group-name" class="stat-value">Aromatic Ring</span>
+                </div>
+                
+                <hr style="border: 0; border-top: 1px solid #ccc; margin: 15px 0;">
+                
+                <div class="stat-row">
+                    <span class="stat-label">Importance Score:</span>
+                    <span id="score-val" class="stat-value" style="color: #ff4757; font-size: 16px;">0.9824</span>
+                </div>
+                
+                <p style="font-size: 12px; color: #555; margin-top: 15px; line-height: 1.4;">
+                    High importance indicates this region is critical for the model's decision (Authentic vs Counterfeit).
+                </p>
+            </div>
+
+            <script>
+                var atomData = {"0": {"index": 0, "symbol": "C", "group": "Hydrocarbon Chain", "score": 0.0701, "rank": 36, "color": "#dddddd", "radius": 0.2}, "1": {"index": 1, "symbol": "C", "group": "Hydrocarbon Chain", "score": 0.216, "rank": 32, "color": "#dddddd", "radius": 0.2}, "2": {"index": 2, "symbol": "C", "group": "Hydrocarbon Chain", "score": 0.1606, "rank": 34, "color": "#dddddd", "radius": 0.2}, "3": {"index": 3, "symbol": "C", "group": "Aromatic Ring System", "score": 0.6334, "rank": 11, "color": "#ff4400", "radius": 0.4}, "4": {"index": 4, "symbol": "C", "group": "Aromatic Ring System", "score": 0.5213, "rank": 26, "color": "#ff0a00", "radius": 0.4}, "5": {"index": 5, "symbol": "C", "group": "Amide", "score": 0.0148, "rank": 39, "color": "#dddddd", "radius": 0.2}, "6": {"index": 6, "symbol": "O", "group": "Amide", "score": 0.4965, "rank": 29, "color": "#dddddd", "radius": 0.2}, "7": {"index": 7, "symbol": "N", "group": "Amide", "score": 0.7011, "rank": 3, "color": "#ff6600", "radius": 0.4}, "8": {"index": 8, "symbol": "C", "group": "Aromatic Ring System", "score": 0.634, "rank": 10, "color": "#ff4400", "radius": 0.4}, "9": {"index": 9, "symbol": "C", "group": "Aromatic Ring System", "score": 0.6611, "rank": 7, "color": "#ff5200", "radius": 0.4}, "10": {"index": 10, "symbol": "C", "group": "Aromatic Ring System", "score": 0.487, "rank": 30, "color": "#dddddd", "radius": 0.2}, "11": {"index": 11, "symbol": "C", "group": "Aromatic Ring System", "score": 0.7274, "rank": 2, "color": "#ff7400", "radius": 0.4}, "12": {"index": 12, "symbol": "C", "group": "Aromatic Ring System", "score": 0.6926, "rank": 4, "color": "#ff6200", "radius": 0.4}, "13": {"index": 13, "symbol": "C", "group": "Aromatic Ring System", "score": 0.5355, "rank": 22, "color": "#ff1200", "radius": 0.4}, "14": {"index": 14, "symbol": "C", "group": "Aromatic Ring System", "score": 0.5278, "rank": 25, "color": "#ff0e00", "radius": 0.4}, "15": {"index": 15, "symbol": "C", "group": "Aromatic Ring System", "score": 0.5282, "rank": 24, "color": "#ff0e00", "radius": 0.4}, "16": {"index": 16, "symbol": "C", "group": "Aromatic Ring System", "score": 0.5588, "rank": 19, "color": "#ff1e00", "radius": 0.4}, "17": {"index": 17, "symbol": "C", "group": "Aromatic Ring System", "score": 0.6146, "rank": 13, "color": "#ff3a00", "radius": 0.4}, "18": {"index": 18, "symbol": "C", "group": "Aromatic Ring System", "score": 0.5911, "rank": 17, "color": "#ff2e00", "radius": 0.4}, "19": {"index": 19, "symbol": "C", "group": "Aromatic Ring System", "score": 0.5555, "rank": 21, "color": "#ff1c00", "radius": 0.4}, "20": {"index": 20, "symbol": "C", "group": "Aromatic Ring System", "score": 0.6367, "rank": 9, "color": "#ff4500", "radius": 0.4}, "21": {"index": 21, "symbol": "C", "group": "Aromatic Ring System", "score": 0.5171, "rank": 27, "color": "#ff0800", "radius": 0.4}, "22": {"index": 22, "symbol": "C", "group": "Aromatic Ring System", "score": 0.5557, "rank": 20, "color": "#ff1c00", "radius": 0.4}, "23": {"index": 23, "symbol": "C", "group": "Aromatic Ring System", "score": 0.5745, "rank": 18, "color": "#ff2600", "radius": 0.4}, "24": {"index": 24, "symbol": "C", "group": "Aromatic Ring System", "score": 0.5972, "rank": 15, "color": "#ff3100", "radius": 0.4}, "25": {"index": 25, "symbol": "C", "group": "Aromatic Ring System", "score": 0.6806, "rank": 6, "color": "#ff5c00", "radius": 0.4}, "26": {"index": 26, "symbol": "F", "group": "Halogen", "score": 0.5323, "rank": 23, "color": "#ff1000", "radius": 0.4}, "27": {"index": 27, "symbol": "C", "group": "Aromatic Ring System", "score": 0.612, "rank": 14, "color": "#ff3900", "radius": 0.4}, "28": {"index": 28, "symbol": "C", "group": "Aromatic Ring System", "score": 0.6318, "rank": 12, "color": "#ff4300", "radius": 0.4}, "29": {"index": 29, "symbol": "N", "group": "Aromatic Ring System", "score": 1.0, "rank": 1, "color": "#ffff00", "radius": 0.4}, "30": {"index": 30, "symbol": "C", "group": "Hydrocarbon Chain", "score": 0.1291, "rank": 35, "color": "#dddddd", "radius": 0.2}, "31": {"index": 31, "symbol": "C", "group": "Hydrocarbon Chain", "score": 0.0184, "rank": 38, "color": "#dddddd", "radius": 0.2}, "32": {"index": 32, "symbol": "O", "group": "O-based group", "score": 0.4982, "rank": 28, "color": "#dddddd", "radius": 0.2}, "33": {"index": 33, "symbol": "C", "group": "Hydrocarbon Chain", "score": 0.2156, "rank": 33, "color": "#dddddd", "radius": 0.2}, "34": {"index": 34, "symbol": "C", "group": "Hydrocarbon Chain", "score": 0.2198, "rank": 31, "color": "#dddddd", "radius": 0.2}, "35": {"index": 35, "symbol": "O", "group": "O-based group", "score": 0.6865, "rank": 5, "color": "#ff5f00", "radius": 0.4}, "36": {"index": 36, "symbol": "C", "group": "Hydrocarbon Chain", "score": 0.0524, "rank": 37, "color": "#dddddd", "radius": 0.2}, "37": {"index": 37, "symbol": "C", "group": "Carboxylic Acid", "score": 0.0, "rank": 40, "color": "#dddddd", "radius": 0.2}, "38": {"index": 38, "symbol": "O", "group": "Carboxylic Acid", "score": 0.655, "rank": 8, "color": "#ff4f00", "radius": 0.4}, "39": {"index": 39, "symbol": "O", "group": "Carboxylic Acid", "score": 0.5932, "rank": 16, "color": "#ff2f00", "radius": 0.4}};
+                var molData = "\n     RDKit          3D\n\n 40 43  0  0  0  0  0  0  0  0999 V2000\n   -0.4445    3.6035   -1.6615 C   0  0  0  0  0  0  0  0  0  0  0  0\n   -0.1418    2.2406   -2.2855 C   0  0  0  0  0  0  0  0  0  0  0  0\n   -0.9027    2.0184   -3.5924 C   0  0  0  0  0  0  0  0  0  0  0  0\n   -0.3361    1.0858   -1.3108 C   0  0  0  0  0  0  0  0  0  0  0  0\n   -1.4381    0.7375   -0.5214 C   0  0  0  0  0  0  0  0  0  0  0  0\n   -2.7214    1.4619   -0.4327 C   0  0  0  0  0  0  0  0  0  0  0  0\n   -3.2387    1.9791   -1.4151 O   0  0  0  0  0  0  0  0  0  0  0  0\n   -3.2312    1.4981    0.8514 N   0  0  0  0  0  0  0  0  0  0  0  0\n   -4.4393    2.0672    1.2968 C   0  0  0  0  0  0  0  0  0  0  0  0\n   -4.7643    1.8879    2.6480 C   0  0  0  0  0  0  0  0  0  0  0  0\n   -5.9441    2.4155    3.1752 C   0  0  0  0  0  0  0  0  0  0  0  0\n   -6.8126    3.1299    2.3553 C   0  0  0  0  0  0  0  0  0  0  0  0\n   -6.4992    3.3128    1.0100 C   0  0  0  0  0  0  0  0  0  0  0  0\n   -5.3176    2.7829    0.4817 C   0  0  0  0  0  0  0  0  0  0  0  0\n   -1.0920   -0.4801    0.1587 C   0  0  0  0  0  0  0  0  0  0  0  0\n   -1.9423   -1.3208    0.9951 C   0  0  0  0  0  0  0  0  0  0  0  0\n   -1.6347   -1.5340    2.3440 C   0  0  0  0  0  0  0  0  0  0  0  0\n   -2.4829   -2.3013    3.1455 C   0  0  0  0  0  0  0  0  0  0  0  0\n   -3.6477   -2.8468    2.6076 C   0  0  0  0  0  0  0  0  0  0  0  0\n   -3.9634   -2.6332    1.2673 C   0  0  0  0  0  0  0  0  0  0  0  0\n   -3.1132   -1.8727    0.4620 C   0  0  0  0  0  0  0  0  0  0  0  0\n    0.2055   -0.8260   -0.1911 C   0  0  0  0  0  0  0  0  0  0  0  0\n    0.9641   -2.0182    0.1939 C   0  0  0  0  0  0  0  0  0  0  0  0\n    0.8663   -3.1876   -0.5710 C   0  0  0  0  0  0  0  0  0  0  0  0\n    1.5652   -4.3343   -0.1906 C   0  0  0  0  0  0  0  0  0  0  0  0\n    2.3539   -4.3093    0.9534 C   0  0  0  0  0  0  0  0  0  0  0  0\n    3.0184   -5.4121    1.3217 F   0  0  0  0  0  0  0  0  0  0  0  0\n    2.4560   -3.1597    1.7263 C   0  0  0  0  0  0  0  0  0  0  0  0\n    1.7554   -2.0135    1.3494 C   0  0  0  0  0  0  0  0  0  0  0  0\n    0.6620    0.1405   -1.0717 N   0  0  0  0  0  0  0  0  0  0  0  0\n    1.9732    0.1267   -1.7243 C   0  0  0  0  0  0  0  0  0  0  0  0\n    2.9460    1.1794   -1.1631 C   0  0  0  0  0  0  0  0  0  0  0  0\n    3.7698    1.6727   -2.2240 O   0  0  0  0  0  0  0  0  0  0  0  0\n    3.8363    0.7251   -0.0014 C   0  0  0  0  0  0  0  0  0  0  0  0\n    4.6842   -0.5451   -0.1893 C   0  0  0  0  0  0  0  0  0  0  0  0\n    5.3630   -0.7653    1.0598 O   0  0  0  0  0  0  0  0  0  0  0  0\n    5.7143   -0.4760   -1.3117 C   0  0  0  0  0  0  0  0  0  0  0  0\n    6.3005   -1.8372   -1.5590 C   0  0  0  0  0  0  0  0  0  0  0  0\n    5.6833   -2.8591   -1.8110 O   0  0  0  0  0  0  0  0  0  0  0  0\n    7.6473   -1.8411   -1.5137 O   0  0  0  0  0  0  0  0  0  0  0  0\n  1  2  1  0\n  2  3  1  0\n  2  4  1  0\n  4  5  2  0\n  5  6  1  0\n  6  7  2  0\n  6  8  1  0\n  8  9  1  0\n  9 10  2  0\n 10 11  1  0\n 11 12  2  0\n 12 13  1  0\n 13 14  2  0\n  5 15  1  0\n 15 16  1  0\n 16 17  2  0\n 17 18  1  0\n 18 19  2  0\n 19 20  1  0\n 20 21  2  0\n 15 22  2  0\n 22 23  1  0\n 23 24  2  0\n 24 25  1  0\n 25 26  2  0\n 26 27  1  0\n 26 28  1  0\n 28 29  2  0\n 22 30  1  0\n 30 31  1  0\n 31 32  1  0\n 32 33  1  0\n 32 34  1  0\n 34 35  1  0\n 35 36  1  0\n 35 37  1  0\n 37 38  1  0\n 38 39  2  0\n 38 40  1  0\n 30  4  1  0\n 14  9  1  0\n 21 16  1  0\n 29 23  1  0\nM  END\n";
+
+                $(document).ready(function() {
+                    let element = $('#container');
+                    let config = { backgroundColor: '#1a1a1a' };
+                    let viewer = $3Dmol.createViewer( element, config );
+                    
+                    viewer.addModel( molData, "mol" );
+                    
+                    // Style base (Grey Sticks)
+                    viewer.setStyle({}, {stick: {color: '#444444', radius: 0.1}});
+                    
+                    // Style Important Atoms (Spheres + Sticks)
+                    for (let id in atomData) {
+                        let atom = atomData[id];
+                        viewer.setStyle({serial: parseInt(id)}, {
+                            stick: {color: atom.color, radius: 0.15},
+                            sphere: {color: atom.color, scale: atom.radius}
+                        });
+                    }
+                    
+                    viewer.zoomTo();
+                    viewer.render();
+                    
+                    // CLICK HANDLER
+                    viewer.setClickable({}, true, function(atom, viewer, event, container) {
+                        if (atomData[atom.serial]) {
+                            let data = atomData[atom.serial];
+                            
+                            // Populate Data
+                            $('#atom-type').text(data.symbol + " (Index: " + data.index + ")");
+                            $('#group-name').text(data.group);
+                            $('#score-val').text(data.score);
+                            $('#rank-display').text("RANK #" + data.rank);
+                            
+                            // Color Logic
+                            if(data.rank === 1) $('#rank-display').css('background', '#ff4757');
+                            else if(data.rank <= 5) $('#rank-display').css('background', '#ffa502');
+                            else $('#rank-display').css('background', '#747d8c');
+                            
+                            // Show Panel
+                            $('#info-panel').removeClass('visible'); // Reset animation
+                            setTimeout(() => $('#info-panel').addClass('visible'), 10);
+                            
+                            console.log("Clicked:", data);
+                        }
+                    });
+                });
+            </script>
+        </body>
+        </html>
+        

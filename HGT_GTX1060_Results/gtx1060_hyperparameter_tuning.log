@@ -1,0 +1,31 @@
+2025-09-23 14:38:55,563 - INFO - Loading dataset for GTX 1060...
+2025-09-23 14:38:55,564 - INFO - Loading dataset for GTX 1060: enhanced_pharma_10k_20250916_091756.pt
+2025-09-23 14:39:06,950 - INFO - Raw dataset loaded: 10000 molecules
+2025-09-23 14:39:06,956 - INFO - Processing batch 1/20
+2025-09-23 14:39:08,082 - INFO - Processing batch 2/20
+2025-09-23 14:39:08,915 - INFO - Processing batch 3/20
+2025-09-23 14:39:09,802 - INFO - Processing batch 4/20
+2025-09-23 14:39:10,567 - INFO - Processing batch 5/20
+2025-09-23 14:39:11,294 - INFO - Processing batch 6/20
+2025-09-23 14:39:11,979 - INFO - Processing batch 7/20
+2025-09-23 14:39:12,667 - INFO - Processing batch 8/20
+2025-09-23 14:39:13,252 - INFO - Processing batch 9/20
+2025-09-23 14:39:13,890 - INFO - Processing batch 10/20
+2025-09-23 14:39:14,751 - INFO - Processing batch 11/20
+2025-09-23 14:39:15,627 - INFO - Processing batch 12/20
+2025-09-23 14:39:16,515 - INFO - Processing batch 13/20
+2025-09-23 14:39:17,376 - INFO - Processing batch 14/20
+2025-09-23 14:39:18,268 - INFO - Processing batch 15/20
+2025-09-23 14:39:19,169 - INFO - Processing batch 16/20
+2025-09-23 14:39:20,131 - INFO - Processing batch 17/20
+2025-09-23 14:39:20,964 - INFO - Processing batch 18/20
+2025-09-23 14:39:21,784 - INFO - Processing batch 19/20
+2025-09-23 14:39:22,574 - INFO - Processing batch 20/20
+2025-09-23 14:39:23,428 - INFO - Limiting dataset to 5000 samples for GTX 1060
+2025-09-23 14:39:23,483 - INFO - Final dataset: 5000 molecules
+2025-09-23 14:39:23,902 - INFO - GTX 1060 dataset ready: 5000 molecules
+2025-09-23 14:39:23,907 - INFO - GTX 1060 Data split - Train: 3000, Val: 1000
+2025-09-23 14:39:23,908 - INFO - Starting GTX 1060 optimization with 30 trials
+2025-09-23 16:29:37,523 - ERROR - Trial failed: 'out_channels' (got 64) must be divisible by the number of heads (got 6)
+2025-09-23 17:26:03,734 - ERROR - Trial failed: 'out_channels' (got 128) must be divisible by the number of heads (got 6)
+2025-09-24 03:28:44,932 - ERROR - Trial failed: 'out_channels' (got 128) must be divisible by the number of heads (got 6)

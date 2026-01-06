@@ -1,0 +1,552 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PharmaAI Investigator</title>
+
+  <script src="https://3Dmol.csb.pitt.edu/build/3Dmol-min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #ffffff;
+      --card: rgba(255,255,255,0.92);
+      --card2: rgba(250,250,250,0.92);
+      --text: #111827;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --shadow: 0 10px 30px rgba(0,0,0,0.08);
+      --radius: 14px;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow: hidden;
+    }
+
+    #viewport {
+      width: 100%;
+      height: 100vh;
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background: #fff;
+    }
+
+    .panel {
+      position: absolute;
+      z-index: 10;
+      background: var(--card);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px;
+      box-shadow: var(--shadow);
+    }
+
+    #header {
+      top: 18px;
+      left: 18px;
+      width: 320px;
+      display: grid;
+      gap: 10px;
+    }
+    .subtitle {
+      font-size: 11px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-weight: 700;
+    }
+    h1 {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: #000;
+      line-height: 1.1;
+    }
+    .pred-badge {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid #dc262633;
+      background: #dc262614;
+      color: #dc2626;
+      font-weight: 800;
+      text-transform: uppercase;
+      font-size: 12px;
+    }
+    .pred-badge span {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 800;
+      color: #111827;
+      text-transform: none;
+      font-size: 12px;
+    }
+
+    #stats {
+      bottom: 18px;
+      left: 18px;
+      width: 320px;
+      display: grid;
+      gap: 10px;
+      background: var(--card2);
+    }
+    .stat-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+    .stat-item {
+      border: 1px solid var(--border);
+      background: #fff;
+      border-radius: 12px;
+      padding: 10px;
+      text-align: center;
+    }
+    .stat-val {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      font-weight: 800;
+      color: #000;
+      line-height: 1.2;
+    }
+    .stat-lbl {
+      font-size: 10px;
+      color: var(--muted);
+      margin-top: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.10em;
+      font-weight: 700;
+    }
+
+    .heatmap-wrap {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      background: #fff;
+    }
+    .heatmap-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--border);
+      background: #fff;
+    }
+    .heatmap-title {
+      font-size: 11px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-weight: 800;
+    }
+    .heatmap-hint {
+      font-size: 11px;
+      color: var(--muted);
+      font-weight: 600;
+    }
+    #heatmap-container {
+      width: 100%;
+      height: 190px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: zoom-in;
+      padding: 8px;
+    }
+    #heatmap-img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      border-radius: 10px;
+    }
+
+    #inspector {
+      top: 18px;
+      right: 18px;
+      width: 340px;
+      transform: translateX(120%);
+      opacity: 0;
+      transition: transform 0.28s ease, opacity 0.28s ease;
+    }
+    #inspector.active {
+      transform: translateX(0);
+      opacity: 1;
+    }
+    .ins-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .rank-circle {
+      width: 44px;
+      height: 44px;
+      border-radius: 999px;
+      background: #fff;
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      font-size: 14px;
+      border: 3px solid #d1d5db;
+      color: #111827;
+      flex: 0 0 auto;
+    }
+    .group-cap {
+      font-size: 10px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-weight: 800;
+    }
+    #group-name {
+      font-size: 15px;
+      font-weight: 900;
+      color: #000;
+      margin-top: 2px;
+    }
+    .props {
+      margin-top: 14px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      background: #fff;
+    }
+    .prop-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    .prop-row:last-child { border-bottom: none; }
+    .prop-key {
+      font-size: 11px;
+      color: var(--muted);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .prop-val {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: #000;
+      text-align: right;
+      font-weight: 700;
+      max-width: 58%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    #p-score {
+      color: #b91c1c;
+      font-weight: 900;
+    }
+
+    #controls {
+      position: absolute;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+      display: flex;
+      gap: 10px;
+    }
+    .btn {
+      background: #fff;
+      border: 1px solid var(--border);
+      color: #111827;
+      padding: 10px 16px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-weight: 800;
+      font-size: 12px;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.06);
+      transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+    }
+    .btn:hover {
+      background: #f9fafb;
+      transform: translateY(-1px);
+      box-shadow: 0 12px 24px rgba(0,0,0,0.08);
+    }
+
+    #hm-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.55);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+      padding: 16px;
+    }
+    #hm-modal.active { display: flex; }
+    #hm-card {
+      width: min(980px, 96vw);
+      height: min(720px, 92vh);
+      background: #fff;
+      border-radius: 16px;
+      border: 1px solid #ddd;
+      overflow: hidden;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.35);
+      display: grid;
+      grid-template-rows: auto 1fr;
+    }
+    #hm-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 14px;
+      border-bottom: 1px solid #eee;
+      font-weight: 900;
+    }
+    #hm-close {
+      border: 1px solid #eee;
+      background: #fff;
+      border-radius: 10px;
+      padding: 8px 10px;
+      cursor: pointer;
+      font-weight: 900;
+    }
+    #hm-full {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      background: #fff;
+    }
+
+    @media (max-width: 860px) {
+      #inspector { display: none; }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="viewport"></div>
+
+  <div id="header" class="panel">
+    <div class="subtitle">AI Forensics Module</div>
+    <h1>Molecule Analysis</h1>
+    <div class="pred-badge">
+      Counterfeit
+      <span>75.90%</span>
+    </div>
+  </div>
+
+  <div id="stats" class="panel">
+    <div class="stat-grid">
+      <div class="stat-item"><div class="stat-val">705.88</div><div class="stat-lbl">MW</div></div>
+      <div class="stat-item"><div class="stat-val">2.03</div><div class="stat-lbl">LogP</div></div>
+      <div class="stat-item"><div class="stat-val">171.91</div><div class="stat-lbl">TPSA</div></div>
+      <div class="stat-item"><div class="stat-val">3/14</div><div class="stat-lbl">HBD/HBA</div></div>
+    </div>
+
+    <div class="heatmap-wrap">
+      <div class="heatmap-head">
+        <div class="heatmap-title">2D Importance Heatmap</div>
+        <div class="heatmap-hint">Click to zoom</div>
+      </div>
+      <div id="heatmap-container" title="Click to zoom">
+        <img id="heatmap-img" src="" alt="2D Heatmap" />
+      </div>
+    </div>
+  </div>
+
+  <div id="inspector" class="panel">
+    <div class="ins-row">
+      <div id="atom-rank" class="rank-circle">#</div>
+      <div>
+        <div class="group-cap">Selected Group</div>
+        <div id="group-name">-</div>
+      </div>
+    </div>
+
+    <div class="props">
+      <div class="prop-row"><span class="prop-key">Element</span><span id="p-elem" class="prop-val">-</span></div>
+      <div class="prop-row"><span class="prop-key">Hybridization</span><span id="p-hyb" class="prop-val">-</span></div>
+      <div class="prop-row"><span class="prop-key">Charge</span><span id="p-chg" class="prop-val">-</span></div>
+      <div class="prop-row"><span class="prop-key">Chirality</span><span id="p-chir" class="prop-val">-</span></div>
+      <div class="prop-row"><span class="prop-key">Neighbors</span><span id="p-nbr" class="prop-val">-</span></div>
+      <div class="prop-row"><span class="prop-key">Importance</span><span id="p-score" class="prop-val">-</span></div>
+    </div>
+  </div>
+
+  <div id="controls">
+    <button class="btn" onclick="resetView()">Reset View</button>
+    <button class="btn" onclick="toggleSpin()">Auto-Rotate</button>
+    <button class="btn" onclick="toggleFocus()">Focus Mode</button>
+  </div>
+
+  <div id="hm-modal" onclick="closeHeatmap(event)">
+    <div id="hm-card" onclick="event.stopPropagation()">
+      <div id="hm-bar">
+        <div>2D Heatmap</div>
+        <button id="hm-close" onclick="closeHeatmap(event)">Close</button>
+      </div>
+      <img id="hm-full" src="" alt="Heatmap Full" />
+    </div>
+  </div>
+
+  <script>
+    const atomData = {"0": {"index": 0, "symbol": "C", "rank": 36, "score": 0.131, "color": "#d9d9d9", "group_name": "Aliphatic Chain", "group_indices": [0, 1], "properties": {"Hybridization": "SP3", "Charge": "-0.062", "Valence": 4, "Chirality": "None", "Neighbors": "C"}}, "1": {"index": 1, "symbol": "C", "rank": 26, "score": 0.279, "color": "#d9d9d9", "group_name": "Aliphatic Chain", "group_indices": [1, 0, 2], "properties": {"Hybridization": "SP3", "Charge": "-0.015", "Valence": 4, "Chirality": "None", "Neighbors": "C, C"}}, "2": {"index": 2, "symbol": "C", "rank": 32, "score": 0.2, "color": "#d9d9d9", "group_name": "Ether", "group_indices": [2, 3, 4], "properties": {"Hybridization": "SP3", "Charge": "0.138", "Valence": 4, "Chirality": "CHI_TETRAHEDRAL_CW", "Neighbors": "C, O, C"}}, "3": {"index": 3, "symbol": "O", "rank": 4, "score": 0.964, "color": "#ff3f00", "group_name": "Ether", "group_indices": [2, 3, 4], "properties": {"Hybridization": "SP2", "Charge": "-0.458", "Valence": 2, "Chirality": "None", "Neighbors": "C, C"}}, "4": {"index": 4, "symbol": "C", "rank": 38, "score": 0.124, "color": "#d9d9d9", "group_name": "Ether", "group_indices": [2, 3, 4], "properties": {"Hybridization": "SP2", "Charge": "0.311", "Valence": 4, "Chirality": "None", "Neighbors": "O, O, C"}}, "5": {"index": 5, "symbol": "O", "rank": 11, "score": 0.796, "color": "#d9d9d9", "group_name": "Ester", "group_indices": [4, 5, 3], "properties": {"Hybridization": "SP2", "Charge": "-0.252", "Valence": 2, "Chirality": "None", "Neighbors": "C"}}, "6": {"index": 6, "symbol": "C", "rank": 19, "score": 0.385, "color": "#d9d9d9", "group_name": "Alicyclic Ring", "group_indices": [6, 4, 7, 8], "properties": {"Hybridization": "SP3", "Charge": "0.080", "Valence": 4, "Chirality": "CHI_TETRAHEDRAL_CW", "Neighbors": "C, C, C"}}, "7": {"index": 7, "symbol": "C", "rank": 43, "score": 0.101, "color": "#d9d9d9", "group_name": "Aliphatic Chain", "group_indices": [7, 6], "properties": {"Hybridization": "SP3", "Charge": "-0.049", "Valence": 4, "Chirality": "None", "Neighbors": "C"}}, "8": {"index": 8, "symbol": "C", "rank": 33, "score": 0.151, "color": "#d9d9d9", "group_name": "Alicyclic Ring", "group_indices": [8, 6, 9, 10], "properties": {"Hybridization": "SP3", "Charge": "0.067", "Valence": 4, "Chirality": "None", "Neighbors": "C, O, C"}}, "9": {"index": 9, "symbol": "O", "rank": 10, "score": 0.85, "color": "#d9d9d9", "group_name": "Hydroxyl", "group_indices": [9], "properties": {"Hybridization": "SP3", "Charge": "-0.392", "Valence": 2, "Chirality": "None", "Neighbors": "C"}}, "10": {"index": 10, "symbol": "C", "rank": 29, "score": 0.233, "color": "#d9d9d9", "group_name": "Alicyclic Ring", "group_indices": [10, 8, 11], "properties": {"Hybridization": "SP3", "Charge": "-0.023", "Valence": 4, "Chirality": "None", "Neighbors": "C, C"}}, "11": {"index": 11, "symbol": "C", "rank": 24, "score": 0.308, "color": "#d9d9d9", "group_name": "Alicyclic Ring", "group_indices": [11, 10, 12, 13], "properties": {"Hybridization": "SP3", "Charge": "-0.039", "Valence": 4, "Chirality": "CHI_TETRAHEDRAL_CW", "Neighbors": "C, C, C"}}, "12": {"index": 12, "symbol": "C", "rank": 34, "score": 0.148, "color": "#d9d9d9", "group_name": "Aliphatic Chain", "group_indices": [12, 11], "properties": {"Hybridization": "SP3", "Charge": "-0.062", "Valence": 4, "Chirality": "None", "Neighbors": "C"}}, "13": {"index": 13, "symbol": "C", "rank": 41, "score": 0.102, "color": "#d9d9d9", "group_name": "Alicyclic Ring", "group_indices": [13, 11, 14], "properties": {"Hybridization": "SP3", "Charge": "-0.024", "Valence": 4, "Chirality": "None", "Neighbors": "C, C"}}, "14": {"index": 14, "symbol": "C", "rank": 25, "score": 0.287, "color": "#d9d9d9", "group_name": "Ether", "group_indices": [14, 15, 16], "properties": {"Hybridization": "SP3", "Charge": "0.064", "Valence": 4, "Chirality": "CHI_TETRAHEDRAL_CCW", "Neighbors": "C, O, C"}}, "15": {"index": 15, "symbol": "O", "rank": 8, "score": 0.876, "color": "#d9d9d9", "group_name": "Ether", "group_indices": [14, 15, 16], "properties": {"Hybridization": "SP3", "Charge": "-0.346", "Valence": 2, "Chirality": "None", "Neighbors": "C, C"}}, "16": {"index": 16, "symbol": "C", "rank": 45, "score": 0.068, "color": "#d9d9d9", "group_name": "Ether", "group_indices": [14, 15, 16], "properties": {"Hybridization": "SP3", "Charge": "0.186", "Valence": 4, "Chirality": "CHI_TETRAHEDRAL_CW", "Neighbors": "O, C, O"}}, "17": {"index": 17, "symbol": "C", "rank": 47, "score": 0.042, "color": "#d9d9d9", "group_name": "Alicyclic Ring", "group_indices": [17, 16, 18, 19], "properties": {"Hybridization": "SP3", "Charge": "0.133", "Valence": 4, "Chirality": "CHI_TETRAHEDRAL_CW", "Neighbors": "C, O, C"}}, "18": {"index": 18, "symbol": "O", "rank": 5, "score": 0.927, "color": "#ff0000", "group_name": "Hydroxyl", "group_indices": [18], "properties": {"Hybridization": "SP3", "Charge": "-0.385", "Valence": 2, "Chirality": "None", "Neighbors": "C"}}, "19": {"index": 19, "symbol": "C", "rank": 39, "score": 0.118, "color": "#d9d9d9", "group_name": "Ether", "group_indices": [19, 20, 21], "properties": {"Hybridization": "SP3", "Charge": "0.106", "Valence": 4, "Chirality": "CHI_TETRAHEDRAL_CCW", "Neighbors": "C, O, C"}}, "20": {"index": 20, "symbol": "O", "rank": 12, "score": 0.717, "color": "#d9d9d9", "group_name": "Ether", "group_indices": [19, 20, 21], "properties": {"Hybridization": "SP3", "Charge": "-0.377", "Valence": 2, "Chirality": "None", "Neighbors": "C, C"}}, "21": {"index": 21, "symbol": "C", "rank": 16, "score": 0.417, "color": "#d9d9d9", "group_name": "Ether", "group_indices": [19, 20, 21], "properties": {"Hybridization": "SP3", "Charge": "0.036", "Valence": 4, "Chirality": "None", "Neighbors": "O"}}, "22": {"index": 22, "symbol": "C", "rank": 17, "score": 0.398, "color": "#d9d9d9", "group_name": "Alicyclic Ring", "group_indices": [22, 19, 23, 26], "properties": {"Hybridization": "SP3", "Charge": "0.064", "Valence": 4, "Chirality": "CHI_TETRAHEDRAL_CCW", "Neighbors": "C, N, C"}}, "23": {"index": 23, "symbol": "N", "rank": 9, "score": 0.87, "color": "#d9d9d9", "group_name": "Amine", "group_indices": [23], "properties": {"Hybridization": "SP3", "Charge": "-0.301", "Valence": 3, "Chirality": "None", "Neighbors": "C, C, C"}}, "24": {"index": 24, "symbol": "C", "rank": 20, "score": 0.372, "color": "#d9d9d9", "group_name": "Aliphatic Chain", "group_indices": [24, 23], "properties": {"Hybridization": "SP3", "Charge": "-0.013", "Valence": 4, "Chirality": "None", "Neighbors": "N"}}, "25": {"index": 25, "symbol": "C", "rank": 46, "score": 0.046, "color": "#d9d9d9", "group_name": "Aliphatic Chain", "group_indices": [25, 23], "properties": {"Hybridization": "SP3", "Charge": "-0.013", "Valence": 4, "Chirality": "None", "Neighbors": "N"}}, "26": {"index": 26, "symbol": "C", "rank": 28, "score": 0.252, "color": "#d9d9d9", "group_name": "Ether", "group_indices": [16, 28, 26], "properties": {"Hybridization": "SP3", "Charge": "0.076", "Valence": 4, "Chirality": "CHI_TETRAHEDRAL_CW", "Neighbors": "C, C, O"}}, "27": {"index": 27, "symbol": "C", "rank": 27, "score": 0.264, "color": "#d9d9d9", "group_name": "Aliphatic Chain", "group_indices": [27, 26], "properties": {"Hybridization": "SP3", "Charge": "-0.037", "Valence": 4, "Chirality": "None", "Neighbors": "C"}}, "28": {"index": 28, "symbol": "O", "rank": 13, "score": 0.624, "color": "#d9d9d9", "group_name": "Ether", "group_indices": [16, 28, 26], "properties": {"Hybridization": "SP3", "Charge": "-0.345", "Valence": 2, "Chirality": "None", "Neighbors": "C, C"}}, "29": {"index": 29, "symbol": "C", "rank": 18, "score": 0.386, "color": "#d9d9d9", "group_name": "Alicyclic Ring", "group_indices": [29, 14, 30], "properties": {"Hybridization": "SP3", "Charge": "0.000", "Valence": 4, "Chirality": "None", "Neighbors": "C, C"}}, "30": {"index": 30, "symbol": "C", "rank": 21, "score": 0.362, "color": "#d9d9d9", "group_name": "Ether", "group_indices": [30, 31, 32], "properties": {"Hybridization": "SP3", "Charge": "0.064", "Valence": 4, "Chirality": "CHI_TETRAHEDRAL_CCW", "Neighbors": "C, O, C"}}, "31": {"index": 31, "symbol": "O", "rank": 7, "score": 0.916, "color": "#d9d9d9", "group_name": "Ether", "group_indices": [30, 31, 32], "properties": {"Hybridization": "SP3", "Charge": "-0.346", "Valence": 2, "Chirality": "None", "Neighbors": "C, C"}}, "32": {"index": 32, "symbol": "C", "rank": 40, "score": 0.118, "color": "#d9d9d9", "group_name": "Ether", "group_indices": [30, 31, 32], "properties": {"Hybridization": "SP3", "Charge": "0.186", "Valence": 4, "Chirality": "CHI_TETRAHEDRAL_CW", "Neighbors": "O, C, O"}}, "33": {"index": 33, "symbol": "C", "rank": 44, "score": 0.09, "color": "#d9d9d9", "group_name": "Alicyclic Ring", "group_indices": [33, 32, 34, 35], "properties": {"Hybridization": "SP3", "Charge": "0.133", "Valence": 4, "Chirality": "CHI_TETRAHEDRAL_CW", "Neighbors": "C, O, C"}}, "34": {"index": 34, "symbol": "O", "rank": 6, "score": 0.922, "color": "#d9d9d9", "group_name": "Hydroxyl", "group_indices": [34], "properties": {"Hybridization": "SP3", "Charge": "-0.385", "Valence": 2, "Chirality": "None", "Neighbors": "C"}}, "35": {"index": 35, "symbol": "C", "rank": 30, "score": 0.224, "color": "#d9d9d9", "group_name": "Ether", "group_indices": [35, 36, 37], "properties": {"Hybridization": "SP3", "Charge": "0.114", "Valence": 4, "Chirality": "CHI_TETRAHEDRAL_CCW", "Neighbors": "C, O, C"}}, "36": {"index": 36, "symbol": "O", "rank": 1, "score": 1.0, "color": "#ffff00", "group_name": "Ether", "group_indices": [35, 36, 37], "properties": {"Hybridization": "SP3", "Charge": "-0.376", "Valence": 2, "Chirality": "None", "Neighbors": "C, C"}}, "37": {"index": 37, "symbol": "C", "rank": 42, "score": 0.101, "color": "#d9d9d9", "group_name": "Ether", "group_indices": [35, 36, 37], "properties": {"Hybridization": "SP3", "Charge": "0.036", "Valence": 4, "Chirality": "None", "Neighbors": "O"}}, "38": {"index": 38, "symbol": "C", "rank": 37, "score": 0.13, "color": "#d9d9d9", "group_name": "Ether", "group_indices": [32, 40, 38], "properties": {"Hybridization": "SP3", "Charge": "0.087", "Valence": 4, "Chirality": "CHI_TETRAHEDRAL_CW", "Neighbors": "C, C, O"}}, "39": {"index": 39, "symbol": "C", "rank": 48, "score": 0.032, "color": "#d9d9d9", "group_name": "Aliphatic Chain", "group_indices": [39, 38], "properties": {"Hybridization": "SP3", "Charge": "-0.036", "Valence": 4, "Chirality": "None", "Neighbors": "C"}}, "40": {"index": 40, "symbol": "O", "rank": 14, "score": 0.615, "color": "#d9d9d9", "group_name": "Ether", "group_indices": [32, 40, 38], "properties": {"Hybridization": "SP3", "Charge": "-0.344", "Valence": 2, "Chirality": "None", "Neighbors": "C, C"}}, "41": {"index": 41, "symbol": "C", "rank": 23, "score": 0.308, "color": "#d9d9d9", "group_name": "Alicyclic Ring", "group_indices": [41, 30, 42], "properties": {"Hybridization": "SP3", "Charge": "-0.013", "Valence": 4, "Chirality": "None", "Neighbors": "C, C"}}, "42": {"index": 42, "symbol": "C", "rank": 49, "score": 0.0, "color": "#d9d9d9", "group_name": "Alicyclic Ring", "group_indices": [42, 41, 43, 44], "properties": {"Hybridization": "SP3", "Charge": "0.057", "Valence": 4, "Chirality": "CHI_TETRAHEDRAL_CW", "Neighbors": "C, C, C"}}, "43": {"index": 43, "symbol": "C", "rank": 15, "score": 0.417, "color": "#d9d9d9", "group_name": "Aliphatic Chain", "group_indices": [43, 42], "properties": {"Hybridization": "SP3", "Charge": "-0.052", "Valence": 4, "Chirality": "None", "Neighbors": "C"}}, "44": {"index": 44, "symbol": "C", "rank": 35, "score": 0.135, "color": "#d9d9d9", "group_name": "Ether", "group_indices": [44, 46, 47], "properties": {"Hybridization": "SP2", "Charge": "0.309", "Valence": 4, "Chirality": "None", "Neighbors": "C, O, O"}}, "45": {"index": 45, "symbol": "O", "rank": 2, "score": 0.983, "color": "#ffbf00", "group_name": "Ester", "group_indices": [44, 45, 46], "properties": {"Hybridization": "SP2", "Charge": "-0.252", "Valence": 2, "Chirality": "None", "Neighbors": "C"}}, "46": {"index": 46, "symbol": "O", "rank": 3, "score": 0.972, "color": "#ff7f00", "group_name": "Ether", "group_indices": [44, 46, 47], "properties": {"Hybridization": "SP2", "Charge": "-0.459", "Valence": 2, "Chirality": "None", "Neighbors": "C, C"}}, "47": {"index": 47, "symbol": "C", "rank": 22, "score": 0.355, "color": "#d9d9d9", "group_name": "Ether", "group_indices": [44, 46, 47], "properties": {"Hybridization": "SP3", "Charge": "0.136", "Valence": 4, "Chirality": "CHI_TETRAHEDRAL_CW", "Neighbors": "O, C, C"}}, "48": {"index": 48, "symbol": "C", "rank": 31, "score": 0.202, "color": "#d9d9d9", "group_name": "Aliphatic Chain", "group_indices": [48, 47], "properties": {"Hybridization": "SP3", "Charge": "-0.024", "Valence": 4, "Chirality": "None", "Neighbors": "C"}}};
+    const molBlock = `\n     RDKit          3D\n\n 49 51  0  0  0  0  0  0  0  0999 V2000\n   -5.3272   -0.1815   -2.8717 C   0  0  0  0  0  0  0  0  0  0  0  0\n   -5.2935   -0.4425   -1.3697 C   0  0  0  0  0  0  0  0  0  0  0  0\n   -5.0909   -1.9328   -1.0458 C   0  0  1  0  0  0  0  0  0  0  0  0\n   -3.7960   -2.3098   -1.5824 O   0  0  0  0  0  0  0  0  0  0  0  0\n   -3.6498   -3.6317   -1.8811 C   0  0  0  0  0  0  0  0  0  0  0  0\n   -4.4890   -4.4881   -1.6357 O   0  0  0  0  0  0  0  0  0  0  0  0\n   -2.3383   -3.9126   -2.5889 C   0  0  1  0  0  0  0  0  0  0  0  0\n   -2.2917   -3.2107   -3.9430 C   0  0  0  0  0  0  0  0  0  0  0  0\n   -1.1255   -3.6467   -1.6737 C   0  0  0  0  0  0  0  0  0  0  0  0\n   -0.0762   -4.5357   -2.0803 O   0  0  0  0  0  0  0  0  0  0  0  0\n   -0.6051   -2.1981   -1.6794 C   0  0  0  0  0  0  0  0  0  0  0  0\n    0.2874   -1.8213   -0.4679 C   0  0  1  0  0  0  0  0  0  0  0  0\n    1.5975   -2.6124   -0.4354 C   0  0  0  0  0  0  0  0  0  0  0  0\n    0.5424   -0.2928   -0.5145 C   0  0  0  0  0  0  0  0  0  0  0  0\n    1.0282    0.3900    0.7813 C   0  0  2  0  0  0  0  0  0  0  0  0\n    2.3777    0.0176    1.0897 O   0  0  0  0  0  0  0  0  0  0  0  0\n    3.3708    0.8473    0.4777 C   0  0  1  0  0  0  0  0  0  0  0  0\n    4.5771    0.9671    1.4357 C   0  0  1  0  0  0  0  0  0  0  0  0\n    4.1850    1.1444    2.8044 O   0  0  0  0  0  0  0  0  0  0  0  0\n    5.4761   -0.2620    1.2599 C   0  0  2  0  0  0  0  0  0  0  0  0\n    6.4668   -0.2218    2.3142 O   0  0  0  0  0  0  0  0  0  0  0  0\n    7.1306   -1.4681    2.4965 C   0  0  0  0  0  0  0  0  0  0  0  0\n    6.0637   -0.2848   -0.2056 C   0  0  2  0  0  0  0  0  0  0  0  0\n    7.5000    0.0969   -0.2747 N   0  0  0  0  0  0  0  0  0  0  0  0\n    7.7875    1.5093   -0.0743 C   0  0  0  0  0  0  0  0  0  0  0  0\n    8.2338   -0.4385   -1.4125 C   0  0  0  0  0  0  0  0  0  0  0  0\n    5.0827    0.4703   -1.1695 C   0  0  1  0  0  0  0  0  0  0  0  0\n    5.1850    0.0072   -2.6200 C   0  0  0  0  0  0  0  0  0  0  0  0\n    3.7216    0.2571   -0.7781 O   0  0  0  0  0  0  0  0  0  0  0  0\n    0.2002    0.0457    2.0293 C   0  0  0  0  0  0  0  0  0  0  0  0\n   -1.3090    0.3728    1.9711 C   0  0  2  0  0  0  0  0  0  0  0  0\n   -1.4679    1.7932    2.0575 O   0  0  0  0  0  0  0  0  0  0  0  0\n   -1.9966    2.4233    0.8912 C   0  0  1  0  0  0  0  0  0  0  0  0\n   -2.2664    3.8944    1.2327 C   0  0  1  0  0  0  0  0  0  0  0  0\n   -1.1875    4.4764    1.9794 O   0  0  0  0  0  0  0  0  0  0  0  0\n   -2.3253    4.5181   -0.1474 C   0  0  2  0  0  0  0  0  0  0  0  0\n   -3.6183    4.3036   -0.7416 O   0  0  0  0  0  0  0  0  0  0  0  0\n   -4.5791    5.2653   -0.3254 C   0  0  0  0  0  0  0  0  0  0  0  0\n   -1.2864    3.6835   -0.9203 C   0  0  1  0  0  0  0  0  0  0  0  0\n    0.0752    4.3547   -1.0351 C   0  0  0  0  0  0  0  0  0  0  0  0\n   -1.0940    2.4377   -0.2114 O   0  0  0  0  0  0  0  0  0  0  0  0\n   -1.9604   -0.2415    3.2349 C   0  0  0  0  0  0  0  0  0  0  0  0\n   -3.4923   -0.3902    3.2532 C   0  0  1  0  0  0  0  0  0  0  0  0\n   -4.2847    0.8882    2.9999 C   0  0  0  0  0  0  0  0  0  0  0  0\n   -3.9267   -1.5743    2.4030 C   0  0  0  0  0  0  0  0  0  0  0  0\n   -3.7565   -2.7337    2.7606 O   0  0  0  0  0  0  0  0  0  0  0  0\n   -4.5093   -1.2029    1.2318 O   0  0  0  0  0  0  0  0  0  0  0  0\n   -5.1504   -2.2538    0.4707 C   0  0  1  0  0  0  0  0  0  0  0  0\n   -6.5963   -2.3598    0.9521 C   0  0  0  0  0  0  0  0  0  0  0  0\n  1  2  1  0\n  3  2  1  1\n  3  4  1  0\n  4  5  1  0\n  5  6  2  0\n  5  7  1  0\n  7  8  1  6\n  7  9  1  0\n  9 10  1  0\n  9 11  1  0\n 11 12  1  0\n 12 13  1  6\n 12 14  1  0\n 14 15  1  0\n 15 16  1  1\n 17 16  1  1\n 17 18  1  0\n 18 19  1  1\n 18 20  1  0\n 20 21  1  1\n 21 22  1  0\n 20 23  1  0\n 23 24  1  1\n 24 25  1  0\n 24 26  1  0\n 23 27  1  0\n 27 28  1  6\n 27 29  1  0\n 15 30  1  0\n 30 31  1  0\n 31 32  1  1\n 33 32  1  1\n 33 34  1  0\n 34 35  1  1\n 34 36  1  0\n 36 37  1  6\n 37 38  1  0\n 36 39  1  0\n 39 40  1  1\n 39 41  1  0\n 31 42  1  0\n 42 43  1  0\n 43 44  1  6\n 43 45  1  0\n 45 46  2  0\n 45 47  1  0\n 47 48  1  0\n 48 49  1  1\n 48  3  1  0\n 29 17  1  0\n 41 33  1  0\nM  END\n`;
+
+    let viewer = null;
+    let isSpinning = false;
+    let focusMode = false;
+
+    // Strict style constants (default look)
+    const TOP_SPHERE = 0.38;
+    const TOP_STICK_R = 0.18;
+
+    function openHeatmap() {
+      document.getElementById('hm-modal').classList.add('active');
+    }
+    function closeHeatmap(e) {
+      if (e) e.preventDefault();
+      document.getElementById('hm-modal').classList.remove('active');
+    }
+
+    function applyBaseStyle() {
+      // Base: light grey, semi-transparent so selection is obvious
+      viewer.setStyle({}, {
+        stick: { radius: 0.11, color: '#d6d6d6', opacity: 0.55 },
+        sphere: { scale: 0.16, color: '#d6d6d6', opacity: 0.45 }
+      });
+    }
+
+    function applyTopHighlights() {
+      // Top 5: colored spheres+sticks, fully visible
+      for (let id in atomData) {
+        const d = atomData[id];
+        if (d.rank <= 5) {
+          viewer.setStyle({ serial: parseInt(id) }, {
+            stick: { color: d.color, radius: TOP_STICK_R, opacity: 1.0 },
+            sphere: { color: d.color, scale: TOP_SPHERE, opacity: 1.0 }
+          });
+        }
+      }
+    }
+
+    function renderDefault() {
+      applyBaseStyle();
+      applyTopHighlights();
+      viewer.render();
+    }
+
+    function highlightGroup(grp, color) {
+      // 1) Wash out everything else HARD
+      viewer.setStyle({}, {
+        stick: { radius: 0.09, color: '#dcdcdc', opacity: 0.18 },
+        sphere: { scale: 0.12, color: '#dcdcdc', opacity: 0.10 }
+      });
+
+      // 2) Selected group = BIG + thick + opaque
+      viewer.setStyle({ serial: grp }, {
+        stick: { color: color, radius: 0.34, opacity: 1.0 },
+        sphere: { color: color, scale: 0.62, opacity: 1.0 }
+      });
+
+      // 3) Subtle neighborhood emphasis
+      viewer.setStyle({ within: { serial: grp, distance: 1.15 } }, {
+        stick: { color: '#bfbfbf', radius: 0.13, opacity: 0.30 }
+      });
+
+      viewer.render();
+      viewer.zoomTo({ serial: grp }, 520);
+
+      // 4) Quick pulse
+      setTimeout(() => {
+        viewer.setStyle({ serial: grp }, {
+          stick: { color: color, radius: 0.30, opacity: 1.0 },
+          sphere: { color: color, scale: 0.55, opacity: 1.0 }
+        });
+        viewer.render();
+      }, 120);
+    }
+
+    function updateInspector(d) {
+      $('#inspector').addClass('active');
+      $('#atom-rank').text("#" + d.rank).css('border-color', d.color);
+      $('#group-name').text(d.group_name);
+
+      $('#p-elem').text(d.symbol + " (" + d.index + ")");
+      $('#p-hyb').text(d.properties.Hybridization);
+      $('#p-chg').text(d.properties.Charge);
+      $('#p-chir').text(d.properties.Chirality);
+      $('#p-nbr').text(d.properties.Neighbors);
+      $('#p-score').text(d.score);
+    }
+
+    function getAtomDataFrom3Dmol(atom) {
+      // Some models are 1-based serial; fallback to serial-1 if needed
+      const s = atom.serial;
+      if (atomData[s]) return atomData[s];
+      if (atomData[s - 1]) return atomData[s - 1];
+      return null;
+    }
+
+    $(document).ready(function() {
+      viewer = $3Dmol.createViewer($('#viewport'), { backgroundColor: 'white' });
+      viewer.addModel(molBlock, "mol");
+
+      renderDefault();
+      viewer.zoomTo();
+      viewer.render();
+
+      viewer.setClickable({}, true, function(atom) {
+        const d = getAtomDataFrom3Dmol(atom);
+        if (!d) return;
+        updateInspector(d);
+        highlightGroup(d.group_indices, d.color);
+      });
+
+      $('#heatmap-container').on('click', openHeatmap);
+
+      $(document).on('keydown', function(e) {
+        if (e.key === 'Escape') {
+          closeHeatmap(e);
+          resetView();
+        }
+        if (e.key.toLowerCase() === 'f') toggleFocus();
+        if (e.key.toLowerCase() === 'r') resetView();
+        if (e.key.toLowerCase() === 's') toggleSpin();
+      });
+    });
+
+    function resetView() {
+      $('#inspector').removeClass('active');
+      renderDefault();
+      viewer.zoomTo({}, 600);
+    }
+
+    function toggleSpin() {
+      isSpinning = !isSpinning;
+      viewer.spin(isSpinning);
+    }
+
+    function toggleFocus() {
+      focusMode = !focusMode;
+
+      // Focus mode here simply re-renders default base as stronger fade
+      // Selection highlight still dominates, so it's fine.
+      const isActive = $('#inspector').hasClass('active');
+      if (!isActive) {
+        renderDefault();
+        return;
+      }
+    }
+  </script>
+</body>
+</html>

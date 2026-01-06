@@ -1,0 +1,199 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>GNN Analysis Dashboard</title>
+    <script src="https://3Dmol.csb.pitt.edu/build/3Dmol-min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        body { margin: 0; font-family: 'Inter', sans-serif; background: #0f1014; color: white; overflow: hidden; }
+        #viewport { width: 100vw; height: 100vh; position: absolute; top:0; left:0; z-index: 1; }
+        
+        /* OVERLAY UI */
+        #ui-layer { position: absolute; z-index: 10; pointer-events: none; width: 100%; height: 100%; }
+        
+        .card {
+            background: rgba(20, 20, 30, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            padding: 20px;
+            pointer-events: auto;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        /* HEADER */
+        #header {
+            position: absolute; top: 20px; left: 20px;
+            width: 300px;
+        }
+        h1 { margin: 0; font-size: 20px; font-weight: 800; letter-spacing: -0.5px; }
+        .badge { 
+            display: inline-block; padding: 4px 12px; border-radius: 20px; 
+            font-size: 12px; font-weight: bold; text-transform: uppercase;
+            background: #2ed573; color: #000; margin-top: 5px;
+        }
+
+        /* DETAIL PANEL (Right) */
+        #details {
+            position: absolute; top: 20px; right: 20px;
+            width: 280px;
+            transform: translateX(120%);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        #details.active { transform: translateX(0); }
+        
+        .stat-box {
+            background: rgba(255,255,255,0.05);
+            border-radius: 8px;
+            padding: 10px;
+            margin-top: 10px;
+        }
+        .label { font-size: 11px; color: #888; text-transform: uppercase; }
+        .value { font-size: 16px; font-weight: 600; color: #fff; }
+        .highlight { color: #ff9f43; }
+
+        /* CONTROLS (Bottom) */
+        #controls {
+            position: absolute; bottom: 30px; left: 50%; 
+            transform: translateX(-50%);
+            display: flex; gap: 10px;
+        }
+        button {
+            background: #2f3542; color: white; border: 1px solid #57606f;
+            padding: 10px 20px; border-radius: 30px; cursor: pointer;
+            font-weight: 600; transition: all 0.2s;
+            pointer-events: auto;
+        }
+        button:hover { background: #fff; color: #000; }
+
+    </style>
+</head>
+<body>
+
+    <div id="viewport"></div>
+
+    <div id="ui-layer">
+        <div id="header" class="card">
+            <h1>Molecule Analysis</h1>
+            <div class="badge">Pred: Authentic (0.97)</div>
+            <p style="font-size: 12px; color: #aaa; margin-top:10px;">
+                Interact with atoms to investigate GNN attention. <br>
+                <span style="color:#ff4757">●</span> Top Ranked Regions
+            </p>
+        </div>
+
+        <div id="details" class="card">
+            <h2 style="margin:0; font-size:16px; border-bottom:1px solid #444; padding-bottom:10px;">
+                Selected Region
+            </h2>
+            
+            <div class="stat-box">
+                <div class="label">Atom Rank</div>
+                <div class="value" id="d-rank" style="color: #ff4757; font-size: 24px;">#1</div>
+            </div>
+
+            <div class="stat-box">
+                <div class="label">Structure Type</div>
+                <div class="value" id="d-group">Benzene Ring</div>
+            </div>
+
+            <div class="stat-box">
+                <div class="label">Importance Score</div>
+                <div class="value" id="d-score">0.982</div>
+            </div>
+            
+            <div style="font-size:11px; color:#666; margin-top:15px; line-height:1.4;">
+                * Focusing on this group helps visualize the specific substructure driving the prediction.
+            </div>
+        </div>
+
+        <div id="controls">
+            <button onclick="resetView()">Reset View</button>
+            <button onclick="toggleSpin()">Toggle Spin</button>
+        </div>
+    </div>
+
+    <script>
+        const atomData = {"0": {"index": 0, "symbol": "C", "rank": 27, "score": 0.081, "color": "#e0e0e0", "group_name": "C-Group", "group_indices": [0, 1]}, "1": {"index": 1, "symbol": "C", "rank": 23, "score": 0.228, "color": "#e0e0e0", "group_name": "C-Group", "group_indices": [1, 0, 2]}, "2": {"index": 2, "symbol": "C", "rank": 25, "score": 0.172, "color": "#e0e0e0", "group_name": "C-Group", "group_indices": [2, 1, 3]}, "3": {"index": 3, "symbol": "C", "rank": 14, "score": 0.479, "color": "#e0e0e0", "group_name": "Ring System", "group_indices": [3, 4, 5, 7, 8]}, "4": {"index": 4, "symbol": "N", "rank": 3, "score": 0.792, "color": "#ff9900", "group_name": "Ring System", "group_indices": [3, 4, 5, 7, 8]}, "5": {"index": 5, "symbol": "N", "rank": 4, "score": 0.792, "color": "#ff6600", "group_name": "Ring System", "group_indices": [3, 4, 5, 7, 8]}, "6": {"index": 6, "symbol": "C", "rank": 33, "score": 0.0, "color": "#e0e0e0", "group_name": "C-Group", "group_indices": [6, 5]}, "7": {"index": 7, "symbol": "C", "rank": 7, "score": 0.547, "color": "#e0e0e0", "group_name": "Ring System", "group_indices": [3, 4, 5, 7, 8]}, "8": {"index": 8, "symbol": "C", "rank": 13, "score": 0.48, "color": "#e0e0e0", "group_name": "Ring System", "group_indices": [3, 4, 5, 7, 8]}, "9": {"index": 9, "symbol": "N", "rank": 2, "score": 0.933, "color": "#ffcc00", "group_name": "Ring System", "group_indices": [9, 10, 11, 12, 7, 8]}, "10": {"index": 10, "symbol": "C", "rank": 22, "score": 0.331, "color": "#e0e0e0", "group_name": "Ring System", "group_indices": [9, 10, 11, 12, 7, 8]}, "11": {"index": 11, "symbol": "N", "rank": 1, "score": 1.0, "color": "#ff0000", "group_name": "Ring System", "group_indices": [9, 10, 11, 12, 7, 8]}, "12": {"index": 12, "symbol": "C", "rank": 9, "score": 0.539, "color": "#e0e0e0", "group_name": "Ring System", "group_indices": [9, 10, 11, 12, 7, 8]}, "13": {"index": 13, "symbol": "O", "rank": 16, "score": 0.465, "color": "#e0e0e0", "group_name": "O-Group", "group_indices": [13, 12]}, "14": {"index": 14, "symbol": "C", "rank": 20, "score": 0.372, "color": "#e0e0e0", "group_name": "Ring System", "group_indices": [15, 16, 27, 28, 29, 14]}, "15": {"index": 15, "symbol": "C", "rank": 19, "score": 0.373, "color": "#e0e0e0", "group_name": "Ring System", "group_indices": [15, 16, 27, 28, 29, 14]}, "16": {"index": 16, "symbol": "C", "rank": 18, "score": 0.404, "color": "#e0e0e0", "group_name": "Ring System", "group_indices": [15, 16, 27, 28, 29, 14]}, "17": {"index": 17, "symbol": "S", "rank": 8, "score": 0.545, "color": "#e0e0e0", "group_name": "Sulfonamide", "group_indices": [17, 18, 19, 20]}, "18": {"index": 18, "symbol": "O", "rank": 10, "score": 0.522, "color": "#e0e0e0", "group_name": "Sulfonamide", "group_indices": [17, 18, 19, 20]}, "19": {"index": 19, "symbol": "O", "rank": 12, "score": 0.486, "color": "#e0e0e0", "group_name": "Sulfonamide", "group_indices": [17, 18, 19, 20]}, "20": {"index": 20, "symbol": "N", "rank": 5, "score": 0.568, "color": "#ff3300", "group_name": "Ring System", "group_indices": [21, 22, 23, 25, 26, 20]}, "21": {"index": 21, "symbol": "C", "rank": 31, "score": 0.021, "color": "#e0e0e0", "group_name": "Ring System", "group_indices": [21, 22, 23, 25, 26, 20]}, "22": {"index": 22, "symbol": "C", "rank": 28, "score": 0.06, "color": "#e0e0e0", "group_name": "Ring System", "group_indices": [21, 22, 23, 25, 26, 20]}, "23": {"index": 23, "symbol": "N", "rank": 11, "score": 0.505, "color": "#e0e0e0", "group_name": "Ring System", "group_indices": [21, 22, 23, 25, 26, 20]}, "24": {"index": 24, "symbol": "C", "rank": 26, "score": 0.102, "color": "#e0e0e0", "group_name": "C-Group", "group_indices": [24, 23]}, "25": {"index": 25, "symbol": "C", "rank": 24, "score": 0.186, "color": "#e0e0e0", "group_name": "Ring System", "group_indices": [21, 22, 23, 25, 26, 20]}, "26": {"index": 26, "symbol": "C", "rank": 29, "score": 0.036, "color": "#e0e0e0", "group_name": "Ring System", "group_indices": [21, 22, 23, 25, 26, 20]}, "27": {"index": 27, "symbol": "C", "rank": 17, "score": 0.457, "color": "#e0e0e0", "group_name": "Ring System", "group_indices": [15, 16, 27, 28, 29, 14]}, "28": {"index": 28, "symbol": "C", "rank": 15, "score": 0.477, "color": "#e0e0e0", "group_name": "Ring System", "group_indices": [15, 16, 27, 28, 29, 14]}, "29": {"index": 29, "symbol": "C", "rank": 21, "score": 0.338, "color": "#e0e0e0", "group_name": "Ring System", "group_indices": [15, 16, 27, 28, 29, 14]}, "30": {"index": 30, "symbol": "O", "rank": 6, "score": 0.567, "color": "#e0e0e0", "group_name": "O-Group", "group_indices": [30, 29, 31]}, "31": {"index": 31, "symbol": "C", "rank": 30, "score": 0.029, "color": "#e0e0e0", "group_name": "C-Group", "group_indices": [31, 30, 32]}, "32": {"index": 32, "symbol": "C", "rank": 32, "score": 0.002, "color": "#e0e0e0", "group_name": "C-Group", "group_indices": [32, 31]}};
+        const molBlock = `\n     RDKit          3D\n\n 33 36  0  0  0  0  0  0  0  0999 V2000\n   -5.9535   -1.7360   -2.8337 C   0  0  0  0  0  0  0  0  0  0  0  0\n   -4.4709   -2.0585   -2.9510 C   0  0  0  0  0  0  0  0  0  0  0  0\n   -3.9110   -2.7701   -1.7175 C   0  0  0  0  0  0  0  0  0  0  0  0\n   -3.8682   -1.9110   -0.4994 C   0  0  0  0  0  0  0  0  0  0  0  0\n   -4.7845   -2.0597    0.4736 N   0  0  0  0  0  0  0  0  0  0  0  0\n   -4.4348   -1.1385    1.4055 N   0  0  0  0  0  0  0  0  0  0  0  0\n   -5.2113   -1.0103    2.6159 C   0  0  0  0  0  0  0  0  0  0  0  0\n   -3.3304   -0.4233    1.0586 C   0  0  0  0  0  0  0  0  0  0  0  0\n   -2.9506   -0.9027   -0.1598 C   0  0  0  0  0  0  0  0  0  0  0  0\n   -1.8754   -0.3898   -0.7719 N   0  0  0  0  0  0  0  0  0  0  0  0\n   -1.2359    0.6405   -0.0968 C   0  0  0  0  0  0  0  0  0  0  0  0\n   -1.5572    1.1201    1.0726 N   0  0  0  0  0  0  0  0  0  0  0  0\n   -2.6508    0.6218    1.7565 C   0  0  0  0  0  0  0  0  0  0  0  0\n   -2.9962    1.0357    2.8560 O   0  0  0  0  0  0  0  0  0  0  0  0\n   -0.0446    1.2351   -0.7594 C   0  0  0  0  0  0  0  0  0  0  0  0\n    1.0404    0.4010   -1.0405 C   0  0  0  0  0  0  0  0  0  0  0  0\n    2.1734    0.9449   -1.6533 C   0  0  0  0  0  0  0  0  0  0  0  0\n    3.5460   -0.1261   -1.9996 S   0  0  0  0  0  0  0  0  0  0  0  0\n    3.0116   -1.2470   -2.7430 O   0  0  0  0  0  0  0  0  0  0  0  0\n    4.6347    0.6747   -2.5155 O   0  0  0  0  0  0  0  0  0  0  0  0\n    3.9876   -0.6723   -0.4475 N   0  0  0  0  0  0  0  0  0  0  0  0\n    4.5249    0.3861    0.4682 C   0  0  0  0  0  0  0  0  0  0  0  0\n    4.7508   -0.1990    1.8776 C   0  0  0  0  0  0  0  0  0  0  0  0\n    5.6772   -1.3489    1.8617 N   0  0  0  0  0  0  0  0  0  0  0  0\n    5.8410   -1.8988    3.2060 C   0  0  0  0  0  0  0  0  0  0  0  0\n    5.1701   -2.3816    0.9343 C   0  0  0  0  0  0  0  0  0  0  0  0\n    4.9386   -1.8314   -0.4879 C   0  0  0  0  0  0  0  0  0  0  0  0\n    2.2273    2.2973   -2.0018 C   0  0  0  0  0  0  0  0  0  0  0  0\n    1.1351    3.1218   -1.7229 C   0  0  0  0  0  0  0  0  0  0  0  0\n    0.0067    2.5956   -1.0869 C   0  0  0  0  0  0  0  0  0  0  0  0\n   -1.0849    3.3994   -0.8953 O   0  0  0  0  0  0  0  0  0  0  0  0\n   -0.8952    4.2581    0.2359 C   0  0  0  0  0  0  0  0  0  0  0  0\n   -2.2480    4.8243    0.6269 C   0  0  0  0  0  0  0  0  0  0  0  0\n  1  2  1  0\n  2  3  1  0\n  3  4  1  0\n  4  5  2  0\n  5  6  1  0\n  6  7  1  0\n  6  8  1  0\n  8  9  2  0\n  9 10  1  0\n 10 11  1  0\n 11 12  2  0\n 12 13  1  0\n 13 14  2  0\n 11 15  1  0\n 15 16  2  0\n 16 17  1  0\n 17 18  1  0\n 18 19  2  0\n 18 20  2  0\n 18 21  1  0\n 21 22  1  0\n 22 23  1  0\n 23 24  1  0\n 24 25  1  0\n 24 26  1  0\n 26 27  1  0\n 17 28  2  0\n 28 29  1  0\n 29 30  2  0\n 30 31  1  0\n 31 32  1  0\n 32 33  1  0\n  9  4  1  0\n 13  8  1  0\n 30 15  1  0\n 27 21  1  0\nM  END\n`;
+        let viewer = null;
+        let isSpinning = false;
+
+        $(document).ready(function() {
+            viewer = $3Dmol.createViewer($('#viewport'), { backgroundColor: '#0f1014' });
+            viewer.addModel(molBlock, "mol");
+            
+            // Initial Render: Rank Based Coloring
+            renderDefaultView();
+            
+            viewer.zoomTo();
+            viewer.render();
+
+            // --- CLICK HANDLER ---
+            viewer.setClickable({}, true, function(atom) {
+                if(!atomData[atom.serial]) return;
+                let data = atomData[atom.serial];
+                
+                // 1. UPDATE UI
+                $('#details').addClass('active');
+                $('#d-rank').text("#" + data.rank);
+                $('#d-group').text(data.group_name);
+                $('#d-score').text(data.score);
+                
+                // 2. ISOLATE GROUP (Ghosting Effect)
+                isolateGroup(data.group_indices);
+
+                // 3. ZOOM TRANSITION
+                let atomList = data.group_indices; 
+                let selection = {serial: atomList};
+                viewer.zoomTo(selection, 800); 
+            });
+        });
+
+        function renderDefaultView() {
+            // Apply standard ranking colors
+            for(let id in atomData) {
+                let d = atomData[id];
+                viewer.setStyle({serial: parseInt(id)}, {
+                    stick: {color: d.color, radius: 0.15},
+                    sphere: {color: d.color, scale: 0.35}
+                });
+            }
+            viewer.render();
+        }
+
+        function isolateGroup(indices) {
+            // 1. Ghost everything (Translucent Grey)
+            viewer.setStyle({}, {
+                stick: {color: '#444', radius: 0.1, opacity: 0.1},
+                sphere: {hidden: true}
+            });
+
+            // 2. Highlight Group (Thick & Colorful)
+            for(let i=0; i<indices.length; i++) {
+                let idx = indices[i];
+                let d = atomData[idx];
+                
+                viewer.setStyle({serial: idx}, {
+                    stick: {color: d.color, radius: 0.3},
+                    sphere: {color: d.color, scale: 0.5}
+                });
+            }
+            viewer.render();
+        }
+
+        function resetView() {
+            $('#details').removeClass('active');
+            renderDefaultView();
+            viewer.zoomTo({}, 800); 
+        }
+
+        function toggleSpin() {
+            isSpinning = !isSpinning;
+            viewer.spin(isSpinning);
+        }
+    </script>
+</body>
+</html>

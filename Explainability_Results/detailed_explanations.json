@@ -1,0 +1,659 @@
+{
+  "timestamp": "2025-10-29T08:34:36.515733",
+  "num_explanations": 10,
+  "explanations": [
+    {
+      "index": 0,
+      "smiles": "CN1C=NC2=C1C(=O)N(C(=O)N2C)C",
+      "prediction": {
+        "class": "Authentic",
+        "class_id": 0,
+        "confidence": 0.9379702806472778,
+        "probabilities": "[0.9379703  0.06202964]"
+      },
+      "critical_substructures": [
+        {
+          "atom_indices": "{0, 1}",
+          "center_atom": 0,
+          "center_atom_symbol": "C",
+          "importance_score": 2.5785393714904785,
+          "aggregate_importance": 1.2892696857452393,
+          "substructure_size": 2,
+          "functional_group": "C_group"
+        },
+        {
+          "atom_indices": "{1, 4, 5, 6}",
+          "center_atom": 5,
+          "center_atom_symbol": "C",
+          "importance_score": 2.57387638092041,
+          "aggregate_importance": 1.8515608310699463,
+          "substructure_size": 4,
+          "functional_group": "C_group"
+        },
+        {
+          "atom_indices": "{1, 2, 3}",
+          "center_atom": 2,
+          "center_atom_symbol": "C",
+          "importance_score": 2.2365119457244873,
+          "aggregate_importance": 0.7455039620399475,
+          "substructure_size": 3,
+          "functional_group": "C_group"
+        },
+        {
+          "atom_indices": "{9, 11, 12, 4}",
+          "center_atom": 11,
+          "center_atom_symbol": "N",
+          "importance_score": 0.2519546151161194,
+          "aggregate_importance": 0.6363618969917297,
+          "substructure_size": 4,
+          "functional_group": "N_group"
+        },
+        {
+          "atom_indices": "{8, 9, 13, 6}",
+          "center_atom": 8,
+          "center_atom_symbol": "N",
+          "importance_score": 0.2306041419506073,
+          "aggregate_importance": 0.6923694014549255,
+          "substructure_size": 4,
+          "functional_group": "N_group"
+        }
+      ],
+      "node_contributions": {
+        "C": "0.9484264",
+        "N": "0.03748002",
+        "O": "0.0140935825"
+      },
+      "lime_fidelity": {
+        "correlation": NaN,
+        "p_value": NaN,
+        "mean_prob_change": 0.35254037380218506
+      }
+    },
+    {
+      "index": 1,
+      "smiles": "CN1CCC2=CC(=C(C=C2C1CC3=CC=C(C=C3)O)OC)OC",
+      "prediction": {
+        "class": "Authentic",
+        "class_id": 0,
+        "confidence": 0.9519435167312622,
+        "probabilities": "[0.9519435  0.04805646]"
+      },
+      "critical_substructures": [
+        {
+          "atom_indices": "{0, 1}",
+          "center_atom": 0,
+          "center_atom_symbol": "C",
+          "importance_score": 4.1888556480407715,
+          "aggregate_importance": 2.0944278240203857,
+          "substructure_size": 2,
+          "functional_group": "Amine"
+        },
+        {
+          "atom_indices": "{16, 17, 12}",
+          "center_atom": 17,
+          "center_atom_symbol": "C",
+          "importance_score": 4.0845208168029785,
+          "aggregate_importance": 2.243462324142456,
+          "substructure_size": 3,
+          "functional_group": "Phenyl"
+        },
+        {
+          "atom_indices": "{4, 5, 6}",
+          "center_atom": 5,
+          "center_atom_symbol": "C",
+          "importance_score": 1.9057128429412842,
+          "aggregate_importance": 1.3762162923812866,
+          "substructure_size": 3,
+          "functional_group": "Phenyl"
+        },
+        {
+          "atom_indices": "{10, 11, 12}",
+          "center_atom": 11,
+          "center_atom_symbol": "C",
+          "importance_score": 1.120273470878601,
+          "aggregate_importance": 1.0598751306533813,
+          "substructure_size": 3,
+          "functional_group": "C_group"
+        },
+        {
+          "atom_indices": "{8, 9, 10, 4}",
+          "center_atom": 9,
+          "center_atom_symbol": "C",
+          "importance_score": 1.1055207252502441,
+          "aggregate_importance": 1.0521641969680786,
+          "substructure_size": 4,
+          "functional_group": "Phenyl"
+        }
+      ],
+      "node_contributions": {
+        "C": "0.9810145",
+        "N": "0.0022083241",
+        "O": "0.016777195"
+      },
+      "lime_fidelity": {
+        "correlation": NaN,
+        "p_value": NaN,
+        "mean_prob_change": 0.5976674556732178
+      }
+    },
+    {
+      "index": 2,
+      "smiles": "C1=CC=C2C(=C1)C=CC=C2",
+      "prediction": {
+        "class": "Authentic",
+        "class_id": 0,
+        "confidence": 0.9587076902389526,
+        "probabilities": "[0.9587077  0.04129224]"
+      },
+      "critical_substructures": [
+        {
+          "atom_indices": "{9, 2, 3, 4}",
+          "center_atom": 3,
+          "center_atom_symbol": "C",
+          "importance_score": 5.579555511474609,
+          "aggregate_importance": 4.323686599731445,
+          "substructure_size": 4,
+          "functional_group": "Phenyl"
+        },
+        {
+          "atom_indices": "{0, 1, 5}",
+          "center_atom": 0,
+          "center_atom_symbol": "C",
+          "importance_score": 3.378943920135498,
+          "aggregate_importance": 3.275235176086426,
+          "substructure_size": 3,
+          "functional_group": "Phenyl"
+        },
+        {
+          "atom_indices": "{8, 6, 7}",
+          "center_atom": 7,
+          "center_atom_symbol": "C",
+          "importance_score": 3.378943920135498,
+          "aggregate_importance": 3.275235176086426,
+          "substructure_size": 3,
+          "functional_group": "Phenyl"
+        }
+      ],
+      "node_contributions": {
+        "C": "1.0"
+      },
+      "lime_fidelity": {
+        "correlation": NaN,
+        "p_value": NaN,
+        "mean_prob_change": 0.4169979393482208
+      }
+    },
+    {
+      "index": 3,
+      "smiles": "C1=CC=C(C=C1)C(=O)C2=CC=CC=C2",
+      "prediction": {
+        "class": "Authentic",
+        "class_id": 0,
+        "confidence": 0.9604003429412842,
+        "probabilities": "[0.96040034 0.03959968]"
+      },
+      "critical_substructures": [
+        {
+          "atom_indices": "{9, 10, 11}",
+          "center_atom": 10,
+          "center_atom_symbol": "C",
+          "importance_score": 3.080678939819336,
+          "aggregate_importance": 2.977715492248535,
+          "substructure_size": 3,
+          "functional_group": "Phenyl"
+        },
+        {
+          "atom_indices": "{0, 1, 5}",
+          "center_atom": 0,
+          "center_atom_symbol": "C",
+          "importance_score": 3.0806784629821777,
+          "aggregate_importance": 2.977715253829956,
+          "substructure_size": 3,
+          "functional_group": "Phenyl"
+        },
+        {
+          "atom_indices": "{8, 9, 13, 6}",
+          "center_atom": 8,
+          "center_atom_symbol": "C",
+          "importance_score": 2.61026668548584,
+          "aggregate_importance": 1.8061680793762207,
+          "substructure_size": 4,
+          "functional_group": "Ketone"
+        },
+        {
+          "atom_indices": "{11, 12, 13}",
+          "center_atom": 12,
+          "center_atom_symbol": "C",
+          "importance_score": 2.61026668548584,
+          "aggregate_importance": 1.845500111579895,
+          "substructure_size": 3,
+          "functional_group": "Phenyl"
+        },
+        {
+          "atom_indices": "{1, 2, 3}",
+          "center_atom": 2,
+          "center_atom_symbol": "C",
+          "importance_score": 2.6102664470672607,
+          "aggregate_importance": 2.6023359298706055,
+          "substructure_size": 3,
+          "functional_group": "Phenyl"
+        }
+      ],
+      "node_contributions": {
+        "C": "0.9973105",
+        "O": "0.002689517"
+      },
+      "lime_fidelity": {
+        "correlation": NaN,
+        "p_value": NaN,
+        "mean_prob_change": 0.4466312527656555
+      }
+    },
+    {
+      "index": 4,
+      "smiles": "CC(C)(C)C1=CC=C(C=C1)O",
+      "prediction": {
+        "class": "Authentic",
+        "class_id": 0,
+        "confidence": 0.8993045687675476,
+        "probabilities": "[0.89930457 0.10069544]"
+      },
+      "critical_substructures": [
+        {
+          "atom_indices": "{4, 5, 6}",
+          "center_atom": 5,
+          "center_atom_symbol": "C",
+          "importance_score": 3.508681535720825,
+          "aggregate_importance": 2.454800605773926,
+          "substructure_size": 3,
+          "functional_group": "Phenyl"
+        },
+        {
+          "atom_indices": "{8, 9, 4}",
+          "center_atom": 9,
+          "center_atom_symbol": "C",
+          "importance_score": 3.508681535720825,
+          "aggregate_importance": 2.454800605773926,
+          "substructure_size": 3,
+          "functional_group": "Phenyl"
+        },
+        {
+          "atom_indices": "{0, 1}",
+          "center_atom": 0,
+          "center_atom_symbol": "C",
+          "importance_score": 1.5278633832931519,
+          "aggregate_importance": 1.5080816745758057,
+          "substructure_size": 2,
+          "functional_group": "C_group"
+        },
+        {
+          "atom_indices": "{1, 2}",
+          "center_atom": 2,
+          "center_atom_symbol": "C",
+          "importance_score": 1.5278633832931519,
+          "aggregate_importance": 1.5080816745758057,
+          "substructure_size": 2,
+          "functional_group": "C_group"
+        },
+        {
+          "atom_indices": "{1, 3}",
+          "center_atom": 3,
+          "center_atom_symbol": "C",
+          "importance_score": 1.5278633832931519,
+          "aggregate_importance": 1.5080816745758057,
+          "substructure_size": 2,
+          "functional_group": "C_group"
+        }
+      ],
+      "node_contributions": {
+        "C": "0.95304877",
+        "O": "0.046951216"
+      },
+      "lime_fidelity": {
+        "correlation": NaN,
+        "p_value": NaN,
+        "mean_prob_change": 0.37217414379119873
+      }
+    },
+    {
+      "index": 5,
+      "smiles": "CCN(CC)C(=S)C1(c2ccccc2)CC1CN",
+      "prediction": {
+        "class": "Counterfeit",
+        "class_id": 1,
+        "confidence": 0.8782786726951599,
+        "probabilities": "[0.12172133 0.8782787 ]"
+      },
+      "critical_substructures": [
+        {
+          "atom_indices": "{2, 5, 6, 7}",
+          "center_atom": 5,
+          "center_atom_symbol": "C",
+          "importance_score": 4.17456579208374,
+          "aggregate_importance": 1.259013056755066,
+          "substructure_size": 4,
+          "functional_group": "Amine"
+        },
+        {
+          "atom_indices": "{8, 9, 13, 7}",
+          "center_atom": 8,
+          "center_atom_symbol": "C",
+          "importance_score": 1.2737305164337158,
+          "aggregate_importance": 0.8903815746307373,
+          "substructure_size": 4,
+          "functional_group": "Phenyl"
+        },
+        {
+          "atom_indices": "{9, 10, 11}",
+          "center_atom": 10,
+          "center_atom_symbol": "C",
+          "importance_score": 1.2737305164337158,
+          "aggregate_importance": 0.9911508560180664,
+          "substructure_size": 3,
+          "functional_group": "Phenyl"
+        },
+        {
+          "atom_indices": "{3, 4}",
+          "center_atom": 4,
+          "center_atom_symbol": "C",
+          "importance_score": 1.0585706233978271,
+          "aggregate_importance": 0.6786928176879883,
+          "substructure_size": 2,
+          "functional_group": "C_group"
+        },
+        {
+          "atom_indices": "{15, 14, 7}",
+          "center_atom": 14,
+          "center_atom_symbol": "C",
+          "importance_score": 0.930418848991394,
+          "aggregate_importance": 0.5973017811775208,
+          "substructure_size": 3,
+          "functional_group": "C_group"
+        }
+      ],
+      "node_contributions": {
+        "C": "0.9899893",
+        "N": "0.0043370794",
+        "S": "0.005673633"
+      },
+      "lime_fidelity": {
+        "correlation": NaN,
+        "p_value": NaN,
+        "mean_prob_change": 0.1440950483083725
+      }
+    },
+    {
+      "index": 6,
+      "smiles": "CC[C@@]1(S)C(=O)OCc2c1cc1n(c2=O)Cc2c-1nc1cc(F)c(C)c3c1c2[C@@H](N)CC3",
+      "prediction": {
+        "class": "Counterfeit",
+        "class_id": 1,
+        "confidence": 0.715422511100769,
+        "probabilities": "[0.2845775 0.7154225]"
+      },
+      "critical_substructures": [
+        {
+          "atom_indices": "{1, 2, 3, 4, 9}",
+          "center_atom": 2,
+          "center_atom_symbol": "C",
+          "importance_score": 1.1229941844940186,
+          "aggregate_importance": 0.5249673128128052,
+          "substructure_size": 5,
+          "functional_group": "Ketone"
+        },
+        {
+          "atom_indices": "{8, 9, 13, 7}",
+          "center_atom": 8,
+          "center_atom_symbol": "C",
+          "importance_score": 0.8001339435577393,
+          "aggregate_importance": 0.5512866973876953,
+          "substructure_size": 4,
+          "functional_group": "C_group"
+        },
+        {
+          "atom_indices": "{9, 10, 11}",
+          "center_atom": 10,
+          "center_atom_symbol": "C",
+          "importance_score": 0.6341069936752319,
+          "aggregate_importance": 0.6113503575325012,
+          "substructure_size": 3,
+          "functional_group": "C_group"
+        },
+        {
+          "atom_indices": "{24, 25, 21, 23}",
+          "center_atom": 23,
+          "center_atom_symbol": "C",
+          "importance_score": 0.5487525463104248,
+          "aggregate_importance": 0.20384959876537323,
+          "substructure_size": 4,
+          "functional_group": "Phenyl"
+        },
+        {
+          "atom_indices": "{19, 20, 21}",
+          "center_atom": 20,
+          "center_atom_symbol": "C",
+          "importance_score": 0.41127434372901917,
+          "aggregate_importance": 0.36146092414855957,
+          "substructure_size": 3,
+          "functional_group": "Phenyl"
+        }
+      ],
+      "node_contributions": {
+        "C": "0.95392936",
+        "S": "0.018619468",
+        "O": "0.01939366",
+        "N": "0.003938827",
+        "F": "0.0041187196"
+      },
+      "lime_fidelity": {
+        "correlation": NaN,
+        "p_value": NaN,
+        "mean_prob_change": 0.07616060972213745
+      }
+    },
+    {
+      "index": 7,
+      "smiles": "Cl.OC(CCN1CCCCC1)(c1ccccc1)C1CCCCC1O",
+      "prediction": {
+        "class": "Counterfeit",
+        "class_id": 1,
+        "confidence": 0.893673837184906,
+        "probabilities": "[0.10632613 0.89367384]"
+      },
+      "critical_substructures": [
+        {
+          "atom_indices": "{17, 21, 22, 23}",
+          "center_atom": 22,
+          "center_atom_symbol": "C",
+          "importance_score": 6.0779337882995605,
+          "aggregate_importance": 2.6740314960479736,
+          "substructure_size": 4,
+          "functional_group": "C_group"
+        },
+        {
+          "atom_indices": "{2, 3, 4}",
+          "center_atom": 3,
+          "center_atom_symbol": "C",
+          "importance_score": 3.198286533355713,
+          "aggregate_importance": 1.2022966146469116,
+          "substructure_size": 3,
+          "functional_group": "C_group"
+        },
+        {
+          "atom_indices": "{11, 12, 13}",
+          "center_atom": 12,
+          "center_atom_symbol": "C",
+          "importance_score": 1.4135264158248901,
+          "aggregate_importance": 1.0044413805007935,
+          "substructure_size": 3,
+          "functional_group": "Phenyl"
+        },
+        {
+          "atom_indices": "{16, 11, 15}",
+          "center_atom": 16,
+          "center_atom_symbol": "C",
+          "importance_score": 1.4135264158248901,
+          "aggregate_importance": 1.0044413805007935,
+          "substructure_size": 3,
+          "functional_group": "Phenyl"
+        },
+        {
+          "atom_indices": "{17, 18, 19}",
+          "center_atom": 18,
+          "center_atom_symbol": "C",
+          "importance_score": 1.2867196798324585,
+          "aggregate_importance": 1.78856360912323,
+          "substructure_size": 3,
+          "functional_group": "C_group"
+        }
+      ],
+      "node_contributions": {
+        "Cl": "0.002692058",
+        "O": "0.008408937",
+        "C": "0.9873704",
+        "N": "0.001528655"
+      },
+      "lime_fidelity": {
+        "correlation": NaN,
+        "p_value": NaN,
+        "mean_prob_change": 0.17553238570690155
+      }
+    },
+    {
+      "index": 8,
+      "smiles": "CCN1CCN(C(=S)c2cc(N(CCBr)CCOS(C)(=O)=O)c(S(C)(=O)=O)cc2[N+](=O)[O-])CC1",
+      "prediction": {
+        "class": "Counterfeit",
+        "class_id": 1,
+        "confidence": 0.6553424000740051,
+        "probabilities": "[0.34465766 0.6553424 ]"
+      },
+      "critical_substructures": [
+        {
+          "atom_indices": "{8, 9, 28, 6}",
+          "center_atom": 8,
+          "center_atom_symbol": "C",
+          "importance_score": 0.2849923372268677,
+          "aggregate_importance": 0.12965084612369537,
+          "substructure_size": 4,
+          "functional_group": "Phenyl"
+        },
+        {
+          "atom_indices": "{16, 11, 15}",
+          "center_atom": 15,
+          "center_atom_symbol": "C",
+          "importance_score": 0.2500990927219391,
+          "aggregate_importance": 0.10635725408792496,
+          "substructure_size": 3,
+          "functional_group": "Amine"
+        },
+        {
+          "atom_indices": "{3, 4, 5}",
+          "center_atom": 4,
+          "center_atom_symbol": "C",
+          "importance_score": 0.18438461422920227,
+          "aggregate_importance": 0.08257710933685303,
+          "substructure_size": 3,
+          "functional_group": "Amine"
+        },
+        {
+          "atom_indices": "{12, 13, 14}",
+          "center_atom": 13,
+          "center_atom_symbol": "C",
+          "importance_score": 0.12367458641529083,
+          "aggregate_importance": 0.08178865164518356,
+          "substructure_size": 3,
+          "functional_group": "C_group"
+        },
+        {
+          "atom_indices": "{9, 10, 11, 22}",
+          "center_atom": 10,
+          "center_atom_symbol": "C",
+          "importance_score": 0.07570116221904755,
+          "aggregate_importance": 0.04229804873466492,
+          "substructure_size": 4,
+          "functional_group": "Amine"
+        }
+      ],
+      "node_contributions": {
+        "C": "0.81503415",
+        "N": "0.010236674",
+        "S": "0.09017106",
+        "Br": "0.008783265",
+        "O": "0.075774916"
+      },
+      "lime_fidelity": {
+        "correlation": NaN,
+        "p_value": NaN,
+        "mean_prob_change": 0.05050778388977051
+      }
+    },
+    {
+      "index": 9,
+      "smiles": "C[C@@H]1CC2=CC(=S)CC[C@@H]2[C@H]2CC[C@@]3(C)[C@@H](CC[C@]3(C)O)[C@@H]21",
+      "prediction": {
+        "class": "Counterfeit",
+        "class_id": 1,
+        "confidence": 0.8668409585952759,
+        "probabilities": "[0.13315901 0.86684096]"
+      },
+      "critical_substructures": [
+        {
+          "atom_indices": "{4, 5, 6, 7}",
+          "center_atom": 5,
+          "center_atom_symbol": "C",
+          "importance_score": 1.0117197036743164,
+          "aggregate_importance": 0.31935665011405945,
+          "substructure_size": 4,
+          "functional_group": "C_group"
+        },
+        {
+          "atom_indices": "{16, 17, 18}",
+          "center_atom": 17,
+          "center_atom_symbol": "C",
+          "importance_score": 0.4235663115978241,
+          "aggregate_importance": 0.2455706000328064,
+          "substructure_size": 3,
+          "functional_group": "C_group"
+        },
+        {
+          "atom_indices": "{11, 12, 13}",
+          "center_atom": 12,
+          "center_atom_symbol": "C",
+          "importance_score": 0.2075888216495514,
+          "aggregate_importance": 0.13947772979736328,
+          "substructure_size": 3,
+          "functional_group": "C_group"
+        },
+        {
+          "atom_indices": "{13, 14}",
+          "center_atom": 14,
+          "center_atom_symbol": "C",
+          "importance_score": 0.13485005497932434,
+          "aggregate_importance": 0.1340952217578888,
+          "substructure_size": 2,
+          "functional_group": "C_group"
+        },
+        {
+          "atom_indices": "{8, 9, 7}",
+          "center_atom": 8,
+          "center_atom_symbol": "C",
+          "importance_score": 0.10013598203659058,
+          "aggregate_importance": 0.12370605021715164,
+          "substructure_size": 3,
+          "functional_group": "C_group"
+        }
+      ],
+      "node_contributions": {
+        "C": "0.9069963",
+        "S": "0.026809476",
+        "O": "0.066194244"
+      },
+      "lime_fidelity": {
+        "correlation": NaN,
+        "p_value": NaN,
+        "mean_prob_change": 0.14041388034820557
+      }
+    }
+  ]
+}
