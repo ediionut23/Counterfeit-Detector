@@ -1,0 +1,24 @@
+{
+  "total": 18,
+  "authentic": 7,
+  "counterfeit": 11,
+  "unique_smiles": 18,
+  "node_types": [
+    "C",
+    "N",
+    "O"
+  ],
+  "edge_types_count": 6,
+  "atom_features": 26,
+  "bond_features": 18,
+  "generator_version": "v2_rdkit_native",
+  "improvements": [
+    "RDKit-native molecular editing (no SMILES string ops)",
+    "Descriptor rejection sampling",
+    "Tanimoto similarity control (0.4-0.9)",
+    "Global deduplication at generation time",
+    "Family tracking via original_smiles",
+    "No backup molecule domination"
+  ],
+  "timestamp": "2026-04-01T19:18:57.998233"
+}
