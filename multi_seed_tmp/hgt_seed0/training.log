@@ -1,0 +1,24 @@
+2026-06-03 13:01:44,685 - INFO - Training started - 50 epochs, patience=10
+2026-06-03 13:05:04,668 - INFO - Training started - 50 epochs, patience=10
+2026-06-03 13:17:29,856 - INFO - New best model saved: Val F1=0.6695
+2026-06-03 13:17:29,857 - INFO - Epoch 1/50 - Train F1=0.6312 - Val F1=0.6695 (best=0.6695) - Test F1=0.6620
+2026-06-03 13:37:30,902 - INFO - New best model saved: Val F1=0.6703
+2026-06-03 13:37:30,903 - INFO - Epoch 2/50 - Train F1=0.6607 - Val F1=0.6703 (best=0.6703) - Test F1=0.6723
+2026-06-03 14:00:22,289 - INFO - New best model saved: Val F1=0.6803
+2026-06-03 14:00:22,292 - INFO - Epoch 3/50 - Train F1=0.6715 - Val F1=0.6803 (best=0.6803) - Test F1=0.6769
+2026-06-03 14:23:43,473 - INFO - New best model saved: Val F1=0.7058
+2026-06-03 14:23:43,473 - INFO - Epoch 4/50 - Train F1=0.6821 - Val F1=0.7058 (best=0.7058) - Test F1=0.6910
+2026-06-03 14:45:39,134 - INFO - New best model saved: Val F1=0.7229
+2026-06-03 14:45:39,135 - INFO - Epoch 5/50 - Train F1=0.6999 - Val F1=0.7229 (best=0.7229) - Test F1=0.7210
+2026-06-03 15:03:16,211 - INFO - New best model saved: Val F1=0.7303
+2026-06-03 15:03:16,212 - INFO - Epoch 6/50 - Train F1=0.7120 - Val F1=0.7303 (best=0.7303) - Test F1=0.7317
+2026-06-03 15:21:32,895 - INFO - New best model saved: Val F1=0.7495
+2026-06-03 15:21:32,895 - INFO - Epoch 7/50 - Train F1=0.7264 - Val F1=0.7495 (best=0.7495) - Test F1=0.7533
+2026-06-03 15:46:38,370 - INFO - New best model saved: Val F1=0.7614
+2026-06-03 15:46:38,371 - INFO - Epoch 8/50 - Train F1=0.7322 - Val F1=0.7614 (best=0.7614) - Test F1=0.7669
+2026-06-03 16:08:55,841 - INFO - Epoch 9/50 - Train F1=0.7424 - Val F1=0.7545 (best=0.7614) - Test F1=0.7615
+2026-06-03 16:33:45,649 - INFO - Epoch 10/50 - Train F1=0.7466 - Val F1=0.7555 (best=0.7614) - Test F1=0.7613
+2026-06-03 16:57:38,846 - INFO - Epoch 11/50 - Train F1=0.7518 - Val F1=0.7360 (best=0.7614) - Test F1=0.7460
+2026-06-03 17:18:58,349 - INFO - New best model saved: Val F1=0.7784
+2026-06-03 17:18:58,351 - INFO - Epoch 12/50 - Train F1=0.7578 - Val F1=0.7784 (best=0.7784) - Test F1=0.7729
+2026-06-03 17:39:17,503 - INFO - Epoch 13/50 - Train F1=0.7595 - Val F1=0.7695 (best=0.7784) - Test F1=0.7803

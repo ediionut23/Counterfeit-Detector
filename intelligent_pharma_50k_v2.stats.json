@@ -1,0 +1,66 @@
+{
+  "total_graphs": 15448,
+  "authentic_count": 7724,
+  "counterfeit_count": 7724,
+  "balance_ratio": 1.0,
+  "node_types": [
+    "Al",
+    "As",
+    "B",
+    "Br",
+    "C",
+    "Ca",
+    "Cl",
+    "F",
+    "H",
+    "I",
+    "K",
+    "Mg",
+    "N",
+    "Na",
+    "O",
+    "P",
+    "S",
+    "Se",
+    "Si",
+    "Zn"
+  ],
+  "edge_type_count": 58,
+  "shortcut_metrics_before_matching": {
+    "cohen_d_length": 0.14769684934092653,
+    "cohen_d_mw": 0.32684045561068403,
+    "cohen_d_heavy": 0.31429806313018105,
+    "trivial_lr_acc": 0.6594818201611148
+  },
+  "shortcut_metrics_after_matching": {
+    "cohen_d_length": 0.01700945715028912,
+    "cohen_d_mw": 0.014849498758479622,
+    "cohen_d_heavy": 0.005360329183359827,
+    "trivial_lr_acc": 0.5097087378640777
+  },
+  "difficulty_distribution": {
+    "subtle": 4603,
+    "moderate": 2717,
+    "obvious": 404
+  },
+  "source_distribution": {
+    "ChEMBL": 7724
+  },
+  "counterfeit_types": {
+    "aryl_CH_to_N_para": 2148,
+    "amide_to_sulfonamide": 870,
+    "OMe_to_OEt": 735,
+    "methyl_to_ethyl_on_aryl": 709,
+    "Cl_to_CF3_aryl": 639,
+    "F_to_Cl_aryl": 536,
+    "COOH_to_tetrazole": 488,
+    "aryl_C_to_N": 475,
+    "NH2_to_NHMe": 353,
+    "alkene_to_alkane": 269,
+    "ketone_to_sulfoxide": 196,
+    "ester_to_amide": 93,
+    "piperidine_to_morpholine": 88,
+    "Br_to_Cl_aryl": 78,
+    "cyclopentane_to_cyclohexane": 47
+  }
+}

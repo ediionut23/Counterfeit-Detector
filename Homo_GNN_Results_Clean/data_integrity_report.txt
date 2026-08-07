@@ -1,0 +1,37 @@
+=================================================================
+  DATA INTEGRITY CHECK
+=================================================================
+
+Original dataset: 30000 graphs
+
+[Step 1] Filter missing SMILES: dropped 0, kept 30000
+
+[Step 2] Conflicting labels: 23 SMILES have both 0 and 1
+         Removing ALL instances of these SMILES
+         30000 → 29950 graphs
+
+[Step 3] Deduplication: removed 12775 duplicates
+         29950 → 17175 unique graphs
+
+[Step 4] Class balance after cleaning:
+         Authentic: 5712 (33.3%)
+         Counterfeit: 11463 (66.7%)
+         Balance ratio: 0.498
+
+[Step 5] Artifact indicators:
+         SMILES length — auth: 49.1±22.7, fake: 46.9±21.3, Cohen's d: 0.100
+         Trivial LogReg (nodes, edges, len) accuracy: 0.668
+         ⚠  Shortcuts exist — expect inflated GNN scores
+
+[Step 6] Family-aware train/test split:
+         Total families: 17175
+         Train: 13740 graphs (auth=4570, fake=9170)
+         Test:  3435 graphs (auth=1142, fake=2293)
+
+[Step 7] Split verification:
+         Train unique SMILES: 13740
+         Test unique SMILES:  3435
+         Overlap:             0
+         ✓  Zero overlap — clean split confirmed
+         Parent-child leakage: 0
+         ✓  No parent-child leakage

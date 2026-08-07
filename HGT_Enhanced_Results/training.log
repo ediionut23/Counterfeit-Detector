@@ -227,3 +227,4 @@
 2025-10-03 16:36:49,480 - INFO - Epoch 78/80 - Train: Loss=0.0387, F1=0.8096 - Test: Loss=0.0400, Acc=0.7712, F1=0.8079
 2025-10-03 17:01:21,650 - INFO - Epoch 79/80 - Train: Loss=0.0385, F1=0.8081 - Test: Loss=0.0405, Acc=0.7790, F1=0.8126
 2025-10-03 17:25:52,621 - INFO - Epoch 80/80 - Train: Loss=0.0384, F1=0.8092 - Test: Loss=0.0404, Acc=0.7743, F1=0.8099
+2026-04-21 09:46:53,479 - INFO - Training started: 100 epochs, patience=20

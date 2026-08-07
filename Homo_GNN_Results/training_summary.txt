@@ -1,0 +1,13 @@
+Homogeneous GAT Training Summary
+================================
+Best F1 Score      : 0.8653
+Best Epoch         : 17
+vs baseline (0.711): +21.7%
+Model Parameters   : 1,144,802
+Node feature dim   : 35
+Hidden channels    : 192
+GAT heads          : 8
+GAT layers         : 3
+Dropout            : 0.15
+Device             : cpu
+Training Date      : 2026-04-18 17:20:07

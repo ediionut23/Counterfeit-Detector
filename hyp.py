@@ -1,10 +1,3 @@
-"""
-Advanced GNN Explainability System using PyTorch Geometric's Native GNNExplainer
-Optimized for Heterogeneous Graphs and HGT Models
-Compatible with training_script.py models
-File: ex.py (Final Version - Complex Visualization)
-Features: Random Selection, Dual Visualization, Realistic Perturbation, Surgical Feature Annotation
-"""
 
 import torch
 import torch.nn.functional as F
@@ -37,14 +30,13 @@ warnings.filterwarnings('ignore')
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-# Results directory
+from attention_extractor import HGTAttentionExtractor
+
 RESULTS_DIR = './PyG_Explainability_Results'
 Path(RESULTS_DIR).mkdir(exist_ok=True)
 
+CLASSIFICATION_THRESHOLD = 0.692
 
-# ==============================================================================
-# 1. MODEL DEFINITION (Must match training_script.py exactly)
-# ==============================================================================
 
 class RobustEnhancedHGTDetector(torch.nn.Module):
     def __init__(self, feature_dims, hidden_channels=192, out_channels=2,
@@ -73,7 +65,7 @@ class RobustEnhancedHGTDetector(torch.nn.Module):
             self.convs.append(HGTConv(hidden_channels, hidden_channels, self.metadata, num_heads))
             self.layer_norms.append(torch.nn.LayerNorm(hidden_channels))
         self.node_attention = torch.nn.Parameter(torch.ones(len(node_types)))
-        classifier_input_dim = hidden_channels * len(node_types)
+        classifier_input_dim = hidden_channels * 2 * len(node_types)  # mean+max pooling
         self.classifier = torch.nn.Sequential(
             torch.nn.Linear(classifier_input_dim, hidden_channels * 2),
             torch.nn.BatchNorm1d(hidden_channels * 2),
@@ -121,9 +113,9 @@ class RobustEnhancedHGTDetector(torch.nn.Module):
                         if (node_type in h_dict and
                             h_dict[node_type].shape == h_dropped.shape and
                             h_dict[node_type].size(0) > 0):
-                            h_dict[node_type] = h_dropped + h_dict[node_type] * 0.1
+                            h_dict_new[node_type] = h_dropped + h_dict[node_type]
                         else:
-                            h_dict[node_type] = h_dropped
+                            h_dict_new[node_type] = h_dropped
                 h_dict = h_dict_new
             except Exception as e:
                 break
@@ -153,24 +145,29 @@ class RobustEnhancedHGTDetector(torch.nn.Module):
             if node_type in h_dict and h_dict[node_type].size(0) > 0:
                 node_features = h_dict[node_type]
                 if batch_dict and node_type in batch_dict and batch_dict[node_type].numel() > 0:
-                    pooled = torch.zeros(batch_size, self.hidden_channels, device=device)
+                    pooled_mean = torch.zeros(batch_size, self.hidden_channels, device=device)
+                    pooled_max = torch.zeros(batch_size, self.hidden_channels, device=device)
                     for i in range(batch_size):
                         mask = batch_dict[node_type] == i
                         if mask.any():
                             masked_features = node_features[mask]
-                            pooled[i] = masked_features.mean(dim=0)
+                            pooled_mean[i] = masked_features.mean(dim=0)
+                            pooled_max[i] = masked_features.max(dim=0).values
                 else:
-                    pooled = node_features.mean(dim=0, keepdim=True)
-                    if batch_size > 1: pooled = pooled.expand(batch_size, -1)
-                pooled = pooled * attention_weights[idx]
+                    pooled_mean = node_features.mean(dim=0, keepdim=True)
+                    pooled_max = node_features.max(dim=0, keepdim=True).values
+                    if batch_size > 1:
+                        pooled_mean = pooled_mean.expand(batch_size, -1)
+                        pooled_max = pooled_max.expand(batch_size, -1)
+                pooled = torch.cat([pooled_mean, pooled_max], dim=1) * attention_weights[idx]
                 pooled_features.append(pooled)
             else:
-                empty_pool = torch.zeros(batch_size, self.hidden_channels, device=device)
+                empty_pool = torch.zeros(batch_size, self.hidden_channels * 2, device=device)
                 pooled_features.append(empty_pool)
         if pooled_features:
             return torch.cat(pooled_features, dim=1)
         else:
-            return torch.zeros(batch_size, self.hidden_channels * len(node_types), device=device)
+            return torch.zeros(batch_size, self.hidden_channels * 2 * len(node_types), device=device)
 
 
 class HGTModelWrapper(torch.nn.Module):
@@ -208,10 +205,6 @@ class HGTModelWrapper(torch.nn.Module):
             offset += num_nodes
         return masked_x_dict
 
-
-# ==============================================================================
-# 2. EXPLAINER LOGIC
-# ==============================================================================
 
 class PyGNativeExplainer:
     def __init__(self, model, device, dataset_sample=None):
@@ -256,46 +249,85 @@ class PyGNativeExplainer:
                 return_type='raw',
             ),
         )
-        logger.info("PyTorch Geometric GNNExplainer initialized successfully")
+        self.explainer_object = Explainer(
+            model=self.model,
+            algorithm=GNNExplainer(epochs=150),
+            explanation_type='model',
+            node_mask_type='object',
+            edge_mask_type=None,   
+            model_config=dict(
+                mode='multiclass_classification',
+                task_level='graph',
+                return_type='raw',
+            ),
+        )
+        logger.info("PyTorch Geometric GNNExplainer initialized (attributes + object)")
     
-    def explain_molecule(self, graph: HeteroData, mol_smiles: str, 
+    def explain_molecule(self, graph: HeteroData, mol_smiles: str,
                          target_class: Optional[int] = None,
                          top_k_substructures: int = 5) -> Dict:
         graph = graph.to(self.device)
-        
+
         with torch.no_grad():
             batch_dict = self._safe_get_batch_dict(graph)
             logits = self.model(graph.x_dict, graph.edge_index_dict, batch_dict, 1)
             probs = F.softmax(logits, dim=1)
-            pred_class = logits.argmax(dim=1).item()
+            pred_class = 1 if probs[0, 1].item() >= CLASSIFICATION_THRESHOLD else 0
             confidence = probs[0, pred_class].item()
-        
-        if target_class is None: target_class = pred_class
+
+        if target_class is None:
+            target_class = pred_class
         logger.info(f"Explaining: class={pred_class}, confidence={confidence:.3f}")
-        
-        # 1. GNNExplainer
-        try: gnn_explanation = self._generate_pyg_explanation(graph, target_class)
-        except: gnn_explanation = None
 
-        # 2. Gradient-based
-        try: grad_explanation = self._compute_gradient_importance(graph, target_class)
-        except: grad_explanation = None
+        try:
+            gnn_explanation = self._generate_pyg_explanation(graph, target_class)
+        except Exception as e:
+            logger.warning(f"GNNExplainer (attributes) failed: {e}")
+            gnn_explanation = None
 
-        # 3. Combine
-        combined_importance = self._combine_explanations(gnn_explanation, grad_explanation, graph.node_types)
+        try:
+            gnn_object_explanation = self._generate_pyg_explanation_object(graph, target_class)
+        except Exception as e:
+            logger.warning(f"GNNExplainer (object) failed: {e}")
+            gnn_object_explanation = None
+
+        try:
+            grad_explanation = self._compute_gradient_importance(graph, target_class)
+        except Exception as e:
+            logger.warning(f"Gradient importance failed: {e}")
+            grad_explanation = None
+
+        try:
+            edge_grad_explanation = self._compute_edge_gradient_importance(graph, target_class)
+        except Exception as e:
+            logger.warning(f"Edge gradient importance failed: {e}")
+            edge_grad_explanation = None
+
+        hgt_attention_result = None
+        try:
+            with HGTAttentionExtractor(self.model) as extractor:
+                hgt_attention_result = extractor.extract(graph)
+            logger.info(
+                f"Captured native HGT attention: "
+                f"{hgt_attention_result['num_layers']} layers, "
+                f"{len(hgt_attention_result['edge_type_attention'])} edge types"
+            )
+        except Exception as e:
+            logger.warning(f"HGT attention extraction failed: {e}")
+
+        combined_importance = self._combine_explanations(
+            gnn_explanation, grad_explanation, hgt_attention_result, graph.node_types
+        )
         final_explanation = {'node_importance': combined_importance}
-        
-        # 4. Substructures
+
         substructures = self._identify_critical_substructures(
             graph, mol_smiles, final_explanation, top_k=top_k_substructures
         )
-        
-        # 5. Counterfactuals
+
         counterfactuals = self._generate_counterfactual_insights(
             graph, mol_smiles, pred_class, substructures
         )
-        
-        # 6. Features & Metrics
+
         feature_importance = self._analyze_feature_importance(graph, final_explanation)
         node_contributions = self._analyze_node_type_contributions(graph, final_explanation)
 
@@ -307,6 +339,10 @@ class PyGNativeExplainer:
                 important_atoms_count += len(substruct['atom_indices'])
         sparsity_score = 1.0 - (min(important_atoms_count, num_atoms) / num_atoms) if num_atoms > 0 else 0
         fidelity_drop = confidence - counterfactuals.get('perturbed_prob', confidence)
+
+        agreement = self._compute_agreement(
+            gnn_explanation, grad_explanation, hgt_attention_result, graph.node_types
+        )
 
         return {
             'prediction': {
@@ -324,8 +360,14 @@ class PyGNativeExplainer:
             'metrics': {
                 'fidelity_drop': fidelity_drop,
                 'sparsity': sparsity_score,
-                'perturbed_prob': counterfactuals.get('perturbed_prob', 0.0)
-            }
+                'perturbed_prob': counterfactuals.get('perturbed_prob', 0.0),
+                'method_agreement': agreement,
+            },
+            'hgt_attention': hgt_attention_result,
+            'gnn_explainer_raw': gnn_explanation,
+            'gnn_object_raw': gnn_object_explanation,   
+            'gradient_raw': grad_explanation,
+            'edge_gradient_raw': edge_grad_explanation,
         }
     
     def _safe_get_batch_dict(self, graph: HeteroData):
@@ -356,7 +398,77 @@ class PyGNativeExplainer:
                 if mask is not None:
                     if mask.ndim == 2: mask = mask.mean(dim=1)
                     node_importance[node_type] = mask.detach().cpu().numpy()
-        return {'node_importance': node_importance}
+        edge_importance = {}
+        if hasattr(explanation_result, 'edge_types'):
+            for edge_type in explanation_result.edge_types:
+                edge_store = explanation_result[edge_type]
+                emask = None
+                if hasattr(edge_store, 'edge_mask') and edge_store.edge_mask is not None:
+                    emask = edge_store.edge_mask
+                if emask is not None:
+                    edge_importance[edge_type] = emask.detach().cpu().numpy()
+        return {'node_importance': node_importance, 'edge_importance': edge_importance}
+
+    def _generate_pyg_explanation_object(self, graph: HeteroData, target_class: int) -> Dict:
+        batch_dict = self._safe_get_batch_dict(graph)
+        explanation_result = self.explainer_object(
+            x=graph.x_dict,
+            edge_index=graph.edge_index_dict,
+            batch_dict=batch_dict,
+            batch_size=1,
+            target=target_class
+        )
+        node_importance_object = {}
+        if hasattr(explanation_result, 'node_types'):
+            for node_type in explanation_result.node_types:
+                node_store = explanation_result[node_type]
+                mask = None
+                if hasattr(node_store, 'node_mask') and node_store.node_mask is not None:
+                    mask = node_store.node_mask
+                elif hasattr(node_store, 'mask') and node_store.mask is not None:
+                    mask = node_store.mask
+                if mask is not None:
+                    if mask.ndim == 2: mask = mask.squeeze(-1)  # object mask is [N,1]
+                    node_importance_object[node_type] = mask.detach().cpu().numpy()
+        edge_importance_object = {}
+        if hasattr(explanation_result, 'edge_types'):
+            for edge_type in explanation_result.edge_types:
+                edge_store = explanation_result[edge_type]
+                emask = getattr(edge_store, 'edge_mask', None)
+                if emask is not None:
+                    edge_importance_object[edge_type] = emask.detach().cpu().numpy()
+        return {
+            'node_importance_object': node_importance_object,
+            'edge_importance_object': edge_importance_object,
+        }
+
+    def _compute_edge_gradient_importance(self, graph: HeteroData, target_class: int) -> Dict:
+        original_ea = {}
+        for et in graph.edge_types:
+            if hasattr(graph[et], 'edge_attr') and graph[et].edge_attr is not None:
+                original_ea[et] = graph[et].edge_attr.clone()
+                graph[et].edge_attr = graph[et].edge_attr.detach().requires_grad_(True)
+
+        if not original_ea:
+            return {'edge_importance': {}}
+
+        batch_dict = self._safe_get_batch_dict(graph)
+        logits = self.model(graph.x_dict, graph.edge_index_dict, batch_dict, 1)
+        logits[0, target_class].backward()
+
+        edge_importance = {}
+        for et, orig in original_ea.items():
+            ea = graph[et].edge_attr
+            if ea.grad is not None:
+                imp = (ea.grad * orig).abs().sum(dim=1)
+                if imp.max() > 0:
+                    imp = imp / imp.max()
+                edge_importance[et] = imp.detach().cpu().numpy()
+            else:
+                edge_importance[et] = np.zeros(orig.size(0))
+            graph[et].edge_attr = orig.detach()
+
+        return {'edge_importance': edge_importance}
 
     def _compute_gradient_importance(self, graph: HeteroData, target_class: int) -> Dict:
         original_x_dict = {}
@@ -381,23 +493,76 @@ class PyGNativeExplainer:
             graph.x_dict[node_type] = original_x_dict[node_type].detach()
         return {'node_importance': node_importance}
 
-    def _combine_explanations(self, gnn_exp, grad_exp, node_types):
+    def _combine_explanations(self, gnn_exp, grad_exp, hgt_attn, node_types):
         combined = {}
         for node_type in node_types:
-            imp1 = None
-            imp2 = None
-            if gnn_exp and 'node_importance' in gnn_exp and node_type in gnn_exp['node_importance']:
-                imp1 = gnn_exp['node_importance'][node_type]
-                if imp1.max() > 0: imp1 = imp1 / imp1.max()
-            if grad_exp and 'node_importance' in grad_exp and node_type in grad_exp['node_importance']:
-                imp2 = grad_exp['node_importance'][node_type]
-                if imp2.max() > 0: imp2 = imp2 / imp2.max()
-            if imp1 is not None and imp2 is not None:
-                combined[node_type] = np.sqrt((imp1 + 0.1) * (imp2 + 0.1))
-            elif imp1 is not None: combined[node_type] = imp1
-            elif imp2 is not None: combined[node_type] = imp2
-            else: combined[node_type] = np.array([])
+            sources = []
+
+            def _take(d, key):
+                if d is None or key not in d or node_type not in d[key]:
+                    return None
+                v = np.asarray(d[key][node_type], dtype=np.float64)
+                if v.size == 0:
+                    return None
+                m = v.max()
+                return v / m if m > 0 else v
+
+            s1 = _take(gnn_exp, 'node_importance')
+            s2 = _take(grad_exp, 'node_importance')
+            s3 = _take(hgt_attn, 'node_attention') if hgt_attn else None
+
+            for s in (s1, s2, s3):
+                if s is not None:
+                    sources.append(s)
+
+            if not sources:
+                combined[node_type] = np.array([])
+                continue
+
+            min_len = min(s.shape[0] for s in sources)
+            sources = [s[:min_len] for s in sources]
+
+            
+            w_map = {1: [1.0], 2: [0.5, 0.5], 3: [0.4, 0.4, 0.2]}
+            w = w_map[len(sources)]
+            stacked = np.stack(sources, axis=0)
+            combined[node_type] = np.average(stacked, weights=w, axis=0).astype(np.float32)
+
         return combined
+
+    def _compute_agreement(self, gnn_exp, grad_exp, hgt_attn, node_types) -> float:
+        def _extract(d, key):
+            if d is None or key not in d:
+                return None
+            parts = []
+            for nt in node_types:
+                if nt in d[key]:
+                    parts.append(np.asarray(d[key][nt], dtype=np.float64).ravel())
+            if not parts:
+                return None
+            return np.concatenate(parts)
+
+        srcs = []
+        for d, k in [(gnn_exp, 'node_importance'),
+                     (grad_exp, 'node_importance'),
+                     (hgt_attn, 'node_attention') if hgt_attn else (None, None)]:
+            v = _extract(d, k) if k else None
+            if v is not None and v.size > 1 and v.std() > 1e-9:
+                srcs.append(v)
+
+        if len(srcs) < 2:
+            return 0.0
+
+        L = min(s.shape[0] for s in srcs)
+        srcs = [s[:L] for s in srcs]
+
+        corrs = []
+        for i in range(len(srcs)):
+            for j in range(i + 1, len(srcs)):
+                c = float(np.corrcoef(srcs[i], srcs[j])[0, 1])
+                if not np.isnan(c):
+                    corrs.append(c)
+        return float(np.mean(corrs)) if corrs else 0.0
 
     def _identify_critical_substructures(self, graph: HeteroData, smiles: str, 
                                       explanation: Dict, top_k: int = 5) -> List[Dict]:
@@ -554,9 +719,6 @@ class PyGNativeExplainer:
         return contributions
 
 
-# ==============================================================================
-# 3. VISUALIZER
-# ==============================================================================
 
 class ExplainabilityVisualizer:
     def __init__(self, results_dir: str = RESULTS_DIR):
@@ -575,7 +737,6 @@ class ExplainabilityVisualizer:
             fontsize=16, fontweight='bold'
         )
         
-        # Main Molecule Plot with Surgical Annotation (The "Arrow" Plot)
         ax1 = fig.add_subplot(gs[0, :2])
         self._plot_molecule_with_importance(ax1, explanation_dict['smiles'], explanation_dict)
         
@@ -643,10 +804,7 @@ class ExplainabilityVisualizer:
         plt.close()
 
     def _plot_molecule_with_importance(self, ax, smiles: str, explanation_dict: Dict):
-        """
-        Advanced Rendering: RDKit Heatmap + Matplotlib Feature Annotation Arrow.
-        Includes 3-Color Traffic Light Scheme (Red/Yellow/Grey).
-        """
+        
         substructures = explanation_dict['critical_substructures']
         feature_imp_data = explanation_dict['feature_importance']
         mol = Chem.MolFromSmiles(smiles)
@@ -668,23 +826,19 @@ class ExplainabilityVisualizer:
         norm_val = atom_importance.max() if atom_importance.max() > 0 else 1.0
         norm_importance = atom_importance / norm_val
 
-        # 2. Colors (Traffic Light Scheme)
         highlight_atoms = []
         highlight_bonds = []
         atom_colors = {}
         bond_colors = {}
         
         for idx, score in enumerate(norm_importance):
-            if score > 0.2: # Show anything slightly relevant
+            if score > 0.2: 
                 highlight_atoms.append(idx)
                 if score > 0.6:
-                    # RED (High Criticality)
                     atom_colors[idx] = (1.0, 0.0, 0.0) 
                 elif score > 0.3:
-                    # YELLOW/ORANGE (Context)
                     atom_colors[idx] = (1.0, 0.8, 0.0)
                 else:
-                    # BLUE/GREY (Low relevance)
                     atom_colors[idx] = (0.8, 0.8, 0.8)
 
         for bond in mol.GetBonds():
@@ -695,7 +849,6 @@ class ExplainabilityVisualizer:
                 c_v = atom_colors[v]
                 bond_colors[bond.GetIdx()] = ((c_u[0]+c_v[0])/2, (c_u[1]+c_v[1])/2, (c_u[2]+c_v[2])/2)
 
-        # 3. Draw RDKit Image
         try:
             AllChem.Compute2DCoords(mol)
             try: AllChem.GenerateDepictionMatching2DStructure(mol, mol)
@@ -703,8 +856,8 @@ class ExplainabilityVisualizer:
 
             drawer = rdMolDraw2D.MolDraw2DCairo(900, 650)
             opts = drawer.drawOptions()
-            opts.bondLineWidth = 3.0
-            opts.highlightBondWidthMultiplier = 1.2
+            opts.bondLineWidth = 3
+            opts.highlightBondWidthMultiplier = 2
             opts.addAtomIndices = False
             opts.atomLabelFontSize = 16
             opts.padding = 0.15 
@@ -723,10 +876,8 @@ class ExplainabilityVisualizer:
             ax.axis('off')
             ax.set_title('Structural Importance & Primary Driver', fontsize=14, fontweight='bold', pad=15)
 
-            # 4. Annotation with Arrow
             if champion_atom_idx != -1 and max_score > 0.4:
                 pos = mol.GetConformer().GetAtomPosition(champion_atom_idx)
-                # Approx mapping from RDKit coords to 0..1
                 x_norm = 0.5 + (pos.x / 15.0) 
                 y_norm = 0.5 - (pos.y / 15.0)
 
@@ -794,14 +945,224 @@ class ExplainabilityVisualizer:
         text += f"Impact Level: {counterfactuals.get('impact_level', 'Unknown')}\n"
         text += f"Critical Group: {counterfactuals.get('critical_group', 'Unknown')}\n\n"
         text += f"Insight: {counterfactuals.get('text', 'No data')}\n"
-        
+
         color_map = {'High': '#ffcccc', 'Medium': '#fff4cc', 'Low': '#ccffcc'}
         color = color_map.get(counterfactuals.get('impact_level'), 'white')
-        
-        ax.text(0.05, 0.9, text, transform=ax.transAxes, fontsize=11, 
+
+        ax.text(0.05, 0.9, text, transform=ax.transAxes, fontsize=11,
                 verticalalignment='top', family='monospace',
                 bbox=dict(boxstyle='round', facecolor=color, alpha=0.5))
         ax.set_title('Intuitive Counterfactuals', fontsize=12, fontweight='bold')
+
+
+    def plot_layer_wise_trajectories(self, ax, hgt_attention: Dict, top_n_per_type: int = 3):
+        if not hgt_attention or 'trajectories' not in hgt_attention:
+            ax.text(0.5, 0.5, 'No HGT attention data', ha='center', va='center',
+                    transform=ax.transAxes, fontsize=12, color='#6b7280')
+            ax.axis('off')
+            return
+
+        trajs = hgt_attention['trajectories']
+        num_layers = hgt_attention.get('num_layers', 0)
+        if num_layers == 0:
+            ax.text(0.5, 0.5, 'No layers captured', ha='center', va='center',
+                    transform=ax.transAxes)
+            ax.axis('off')
+            return
+
+        type_colors = plt.cm.tab10(np.linspace(0, 1, max(len(trajs), 1)))
+        layer_axis = np.arange(1, num_layers + 1)
+
+        all_handles = []
+        for type_idx, (nt, per_layer_list) in enumerate(trajs.items()):
+            if not per_layer_list:
+                continue
+            stacked = np.stack(per_layer_list, axis=0)  # [L, N_nt]
+            if stacked.shape[1] == 0:
+                continue
+
+            color = type_colors[type_idx]
+
+            for atom_local_idx in range(stacked.shape[1]):
+                ax.plot(layer_axis, stacked[:, atom_local_idx],
+                        color=color, alpha=0.15, linewidth=0.8)
+
+            final_scores = stacked[-1, :]
+            top_idx = np.argsort(-final_scores)[:top_n_per_type]
+            for rank, a_idx in enumerate(top_idx):
+                handle, = ax.plot(
+                    layer_axis, stacked[:, a_idx],
+                    color=color,
+                    linewidth=2.2 if rank == 0 else 1.5,
+                    marker='o', markersize=6 if rank == 0 else 4,
+                    label=f'{nt}[{a_idx}]' if rank == 0 else None,
+                    alpha=0.95 if rank == 0 else 0.65,
+                )
+                if rank == 0:
+                    all_handles.append(handle)
+
+        ax.set_xticks(layer_axis)
+        ax.set_xlabel('HGT Layer', fontsize=10)
+        ax.set_ylabel('Normalized native attention', fontsize=10)
+        ax.set_title(
+            'Layer-wise HGT Attention Trajectories\n'
+            '(per atom, grouped by element type — native softmax scores)',
+            fontsize=11, fontweight='bold', pad=10,
+        )
+        ax.set_ylim(-0.05, 1.08)
+        ax.grid(True, alpha=0.25, linestyle='--')
+        if all_handles:
+            ax.legend(handles=all_handles, fontsize=8, loc='upper left',
+                      frameon=True, framealpha=0.9, title='Top atom per type',
+                      title_fontsize=8)
+
+    def plot_edge_type_attention(self, ax, hgt_attention: Dict):
+        if not hgt_attention or 'edge_type_attention' not in hgt_attention:
+            ax.text(0.5, 0.5, 'No edge-type attention', ha='center', va='center',
+                    transform=ax.transAxes, fontsize=12, color='#6b7280')
+            ax.axis('off')
+            return
+
+        eta = hgt_attention['edge_type_attention']
+        items = [(et, v) for et, v in eta.items() if v > 0]
+        if not items:
+            ax.text(0.5, 0.5, 'No active edge types', ha='center', va='center',
+                    transform=ax.transAxes, fontsize=12, color='#6b7280')
+            ax.axis('off')
+            return
+
+        items.sort(key=lambda x: x[1], reverse=True)
+        items = items[:15]
+
+        labels = [f'{et[0]} -> {et[2]}' for et, _ in items]
+        values = [v for _, v in items]
+        y_pos = np.arange(len(labels))
+
+        cmap = LinearSegmentedColormap.from_list(
+            'hgt', ['#fed976', '#fd8d3c', '#e31a1c', '#800026']
+        )
+        max_v = max(values) if values else 1.0
+        colors = [cmap(v / max_v) for v in values]
+
+        bars = ax.barh(y_pos, values, color=colors, height=0.7)
+        ax.set_yticks(y_pos)
+        ax.set_yticklabels(labels, fontsize=9)
+        ax.invert_yaxis()
+        ax.set_xlabel('Mean softmax attention', fontsize=10)
+        ax.set_title(
+            'Heterogeneous Edge-Type Attention\n'
+            "(HGT's unique advantage — per-relation weighting)",
+            fontsize=11, fontweight='bold', pad=10,
+        )
+        ax.grid(True, alpha=0.25, axis='x', linestyle='--')
+        for bar, v in zip(bars, values):
+            ax.text(v + max_v * 0.01, bar.get_y() + bar.get_height() / 2,
+                    f'{v:.3f}', va='center', fontsize=8, color='#e2e8f0')
+
+    def plot_method_agreement(self, ax, explanation_dict: Dict):
+        sources = {
+            'GNNExplainer': explanation_dict.get('gnn_explainer_raw'),
+            'Gradient': explanation_dict.get('gradient_raw'),
+            'HGT Native': explanation_dict.get('hgt_attention'),
+        }
+
+        node_types_seen = []
+        for src_dict in sources.values():
+            if src_dict is None:
+                continue
+            key = 'node_importance' if 'node_importance' in src_dict else 'node_attention'
+            if key in src_dict:
+                node_types_seen = list(src_dict[key].keys())
+                break
+
+        if not node_types_seen:
+            ax.text(0.5, 0.5, 'No method data', ha='center', va='center',
+                    transform=ax.transAxes)
+            ax.axis('off')
+            return
+
+        rows = []
+        method_labels = list(sources.keys())
+        for nt in node_types_seen:
+            n = 0
+            for src_dict in sources.values():
+                if src_dict is None:
+                    continue
+                key = 'node_importance' if 'node_importance' in src_dict else 'node_attention'
+                if key in src_dict and nt in src_dict[key]:
+                    n = max(n, len(src_dict[key][nt]))
+            if n == 0:
+                continue
+            for local_i in range(n):
+                row = []
+                for src_dict in sources.values():
+                    if src_dict is None:
+                        row.append(0.0)
+                        continue
+                    key = 'node_importance' if 'node_importance' in src_dict else 'node_attention'
+                    arr = src_dict.get(key, {}).get(nt)
+                    if arr is None or local_i >= len(arr):
+                        row.append(0.0)
+                    else:
+                        row.append(float(arr[local_i]))
+                rows.append((f'{nt}[{local_i}]', row))
+
+        if not rows:
+            ax.text(0.5, 0.5, 'No data', ha='center', va='center',
+                    transform=ax.transAxes)
+            ax.axis('off')
+            return
+
+        labels = [r[0] for r in rows]
+        matrix = np.array([r[1] for r in rows], dtype=np.float64)
+
+        for c in range(matrix.shape[1]):
+            col = matrix[:, c]
+            m = col.max()
+            if m > 0:
+                matrix[:, c] = col / m
+
+        im = ax.imshow(matrix, aspect='auto', cmap='YlOrRd', vmin=0, vmax=1)
+        ax.set_xticks(np.arange(len(method_labels)))
+        ax.set_xticklabels(method_labels, fontsize=9)
+        ax.set_yticks(np.arange(len(labels)))
+        ax.set_yticklabels(labels, fontsize=7)
+        ax.set_title(
+            'Per-Atom Importance by Method\n(red rows = consensus critical atoms)',
+            fontsize=11, fontweight='bold', pad=10,
+        )
+        plt.colorbar(im, ax=ax, fraction=0.04, pad=0.02, label='Normalized score')
+
+    def create_attention_report(self, explanation_dict: Dict, save_name: str):
+        fig = plt.figure(figsize=(18, 13))
+        gs = gridspec.GridSpec(2, 2, figure=fig, hspace=0.45, wspace=0.3,
+                               height_ratios=[1.0, 1.1])
+
+        pred = explanation_dict['prediction']
+        agreement = explanation_dict.get('metrics', {}).get('method_agreement', 0.0)
+
+        fig.suptitle(
+            f"Native HGT Attention Analysis · {pred['class']} "
+            f"({pred['confidence']:.1%})\n"
+            f"3-method agreement score: {agreement:+.3f}  "
+            f"(GNNExplainer <-> Gradient <-> HGT native)",
+            fontsize=14, fontweight='bold',
+        )
+
+        ax1 = fig.add_subplot(gs[0, 0])
+        self.plot_layer_wise_trajectories(ax1, explanation_dict.get('hgt_attention'))
+
+        ax2 = fig.add_subplot(gs[0, 1])
+        self.plot_edge_type_attention(ax2, explanation_dict.get('hgt_attention'))
+
+        ax3 = fig.add_subplot(gs[1, :])
+        self.plot_method_agreement(ax3, explanation_dict)
+
+        save_path = self.results_dir / f'{save_name}_hgt_attention.png'
+        plt.savefig(save_path, dpi=300, bbox_inches='tight')
+        plt.close()
+        logger.info(f"HGT attention report saved: {save_path}")
+        return save_path
 
 
 class PyGExplainabilityPipeline:
@@ -840,9 +1201,10 @@ class PyGExplainabilityPipeline:
             smiles = graph.smiles if hasattr(graph, 'smiles') else f"mol_{original_idx}"
             explanation = self.explainer.explain_molecule(graph, smiles)
             save_name = f"mol_{original_idx}_{explanation['prediction']['class']}"
-            
+
             self.visualizer.create_comprehensive_report(explanation, save_name)
             self.visualizer.create_json_visualization(explanation, save_name)
+            self.visualizer.create_attention_report(explanation, save_name)
 
 
 def load_model_and_dataset():

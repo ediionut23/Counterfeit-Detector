@@ -1,0 +1,86 @@
+{
+  "total_graphs": 50000,
+  "authentic_count": 25000,
+  "counterfeit_count": 25000,
+  "balance_ratio": 1.0,
+  "node_types": [
+    "B",
+    "Br",
+    "C",
+    "Cl",
+    "F",
+    "H",
+    "I",
+    "N",
+    "O",
+    "P",
+    "S"
+  ],
+  "edge_type_count": 62,
+  "shortcut_metrics_before_matching": {
+    "cohen_d_length": 0.07698220230876394,
+    "cohen_d_mw": 0.21522478352561494,
+    "cohen_d_heavy": 0.19471929831994184,
+    "trivial_lr_acc": 0.6336655430162685
+  },
+  "shortcut_metrics_after_matching": {
+    "cohen_d_length": 0.034308199774380786,
+    "cohen_d_mw": 0.028211273060713478,
+    "cohen_d_heavy": 0.009289836667087227,
+    "trivial_lr_acc": 0.5223
+  },
+  "fetcher_stats": {
+    "added": 90083,
+    "drop_scaffold_full": 26133
+  },
+  "counterfeit_gen_stats": {
+    "success": 50000,
+    "fail_reaction": 13554879,
+    "fail_druglike": 86179,
+    "fail_duplicate": 1458934,
+    "fail_all_attempts": 294567,
+    "fail_similarity": 1852
+  },
+  "difficulty_distribution": {
+    "subtle": 17797,
+    "moderate": 6096,
+    "obvious": 1107
+  },
+  "category_distribution": {
+    "bioisostere": 13364,
+    "low-effort": 10648,
+    "scaffold-hop": 988
+  },
+  "citation_distribution": {
+    "Muller2007": 7011,
+    "Patani1996": 6335,
+    "Meanwell2011": 5885,
+    "Pennington2017": 3650,
+    "Kumari2020": 2119
+  },
+  "source_distribution": {
+    "ChEMBL-REST": 15606,
+    "PubChem": 9394
+  },
+  "counterfeit_types": {
+    "phenyl_to_3pyridyl": 1840,
+    "ArH_to_ArF": 1831,
+    "ArH_to_ArOMe": 1824,
+    "ArH_to_ArMe": 1810,
+    "phenyl_to_2pyridyl": 1810,
+    "amide_to_sulfonamide": 1803,
+    "ArH_to_ArOH": 1787,
+    "ArCl_to_ArCF3": 1784,
+    "ArH_to_ArCl": 1773,
+    "methyl_to_ethyl_on_aryl": 1750,
+    "OMe_to_OEt": 1749,
+    "COOH_to_tetrazole": 1515,
+    "ArF_to_ArCl": 1375,
+    "alkene_to_alkane": 836,
+    "ArNH2_to_ArNHMe": 678,
+    "ester_to_amide": 316,
+    "ArBr_to_ArCl": 248,
+    "cyclopentane_to_cyclohexane": 152,
+    "piperidine_to_morpholine": 119
+  }
+}

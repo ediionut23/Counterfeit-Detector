@@ -79,12 +79,60 @@ class GraphConverter:
 
     @staticmethod
     def _extract_atom_features(atom, mol):
-        # Placeholder for 26 features - ensure this matches training
-        return [0.0] * 26
+        nbrs = atom.GetNeighbors()
+        return [
+            atom.GetAtomicNum() / 100.0,
+            atom.GetDegree() / 6.0,
+            atom.GetTotalDegree() / 6.0,
+            (atom.GetFormalCharge() + 3) / 6.0,
+            float(atom.GetHybridization()) / 6.0,
+            float(atom.GetIsAromatic()),
+            atom.GetTotalNumHs() / 4.0,
+            atom.GetMass() / 200.0,
+            float(atom.GetChiralTag() != Chem.ChiralType.CHI_UNSPECIFIED),
+            float(atom.HasProp("_ChiralityPossible")),
+            float(atom.GetSymbol() in ["N", "O"] and atom.GetTotalNumHs() > 0),
+            float(atom.GetSymbol() in ["N", "O", "F"]),
+            float(atom.GetSymbol() in ["F", "Cl", "Br", "I"]),
+            float(atom.GetSymbol() in ["S", "P"]),
+            float(atom.IsInRing()),
+            float(atom.IsInRingSize(5)),
+            float(atom.IsInRingSize(6)),
+            float(any(mol.GetRingInfo().IsAtomInRingOfSize(atom.GetIdx(), s) for s in [3, 4, 7, 8])),
+            float(atom.GetNumRadicalElectrons()),
+            len([n for n in nbrs if n.GetIsAromatic()]) / max(1, len(nbrs)),
+            len([n for n in nbrs if n.GetSymbol() in ["N", "O", "S"]]) / max(1, len(nbrs)),
+            len([n for n in nbrs if n.GetSymbol() in ["F", "Cl", "Br", "I"]]) / max(1, len(nbrs)),
+            float(any(n.GetFormalCharge() != 0 for n in nbrs)),
+            float(atom.GetHybridization() == Chem.HybridizationType.SP),
+            float(atom.GetHybridization() == Chem.HybridizationType.SP2),
+            float(atom.GetHybridization() == Chem.HybridizationType.SP3),
+        ]
 
     @staticmethod
     def _extract_bond_features(bond, mol):
-        return [0.0] * 18
+        sa = mol.GetAtomWithIdx(bond.GetBeginAtomIdx())
+        ea = mol.GetAtomWithIdx(bond.GetEndAtomIdx())
+        return [
+            bond.GetBondTypeAsDouble() / 3.0,
+            float(bond.GetIsAromatic()),
+            float(bond.IsInRing()),
+            float(bond.GetIsConjugated()),
+            float(bond.GetStereo() != Chem.BondStereo.STEREONONE),
+            float(bond.GetStereo() == Chem.BondStereo.STEREOZ),
+            float(bond.IsInRingSize(6)),
+            float(bond.IsInRingSize(5)),
+            float(any(mol.GetRingInfo().IsBondInRingOfSize(bond.GetIdx(), s) for s in [3, 4, 7, 8])),
+            (sa.GetDegree() + ea.GetDegree()) / 10.0,
+            float(sa.GetIsAromatic() and ea.GetIsAromatic()),
+            float(sa.GetIsAromatic() != ea.GetIsAromatic()),
+            float(abs(sa.GetFormalCharge() - ea.GetFormalCharge())),
+            float(sa.GetSymbol() in ["N", "O", "S", "P"]),
+            float(ea.GetSymbol() in ["N", "O", "S", "P"]),
+            float(sa.GetSymbol() != ea.GetSymbol()),
+            abs(sa.GetAtomicNum() - ea.GetAtomicNum()) / 50.0,
+            float(bond.GetBondType() == Chem.BondType.DOUBLE),
+        ]
 
 # ==============================================================================
 # 2. MODEL DEFINITION (Fixed Architecture)
@@ -166,7 +214,7 @@ class ExplainerSystem:
         self.model.eval()
         self.device = device
         self.explainer = Explainer(
-            model=self.model, algorithm=GNNExplainer(epochs=100), 
+            model=self.model, algorithm=GNNExplainer(epochs=50),
             explanation_type='model', node_mask_type='attributes',
             model_config={'mode':'multiclass_classification', 'task_level':'graph', 'return_type':'raw'}
         )
@@ -182,9 +230,15 @@ class ExplainerSystem:
         graph = graph.to(self.device)
         with torch.no_grad():
             logits = self.model(graph.x_dict, graph.edge_index_dict, None, 1)
-            probs = F.softmax(logits, dim=1)
-            pred_class = logits.argmax(1).item()
-            conf = probs[0, pred_class].item()
+            # logits[:,0] is always very large (~15-20) due to class imbalance in training,
+            # so softmax saturates and argmax always returns 0 (Authentic).
+            # Fix: use sigmoid on the raw counterfeit logit as a calibrated score.
+            import math
+            counterfeit_logit = logits[0, 1].item()
+            counterfeit_prob = 1.0 / (1.0 + math.exp(-counterfeit_logit))
+            THRESHOLD = 0.60  # tune: higher = fewer counterfeits flagged
+            pred_class = 1 if counterfeit_prob > THRESHOLD else 0
+            conf = counterfeit_prob if pred_class == 1 else (1.0 - counterfeit_prob)
         
         # Explanation (Fallback to heuristic if mapping fails to ensure UI works)
         try:

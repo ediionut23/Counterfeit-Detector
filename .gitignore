@@ -1,0 +1,5 @@
+venv/
+__pycache__/
+.DS_Store
+*.pyc
+intelligent_pharma_50k_v2.pt

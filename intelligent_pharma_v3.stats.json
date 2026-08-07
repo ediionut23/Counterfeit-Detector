@@ -1,0 +1,86 @@
+{
+  "total_graphs": 50000,
+  "authentic_count": 25000,
+  "counterfeit_count": 25000,
+  "balance_ratio": 1.0,
+  "node_types": [
+    "B",
+    "Br",
+    "C",
+    "Cl",
+    "F",
+    "H",
+    "I",
+    "N",
+    "O",
+    "P",
+    "S"
+  ],
+  "edge_type_count": 67,
+  "shortcut_metrics_before_matching": {
+    "cohen_d_length": 0.09034028121065198,
+    "cohen_d_mw": 0.2207140300262767,
+    "cohen_d_heavy": 0.20094523476546555,
+    "trivial_lr_acc": 0.6330315581131107
+  },
+  "shortcut_metrics_after_matching": {
+    "cohen_d_length": 0.030775593669084465,
+    "cohen_d_mw": 0.02611869287869598,
+    "cohen_d_heavy": 0.009974949670944042,
+    "trivial_lr_acc": 0.5269
+  },
+  "fetcher_stats": {
+    "added": 90038,
+    "drop_scaffold_full": 26047
+  },
+  "counterfeit_gen_stats": {
+    "fail_reaction": 13533602,
+    "success": 50000,
+    "fail_duplicate": 1442484,
+    "fail_all_attempts": 293831,
+    "fail_druglike": 84616,
+    "fail_similarity": 1331
+  },
+  "difficulty_distribution": {
+    "subtle": 17679,
+    "moderate": 6179,
+    "obvious": 1142
+  },
+  "category_distribution": {
+    "bioisostere": 13384,
+    "low-effort": 10584,
+    "scaffold-hop": 1032
+  },
+  "citation_distribution": {
+    "Muller2007": 7077,
+    "Patani1996": 6352,
+    "Meanwell2011": 5894,
+    "Pennington2017": 3573,
+    "Kumari2020": 2104
+  },
+  "source_distribution": {
+    "ChEMBL-REST": 15587,
+    "PubChem": 9413
+  },
+  "counterfeit_types": {
+    "ArH_to_ArOH": 1806,
+    "ArH_to_ArF": 1804,
+    "amide_to_sulfonamide": 1798,
+    "ArCl_to_ArCF3": 1796,
+    "phenyl_to_3pyridyl": 1791,
+    "phenyl_to_2pyridyl": 1782,
+    "methyl_to_ethyl_on_aryl": 1767,
+    "ArH_to_ArCl": 1756,
+    "OMe_to_OEt": 1755,
+    "ArH_to_ArOMe": 1750,
+    "ArH_to_ArMe": 1747,
+    "COOH_to_tetrazole": 1569,
+    "ArF_to_ArCl": 1464,
+    "alkene_to_alkane": 862,
+    "ArNH2_to_ArNHMe": 710,
+    "ester_to_amide": 306,
+    "ArBr_to_ArCl": 257,
+    "cyclopentane_to_cyclohexane": 170,
+    "piperidine_to_morpholine": 110
+  }
+}

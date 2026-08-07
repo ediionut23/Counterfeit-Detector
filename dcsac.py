@@ -1,10 +1,3 @@
-"""
-Enhanced HGT Training Script for VS Code
-Optimized for local development environment
-Author: Enhanced for VS Code
-Version: 4.1.0
-"""
-
 import torch
 import torch.nn.functional as F
 from torch_geometric.nn import HGTConv, Linear, BatchNorm
@@ -25,7 +18,6 @@ import math
 import glob
 from pathlib import Path
 
-# Configurare PyTorch pentru încărcarea sigură
 from torch.serialization import add_safe_globals
 add_safe_globals([
     'torch_geometric.data.storage.BaseStorage',
@@ -36,29 +28,24 @@ add_safe_globals([
 
 warnings.filterwarnings('ignore')
 
-# Configurare pentru VS Code
 RESULTS_DIR = './HGT_Enhanced_Results'
 os.makedirs(RESULTS_DIR, exist_ok=True)
 
 def get_unique_filename(base_name, extension):
-    """Generate unique filename with timestamp"""
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     return f"{base_name}_{timestamp}.{extension}"
 
 def save_results(file_path, description="File"):
-    """Save results and provide path information"""
     abs_path = os.path.abspath(file_path)
     print(f"{description} saved: {abs_path}")
     
-    # Create a clickable link for VS Code terminal
     if os.name == 'nt':  # Windows
         print(f"Open with: code \"{abs_path}\"")
-    else:  # Linux/Mac
+    else:  
         print(f"Open with: code '{abs_path}'")
     
     return abs_path
 
-# Set plotting style with fallback
 try:
     plt.style.use('seaborn-v0_8')
 except:
@@ -67,17 +54,12 @@ except:
     except:
         plt.style.use('default')
 
-# Configure matplotlib for VS Code
 plt.rcParams['figure.dpi'] = 100
 plt.rcParams['savefig.dpi'] = 300
 plt.rcParams['figure.figsize'] = [12, 8]
 
-# === ROBUST DATASET LOADING ===
 
 def load_and_prepare_enhanced_dataset(file_path):
-    """
-    Load and prepare enhanced dataset with proper error handling for VS Code
-    """
     try:
         file_path = Path(file_path)
         print(f"Loading enhanced dataset from: {file_path.absolute()}")
@@ -86,7 +68,6 @@ def load_and_prepare_enhanced_dataset(file_path):
             print(f"Error: File not found at {file_path.absolute()}")
             return None, None, None
 
-        # Load data with enhanced error handling
         try:
             loaded_data = torch.load(file_path, map_location='cpu')
         except Exception as e:
@@ -97,7 +78,6 @@ def load_and_prepare_enhanced_dataset(file_path):
                 print(f"Failed to load dataset: {e2}")
                 return None, None, None
 
-        # Extract components
         if isinstance(loaded_data, tuple):
             if len(loaded_data) >= 3:
                 hetero_graphs, labels, metadata = loaded_data[0], loaded_data[1], loaded_data[2]
@@ -112,7 +92,6 @@ def load_and_prepare_enhanced_dataset(file_path):
 
         print(f"Raw dataset loaded: {len(hetero_graphs)} molecules")
 
-        # Analyze and fix dataset
         print("Analyzing feature dimensions...")
         feature_analysis = analyze_dataset_features(hetero_graphs[:50])
 
@@ -120,13 +99,11 @@ def load_and_prepare_enhanced_dataset(file_path):
         for node_type, dim in feature_analysis.items():
             print(f"  {node_type}: {dim} features")
 
-        # Clean and validate graphs
         print("Cleaning and validating graphs...")
         clean_graphs, clean_labels = clean_heterographs(hetero_graphs, labels, feature_analysis)
 
         print(f"Clean dataset: {len(clean_graphs)} valid molecules")
 
-        # Print statistics
         unique_labels, counts = np.unique(clean_labels, return_counts=True)
         print(f"Class distribution:")
         for label, count in zip(unique_labels, counts):
@@ -141,8 +118,25 @@ def load_and_prepare_enhanced_dataset(file_path):
         traceback.print_exc()
         return None, None, None
 
+ATOM_TYPES_ORDERED = ['C', 'N', 'O', 'S', 'F', 'Cl', 'Br', 'I', 'P', 'H', 'B']
+ATOM_TYPE_TO_IDX   = {a: i for i, a in enumerate(ATOM_TYPES_ORDERED)}
+
+def add_atom_type_onehot(graphs, feature_analysis):
+    n_types = len(ATOM_TYPES_ORDERED)
+    for g in graphs:
+        for node_type in g.node_types:
+            if not hasattr(g[node_type], 'x') or g[node_type].x is None:
+                continue
+            n_nodes = g[node_type].x.size(0)
+            idx = ATOM_TYPE_TO_IDX.get(node_type, n_types - 1)
+            one_hot = torch.zeros(n_nodes, n_types)
+            one_hot[:, idx] = 1.0
+            g[node_type].x = torch.cat([g[node_type].x, one_hot], dim=1)
+    updated = {k: v + n_types for k, v in feature_analysis.items()}
+    return updated
+
+
 def analyze_dataset_features(sample_graphs):
-    """Analyze feature dimensions from sample graphs"""
     feature_dims = {}
 
     for graph in sample_graphs:
@@ -152,12 +146,10 @@ def analyze_dataset_features(sample_graphs):
                 if node_type not in feature_dims:
                     feature_dims[node_type] = dim
                 else:
-                    # Check for consistency
                     if feature_dims[node_type] != dim:
                         print(f"Warning: Inconsistent dimensions for {node_type}: {feature_dims[node_type]} vs {dim}")
                         feature_dims[node_type] = max(feature_dims[node_type], dim)
 
-    # Ensure we have all common node types
     common_types = ['C', 'N', 'O', 'S', 'F', 'Cl', 'Br', 'I', 'P']
     for node_type in common_types:
         if node_type not in feature_dims:
@@ -187,11 +179,9 @@ def clean_heterographs(hetero_graphs, labels, feature_dims):
     return clean_graphs, clean_labels
 
 def clean_single_graph(graph, feature_dims):
-    """Clean a single heterograph"""
     try:
         cleaned = HeteroData()
 
-        # Process node features
         valid_node_types = []
         for node_type in feature_dims.keys():
             if (node_type in graph.node_types and
@@ -201,7 +191,6 @@ def clean_single_graph(graph, feature_dims):
                 x = graph[node_type].x
                 expected_dim = feature_dims[node_type]
 
-                # Handle dimension mismatches
                 if x.shape[-1] != expected_dim:
                     if x.shape[-1] < expected_dim:
                         padding = torch.zeros(x.size(0), expected_dim - x.shape[-1])
@@ -212,7 +201,6 @@ def clean_single_graph(graph, feature_dims):
                 cleaned[node_type].x = x
                 valid_node_types.append(node_type)
 
-        # Process edges with validation
         for edge_type in graph.edge_types:
             src_type, rel_type, dst_type = edge_type
 
@@ -234,8 +222,7 @@ def clean_single_graph(graph, feature_dims):
                         if edge_attr.size(0) > 0:
                             cleaned[edge_type].edge_attr = edge_attr
 
-        # Copy labels and other attributes
-        for attr in ['y', 'smiles', 'source_id', 'source', 'counterfeit_type', 'difficulty']:
+        for attr in ['y']:
             if hasattr(graph, attr):
                 setattr(cleaned, attr, getattr(graph, attr))
 
@@ -252,10 +239,8 @@ def has_valid_structure(graph):
                    for et in graph.edge_types)
     return has_nodes and has_edges
 
-# === LOSS FUNCTION ===
 
 class FocalLoss(torch.nn.Module):
-    """Focal Loss for handling class imbalance"""
     def __init__(self, alpha=0.75, gamma=2.0, reduction='mean'):
         super().__init__()
         self.alpha = alpha
@@ -279,12 +264,7 @@ class FocalLoss(torch.nn.Module):
         else:
             return focal_loss
 
-# === ROBUST MODEL ===
-
 class RobustEnhancedHGTDetector(torch.nn.Module):
-    """
-    Robust HGT model optimized for VS Code environment
-    """
     def __init__(self, feature_dims, hidden_channels=192, out_channels=2,
                  num_heads=8, num_layers=3, dropout=0.15):
         super().__init__()
@@ -296,7 +276,6 @@ class RobustEnhancedHGTDetector(torch.nn.Module):
         self.dropout = dropout
         self.feature_dims = feature_dims
 
-        # Node embeddings
         self.node_embeddings = torch.nn.ModuleDict()
         self.node_norms = torch.nn.ModuleDict()
 
@@ -304,7 +283,6 @@ class RobustEnhancedHGTDetector(torch.nn.Module):
             self.node_embeddings[node_type] = torch.nn.Linear(input_dim, hidden_channels)
             self.node_norms[node_type] = torch.nn.LayerNorm(hidden_channels)
 
-        # Create metadata
         node_types = list(feature_dims.keys())
         edge_types = []
         for src in node_types:
@@ -313,7 +291,6 @@ class RobustEnhancedHGTDetector(torch.nn.Module):
 
         self.metadata = (node_types, edge_types)
 
-        # HGT layers
         self.convs = torch.nn.ModuleList()
         self.layer_norms = torch.nn.ModuleList()
 
@@ -321,11 +298,9 @@ class RobustEnhancedHGTDetector(torch.nn.Module):
             self.convs.append(HGTConv(hidden_channels, hidden_channels, self.metadata, num_heads))
             self.layer_norms.append(torch.nn.LayerNorm(hidden_channels))
 
-        # Node attention
         self.node_attention = torch.nn.Parameter(torch.ones(len(node_types)))
 
-        # Enhanced classifier
-        classifier_input_dim = hidden_channels * len(node_types)
+        classifier_input_dim = hidden_channels * 2 * len(node_types)
         self.classifier = torch.nn.Sequential(
             torch.nn.Linear(classifier_input_dim, hidden_channels * 2),
             torch.nn.BatchNorm1d(hidden_channels * 2),
@@ -357,7 +332,6 @@ class RobustEnhancedHGTDetector(torch.nn.Module):
     def forward(self, x_dict, edge_index_dict, batch_dict=None, batch_size=None):
         device = next(self.parameters()).device
 
-        # Process node types
         h_dict = {}
         node_types = list(self.feature_dims.keys())
 
@@ -370,7 +344,6 @@ class RobustEnhancedHGTDetector(torch.nn.Module):
             else:
                 h_dict[node_type] = torch.zeros((0, self.hidden_channels), device=device)
 
-        # Apply HGT layers
         for i, (conv, layer_norm) in enumerate(zip(self.convs, self.layer_norms)):
             try:
                 h_dict_new = conv(h_dict, edge_index_dict)
@@ -384,9 +357,9 @@ class RobustEnhancedHGTDetector(torch.nn.Module):
                         if (node_type in h_dict and
                             h_dict[node_type].shape == h_dropped.shape and
                             h_dict[node_type].size(0) > 0):
-                            h_dict[node_type] = h_dropped + h_dict[node_type] * 0.1
+                            h_dict_new[node_type] = h_dropped + h_dict[node_type]
                         else:
-                            h_dict[node_type] = h_dropped
+                            h_dict_new[node_type] = h_dropped
 
                 h_dict = h_dict_new
 
@@ -394,11 +367,9 @@ class RobustEnhancedHGTDetector(torch.nn.Module):
                 print(f"Warning: HGT layer {i} error: {e}")
                 break
 
-        # Global pooling
         batch_size = self._get_batch_size(batch_dict, h_dict, batch_size)
         pooled_features = self._global_pooling(h_dict, batch_dict, batch_size, node_types)
 
-        # Classification
         if pooled_features.size(0) > 0:
             out = self.classifier(pooled_features)
         else:
@@ -430,33 +401,35 @@ class RobustEnhancedHGTDetector(torch.nn.Module):
                 node_features = h_dict[node_type]
 
                 if batch_dict and node_type in batch_dict and batch_dict[node_type].numel() > 0:
-                    pooled = torch.zeros(batch_size, self.hidden_channels, device=device)
+                    pooled_mean = torch.zeros(batch_size, self.hidden_channels, device=device)
+                    pooled_max = torch.zeros(batch_size, self.hidden_channels, device=device)
 
                     for i in range(batch_size):
                         mask = batch_dict[node_type] == i
                         if mask.any():
                             masked_features = node_features[mask]
-                            pooled[i] = masked_features.mean(dim=0)
+                            pooled_mean[i] = masked_features.mean(dim=0)
+                            pooled_max[i] = masked_features.max(dim=0).values
                 else:
-                    pooled = node_features.mean(dim=0, keepdim=True)
+                    pooled_mean = node_features.mean(dim=0, keepdim=True)
+                    pooled_max = node_features.max(dim=0, keepdim=True).values
                     if batch_size > 1:
-                        pooled = pooled.expand(batch_size, -1)
+                        pooled_mean = pooled_mean.expand(batch_size, -1)
+                        pooled_max = pooled_max.expand(batch_size, -1)
 
-                pooled = pooled * attention_weights[idx]
+                pooled = torch.cat([pooled_mean, pooled_max], dim=1) * attention_weights[idx]
                 pooled_features.append(pooled)
             else:
-                empty_pool = torch.zeros(batch_size, self.hidden_channels, device=device)
+                empty_pool = torch.zeros(batch_size, self.hidden_channels * 2, device=device)
                 pooled_features.append(empty_pool)
 
         if pooled_features:
             return torch.cat(pooled_features, dim=1)
         else:
-            return torch.zeros(batch_size, self.hidden_channels * len(node_types), device=device)
+            return torch.zeros(batch_size, self.hidden_channels * 2 * len(node_types), device=device)
 
-# === TRAINER ===
 
 class VSCodeTrainer:
-    """Trainer optimized for VS Code environment"""
     
     def __init__(self, model, device, save_path=RESULTS_DIR):
         self.model = model
@@ -464,7 +437,6 @@ class VSCodeTrainer:
         self.save_path = Path(save_path)
         self.save_path.mkdir(exist_ok=True)
         
-        # Setup logging for VS Code
         log_file = self.save_path / 'training.log'
         logging.basicConfig(
             level=logging.INFO,
@@ -476,7 +448,6 @@ class VSCodeTrainer:
         )
         self.logger = logging.getLogger(__name__)
 
-        # Metrics tracking
         self.best_f1 = 0
         self.best_model_state = None
         self.train_losses = []
@@ -558,7 +529,7 @@ class VSCodeTrainer:
 
         return {'loss': avg_loss, 'accuracy': accuracy, 'f1': f1}, predictions, true_labels
 
-    def train(self, train_loader, test_loader, criterion, optimizer, num_epochs, patience=20, scheduler=None):
+    def train(self, train_loader, val_loader, test_loader, criterion, optimizer, num_epochs, patience=20, scheduler=None):
         print(f"Starting training with {sum(p.numel() for p in self.model.parameters() if p.requires_grad):,} parameters")
         self.logger.info(f"Training started - {num_epochs} epochs, patience={patience}")
 
@@ -566,11 +537,10 @@ class VSCodeTrainer:
         patience_counter = 0
 
         for epoch in range(num_epochs):
-            # Training
             train_loss, train_preds, train_labels = self.train_epoch(train_loader, optimizer, criterion)
+            val_metrics, _, _ = self.evaluate(val_loader, criterion)
             test_metrics, test_preds, test_labels = self.evaluate(test_loader, criterion)
 
-            # Calculate training F1
             if len(train_preds) > 0 and len(train_labels) > 0:
                 _, _, train_f1, _ = precision_recall_fscore_support(
                     train_labels, train_preds, average='binary', zero_division=0
@@ -578,64 +548,57 @@ class VSCodeTrainer:
             else:
                 train_f1 = 0.0
 
-            # Store metrics
             self.train_losses.append(train_loss)
             self.train_f1_scores.append(train_f1)
             self.test_losses.append(test_metrics['loss'])
             self.test_f1_scores.append(test_metrics['f1'])
             self.test_accuracies.append(test_metrics['accuracy'])
 
-            # Check for best model
-            current_f1 = test_metrics['f1']
-            if current_f1 > self.best_f1:
-                self.best_f1 = current_f1
+            current_val_f1 = val_metrics['f1']
+            if current_val_f1 > self.best_f1:
+                self.best_f1 = current_val_f1
                 self.best_model_state = self.model.state_dict().copy()
                 best_epoch = epoch
                 patience_counter = 0
 
-                # Save best model
-                checkpoint_path = self.save_path / f'best_model_f1_{current_f1:.4f}.pt'
+                checkpoint_path = self.save_path / f'best_model_val_f1_{current_val_f1:.4f}.pt'
                 torch.save({
                     'model_state_dict': self.best_model_state,
-                    'f1_score': self.best_f1,
+                    'val_f1': self.best_f1,
                     'epoch': epoch + 1,
                     'feature_dims': self.model.feature_dims
                 }, checkpoint_path)
 
-                self.logger.info(f"New best model saved: F1={current_f1:.4f}")
+                self.logger.info(f"New best model saved: Val F1={current_val_f1:.4f}")
 
             else:
                 patience_counter += 1
 
-            # Scheduler step
             if scheduler:
                 if isinstance(scheduler, torch.optim.lr_scheduler.ReduceLROnPlateau):
-                    scheduler.step(current_f1)
+                    scheduler.step(current_val_f1)
                 else:
                     scheduler.step()
 
-            # Logging
             epoch_msg = (f"Epoch {epoch + 1}/{num_epochs} - "
-                        f"Train: Loss={train_loss:.4f}, F1={train_f1:.4f} - "
-                        f"Test: Loss={test_metrics['loss']:.4f}, Acc={test_metrics['accuracy']:.4f}, F1={current_f1:.4f}")
+                        f"Train F1={train_f1:.4f} - "
+                        f"Val F1={current_val_f1:.4f} (best={self.best_f1:.4f}) - "
+                        f"Test F1={test_metrics['f1']:.4f}")
             print(epoch_msg)
             self.logger.info(epoch_msg)
 
-            # Early stopping
             if patience_counter >= patience:
                 print(f"Early stopping at epoch {epoch + 1}")
                 self.logger.info(f"Early stopping at epoch {epoch + 1}")
                 break
 
-        # Load best model
         if self.best_model_state is not None:
             self.model.load_state_dict(self.best_model_state)
 
-        # Create and save plots
         self.create_training_plots()
 
         return {
-            'best_f1': self.best_f1,
+            'best_val_f1': self.best_f1,
             'best_epoch': best_epoch + 1
         }
 
@@ -644,7 +607,6 @@ class VSCodeTrainer:
         fig, axes = plt.subplots(2, 2, figsize=(15, 10))
         epochs = range(1, len(self.train_losses) + 1)
 
-        # Loss plot
         axes[0, 0].plot(epochs, self.train_losses, 'b-', label='Train Loss', linewidth=2)
         axes[0, 0].plot(epochs, self.test_losses, 'r-', label='Test Loss', linewidth=2)
         axes[0, 0].set_title('Loss Comparison')
@@ -653,7 +615,6 @@ class VSCodeTrainer:
         axes[0, 0].legend()
         axes[0, 0].grid(True, alpha=0.3)
 
-        # F1 Score plot
         axes[0, 1].plot(epochs, self.train_f1_scores, 'b-', label='Train F1', linewidth=2)
         axes[0, 1].plot(epochs, self.test_f1_scores, 'r-', label='Test F1', linewidth=2)
         axes[0, 1].axhline(y=self.best_f1, color='g', linestyle='--',
@@ -665,7 +626,6 @@ class VSCodeTrainer:
         axes[0, 1].grid(True, alpha=0.3)
         axes[0, 1].set_ylim([0, 1])
 
-        # Accuracy plot
         axes[1, 0].plot(epochs, self.test_accuracies, 'g-', label='Test Accuracy', linewidth=2)
         axes[1, 0].set_title('Test Accuracy')
         axes[1, 0].set_xlabel('Epoch')
@@ -674,7 +634,6 @@ class VSCodeTrainer:
         axes[1, 0].grid(True, alpha=0.3)
         axes[1, 0].set_ylim([0, 1])
 
-        # Learning curve
         axes[1, 1].plot(epochs, [max(0, f1 - loss) for f1, loss in zip(self.test_f1_scores, self.test_losses)], 
                        'm-', label='Performance Score', linewidth=2)
         axes[1, 1].set_title('Performance Score (F1 - Loss)')
@@ -686,7 +645,6 @@ class VSCodeTrainer:
         plt.tight_layout()
         plt.suptitle('Enhanced HGT Training Results', fontsize=16, fontweight='bold', y=0.98)
 
-        # Save plot
         plot_filename = get_unique_filename('training_results', 'png')
         plot_path = self.save_path / plot_filename
         plt.savefig(plot_path, dpi=300, bbox_inches='tight')
@@ -718,7 +676,6 @@ class VSCodeTrainer:
             out = out[:min_size]
         return out, labels
 
-# === MAIN FUNCTIONS ===
 
 def run_enhanced_training(dataset_path):
     """
@@ -728,82 +685,82 @@ def run_enhanced_training(dataset_path):
     print("ENHANCED HGT TRAINING - VS CODE VERSION")
     print("="*60)
 
-    # Setup logging
     logging.basicConfig(level=logging.INFO)
 
-    # Load and prepare dataset
     hetero_graphs, labels, feature_analysis = load_and_prepare_enhanced_dataset(dataset_path)
 
     if hetero_graphs is None:
         print("❌ Failed to load dataset!")
         return None
 
+    feature_analysis = add_atom_type_onehot(hetero_graphs, feature_analysis)
+
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-    print(f"🔧 Using device: {device}")
     
     if device.type == 'cuda':
         print(f"   GPU: {torch.cuda.get_device_name()}")
         print(f"   Memory: {torch.cuda.get_device_properties(0).total_memory / 1e9:.1f} GB")
 
-    # Split dataset
-    train_idx, test_idx = train_test_split(
+    train_val_idx, test_idx = train_test_split(
         np.arange(len(labels)), test_size=0.2, stratify=labels, random_state=42
+    )
+    train_val_labels = [labels[i] for i in train_val_idx]
+    train_idx, val_idx = train_test_split(
+        train_val_idx, test_size=0.2, stratify=train_val_labels, random_state=42
     )
 
     train_graphs = [hetero_graphs[i] for i in train_idx]
-    test_graphs = [hetero_graphs[i] for i in test_idx]
+    val_graphs   = [hetero_graphs[i] for i in val_idx]
+    test_graphs  = [hetero_graphs[i] for i in test_idx]
     train_labels = [labels[i] for i in train_idx]
-    test_labels = [labels[i] for i in test_idx]
+    val_labels   = [labels[i] for i in val_idx]
+    test_labels  = [labels[i] for i in test_idx]
 
-    # Add labels to graphs
     for i, g in enumerate(train_graphs):
         g.y = torch.tensor([train_labels[i]], dtype=torch.long)
+    for i, g in enumerate(val_graphs):
+        g.y = torch.tensor([val_labels[i]], dtype=torch.long)
     for i, g in enumerate(test_graphs):
         g.y = torch.tensor([test_labels[i]], dtype=torch.long)
 
-    print(f"📊 Training: {len(train_graphs)}, Testing: {len(test_graphs)}")
+    print(f"📊 Train: {len(train_graphs)}, Val: {len(val_graphs)}, Test: {len(test_graphs)}")
 
-    # Create data loaders
     batch_size = 32 if device.type == 'cuda' else 16  # Adjust for available memory
     train_loader = DataLoader(train_graphs, batch_size=batch_size, shuffle=True, num_workers=0)
-    test_loader = DataLoader(test_graphs, batch_size=batch_size, shuffle=False, num_workers=0)
+    val_loader   = DataLoader(val_graphs,   batch_size=batch_size, shuffle=False, num_workers=0)
+    test_loader  = DataLoader(test_graphs,  batch_size=batch_size, shuffle=False, num_workers=0)
 
-    # Initialize model
     model = RobustEnhancedHGTDetector(
         feature_dims=feature_analysis,
-        hidden_channels=192,
-        num_heads=8,
+        hidden_channels=96,
+        num_heads=4,
         num_layers=3,
-        dropout=0.15
+        dropout=0.20
     ).to(device)
 
     total_params = sum(p.numel() for p in model.parameters() if p.requires_grad)
     print(f"🧠 Model parameters: {total_params:,}")
 
-    # Loss and optimizer
     criterion = FocalLoss(alpha=0.8, gamma=2.0)
     optimizer = torch.optim.AdamW(model.parameters(), lr=0.0003, weight_decay=0.01)
     scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(
         optimizer, mode='max', factor=0.7, patience=10, min_lr=1e-6
     )
 
-    # Training
     trainer = VSCodeTrainer(model, device)
     print("🚀 Starting training...")
     
     results = trainer.train(
-        train_loader, test_loader, criterion, optimizer,
+        train_loader, val_loader, test_loader, criterion, optimizer,
         num_epochs=80, patience=15, scheduler=scheduler
     )
 
-    # Results summary
     print("\n" + "="*60)
     print("🎯 TRAINING COMPLETED")
     print("="*60)
     print(f"✅ Best F1 Score: {results['best_f1']:.4f}")
     print(f"📈 Best Epoch: {results['best_epoch']}")
 
-    # Calculate improvement
     baseline_f1 = 0.711
     improvement = (results['best_f1'] - baseline_f1) / baseline_f1 * 100
     print(f"📊 Improvement over baseline: {improvement:.1f}%")
@@ -811,7 +768,6 @@ def run_enhanced_training(dataset_path):
     if results['best_f1'] > baseline_f1:
         print("🎉 Enhanced dataset achieved better performance!")
     
-    # Save final results summary
     results_summary = {
         'best_f1': results['best_f1'],
         'best_epoch': results['best_epoch'],
@@ -836,46 +792,38 @@ def run_enhanced_training(dataset_path):
     return results, trainer
 
 def run_adaptive_training(dataset_path, use_original_params=True, custom_params=None):
-    """
-    Adaptive training function with parameter optimization
-    """
-    print("="*60)
-    print("ADAPTIVE HGT TRAINING - VS CODE VERSION")
-    print("="*60)
 
-    # Load dataset
     hetero_graphs, labels, feature_analysis = load_and_prepare_enhanced_dataset(dataset_path)
 
     if hetero_graphs is None:
         print("❌ Failed to load dataset!")
         return None
 
+    feature_analysis = add_atom_type_onehot(hetero_graphs, feature_analysis)
+
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     print(f"🔧 Using device: {device}")
 
-    # Parameter selection
     if custom_params:
         params = custom_params
-        print("🛠️ Using custom parameters")
     elif use_original_params:
         params = {
-            'hidden_channels': 128,
-            'num_heads': 16,
+            'hidden_channels': 96,
+            'num_heads': 4,
             'num_layers': 3,
-            'dropout': 0.3,
+            'dropout': 0.20,
             'lr': 0.0001,
             'weight_decay': 0.001,
             'batch_size': 64 if device.type == 'cuda' else 32,
             'num_epochs': 100,
             'patience': 30
         }
-        print("📋 Using original optimized parameters")
     else:
         params = {
-            'hidden_channels': 192,
-            'num_heads': 16,
+            'hidden_channels': 96,
+            'num_heads': 4,
             'num_layers': 3,
-            'dropout': 0.3,
+            'dropout': 0.20,
             'lr': 0.0001,
             'weight_decay': 0.008,
             'batch_size': 64 if device.type == 'cuda' else 32,
@@ -884,38 +832,39 @@ def run_adaptive_training(dataset_path, use_original_params=True, custom_params=
         }
         print("⚡ Using enhanced parameters for complex datasets")
 
-    # Data preparation
-    train_idx, test_idx = train_test_split(
+    train_val_idx, test_idx = train_test_split(
         np.arange(len(labels)), test_size=0.2, stratify=labels, random_state=42
+    )
+    train_val_labels_tmp = [labels[i] for i in train_val_idx]
+    train_idx, val_idx = train_test_split(
+        train_val_idx, test_size=0.2, stratify=train_val_labels_tmp, random_state=42
     )
 
     train_graphs = [hetero_graphs[i] for i in train_idx]
-    test_graphs = [hetero_graphs[i] for i in test_idx]
+    val_graphs   = [hetero_graphs[i] for i in val_idx]
+    test_graphs  = [hetero_graphs[i] for i in test_idx]
     train_labels = [labels[i] for i in train_idx]
-    test_labels = [labels[i] for i in test_idx]
+    val_labels   = [labels[i] for i in val_idx]
+    test_labels  = [labels[i] for i in test_idx]
 
-    # Add labels
     for i, g in enumerate(train_graphs):
         g.y = torch.tensor([train_labels[i]], dtype=torch.long)
+    for i, g in enumerate(val_graphs):
+        g.y = torch.tensor([val_labels[i]], dtype=torch.long)
     for i, g in enumerate(test_graphs):
         g.y = torch.tensor([test_labels[i]], dtype=torch.long)
 
-    print(f"📊 Training: {len(train_graphs)}, Testing: {len(test_graphs)}")
+    print(f"📊 Train: {len(train_graphs)}, Val: {len(val_graphs)}, Test: {len(test_graphs)}")
 
-    # Class weights
     unique_labels, label_counts = np.unique(train_labels, return_counts=True)
     total_samples = len(train_labels)
     class_weights = total_samples / (len(unique_labels) * label_counts)
     class_weight_tensor = torch.FloatTensor(class_weights).to(device)
 
-    print(f"📈 Class distribution: {dict(zip(unique_labels, label_counts))}")
-    print(f"⚖️ Class weights: {dict(zip(unique_labels, class_weights))}")
-
-    # Data loaders
     train_loader = DataLoader(train_graphs, batch_size=params['batch_size'], shuffle=True, num_workers=0)
-    test_loader = DataLoader(test_graphs, batch_size=params['batch_size'], shuffle=False, num_workers=0)
+    val_loader   = DataLoader(val_graphs,   batch_size=params['batch_size'], shuffle=False, num_workers=0)
+    test_loader  = DataLoader(test_graphs,  batch_size=params['batch_size'], shuffle=False, num_workers=0)
 
-    # Model initialization
     model = RobustEnhancedHGTDetector(
         feature_dims=feature_analysis,
         hidden_channels=params['hidden_channels'],
@@ -928,7 +877,6 @@ def run_adaptive_training(dataset_path, use_original_params=True, custom_params=
     total_params = sum(p.numel() for p in model.parameters() if p.requires_grad)
     print(f"🧠 Model parameters: {total_params:,}")
 
-    # Loss and optimizer
     criterion_focal = FocalLoss(alpha=0.75, gamma=2.0)
     criterion_weighted = torch.nn.CrossEntropyLoss(weight=class_weight_tensor)
 
@@ -943,12 +891,12 @@ def run_adaptive_training(dataset_path, use_original_params=True, custom_params=
         optimizer, mode='max', factor=0.5, patience=8, min_lr=1e-7
     )
 
-    # Training
     trainer = VSCodeTrainer(model, device)
     print("🚀 Starting adaptive training...")
 
     results = trainer.train(
         train_loader=train_loader,
+        val_loader=val_loader,
         test_loader=test_loader,
         criterion=criterion_weighted,
         optimizer=optimizer,
@@ -957,7 +905,6 @@ def run_adaptive_training(dataset_path, use_original_params=True, custom_params=
         scheduler=scheduler
     )
 
-    # Results
     print("\n" + "="*60)
     print("🎯 ADAPTIVE TRAINING COMPLETED")
     print("="*60)
@@ -992,45 +939,44 @@ def find_dataset_files(directory="."):
     return [str(f) for f in found_files]
 
 def main():
-    """Main execution function with VS Code optimizations"""
+    import argparse
+    parser = argparse.ArgumentParser(description="Enhanced HGT Training Script")
+    parser.add_argument('--dataset', type=str, default=None,
+                        help='Path to .pt dataset file (e.g. intelligent_pharma_50k.pt)')
+    parser.add_argument('--adaptive', action='store_true',
+                        help='Use adaptive training instead of standard training')
+    args = parser.parse_args()
+
     print("🧬 Enhanced HGT Training Script - VS Code Edition")
     print("="*60)
-    print("Optimizations for VS Code:")
-    print("• Local file handling")
-    print("• Enhanced logging")
-    print("• Memory-efficient processing")
-    print("• Clickable file paths")
-    print("• No Colab dependencies")
-    print()
 
-    # Find dataset files
-    dataset_files = find_dataset_files()
-
-    if not dataset_files:
-        print("❌ No dataset files found!")
-        print("Please ensure you have a .pt file in your workspace.")
-        print("Expected patterns: *enhanced*.pt, *pharma*.pt, *hetero*.pt")
-        
-        # Interactive file selection for VS Code
-        print("\n💡 You can:")
-        print("1. Place your dataset file in the current directory")
-        print("2. Update the dataset_path variable manually")
-        print("3. Use the file explorer in VS Code to locate your file")
-        return None
-
-    print(f"✅ Found {len(dataset_files)} dataset file(s):")
-    for i, file in enumerate(dataset_files, 1):
-        file_size = Path(file).stat().st_size / (1024*1024)  # MB
-        print(f"   {i}. {file} ({file_size:.1f} MB)")
-
-    # Select best dataset
-    enhanced_files = [f for f in dataset_files if 'enhanced' in f.lower()]
-    if enhanced_files:
-        dataset_path = enhanced_files[0]
-        print(f"\n🎯 Using enhanced dataset: {Path(dataset_path).name}")
-    else:
-        dataset_path = dataset_files[0]
+    if args.dataset:
+        dataset_path = args.dataset
+        if not Path(dataset_path).exists():
+            print(f"❌ File not found: {dataset_path}")
+            return None
         print(f"\n🎯 Using dataset: {Path(dataset_path).name}")
+    else:
+        dataset_files = find_dataset_files()
+
+        if not dataset_files:
+            print("❌ No dataset files found!")
+            print("Please ensure you have a .pt file in your workspace.")
+            print("Expected patterns: *enhanced*.pt, *pharma*.pt, *hetero*.pt")
+            return None
+
+        print(f"✅ Found {len(dataset_files)} dataset file(s):")
+        for i, file in enumerate(dataset_files, 1):
+            file_size = Path(file).stat().st_size / (1024*1024)
+            print(f"   {i}. {file} ({file_size:.1f} MB)")
+
+        enhanced_files = [f for f in dataset_files if 'enhanced' in f.lower()]
+        if enhanced_files:
+            dataset_path = enhanced_files[0]
+            print(f"\n🎯 Using enhanced dataset: {Path(dataset_path).name}")
+        else:
+            dataset_path = dataset_files[0]
+            print(f"\n🎯 Using dataset: {Path(dataset_path).name}")
 
     print(f"📁 Full path: {Path(dataset_path).absolute()}")
     print("\n" + "="*60)
@@ -1038,8 +984,10 @@ def main():
     print("="*60)
 
     try:
-        # Run enhanced training
-        results, trainer = run_enhanced_training(dataset_path)
+        if args.adaptive:
+            results, trainer = run_adaptive_training(dataset_path)
+        else:
+            results, trainer = run_enhanced_training(dataset_path)
 
         if results is not None:
             print("\n🎉 Training completed successfully!")
@@ -1047,7 +995,6 @@ def main():
             print(f"   📈 Best Epoch: {results['best_epoch']}")
             print(f"   📁 Results saved in: {trainer.save_path.absolute()}")
             
-            # List all generated files
             result_files = list(trainer.save_path.glob("*"))
             if result_files:
                 print(f"\n📋 Generated files ({len(result_files)}):")
@@ -1057,11 +1004,9 @@ def main():
             print("❌ Training failed!")
 
     except Exception as e:
-        print(f"❌ Error during training: {e}")
         import traceback
         traceback.print_exc()
         
-        # Save error log for debugging
         error_log = Path(RESULTS_DIR) / 'error_log.txt'
         with open(error_log, 'w') as f:
             f.write(f"Error occurred at: {datetime.now()}\n")
@@ -1073,10 +1018,8 @@ def main():
         print(f"📝 Error details saved to: {error_log.absolute()}")
 
 def quick_test():
-    """Quick test function for development"""
     print("🧪 Running quick test...")
     
-    # Test imports
     try:
         import torch
         import torch_geometric
@@ -1086,13 +1029,11 @@ def quick_test():
         print(f"❌ Import error: {e}")
         return False
     
-    # Test CUDA availability
     if torch.cuda.is_available():
         print(f"✅ CUDA available: {torch.cuda.get_device_name()}")
     else:
         print("ℹ️ CUDA not available, using CPU")
     
-    # Test directory creation
     test_dir = Path(RESULTS_DIR)
     test_dir.mkdir(exist_ok=True)
     print(f"✅ Results directory: {test_dir.absolute()}")
@@ -1100,18 +1041,8 @@ def quick_test():
     print("✅ All tests passed!")
     return True
 
-# === EXECUTION ===
 
 if __name__ == "__main__":
-    # Uncomment for quick testing
-    # quick_test()
-    
-    # Run main training
+
     main()
     
-    # Alternative: run with specific dataset
-    # dataset_path = "your_dataset.pt"
-    # results, trainer = run_enhanced_training(dataset_path)
-    
-    # Alternative: run adaptive training
-    # results, trainer = run_adaptive_training(dataset_path, use_original_params=False)

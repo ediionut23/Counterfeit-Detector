@@ -1,0 +1,88 @@
+{
+  "total_graphs": 50000,
+  "authentic_count": 25000,
+  "counterfeit_count": 25000,
+  "balance_ratio": 1.0,
+  "node_types": [
+    "As",
+    "B",
+    "Br",
+    "C",
+    "Cl",
+    "F",
+    "Fe",
+    "H",
+    "I",
+    "K",
+    "Li",
+    "Mg",
+    "N",
+    "Na",
+    "O",
+    "P",
+    "S",
+    "Se",
+    "Si",
+    "Sn",
+    "Te",
+    "V",
+    "Y",
+    "Zn"
+  ],
+  "edge_type_count": 87,
+  "shortcut_metrics_before_matching": {
+    "cohen_d_length": 0.037513553292879344,
+    "cohen_d_mw": 0.1352442032223694,
+    "cohen_d_heavy": 0.11243492760662803,
+    "trivial_lr_acc": 0.5751876528632875
+  },
+  "shortcut_metrics_after_matching": {
+    "cohen_d_length": 0.014476777040975735,
+    "cohen_d_mw": 0.0341898874271871,
+    "cohen_d_heavy": 0.013865126591225636,
+    "trivial_lr_acc": 0.5331
+  },
+  "fetcher_stats": {
+    "added": 69687,
+    "drop_scaffold_full": 15185
+  },
+  "counterfeit_gen_stats": {
+    "success": 50000,
+    "fail_reaction": 527234,
+    "fail_duplicate": 81824,
+    "fail_all_attempts": 7529,
+    "fail_druglike": 20730,
+    "fail_similarity": 505
+  },
+  "difficulty_distribution": {
+    "subtle": 23127,
+    "moderate": 1723,
+    "obvious": 150
+  },
+  "source_distribution": {
+    "ChEMBL-REST": 19511,
+    "PubChem": 5489
+  },
+  "counterfeit_types": {
+    "aryl_H_to_F": 4340,
+    "aryl_H_to_Me": 4258,
+    "aryl_H_to_OMe": 4091,
+    "aryl_H_to_Cl": 4085,
+    "aryl_H_to_OH": 4044,
+    "aryl_CH_to_N_para": 1147,
+    "amide_to_sulfonamide": 737,
+    "OMe_to_OEt": 418,
+    "Cl_to_CF3_aryl": 357,
+    "aryl_C_to_N": 311,
+    "methyl_to_ethyl_on_aryl": 273,
+    "COOH_to_tetrazole": 253,
+    "F_to_Cl_aryl": 160,
+    "NH2_to_NHMe": 135,
+    "alkene_to_alkane": 116,
+    "ketone_to_sulfoxide": 100,
+    "Br_to_Cl_aryl": 54,
+    "ester_to_amide": 47,
+    "CN_to_CCF3": 31,
+    "cyclopentane_to_cyclohexane": 20
+  }
+}
