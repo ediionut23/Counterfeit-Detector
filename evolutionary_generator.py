@@ -250,19 +250,53 @@ def edited_atoms(parent_smiles: str, child_smiles: str) -> List[int]:
 # ==================================================================
 #  Optional adversarial objective: the trained detector, model-in-the-loop
 # ==================================================================
-def load_detector_scorer() -> Optional[Callable[[str], float]]:
-    """Best-effort loader for the HGT detector as a scorer smiles -> P(counterfeit).
+def _select_checkpoint(results_dir: str) -> Optional[Path]:
+    """Highest-F1 HGT checkpoint (by filename) in results_dir, or None."""
+    import re
+    best = None
+    for f in Path(results_dir).glob("best_model_f1_*.pt"):
+        m = re.search(r"f1_([0-9]+\.[0-9]+)", f.name)
+        f1 = float(m.group(1)) if m else 0.0
+        if best is None or f1 > best[0]:
+            best = (f1, f)
+    return best[1] if best else None
 
-    Returns None (and logs) if the model/checkpoint/converter cannot be loaded,
-    so the GA still runs with the 3 structural objectives.
+
+def load_detector_scorer(results_dir: str = "HGT_Enhanced_Results"
+                         ) -> Optional[Callable[[str], float]]:
+    """Load the trained HGT detector as a scorer  smiles -> P(counterfeit).
+
+    Robust to the architecture drift in the saved checkpoints: it picks the
+    best-F1 checkpoint and rebuilds the model with the exact hidden width and
+    node-type set stored in that checkpoint (inferred from the state dict),
+    rather than the code defaults. Returns None (and logs) on any failure so
+    the GA still runs with the 3 structural objectives.
     """
     try:
         import torch
-        from hyp import load_model_and_dataset  # reuses the project's loader
+        from hyp import RobustEnhancedHGTDetector
         from explicablity import GraphConverter
-        model, device, *_ = _unpack(load_model_and_dataset())
 
+        ckpt_path = _select_checkpoint(results_dir)
+        if ckpt_path is None:
+            logger.warning(f"No checkpoint in {results_dir}; running 3-objective.")
+            return None
+
+        device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        ck = torch.load(ckpt_path, map_location=device, weights_only=False)
+        sd = ck["model_state_dict"]
+        feature_dims = ck["feature_dims"]
+        # hidden width == output dim of any node-embedding Linear
+        emb_key = next(k for k in sd
+                       if k.startswith("node_embeddings") and k.endswith("weight"))
+        hidden = sd[emb_key].shape[0]
+
+        model = RobustEnhancedHGTDetector(feature_dims=feature_dims,
+                                          hidden_channels=hidden).to(device)
+        model.load_state_dict(sd)  # strict: verifies the architecture matches
         model.eval()
+        logger.info(f"Detector loaded ({ckpt_path.name}, hidden={hidden}, "
+                    f"{len(feature_dims)} node types): adversarial objective ENABLED.")
 
         def scorer(smiles: str) -> float:
             g = GraphConverter.smiles_to_heterograph(smiles)
@@ -272,20 +306,11 @@ def load_detector_scorer() -> Optional[Callable[[str], float]]:
             with torch.no_grad():
                 out = model(g.x_dict, g.edge_index_dict)
                 prob = torch.softmax(out, dim=-1).squeeze()
-                # class index 1 == counterfeit in this project
-                return float(prob[1].item())
-        logger.info("Detector loaded: adversarial objective ENABLED.")
+                return float(prob[1].item())  # class 1 == counterfeit
         return scorer
     except Exception as e:
         logger.warning(f"Could not load detector ({e}); running 3-objective.")
         return None
-
-
-def _unpack(ret):
-    """load_model_and_dataset may return a tuple of varying length."""
-    if isinstance(ret, (tuple, list)):
-        return list(ret) + [None] * (2 - len(ret)) if len(ret) < 2 else list(ret)
-    return [ret, "cpu"]
 
 
 # ==================================================================
@@ -436,11 +461,16 @@ def main():
     Path(args.out).write_text(json.dumps(out, indent=2))
     logger.info(f"Pareto front: {len(front)} counterfeits -> {args.out}")
 
+    has_adv = objectives.n_obj == 4
+    pc_hdr = f"{'P(cf)':>6}" if has_adv else ""
     logger.info(f"\nTop {min(15, len(front))} counterfeits (by summed objectives):")
-    logger.info(f"  {'sim':>5} {'QED':>5} {'SA':>5}  #edit  SMILES")
+    logger.info(f"  {'sim':>5} {'QED':>5} {'SA':>5}{pc_hdr}  #edit  SMILES")
     for d in front[:15]:
+        pc = f"{d['objectives']['p_counterfeit']:>6.3f}" if has_adv else ""
         logger.info(f"  {d['similarity_to_parent']:>5} {d['qed']:>5} "
-                    f"{str(d['sa_score']):>5}  {len(d['edited_atoms']):>5}  {d['smiles']}")
+                    f"{str(d['sa_score']):>5}{pc}  {len(d['edited_atoms']):>5}  {d['smiles']}")
+    if has_adv:
+        logger.info("  (P(cf) = detector's counterfeit probability; low = fools the detector)")
 
 
 if __name__ == "__main__":
