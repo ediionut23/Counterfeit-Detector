@@ -1,0 +1,17 @@
+{
+  "n_parents": 80,
+  "n_counterfeits": 152,
+  "adversarial": true,
+  "n_fool_detector": 8,
+  "frac_fool_detector": 0.053,
+  "mean_similarity": 0.475,
+  "mean_p_counterfeit": 0.64,
+  "similarity_band": [
+    0.4,
+    0.9
+  ],
+  "search": {
+    "pop": 30,
+    "generations": 15
+  }
+}
