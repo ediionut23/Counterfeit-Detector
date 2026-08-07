@@ -29,11 +29,11 @@ MMP_TRANSFORMATIONS: List[Tuple[str, str, str, str, str, str]] = [
      '[*:1]C1CCCCC1',
      '[*:1]c1ccccc1',
      'mmpdb-mined(authentic@intelligent_pharma_50k_v2.pt)'),  # support=13 pairs, Δheavy=0
-    ('mmp0005_Rc1ccccc1_to_Rc1cccs1', 'subtle', 'bioisostere',
+    ('mmp0005_Rc1ccccc1_to_Rc1cccs1', 'subtle', 'scaffold-hop',
      '[*:1]c1ccccc1',
      '[*:1]c1cccs1',
      'mmpdb-mined(authentic@intelligent_pharma_50k_v2.pt)'),  # support=12 pairs, Δheavy=-1
-    ('mmp0006_RC1CCCC1_to_RC1CCCCC1', 'subtle', 'homologation',
+    ('mmp0006_RC1CCCC1_to_RC1CCCCC1', 'subtle', 'scaffold-hop',
      '[*:1]C1CCCC1',
      '[*:1]C1CCCCC1',
      'mmpdb-mined(authentic@intelligent_pharma_50k_v2.pt)'),  # support=11 pairs, Δheavy=1
@@ -81,11 +81,11 @@ MMP_TRANSFORMATIONS: List[Tuple[str, str, str, str, str, str]] = [
      '[*:1]C1CCCC1',
      '[*:1]c1ccccc1',
      'mmpdb-mined(authentic@intelligent_pharma_50k_v2.pt)'),  # support=8 pairs, Δheavy=1
-    ('mmp0018_RO_to_ROCCeqO', 'moderate', 'homologation',
+    ('mmp0018_RO_to_ROCCeqO', 'moderate', 'bioisostere',
      '[*:1]O',
      '[*:1]OC(C)=O',
      'mmpdb-mined(authentic@intelligent_pharma_50k_v2.pt)'),  # support=8 pairs, Δheavy=3
-    ('mmp0019_RC_to_RCCeqC', 'moderate', 'homologation',
+    ('mmp0019_RC_to_RCCeqC', 'moderate', 'bioisostere',
      '[*:1]C',
      '[*:1]CC=C',
      'mmpdb-mined(authentic@intelligent_pharma_50k_v2.pt)'),  # support=8 pairs, Δheavy=2
@@ -109,7 +109,7 @@ MMP_TRANSFORMATIONS: List[Tuple[str, str, str, str, str, str]] = [
      '[*:1]c1ccc(Br)cc1',
      '[*:1]c1ccccc1',
      'mmpdb-mined(authentic@intelligent_pharma_50k_v2.pt)'),  # support=7 pairs, Δheavy=-1
-    ('mmp0025_RN1CCCC1_to_RN1CCCCC1', 'subtle', 'homologation',
+    ('mmp0025_RN1CCCC1_to_RN1CCCCC1', 'subtle', 'scaffold-hop',
      '[*:1]N1CCCC1',
      '[*:1]N1CCCCC1',
      'mmpdb-mined(authentic@intelligent_pharma_50k_v2.pt)'),  # support=7 pairs, Δheavy=1
@@ -117,7 +117,7 @@ MMP_TRANSFORMATIONS: List[Tuple[str, str, str, str, str, str]] = [
      '[*:1]C',
      '[*:1]CCOCCO',
      'mmpdb-mined(authentic@intelligent_pharma_50k_v2.pt)'),  # support=7 pairs, Δheavy=5
-    ('mmp0027_RCc1ccccc1_to_RCc1cccs1', 'subtle', 'bioisostere',
+    ('mmp0027_RCc1ccccc1_to_RCc1cccs1', 'subtle', 'scaffold-hop',
      '[*:1]Cc1ccccc1',
      '[*:1]Cc1cccs1',
      'mmpdb-mined(authentic@intelligent_pharma_50k_v2.pt)'),  # support=6 pairs, Δheavy=-1
@@ -137,7 +137,7 @@ MMP_TRANSFORMATIONS: List[Tuple[str, str, str, str, str, str]] = [
      '[*:1]C1CCCCC1',
      '[*:1]c1cccs1',
      'mmpdb-mined(authentic@intelligent_pharma_50k_v2.pt)'),  # support=6 pairs, Δheavy=-1
-    ('mmp0032_Rc1ccccc1_to_Rc1ccccn1', 'subtle', 'bioisostere',
+    ('mmp0032_Rc1ccccc1_to_Rc1ccccn1', 'subtle', 'scaffold-hop',
      '[*:1]c1ccccc1',
      '[*:1]c1ccccn1',
      'mmpdb-mined(authentic@intelligent_pharma_50k_v2.pt)'),  # support=6 pairs, Δheavy=0
@@ -173,11 +173,11 @@ MMP_TRANSFORMATIONS: List[Tuple[str, str, str, str, str, str]] = [
      '[*:1]c1ccc(OC)cc1',
      '[*:1]c1ccccc1',
      'mmpdb-mined(authentic@intelligent_pharma_50k_v2.pt)'),  # support=5 pairs, Δheavy=-2
-    ('mmp0041_RCCN1CCCC1_to_RCCN1CCCCC1', 'subtle', 'homologation',
+    ('mmp0041_RCCN1CCCC1_to_RCCN1CCCCC1', 'subtle', 'scaffold-hop',
      '[*:1]CCN1CCCC1',
      '[*:1]CCN1CCCCC1',
      'mmpdb-mined(authentic@intelligent_pharma_50k_v2.pt)'),  # support=5 pairs, Δheavy=1
-    ('mmp0042_ROCCeqOO_to_ROCCO', 'subtle', 'homologation',
+    ('mmp0042_ROCCeqOO_to_ROCCO', 'subtle', 'bioisostere',
      '[*:1]OCC(=O)O',
      '[*:1]OCCO',
      'mmpdb-mined(authentic@intelligent_pharma_50k_v2.pt)'),  # support=5 pairs, Δheavy=-1
@@ -185,11 +185,11 @@ MMP_TRANSFORMATIONS: List[Tuple[str, str, str, str, str, str]] = [
      '[*:1]C1CCN(C)CC1',
      '[*:1]CCN(C)C',
      'mmpdb-mined(authentic@intelligent_pharma_50k_v2.pt)'),  # support=5 pairs, Δheavy=-2
-    ('mmp0044_RCCOCCeqOO_to_RCCOCCO', 'subtle', 'homologation',
+    ('mmp0044_RCCOCCeqOO_to_RCCOCCO', 'subtle', 'bioisostere',
      '[*:1]CCOCC(=O)O',
      '[*:1]CCOCCO',
      'mmpdb-mined(authentic@intelligent_pharma_50k_v2.pt)'),  # support=5 pairs, Δheavy=-1
-    ('mmp0045_RCCeqOO_to_RCCO', 'subtle', 'homologation',
+    ('mmp0045_RCCeqOO_to_RCCO', 'subtle', 'bioisostere',
      '[*:1]CC(=O)O',
      '[*:1]CCO',
      'mmpdb-mined(authentic@intelligent_pharma_50k_v2.pt)'),  # support=5 pairs, Δheavy=-1
@@ -293,7 +293,7 @@ MMP_TRANSFORMATIONS: List[Tuple[str, str, str, str, str, str]] = [
      '[*:1]/C=C\\C#CC(C)(C)C',
      '[*:1]/C=C\\c1ccccc1',
      'mmpdb-mined(authentic@intelligent_pharma_50k_v2.pt)'),  # support=4 pairs, Δheavy=0
-    ('mmp0071_Rc1cccOCcc1_to_Rc1cccs1', 'moderate', 'bioisostere',
+    ('mmp0071_Rc1cccOCcc1_to_Rc1cccs1', 'moderate', 'scaffold-hop',
      '[*:1]c1ccc(OC)cc1',
      '[*:1]c1cccs1',
      'mmpdb-mined(authentic@intelligent_pharma_50k_v2.pt)'),  # support=4 pairs, Δheavy=-3
@@ -301,7 +301,7 @@ MMP_TRANSFORMATIONS: List[Tuple[str, str, str, str, str, str]] = [
      '[*:1]C#CCN(CC)CC',
      '[*:1]C1=NCCCN1C',
      'mmpdb-mined(authentic@intelligent_pharma_50k_v2.pt)'),  # support=4 pairs, Δheavy=-1
-    ('mmp0073_Rc1ccccn1_to_Rc1nccs1', 'subtle', 'bioisostere',
+    ('mmp0073_Rc1ccccn1_to_Rc1nccs1', 'subtle', 'scaffold-hop',
      '[*:1]c1ccccn1',
      '[*:1]c1nccs1',
      'mmpdb-mined(authentic@intelligent_pharma_50k_v2.pt)'),  # support=4 pairs, Δheavy=-1
@@ -385,7 +385,7 @@ MMP_TRANSFORMATIONS: List[Tuple[str, str, str, str, str, str]] = [
      '[*:1]Cc1ccccc1',
      '[*:1][C@H](N)c1ccccc1',
      'mmpdb-mined(authentic@intelligent_pharma_50k_v2.pt)'),  # support=3 pairs, Δheavy=1
-    ('mmp0094_RCO_to_RCOCCeqO', 'moderate', 'homologation',
+    ('mmp0094_RCO_to_RCOCCeqO', 'moderate', 'bioisostere',
      '[*:1]CO',
      '[*:1]COC(C)=O',
      'mmpdb-mined(authentic@intelligent_pharma_50k_v2.pt)'),  # support=3 pairs, Δheavy=3
@@ -405,7 +405,7 @@ MMP_TRANSFORMATIONS: List[Tuple[str, str, str, str, str, str]] = [
      '[*:1]CC(C)C',
      '[*:1]c1ccccc1',
      'mmpdb-mined(authentic@intelligent_pharma_50k_v2.pt)'),  # support=3 pairs, Δheavy=2
-    ('mmp0099_RCC_to_RCCeqC', 'subtle', 'homologation',
+    ('mmp0099_RCC_to_RCCeqC', 'subtle', 'bioisostere',
      '[*:1]CC',
      '[*:1]CC=C',
      'mmpdb-mined(authentic@intelligent_pharma_50k_v2.pt)'),  # support=3 pairs, Δheavy=1
@@ -441,7 +441,7 @@ MMP_TRANSFORMATIONS: List[Tuple[str, str, str, str, str, str]] = [
      '[*:1]/C(N)=N/O',
      '[*:1]C1=NCCN1',
      'mmpdb-mined(authentic@intelligent_pharma_50k_v2.pt)'),  # support=3 pairs, Δheavy=1
-    ('mmp0108_RC1CC1_to_RC1CCC1', 'subtle', 'homologation',
+    ('mmp0108_RC1CC1_to_RC1CCC1', 'subtle', 'scaffold-hop',
      '[*:1]C1CC1',
      '[*:1]C1CCC1',
      'mmpdb-mined(authentic@intelligent_pharma_50k_v2.pt)'),  # support=3 pairs, Δheavy=1
@@ -465,7 +465,7 @@ MMP_TRANSFORMATIONS: List[Tuple[str, str, str, str, str, str]] = [
      '[*:1]C',
      '[*:1]CC(C)C',
      'mmpdb-mined(authentic@intelligent_pharma_50k_v2.pt)'),  # support=3 pairs, Δheavy=3
-    ('mmp0114_RCC1eqNCCN1_to_RCCN1CCCC1', 'subtle', 'homologation',
+    ('mmp0114_RCC1eqNCCN1_to_RCCN1CCCC1', 'subtle', 'bioisostere',
      '[*:1]CC1=NCCN1',
      '[*:1]CCN1CCCC1',
      'mmpdb-mined(authentic@intelligent_pharma_50k_v2.pt)'),  # support=3 pairs, Δheavy=1
@@ -473,7 +473,7 @@ MMP_TRANSFORMATIONS: List[Tuple[str, str, str, str, str, str]] = [
      '[*:1]C/C(N)=N/O',
      '[*:1]CC1=NCCN1',
      'mmpdb-mined(authentic@intelligent_pharma_50k_v2.pt)'),  # support=3 pairs, Δheavy=1
-    ('mmp0116_RC1CCNCCC1_to_RCC1eqNCCN1', 'subtle', 'homologation',
+    ('mmp0116_RC1CCNCCC1_to_RCC1eqNCCN1', 'subtle', 'scaffold-hop',
      '[*:1]C1CCN(C)CC1',
      '[*:1]CC1=NCCN1',
      'mmpdb-mined(authentic@intelligent_pharma_50k_v2.pt)'),  # support=3 pairs, Δheavy=-1
@@ -481,7 +481,7 @@ MMP_TRANSFORMATIONS: List[Tuple[str, str, str, str, str, str]] = [
      '[*:1]C',
      '[*:1]CCc1ccccc1',
      'mmpdb-mined(authentic@intelligent_pharma_50k_v2.pt)'),  # support=3 pairs, Δheavy=7
-    ('mmp0118_RCC1CC1_to_RCC1CCC1', 'subtle', 'homologation',
+    ('mmp0118_RCC1CC1_to_RCC1CCC1', 'subtle', 'scaffold-hop',
      '[*:1]CC1CC1',
      '[*:1]CC1CCC1',
      'mmpdb-mined(authentic@intelligent_pharma_50k_v2.pt)'),  # support=3 pairs, Δheavy=1
@@ -513,7 +513,7 @@ MMP_TRANSFORMATIONS: List[Tuple[str, str, str, str, str, str]] = [
      '[*:1]n1ccc(N)nc1=O',
      '[*:1]n1cnc(N)nc1=O',
      'mmpdb-mined(authentic@intelligent_pharma_50k_v2.pt)'),  # support=3 pairs, Δheavy=0
-    ('mmp0126_RCeqOCO_to_RCeqOCOCCeqO', 'moderate', 'homologation',
+    ('mmp0126_RCeqOCO_to_RCeqOCOCCeqO', 'moderate', 'bioisostere',
      '[*:1]C(=O)CO',
      '[*:1]C(=O)COC(C)=O',
      'mmpdb-mined(authentic@intelligent_pharma_50k_v2.pt)'),  # support=3 pairs, Δheavy=3

@@ -206,12 +206,25 @@ def _frag_profile(frag_smiles: str) -> Optional[Dict]:
         return None
     ri = mol.GetRingInfo()
     heavy = [a for a in mol.GetAtoms() if a.GetAtomicNum() > 0]
+    # ring fingerprint: multiset of ring sizes + heteroatoms that sit in rings
+    ring_sizes = tuple(sorted(len(r) for r in ri.AtomRings()))
+    ring_hetero = frozenset(
+        mol.GetAtomWithIdx(idx).GetSymbol()
+        for ring in ri.AtomRings() for idx in ring
+        if mol.GetAtomWithIdx(idx).GetSymbol() != "C")
+    # count non-aromatic multiple bonds (unsaturation introduced outside rings)
+    n_multi = sum(1 for b in mol.GetBonds()
+                  if not b.GetIsAromatic()
+                  and b.GetBondType() in (Chem.BondType.DOUBLE, Chem.BondType.TRIPLE))
     return {
         "n_rings": rdMolDescriptors.CalcNumRings(mol),
         "n_aromatic_rings": rdMolDescriptors.CalcNumAromaticRings(mol),
+        "ring_sizes": ring_sizes,
+        "ring_hetero": ring_hetero,
         "halogens": sum(1 for a in heavy if a.GetSymbol() in _HALOGENS),
         "heteroatoms": frozenset(a.GetSymbol() for a in heavy
                                  if a.GetSymbol() not in ("C",)),
+        "n_multi_bonds": n_multi,
         "n_carbons": sum(1 for a in heavy if a.GetSymbol() == "C"),
         "n_heavy": len(heavy),
         "aromatic_atoms": sum(1 for a in heavy if a.GetIsAromatic()),
@@ -222,37 +235,48 @@ def categorize_rule(from_smiles: str, to_smiles: str, delta_heavies: int) -> str
     """Heuristic chemical category for a mined transformation, aligned with the
     benchmark's per-category dataset design (proposal C1). Categories:
 
-      scaffold-hop  : ring system changes (count/aromaticity/size)
+      scaffold-hop  : ring system changes (count / aromaticity / size /
+                      in-ring heteroatom composition, e.g. benzene->thiophene)
       halogen-walk  : only halogen identity/placement changes (low-effort)
-      homologation  : carbon-only chain grows/shrinks (methyl/ethyl walk)
-      bioisostere   : heteroatom composition changes without a ring change
+      homologation  : pure saturated carbon-chain grow/shrink, no new
+                      heteroatom, no new unsaturation (methyl/ethyl walk,
+                      N-demethylation)
+      bioisostere   : heteroatom composition or functional group changes
+                      (acylation, phosphorylation, ester/amide, C=O added, ...)
       other         : anything else
     """
     pf, pt = _frag_profile(from_smiles), _frag_profile(to_smiles)
     if pf is None or pt is None:
         return "other"
 
+    # (1) any change to the ring system -> scaffold-hop. Now also catches
+    #     in-ring heteroatom swaps (benzene<->thiophene) and ring-size changes.
     ring_change = (pf["n_rings"] != pt["n_rings"]
                    or pf["n_aromatic_rings"] != pt["n_aromatic_rings"]
+                   or pf["ring_sizes"] != pt["ring_sizes"]
+                   or pf["ring_hetero"] != pt["ring_hetero"]
                    or (pf["aromatic_atoms"] > 0) != (pt["aromatic_atoms"] > 0))
     if ring_change:
         return "scaffold-hop"
 
-    halogen_change = pf["halogens"] != pt["halogens"] or (
-        pf["halogens"] > 0 and pt["halogens"] > 0
-        and pf["heteroatoms"] != pt["heteroatoms"]
-        and pf["heteroatoms"] <= _HALOGENS and pt["heteroatoms"] <= _HALOGENS)
+    # (2) only halogens involved as heteroatoms, and their count/identity moves
     only_halogen_hetero = (pf["heteroatoms"] <= _HALOGENS
                            and pt["heteroatoms"] <= _HALOGENS)
-    if halogen_change and only_halogen_hetero:
+    halogen_change = (pf["halogens"] != pt["halogens"]
+                      or pf["heteroatoms"] != pt["heteroatoms"])
+    if only_halogen_hetero and halogen_change:
         return "halogen-walk"
 
-    # carbon-only skeleton change, no new heteroatoms -> chain homologation
-    if pf["heteroatoms"] == pt["heteroatoms"] and abs(delta_heavies) >= 1 \
-            and (pf["halogens"] == pt["halogens"] == 0):
+    # (3) pure saturated carbon-chain change: same heteroatom set, no halogens,
+    #     and NO new unsaturation (so acylation O->OC(C)=O is excluded here)
+    if (pf["heteroatoms"] == pt["heteroatoms"]
+            and pf["halogens"] == pt["halogens"] == 0
+            and pf["n_multi_bonds"] == pt["n_multi_bonds"]
+            and abs(delta_heavies) >= 1):
         return "homologation"
 
-    if pf["heteroatoms"] != pt["heteroatoms"]:
+    # (4) heteroatom composition OR functional-group (unsaturation) change
+    if pf["heteroatoms"] != pt["heteroatoms"] or pf["n_multi_bonds"] != pt["n_multi_bonds"]:
         return "bioisostere"
 
     return "other"

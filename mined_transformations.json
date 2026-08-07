@@ -7,10 +7,10 @@
     "obvious": 14
   },
   "category_distribution": {
-    "homologation": 38,
+    "homologation": 23,
     "halogen-walk": 14,
-    "bioisostere": 41,
-    "scaffold-hop": 33,
+    "bioisostere": 45,
+    "scaffold-hop": 44,
     "other": 5
   },
   "rules": [
@@ -105,7 +105,7 @@
       "n_environments": 1,
       "name": "mmp0005_Rc1ccccc1_to_Rc1cccs1",
       "difficulty": "subtle",
-      "category": "bioisostere",
+      "category": "scaffold-hop",
       "reactant_smarts": "[*:1]c1ccccc1",
       "product_smarts": "[*:1]c1cccs1",
       "citation": "mmpdb-mined(authentic@intelligent_pharma_50k_v2.pt)"
@@ -121,7 +121,7 @@
       "n_environments": 1,
       "name": "mmp0006_RC1CCCC1_to_RC1CCCCC1",
       "difficulty": "subtle",
-      "category": "homologation",
+      "category": "scaffold-hop",
       "reactant_smarts": "[*:1]C1CCCC1",
       "product_smarts": "[*:1]C1CCCCC1",
       "citation": "mmpdb-mined(authentic@intelligent_pharma_50k_v2.pt)"
@@ -313,7 +313,7 @@
       "n_environments": 1,
       "name": "mmp0018_RO_to_ROCCeqO",
       "difficulty": "moderate",
-      "category": "homologation",
+      "category": "bioisostere",
       "reactant_smarts": "[*:1]O",
       "product_smarts": "[*:1]OC(C)=O",
       "citation": "mmpdb-mined(authentic@intelligent_pharma_50k_v2.pt)"
@@ -329,7 +329,7 @@
       "n_environments": 1,
       "name": "mmp0019_RC_to_RCCeqC",
       "difficulty": "moderate",
-      "category": "homologation",
+      "category": "bioisostere",
       "reactant_smarts": "[*:1]C",
       "product_smarts": "[*:1]CC=C",
       "citation": "mmpdb-mined(authentic@intelligent_pharma_50k_v2.pt)"
@@ -425,7 +425,7 @@
       "n_environments": 1,
       "name": "mmp0025_RN1CCCC1_to_RN1CCCCC1",
       "difficulty": "subtle",
-      "category": "homologation",
+      "category": "scaffold-hop",
       "reactant_smarts": "[*:1]N1CCCC1",
       "product_smarts": "[*:1]N1CCCCC1",
       "citation": "mmpdb-mined(authentic@intelligent_pharma_50k_v2.pt)"
@@ -457,7 +457,7 @@
       "n_environments": 1,
       "name": "mmp0027_RCc1ccccc1_to_RCc1cccs1",
       "difficulty": "subtle",
-      "category": "bioisostere",
+      "category": "scaffold-hop",
       "reactant_smarts": "[*:1]Cc1ccccc1",
       "product_smarts": "[*:1]Cc1cccs1",
       "citation": "mmpdb-mined(authentic@intelligent_pharma_50k_v2.pt)"
@@ -537,7 +537,7 @@
       "n_environments": 1,
       "name": "mmp0032_Rc1ccccc1_to_Rc1ccccn1",
       "difficulty": "subtle",
-      "category": "bioisostere",
+      "category": "scaffold-hop",
       "reactant_smarts": "[*:1]c1ccccc1",
       "product_smarts": "[*:1]c1ccccn1",
       "citation": "mmpdb-mined(authentic@intelligent_pharma_50k_v2.pt)"
@@ -681,7 +681,7 @@
       "n_environments": 1,
       "name": "mmp0041_RCCN1CCCC1_to_RCCN1CCCCC1",
       "difficulty": "subtle",
-      "category": "homologation",
+      "category": "scaffold-hop",
       "reactant_smarts": "[*:1]CCN1CCCC1",
       "product_smarts": "[*:1]CCN1CCCCC1",
       "citation": "mmpdb-mined(authentic@intelligent_pharma_50k_v2.pt)"
@@ -697,7 +697,7 @@
       "n_environments": 1,
       "name": "mmp0042_ROCCeqOO_to_ROCCO",
       "difficulty": "subtle",
-      "category": "homologation",
+      "category": "bioisostere",
       "reactant_smarts": "[*:1]OCC(=O)O",
       "product_smarts": "[*:1]OCCO",
       "citation": "mmpdb-mined(authentic@intelligent_pharma_50k_v2.pt)"
@@ -729,7 +729,7 @@
       "n_environments": 1,
       "name": "mmp0044_RCCOCCeqOO_to_RCCOCCO",
       "difficulty": "subtle",
-      "category": "homologation",
+      "category": "bioisostere",
       "reactant_smarts": "[*:1]CCOCC(=O)O",
       "product_smarts": "[*:1]CCOCCO",
       "citation": "mmpdb-mined(authentic@intelligent_pharma_50k_v2.pt)"
@@ -745,7 +745,7 @@
       "n_environments": 1,
       "name": "mmp0045_RCCeqOO_to_RCCO",
       "difficulty": "subtle",
-      "category": "homologation",
+      "category": "bioisostere",
       "reactant_smarts": "[*:1]CC(=O)O",
       "product_smarts": "[*:1]CCO",
       "citation": "mmpdb-mined(authentic@intelligent_pharma_50k_v2.pt)"
@@ -1161,7 +1161,7 @@
       "n_environments": 1,
       "name": "mmp0071_Rc1cccOCcc1_to_Rc1cccs1",
       "difficulty": "moderate",
-      "category": "bioisostere",
+      "category": "scaffold-hop",
       "reactant_smarts": "[*:1]c1ccc(OC)cc1",
       "product_smarts": "[*:1]c1cccs1",
       "citation": "mmpdb-mined(authentic@intelligent_pharma_50k_v2.pt)"
@@ -1193,7 +1193,7 @@
       "n_environments": 1,
       "name": "mmp0073_Rc1ccccn1_to_Rc1nccs1",
       "difficulty": "subtle",
-      "category": "bioisostere",
+      "category": "scaffold-hop",
       "reactant_smarts": "[*:1]c1ccccn1",
       "product_smarts": "[*:1]c1nccs1",
       "citation": "mmpdb-mined(authentic@intelligent_pharma_50k_v2.pt)"
@@ -1529,7 +1529,7 @@
       "n_environments": 1,
       "name": "mmp0094_RCO_to_RCOCCeqO",
       "difficulty": "moderate",
-      "category": "homologation",
+      "category": "bioisostere",
       "reactant_smarts": "[*:1]CO",
       "product_smarts": "[*:1]COC(C)=O",
       "citation": "mmpdb-mined(authentic@intelligent_pharma_50k_v2.pt)"
@@ -1609,7 +1609,7 @@
       "n_environments": 1,
       "name": "mmp0099_RCC_to_RCCeqC",
       "difficulty": "subtle",
-      "category": "homologation",
+      "category": "bioisostere",
       "reactant_smarts": "[*:1]CC",
       "product_smarts": "[*:1]CC=C",
       "citation": "mmpdb-mined(authentic@intelligent_pharma_50k_v2.pt)"
@@ -1753,7 +1753,7 @@
       "n_environments": 1,
       "name": "mmp0108_RC1CC1_to_RC1CCC1",
       "difficulty": "subtle",
-      "category": "homologation",
+      "category": "scaffold-hop",
       "reactant_smarts": "[*:1]C1CC1",
       "product_smarts": "[*:1]C1CCC1",
       "citation": "mmpdb-mined(authentic@intelligent_pharma_50k_v2.pt)"
@@ -1849,7 +1849,7 @@
       "n_environments": 1,
       "name": "mmp0114_RCC1eqNCCN1_to_RCCN1CCCC1",
       "difficulty": "subtle",
-      "category": "homologation",
+      "category": "bioisostere",
       "reactant_smarts": "[*:1]CC1=NCCN1",
       "product_smarts": "[*:1]CCN1CCCC1",
       "citation": "mmpdb-mined(authentic@intelligent_pharma_50k_v2.pt)"
@@ -1881,7 +1881,7 @@
       "n_environments": 1,
       "name": "mmp0116_RC1CCNCCC1_to_RCC1eqNCCN1",
       "difficulty": "subtle",
-      "category": "homologation",
+      "category": "scaffold-hop",
       "reactant_smarts": "[*:1]C1CCN(C)CC1",
       "product_smarts": "[*:1]CC1=NCCN1",
       "citation": "mmpdb-mined(authentic@intelligent_pharma_50k_v2.pt)"
@@ -1913,7 +1913,7 @@
       "n_environments": 1,
       "name": "mmp0118_RCC1CC1_to_RCC1CCC1",
       "difficulty": "subtle",
-      "category": "homologation",
+      "category": "scaffold-hop",
       "reactant_smarts": "[*:1]CC1CC1",
       "product_smarts": "[*:1]CC1CCC1",
       "citation": "mmpdb-mined(authentic@intelligent_pharma_50k_v2.pt)"
@@ -2041,7 +2041,7 @@
       "n_environments": 1,
       "name": "mmp0126_RCeqOCO_to_RCeqOCOCCeqO",
       "difficulty": "moderate",
-      "category": "homologation",
+      "category": "bioisostere",
       "reactant_smarts": "[*:1]C(=O)CO",
       "product_smarts": "[*:1]C(=O)COC(C)=O",
       "citation": "mmpdb-mined(authentic@intelligent_pharma_50k_v2.pt)"
