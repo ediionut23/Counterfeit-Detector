@@ -1,0 +1,41 @@
+{
+  "categories": {
+    "homologation": {
+      "n_counterfeits": 1500,
+      "n_rules_available": 23,
+      "mean_similarity": 0.607,
+      "mean_edited_atoms": 4.36
+    },
+    "halogen-walk": {
+      "n_counterfeits": 1500,
+      "n_rules_available": 14,
+      "mean_similarity": 0.635,
+      "mean_edited_atoms": 2.6
+    },
+    "bioisostere": {
+      "n_counterfeits": 1500,
+      "n_rules_available": 45,
+      "mean_similarity": 0.613,
+      "mean_edited_atoms": 5.22
+    },
+    "scaffold-hop": {
+      "n_counterfeits": 1500,
+      "n_rules_available": 44,
+      "mean_similarity": 0.59,
+      "mean_edited_atoms": 4.98
+    },
+    "other": {
+      "n_counterfeits": 421,
+      "n_rules_available": 5,
+      "mean_similarity": 0.589,
+      "mean_edited_atoms": 2.78
+    }
+  },
+  "per_category_target": 1500,
+  "n_parents": 7724,
+  "similarity_band": [
+    0.4,
+    0.98
+  ],
+  "total_counterfeits": 6421
+}
