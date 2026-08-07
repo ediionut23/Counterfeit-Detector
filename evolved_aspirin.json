@@ -1,0 +1,508 @@
+{
+  "parent_smiles": "CC(=O)Oc1ccccc1C(=O)O",
+  "similarity_band": [
+    0.4,
+    0.9
+  ],
+  "n_objectives": 3,
+  "pareto_front_size": 26,
+  "front": [
+    {
+      "smiles": "O=C(O)c1ccccc1Oc1ccccc1Cl",
+      "similarity_to_parent": 0.417,
+      "qed": 0.898,
+      "sa_score": 1.55,
+      "objectives": {
+        "band_penalty": 0.0,
+        "one_minus_qed": 0.1021,
+        "sa_over_10": 0.0613
+      },
+      "edited_atoms": [
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16
+      ]
+    },
+    {
+      "smiles": "O=C(O)c1ccccc1OCc1ccccc1",
+      "similarity_to_parent": 0.408,
+      "qed": 0.875,
+      "sa_score": 1.36,
+      "objectives": {
+        "band_penalty": 0.0,
+        "one_minus_qed": 0.1254,
+        "sa_over_10": 0.0398
+      },
+      "edited_atoms": [
+        11,
+        12,
+        13,
+        14,
+        15,
+        16
+      ]
+    },
+    {
+      "smiles": "Cc1ccccc1COc1ccccc1C(=O)O",
+      "similarity_to_parent": 0.389,
+      "qed": 0.895,
+      "sa_score": 1.53,
+      "objectives": {
+        "band_penalty": 0.0111,
+        "one_minus_qed": 0.1055,
+        "sa_over_10": 0.0592
+      },
+      "edited_atoms": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "smiles": "O=C(O)c1ccccc1OCc1ccccc1Cl",
+      "similarity_to_parent": 0.364,
+      "qed": 0.915,
+      "sa_score": 1.54,
+      "objectives": {
+        "band_penalty": 0.0364,
+        "one_minus_qed": 0.0846,
+        "sa_over_10": 0.0597
+      },
+      "edited_atoms": [
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17
+      ]
+    },
+    {
+      "smiles": "COc1ccccc1-c1ccccc1C(=O)O",
+      "similarity_to_parent": 0.388,
+      "qed": 0.878,
+      "sa_score": 1.47,
+      "objectives": {
+        "band_penalty": 0.0122,
+        "one_minus_qed": 0.1223,
+        "sa_over_10": 0.0519
+      },
+      "edited_atoms": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ]
+    },
+    {
+      "smiles": "O=C(O)c1ccccc1OCCc1ccccc1",
+      "similarity_to_parent": 0.385,
+      "qed": 0.876,
+      "sa_score": 1.46,
+      "objectives": {
+        "band_penalty": 0.0154,
+        "one_minus_qed": 0.1238,
+        "sa_over_10": 0.0515
+      },
+      "edited_atoms": [
+        12,
+        13,
+        14,
+        15,
+        16,
+        17
+      ]
+    },
+    {
+      "smiles": "CC(C)Oc1ccccc1-c1ccccc1C(=O)O",
+      "similarity_to_parent": 0.365,
+      "qed": 0.904,
+      "sa_score": 1.68,
+      "objectives": {
+        "band_penalty": 0.0346,
+        "one_minus_qed": 0.0964,
+        "sa_over_10": 0.0759
+      },
+      "edited_atoms": [
+        2,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18
+      ]
+    },
+    {
+      "smiles": "COc1ccccc1OCc1ccccc1C(=O)O",
+      "similarity_to_parent": 0.339,
+      "qed": 0.895,
+      "sa_score": 1.53,
+      "objectives": {
+        "band_penalty": 0.0607,
+        "one_minus_qed": 0.1047,
+        "sa_over_10": 0.0593
+      },
+      "edited_atoms": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ]
+    },
+    {
+      "smiles": "O=C(O)c1ccccc1OC(F)(F)c1ccccc1OCl",
+      "similarity_to_parent": 0.375,
+      "qed": 0.904,
+      "sa_score": 2.45,
+      "objectives": {
+        "band_penalty": 0.025,
+        "one_minus_qed": 0.0956,
+        "sa_over_10": 0.1612
+      },
+      "edited_atoms": [
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20
+      ]
+    },
+    {
+      "smiles": "O=C(O)c1ccccc1C(F)(F)Oc1ccccc1",
+      "similarity_to_parent": 0.291,
+      "qed": 0.919,
+      "sa_score": 1.93,
+      "objectives": {
+        "band_penalty": 0.1091,
+        "one_minus_qed": 0.0814,
+        "sa_over_10": 0.1034
+      },
+      "edited_atoms": [
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18
+      ]
+    },
+    {
+      "smiles": "O=C(O)c1ccccc1-c1ccccc1",
+      "similarity_to_parent": 0.298,
+      "qed": 0.805,
+      "sa_score": 1.28,
+      "objectives": {
+        "band_penalty": 0.1021,
+        "one_minus_qed": 0.1953,
+        "sa_over_10": 0.031
+      },
+      "edited_atoms": [
+        9,
+        10,
+        11,
+        12,
+        13,
+        14
+      ]
+    },
+    {
+      "smiles": "COc1ccccc1C(=O)O",
+      "similarity_to_parent": 0.568,
+      "qed": 0.696,
+      "sa_score": 1.28,
+      "objectives": {
+        "band_penalty": 0.0,
+        "one_minus_qed": 0.3039,
+        "sa_over_10": 0.0308
+      },
+      "edited_atoms": []
+    },
+    {
+      "smiles": "COc1ccccc1C(=O)c1ccccc1",
+      "similarity_to_parent": 0.367,
+      "qed": 0.731,
+      "sa_score": 1.33,
+      "objectives": {
+        "band_penalty": 0.0327,
+        "one_minus_qed": 0.2689,
+        "sa_over_10": 0.0371
+      },
+      "edited_atoms": [
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ]
+    },
+    {
+      "smiles": "COc1ccccc1Oc1ccccc1",
+      "similarity_to_parent": 0.22,
+      "qed": 0.755,
+      "sa_score": 1.26,
+      "objectives": {
+        "band_penalty": 0.18,
+        "one_minus_qed": 0.2454,
+        "sa_over_10": 0.0293
+      },
+      "edited_atoms": [
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14
+      ]
+    },
+    {
+      "smiles": "Clc1ccccc1OCc1ccccc1",
+      "similarity_to_parent": 0.182,
+      "qed": 0.759,
+      "sa_score": 1.25,
+      "objectives": {
+        "band_penalty": 0.2182,
+        "one_minus_qed": 0.241,
+        "sa_over_10": 0.0283
+      },
+      "edited_atoms": [
+        0,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14
+      ]
+    },
+    {
+      "smiles": "Cc1ccccc1OCc1ccccc1",
+      "similarity_to_parent": 0.204,
+      "qed": 0.732,
+      "sa_score": 1.23,
+      "objectives": {
+        "band_penalty": 0.1963,
+        "one_minus_qed": 0.2678,
+        "sa_over_10": 0.0251
+      },
+      "edited_atoms": [
+        9,
+        10,
+        11,
+        12,
+        13,
+        14
+      ]
+    },
+    {
+      "smiles": "COc1ccccc1-c1ccccc1",
+      "similarity_to_parent": 0.22,
+      "qed": 0.695,
+      "sa_score": 1.18,
+      "objectives": {
+        "band_penalty": 0.18,
+        "one_minus_qed": 0.305,
+        "sa_over_10": 0.0197
+      },
+      "edited_atoms": [
+        8,
+        9,
+        10,
+        11,
+        12,
+        13
+      ]
+    },
+    {
+      "smiles": "O=C(O)c1ccccc1",
+      "similarity_to_parent": 0.263,
+      "qed": 0.611,
+      "sa_score": 1.05,
+      "objectives": {
+        "band_penalty": 0.1368,
+        "one_minus_qed": 0.3894,
+        "sa_over_10": 0.0061
+      },
+      "edited_atoms": []
+    },
+    {
+      "smiles": "c1ccc(COc2ccccc2)cc1",
+      "similarity_to_parent": 0.137,
+      "qed": 0.711,
+      "sa_score": 1.09,
+      "objectives": {
+        "band_penalty": 0.2627,
+        "one_minus_qed": 0.289,
+        "sa_over_10": 0.0096
+      },
+      "edited_atoms": [
+        0,
+        1,
+        2,
+        3,
+        12,
+        13
+      ]
+    },
+    {
+      "smiles": "c1ccc(Oc2ccccc2Oc2ccccc2)cc1",
+      "similarity_to_parent": 0.227,
+      "qed": 0.637,
+      "sa_score": 1.23,
+      "objectives": {
+        "band_penalty": 0.1727,
+        "one_minus_qed": 0.3628,
+        "sa_over_10": 0.0258
+      },
+      "edited_atoms": [
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17
+      ]
+    },
+    {
+      "smiles": "c1ccc(CCOc2ccccc2)cc1",
+      "similarity_to_parent": 0.13,
+      "qed": 0.732,
+      "sa_score": 1.21,
+      "objectives": {
+        "band_penalty": 0.2704,
+        "one_minus_qed": 0.268,
+        "sa_over_10": 0.0235
+      },
+      "edited_atoms": [
+        0,
+        1,
+        2,
+        3,
+        13,
+        14
+      ]
+    },
+    {
+      "smiles": "c1ccc(Oc2ccccc2)cc1",
+      "similarity_to_parent": 0.171,
+      "qed": 0.67,
+      "sa_score": 1.06,
+      "objectives": {
+        "band_penalty": 0.2293,
+        "one_minus_qed": 0.33,
+        "sa_over_10": 0.0061
+      },
+      "edited_atoms": [
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ]
+    },
+    {
+      "smiles": "c1ccc(CCc2ccccc2)cc1",
+      "similarity_to_parent": 0.143,
+      "qed": 0.681,
+      "sa_score": 1.01,
+      "objectives": {
+        "band_penalty": 0.2571,
+        "one_minus_qed": 0.3185,
+        "sa_over_10": 0.0016
+      },
+      "edited_atoms": [
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ]
+    },
+    {
+      "smiles": "CCOc1ccccc1",
+      "similarity_to_parent": 0.178,
+      "qed": 0.583,
+      "sa_score": 1.04,
+      "objectives": {
+        "band_penalty": 0.2222,
+        "one_minus_qed": 0.4168,
+        "sa_over_10": 0.0047
+      },
+      "edited_atoms": []
+    },
+    {
+      "smiles": "c1ccc(-c2ccccc2)cc1",
+      "similarity_to_parent": 0.158,
+      "qed": 0.591,
+      "sa_score": 1.0,
+      "objectives": {
+        "band_penalty": 0.2421,
+        "one_minus_qed": 0.4095,
+        "sa_over_10": 0.0
+      },
+      "edited_atoms": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ]
+    },
+    {
+      "smiles": "COc1ccccc1",
+      "similarity_to_parent": 0.2,
+      "qed": 0.532,
+      "sa_score": 1.0,
+      "objectives": {
+        "band_penalty": 0.2,
+        "one_minus_qed": 0.4684,
+        "sa_over_10": 0.0
+      },
+      "edited_atoms": []
+    }
+  ]
+}
