@@ -1,0 +1,40 @@
+{
+  "R": {
+    "n": 250,
+    "detection_rate": 0.976,
+    "mean_p_counterfeit": 0.671
+  },
+  "M_by_category": {
+    "bioisostere": {
+      "n": 250,
+      "detection_rate": 0.976,
+      "mean_p_counterfeit": 0.675
+    },
+    "homologation": {
+      "n": 250,
+      "detection_rate": 0.988,
+      "mean_p_counterfeit": 0.661
+    },
+    "scaffold-hop": {
+      "n": 250,
+      "detection_rate": 0.984,
+      "mean_p_counterfeit": 0.669
+    },
+    "halogen-walk": {
+      "n": 250,
+      "detection_rate": 0.984,
+      "mean_p_counterfeit": 0.695
+    },
+    "other": {
+      "n": 250,
+      "detection_rate": 0.972,
+      "mean_p_counterfeit": 0.649
+    }
+  },
+  "E": {
+    "n": 152,
+    "detection_rate": 0.947,
+    "mean_p_counterfeit": 0.64
+  },
+  "sample": 250
+}
