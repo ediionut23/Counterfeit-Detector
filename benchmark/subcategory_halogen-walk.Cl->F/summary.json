@@ -1,19 +1,19 @@
 {
   "name": "subcategory_halogen-walk.Cl->F",
-  "n_total": 312,
-  "n_authentic": 156,
-  "n_counterfeit": 156,
+  "n_total": 410,
+  "n_authentic": 205,
+  "n_counterfeit": 205,
   "balance": 1.0,
   "shortcut_metrics": {
-    "cohens_d_mw": 0.031,
-    "cohens_d_heavy_atoms": 0.02,
-    "cohens_d_smiles_length": 0.016,
-    "trivial_lr_accuracy": 0.5
+    "cohens_d_mw": 0.028,
+    "cohens_d_heavy_atoms": 0.016,
+    "cohens_d_smiles_length": 0.009,
+    "trivial_lr_accuracy": 0.447
   },
   "split_counts": {
-    "train": 249,
-    "val": 31,
-    "test": 32
+    "train": 328,
+    "val": 41,
+    "test": 41
   },
   "conformers_written": 150
 }

@@ -1,19 +1,19 @@
 {
   "name": "category_scaffold-hop",
-  "n_total": 2998,
-  "n_authentic": 1499,
-  "n_counterfeit": 1499,
+  "n_total": 3998,
+  "n_authentic": 1999,
+  "n_counterfeit": 1999,
   "balance": 1.0,
   "shortcut_metrics": {
-    "cohens_d_mw": 0.008,
-    "cohens_d_heavy_atoms": 0.033,
-    "cohens_d_smiles_length": 0.044,
-    "trivial_lr_accuracy": 0.531
+    "cohens_d_mw": 0.043,
+    "cohens_d_heavy_atoms": 0.083,
+    "cohens_d_smiles_length": 0.031,
+    "trivial_lr_accuracy": 0.525
   },
   "split_counts": {
-    "train": 2398,
-    "val": 299,
-    "test": 301
+    "train": 3198,
+    "val": 399,
+    "test": 401
   },
   "conformers_written": 150
 }

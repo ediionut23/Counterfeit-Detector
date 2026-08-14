@@ -14,12 +14,12 @@ protocols), see [`../WIKI.md`](../WIKI.md).
 ```
 benchmark/
 ├── index.json                     # summary of every dataset (sizes, metrics)
-├── conformers_full.sdf            # central 3D conformer library (all molecules)
+├── conformers_full.sdf.gz         # central 3D conformer library (all molecules, gzipped)
 ├── conformers_report.json         # embedding coverage
+├── realism_audit.json             # generation-quality / realism / bias metrics
 ├── category_<name>/               # one dataset per transformation category
 │   ├── dataset.csv
-│   ├── conformers.sdf             # capped 3D sample for this slice
-│   └── summary.json
+│   └── summary.json               # (per-dataset conformers.sdf regenerable, not tracked)
 ├── subcategory_<cat>.<sub>/       # one dataset per well-populated subcategory
 │   └── ...
 ├── evolved/                       # Version E — evolutionary-search counterfeits
@@ -53,17 +53,18 @@ Atom indices in `edited_atoms` index into the molecule parsed from `smiles`
 
 ## 3D conformers
 
-`conformers_full.sdf` holds one low-energy 3D conformer per **unique** molecule
-across the whole benchmark, generated with **ETKDGv3 + MMFF94**. Each SDF record
-carries a `smiles` property = the canonical SMILES, used to join back to the
-tables. Per-dataset `conformers.sdf` files are a capped convenience sample; the
-central library is the complete source.
+`conformers_full.sdf.gz` holds one low-energy 3D conformer per **unique**
+molecule across the whole benchmark, generated with **ETKDGv3 + MMFF94** (gzipped;
+~100% coverage). Each SDF record carries a `smiles` property = the canonical
+SMILES, used to join back to the tables. Regenerate with
+`python generate_conformers.py`.
 
 ```python
+import gzip
 from rdkit import Chem
-conf = {m.GetProp("smiles"): m
-        for m in Chem.SDMolSupplier("benchmark/conformers_full.sdf", removeHs=False)
-        if m is not None}
+supplier = Chem.ForwardSDMolSupplier(
+    gzip.open("benchmark/conformers_full.sdf.gz"), removeHs=False)
+conf = {m.GetProp("smiles"): m for m in supplier if m is not None}
 mol3d = conf[row["smiles"]]           # 3D coords via mol3d.GetConformer()
 ```
 

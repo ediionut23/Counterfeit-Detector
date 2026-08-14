@@ -1,19 +1,19 @@
 {
   "name": "pooled",
-  "n_total": 12994,
-  "n_authentic": 6497,
-  "n_counterfeit": 6497,
+  "n_total": 20912,
+  "n_authentic": 10456,
+  "n_counterfeit": 10456,
   "balance": 1.0,
   "shortcut_metrics": {
-    "cohens_d_mw": 0.007,
+    "cohens_d_mw": 0.016,
     "cohens_d_heavy_atoms": 0.007,
-    "cohens_d_smiles_length": 0.015,
-    "trivial_lr_accuracy": 0.498
+    "cohens_d_smiles_length": 0.039,
+    "trivial_lr_accuracy": 0.522
   },
   "split_counts": {
-    "train": 10396,
-    "val": 1299,
-    "test": 1299
+    "train": 16730,
+    "val": 2092,
+    "test": 2090
   },
   "conformers_written": 150
 }

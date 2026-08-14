@@ -1,7 +1,7 @@
 {
-  "n_unique_molecules": 14300,
-  "n_embedded": 14277,
-  "coverage": 0.998,
+  "n_unique_molecules": 24826,
+  "n_embedded": 24818,
+  "coverage": 1.0,
   "method": "ETKDGv3 + MMFF94",
   "output": "benchmark/conformers_full.sdf"
 }
