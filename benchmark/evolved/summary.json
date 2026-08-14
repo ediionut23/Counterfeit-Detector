@@ -1,0 +1,19 @@
+{
+  "name": "evolved",
+  "n_total": 1140,
+  "n_authentic": 570,
+  "n_counterfeit": 570,
+  "balance": 1.0,
+  "shortcut_metrics": {
+    "cohens_d_mw": 0.038,
+    "cohens_d_heavy_atoms": 0.011,
+    "cohens_d_smiles_length": 0.047,
+    "trivial_lr_accuracy": 0.52
+  },
+  "split_counts": {
+    "train": 912,
+    "val": 114,
+    "test": 114
+  },
+  "conformers_written": 150
+}

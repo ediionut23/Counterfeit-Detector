@@ -1,0 +1,19 @@
+{
+  "name": "pooled",
+  "n_total": 12994,
+  "n_authentic": 6497,
+  "n_counterfeit": 6497,
+  "balance": 1.0,
+  "shortcut_metrics": {
+    "cohens_d_mw": 0.007,
+    "cohens_d_heavy_atoms": 0.007,
+    "cohens_d_smiles_length": 0.015,
+    "trivial_lr_accuracy": 0.498
+  },
+  "split_counts": {
+    "train": 10396,
+    "val": 1299,
+    "test": 1299
+  },
+  "conformers_written": 150
+}

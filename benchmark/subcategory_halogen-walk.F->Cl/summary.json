@@ -1,0 +1,19 @@
+{
+  "name": "subcategory_halogen-walk.F->Cl",
+  "n_total": 176,
+  "n_authentic": 88,
+  "n_counterfeit": 88,
+  "balance": 1.0,
+  "shortcut_metrics": {
+    "cohens_d_mw": 0.048,
+    "cohens_d_heavy_atoms": 0.006,
+    "cohens_d_smiles_length": 0.018,
+    "trivial_lr_accuracy": 0.491
+  },
+  "split_counts": {
+    "train": 140,
+    "val": 17,
+    "test": 19
+  },
+  "conformers_written": 150
+}

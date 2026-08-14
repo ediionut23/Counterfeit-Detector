@@ -1,0 +1,19 @@
+{
+  "name": "category_homologation",
+  "n_total": 2988,
+  "n_authentic": 1494,
+  "n_counterfeit": 1494,
+  "balance": 1.0,
+  "shortcut_metrics": {
+    "cohens_d_mw": 0.023,
+    "cohens_d_heavy_atoms": 0.0,
+    "cohens_d_smiles_length": 0.021,
+    "trivial_lr_accuracy": 0.528
+  },
+  "split_counts": {
+    "train": 2390,
+    "val": 298,
+    "test": 300
+  },
+  "conformers_written": 150
+}

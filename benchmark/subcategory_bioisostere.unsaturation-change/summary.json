@@ -1,0 +1,19 @@
+{
+  "name": "subcategory_bioisostere.unsaturation-change",
+  "n_total": 558,
+  "n_authentic": 279,
+  "n_counterfeit": 279,
+  "balance": 1.0,
+  "shortcut_metrics": {
+    "cohens_d_mw": 0.003,
+    "cohens_d_heavy_atoms": 0.036,
+    "cohens_d_smiles_length": 0.089,
+    "trivial_lr_accuracy": 0.482
+  },
+  "split_counts": {
+    "train": 446,
+    "val": 55,
+    "test": 57
+  },
+  "conformers_written": 150
+}

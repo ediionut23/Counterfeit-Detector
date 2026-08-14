@@ -1,0 +1,420 @@
+{
+  "category_bioisostere": {
+    "name": "category_bioisostere",
+    "n_total": 2980,
+    "n_authentic": 1490,
+    "n_counterfeit": 1490,
+    "balance": 1.0,
+    "shortcut_metrics": {
+      "cohens_d_mw": 0.046,
+      "cohens_d_heavy_atoms": 0.019,
+      "cohens_d_smiles_length": 0.001,
+      "trivial_lr_accuracy": 0.553
+    },
+    "split_counts": {
+      "train": 2384,
+      "val": 298,
+      "test": 298
+    },
+    "conformers_written": 149
+  },
+  "category_homologation": {
+    "name": "category_homologation",
+    "n_total": 2988,
+    "n_authentic": 1494,
+    "n_counterfeit": 1494,
+    "balance": 1.0,
+    "shortcut_metrics": {
+      "cohens_d_mw": 0.023,
+      "cohens_d_heavy_atoms": 0.0,
+      "cohens_d_smiles_length": 0.021,
+      "trivial_lr_accuracy": 0.528
+    },
+    "split_counts": {
+      "train": 2390,
+      "val": 298,
+      "test": 300
+    },
+    "conformers_written": 150
+  },
+  "category_scaffold-hop": {
+    "name": "category_scaffold-hop",
+    "n_total": 2998,
+    "n_authentic": 1499,
+    "n_counterfeit": 1499,
+    "balance": 1.0,
+    "shortcut_metrics": {
+      "cohens_d_mw": 0.008,
+      "cohens_d_heavy_atoms": 0.033,
+      "cohens_d_smiles_length": 0.044,
+      "trivial_lr_accuracy": 0.531
+    },
+    "split_counts": {
+      "train": 2398,
+      "val": 299,
+      "test": 301
+    },
+    "conformers_written": 150
+  },
+  "category_halogen-walk": {
+    "name": "category_halogen-walk",
+    "n_total": 2992,
+    "n_authentic": 1496,
+    "n_counterfeit": 1496,
+    "balance": 1.0,
+    "shortcut_metrics": {
+      "cohens_d_mw": 0.014,
+      "cohens_d_heavy_atoms": 0.037,
+      "cohens_d_smiles_length": 0.015,
+      "trivial_lr_accuracy": 0.599
+    },
+    "split_counts": {
+      "train": 2393,
+      "val": 299,
+      "test": 300
+    },
+    "conformers_written": 150
+  },
+  "category_other": {
+    "name": "category_other",
+    "n_total": 842,
+    "n_authentic": 421,
+    "n_counterfeit": 421,
+    "balance": 1.0,
+    "shortcut_metrics": {
+      "cohens_d_mw": 0.021,
+      "cohens_d_heavy_atoms": 0.002,
+      "cohens_d_smiles_length": 0.032,
+      "trivial_lr_accuracy": 0.553
+    },
+    "split_counts": {
+      "train": 673,
+      "val": 84,
+      "test": 85
+    },
+    "conformers_written": 150
+  },
+  "subcategory_bioisostere.unsaturation-change": {
+    "name": "subcategory_bioisostere.unsaturation-change",
+    "n_total": 558,
+    "n_authentic": 279,
+    "n_counterfeit": 279,
+    "balance": 1.0,
+    "shortcut_metrics": {
+      "cohens_d_mw": 0.003,
+      "cohens_d_heavy_atoms": 0.036,
+      "cohens_d_smiles_length": 0.089,
+      "trivial_lr_accuracy": 0.482
+    },
+    "split_counts": {
+      "train": 446,
+      "val": 55,
+      "test": 57
+    },
+    "conformers_written": 150
+  },
+  "subcategory_bioisostere.add-O": {
+    "name": "subcategory_bioisostere.add-O",
+    "n_total": 1360,
+    "n_authentic": 680,
+    "n_counterfeit": 680,
+    "balance": 1.0,
+    "shortcut_metrics": {
+      "cohens_d_mw": 0.046,
+      "cohens_d_heavy_atoms": 0.034,
+      "cohens_d_smiles_length": 0.008,
+      "trivial_lr_accuracy": 0.502
+    },
+    "split_counts": {
+      "train": 1088,
+      "val": 136,
+      "test": 136
+    },
+    "conformers_written": 150
+  },
+  "subcategory_bioisostere.add-N": {
+    "name": "subcategory_bioisostere.add-N",
+    "n_total": 166,
+    "n_authentic": 83,
+    "n_counterfeit": 83,
+    "balance": 1.0,
+    "shortcut_metrics": {
+      "cohens_d_mw": 0.084,
+      "cohens_d_heavy_atoms": 0.06,
+      "cohens_d_smiles_length": 0.017,
+      "trivial_lr_accuracy": 0.44
+    },
+    "split_counts": {
+      "train": 132,
+      "val": 16,
+      "test": 18
+    },
+    "conformers_written": 150
+  },
+  "subcategory_bioisostere.add-P": {
+    "name": "subcategory_bioisostere.add-P",
+    "n_total": 464,
+    "n_authentic": 232,
+    "n_counterfeit": 232,
+    "balance": 1.0,
+    "shortcut_metrics": {
+      "cohens_d_mw": 0.144,
+      "cohens_d_heavy_atoms": 0.018,
+      "cohens_d_smiles_length": 0.012,
+      "trivial_lr_accuracy": 0.607
+    },
+    "split_counts": {
+      "train": 371,
+      "val": 46,
+      "test": 47
+    },
+    "conformers_written": 149
+  },
+  "subcategory_homologation.grow-short": {
+    "name": "subcategory_homologation.grow-short",
+    "n_total": 988,
+    "n_authentic": 494,
+    "n_counterfeit": 494,
+    "balance": 1.0,
+    "shortcut_metrics": {
+      "cohens_d_mw": 0.013,
+      "cohens_d_heavy_atoms": 0.035,
+      "cohens_d_smiles_length": 0.03,
+      "trivial_lr_accuracy": 0.515
+    },
+    "split_counts": {
+      "train": 790,
+      "val": 98,
+      "test": 100
+    },
+    "conformers_written": 150
+  },
+  "subcategory_homologation.grow-single": {
+    "name": "subcategory_homologation.grow-single",
+    "n_total": 1784,
+    "n_authentic": 892,
+    "n_counterfeit": 892,
+    "balance": 1.0,
+    "shortcut_metrics": {
+      "cohens_d_mw": 0.032,
+      "cohens_d_heavy_atoms": 0.011,
+      "cohens_d_smiles_length": 0.004,
+      "trivial_lr_accuracy": 0.55
+    },
+    "split_counts": {
+      "train": 1427,
+      "val": 178,
+      "test": 179
+    },
+    "conformers_written": 150
+  },
+  "subcategory_homologation.shrink-single": {
+    "name": "subcategory_homologation.shrink-single",
+    "n_total": 220,
+    "n_authentic": 110,
+    "n_counterfeit": 110,
+    "balance": 1.0,
+    "shortcut_metrics": {
+      "cohens_d_mw": 0.047,
+      "cohens_d_heavy_atoms": 0.027,
+      "cohens_d_smiles_length": 0.018,
+      "trivial_lr_accuracy": 0.47
+    },
+    "split_counts": {
+      "train": 176,
+      "val": 22,
+      "test": 22
+    },
+    "conformers_written": 150
+  },
+  "subcategory_scaffold-hop.add-ring": {
+    "name": "subcategory_scaffold-hop.add-ring",
+    "n_total": 1180,
+    "n_authentic": 590,
+    "n_counterfeit": 590,
+    "balance": 1.0,
+    "shortcut_metrics": {
+      "cohens_d_mw": 0.001,
+      "cohens_d_heavy_atoms": 0.041,
+      "cohens_d_smiles_length": 0.007,
+      "trivial_lr_accuracy": 0.582
+    },
+    "split_counts": {
+      "train": 944,
+      "val": 118,
+      "test": 118
+    },
+    "conformers_written": 150
+  },
+  "subcategory_scaffold-hop.ring-heteroatom-swap": {
+    "name": "subcategory_scaffold-hop.ring-heteroatom-swap",
+    "n_total": 886,
+    "n_authentic": 443,
+    "n_counterfeit": 443,
+    "balance": 1.0,
+    "shortcut_metrics": {
+      "cohens_d_mw": 0.011,
+      "cohens_d_heavy_atoms": 0.029,
+      "cohens_d_smiles_length": 0.022,
+      "trivial_lr_accuracy": 0.575
+    },
+    "split_counts": {
+      "train": 708,
+      "val": 88,
+      "test": 90
+    },
+    "conformers_written": 150
+  },
+  "subcategory_scaffold-hop.aromatize": {
+    "name": "subcategory_scaffold-hop.aromatize",
+    "n_total": 794,
+    "n_authentic": 397,
+    "n_counterfeit": 397,
+    "balance": 1.0,
+    "shortcut_metrics": {
+      "cohens_d_mw": 0.026,
+      "cohens_d_heavy_atoms": 0.091,
+      "cohens_d_smiles_length": 0.088,
+      "trivial_lr_accuracy": 0.552
+    },
+    "split_counts": {
+      "train": 635,
+      "val": 79,
+      "test": 80
+    },
+    "conformers_written": 149
+  },
+  "subcategory_halogen-walk.add-Cl": {
+    "name": "subcategory_halogen-walk.add-Cl",
+    "n_total": 1714,
+    "n_authentic": 857,
+    "n_counterfeit": 857,
+    "balance": 1.0,
+    "shortcut_metrics": {
+      "cohens_d_mw": 0.037,
+      "cohens_d_heavy_atoms": 0.059,
+      "cohens_d_smiles_length": 0.021,
+      "trivial_lr_accuracy": 0.617
+    },
+    "split_counts": {
+      "train": 1371,
+      "val": 171,
+      "test": 172
+    },
+    "conformers_written": 149
+  },
+  "subcategory_halogen-walk.add-F": {
+    "name": "subcategory_halogen-walk.add-F",
+    "n_total": 542,
+    "n_authentic": 271,
+    "n_counterfeit": 271,
+    "balance": 1.0,
+    "shortcut_metrics": {
+      "cohens_d_mw": 0.022,
+      "cohens_d_heavy_atoms": 0.005,
+      "cohens_d_smiles_length": 0.027,
+      "trivial_lr_accuracy": 0.436
+    },
+    "split_counts": {
+      "train": 433,
+      "val": 54,
+      "test": 55
+    },
+    "conformers_written": 150
+  },
+  "subcategory_halogen-walk.Cl->F": {
+    "name": "subcategory_halogen-walk.Cl->F",
+    "n_total": 312,
+    "n_authentic": 156,
+    "n_counterfeit": 156,
+    "balance": 1.0,
+    "shortcut_metrics": {
+      "cohens_d_mw": 0.031,
+      "cohens_d_heavy_atoms": 0.02,
+      "cohens_d_smiles_length": 0.016,
+      "trivial_lr_accuracy": 0.5
+    },
+    "split_counts": {
+      "train": 249,
+      "val": 31,
+      "test": 32
+    },
+    "conformers_written": 150
+  },
+  "subcategory_halogen-walk.F->Cl": {
+    "name": "subcategory_halogen-walk.F->Cl",
+    "n_total": 176,
+    "n_authentic": 88,
+    "n_counterfeit": 88,
+    "balance": 1.0,
+    "shortcut_metrics": {
+      "cohens_d_mw": 0.048,
+      "cohens_d_heavy_atoms": 0.006,
+      "cohens_d_smiles_length": 0.018,
+      "trivial_lr_accuracy": 0.491
+    },
+    "split_counts": {
+      "train": 140,
+      "val": 17,
+      "test": 19
+    },
+    "conformers_written": 150
+  },
+  "subcategory_other.other": {
+    "name": "subcategory_other.other",
+    "n_total": 842,
+    "n_authentic": 421,
+    "n_counterfeit": 421,
+    "balance": 1.0,
+    "shortcut_metrics": {
+      "cohens_d_mw": 0.021,
+      "cohens_d_heavy_atoms": 0.002,
+      "cohens_d_smiles_length": 0.032,
+      "trivial_lr_accuracy": 0.553
+    },
+    "split_counts": {
+      "train": 673,
+      "val": 84,
+      "test": 85
+    },
+    "conformers_written": 150
+  },
+  "evolved": {
+    "name": "evolved",
+    "n_total": 1140,
+    "n_authentic": 570,
+    "n_counterfeit": 570,
+    "balance": 1.0,
+    "shortcut_metrics": {
+      "cohens_d_mw": 0.038,
+      "cohens_d_heavy_atoms": 0.011,
+      "cohens_d_smiles_length": 0.047,
+      "trivial_lr_accuracy": 0.52
+    },
+    "split_counts": {
+      "train": 912,
+      "val": 114,
+      "test": 114
+    },
+    "conformers_written": 150
+  },
+  "pooled": {
+    "name": "pooled",
+    "n_total": 12994,
+    "n_authentic": 6497,
+    "n_counterfeit": 6497,
+    "balance": 1.0,
+    "shortcut_metrics": {
+      "cohens_d_mw": 0.007,
+      "cohens_d_heavy_atoms": 0.007,
+      "cohens_d_smiles_length": 0.015,
+      "trivial_lr_accuracy": 0.498
+    },
+    "split_counts": {
+      "train": 10396,
+      "val": 1299,
+      "test": 1299
+    },
+    "conformers_written": 150
+  }
+}
