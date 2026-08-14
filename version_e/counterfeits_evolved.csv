@@ -1,153 +1,572 @@
 counterfeit_smiles,parent_smiles,category,similarity_to_parent,qed,sa_score,p_counterfeit,n_edited_atoms,edited_atoms
-COc1ccc(N2C(=S)N(c3ccc(C#N)c(Cl)c3)C(=O)C2(C)C)cc1,CC1(C)C(=O)N(c2ccc(C#N)c(C(F)(F)F)c2)C(=S)N1c1ccc(OC[C@@H](O)CO)cc1,evolved-adversarial,0.478,0.743,2.49,0.75,1,17
-COc1ccc(N2C(=S)N(c3ccc(C#N)c(O)c3)C(=O)C2(C)C)cc1,CC1(C)C(=O)N(c2ccc(C#N)c(C(F)(F)F)c2)C(=S)N1c1ccc(OC[C@@H](O)CO)cc1,evolved-adversarial,0.495,0.84,2.6,0.8282,1,17
-CC(=O)Nc1ccn2nc(-c3ccccc3)nc2c1,Cn1ncc(C(=O)N2CCOCC2)c1C(=O)Nc1ccn2nc(-c3ccccc3)nc2c1,evolved-adversarial,0.505,0.761,2.15,0.411,1,0
-CC(C)C(=O)Nc1ccn2nc(-c3ccccc3)nc2c1,Cn1ncc(C(=O)N2CCOCC2)c1C(=O)Nc1ccn2nc(-c3ccccc3)nc2c1,evolved-adversarial,0.484,0.802,2.2,0.5382,3,0 1 2
-O=C([O-])CN(CCO)CC(=O)[O-],C1CNCCN1.O=C([O-])CN(CCN(CC(=O)[O-])CC(=O)O)CC(=O)O.[Ca+2],evolved-adversarial,0.417,0.438,3.89,0.6896,1,7
-O=C([O-])CN(CCN(O)c1ccccc1)CC(=O)O,C1CNCCN1.O=C([O-])CN(CCN(CC(=O)[O-])CC(=O)O)CC(=O)O.[Ca+2],evolved-adversarial,0.449,0.583,2.97,0.7842,7,8 9 10 11 12 13 14
-COc1ccc(-c2c(Cl)c(C)nn2-c2ccc(Cl)cc2Cl)cc1,COc1ccc(-c2c(C#N)c(C(=O)NN3CCCCC3)nn2-c2ccc(Cl)cc2Cl)cc1,evolved-adversarial,0.435,0.583,2.06,0.5807,1,8
-CNC(=O)c1nn(-c2ccc(Cl)cc2Cl)c(-c2ccc(OC)cc2)c1Cl,COc1ccc(-c2c(C#N)c(C(=O)NN3CCCCC3)nn2-c2ccc(Cl)cc2Cl)cc1,evolved-adversarial,0.5,0.668,2.23,0.6642,2,0 25
-Clc1cccc(Cl)c1N(C1=NCCN1)c1ccccc1,C=CCN(C1=NCCN1)c1c(Cl)cccc1Cl,evolved-adversarial,0.419,0.905,2.62,0.6298,6,14 15 16 17 18 19
-CCN(C1=NCCN1)c1c(Cl)cccc1-c1ccccc1,C=CCN(C1=NCCN1)c1c(Cl)cccc1Cl,evolved-adversarial,0.42,0.933,2.59,0.6644,6,15 16 17 18 19 20
-Cc1cccc(CC2CC2)c1NC(=O)c1cccnc1O,Cc1cccc(C)c1NC(=O)c1cccnc1O,evolved-adversarial,0.594,0.904,2.36,0.673,3,7 8 9
-CCc1ncccc1C(=O)Nc1c(C)cccc1C,Cc1cccc(C)c1NC(=O)c1cccnc1O,evolved-adversarial,0.589,0.91,1.9,0.6825,2,0 1
-CCc1ccc2[nH]c(NC(=O)OC(C)C)nc2c1,CCCCc1ccc2[nH]c(NC(=O)OC)nc2c1,evolved-adversarial,0.529,0.875,2.27,0.6051,2,13 14
-CCc1ccc2[nH]c(NC(=O)OC(C)CC)nc2c1,CCCCc1ccc2[nH]c(NC(=O)OC)nc2c1,evolved-adversarial,0.528,0.885,2.79,0.6561,3,13 14 15
-CN(C)C1CCN(C(=O)c2ccc(O)cc2)CC1,CN(C)C1CCN(C(=O)c2ccc(NC(=O)Nc3ccc(-c4nc(N5CCOCC5)nc(N5CCOCC5)n4)cc3)cc2)CC1,evolved-adversarial,0.407,0.863,1.86,0.5711,1,13
-CN(C)C1CCN(C(=O)c2ccc(NCl)cc2)CC1,CN(C)C1CCN(C(=O)c2ccc(NC(=O)Nc3ccc(-c4nc(N5CCOCC5)nc(N5CCOCC5)n4)cc3)cc2)CC1,evolved-adversarial,0.457,0.865,2.21,0.6543,1,14
-O=C(O)CC=CCOc1cc(CN2CCCCC2)ccn1,O=C(C[S+]([O-])Cc1ccco1)NC/C=C\COc1cc(CN2CCCCC2)ccn1,evolved-adversarial,0.532,0.782,2.44,0.5968,3,0 1 2
-O=C(O)Oc1cc(CN2CCCCC2)ccn1,O=C(C[S+]([O-])Cc1ccco1)NC/C=C\COc1cc(CN2CCCCC2)ccn1,evolved-adversarial,0.4,0.814,2.12,0.6405,2,0 2
-O=C(NC1CCNCC1)c1n[nH]cc1Nc1ccccc1F,O=C(NC1CCNCC1)c1n[nH]cc1NC(=O)c1c(Cl)cccc1Cl,evolved-adversarial,0.5,0.694,2.69,0.6376,7,15 16 17 18 19 20 21
-O=C(Nc1c[nH]nc1Cl)c1c(Cl)cccc1Cl,O=C(NC1CCNCC1)c1n[nH]cc1NC(=O)c1c(Cl)cccc1Cl,evolved-adversarial,0.471,0.887,2.61,0.6773,1,8
-COC(=O)OCOc1c2n(ccc1=O)N([C@H](F)c1ccccc1)CC1(CC1)C2=O,COC(=O)OCOc1c2n(ccc1=O)N([C@@H]1c3ccccc3SCc3c1ccc(F)c3F)CC1(CC1)C2=O,evolved-adversarial,0.423,0.432,4.27,0.7044,8,15 16 17 18 19 20 21 22
-COC(=O)OCOc1c2n(ccc1=O)N(CCCc1ccccc1Cl)CC1(CC1)C2=O,COC(=O)OCOc1c2n(ccc1=O)N([C@@H]1c3ccccc3SCc3c1ccc(F)c3F)CC1(CC1)C2=O,evolved-adversarial,0.4,0.477,3.74,0.7903,10,15 16 17 18 19 20 21 22 23 24
-COc1cc2c([C@H]3NC(=O)[C@@H](F)[C@H]3c3ccccc3)nccc2cc1C(N)=O,CC[C@@H]1[C@H](F)C(=O)N[C@@H]1COc1nccc2cc(C(N)=O)c(OC)cc12,evolved-adversarial,0.446,0.729,3.67,0.5116,13,6 7 8 9 10 11 12 13 14 15 16 17 18
-COc1cc2c([C@H]3NC(=O)[C@@H](F)[C@H]3CC3CC3)nccc2cc1C(N)=O,CC[C@@H]1[C@H](F)C(=O)N[C@@H]1COc1nccc2cc(C(N)=O)c(OC)cc12,evolved-adversarial,0.475,0.858,3.97,0.5159,11,6 7 8 9 10 11 12 13 14 15 16
-COc1cc2c(COc3cc4c(OC(C)=O)nccc4cc3C(N)=O)nccc2cc1C(N)=O,CC[C@@H]1[C@H](F)C(=O)N[C@@H]1COc1nccc2cc(C(N)=O)c(OC)cc12,evolved-adversarial,0.4,0.398,2.8,0.5397,17,0 1 2 3 4 5 14 15 25 26 27 28 29 30 31 32 33
-CC(=O)ON1CCN(/N=C\C=C\c2ccc([N+](=O)OP(=O)(O)c3ccccc3)o2)C1=O,CNC(=O)N1CCN(/N=C\C=C\c2ccc([N+](=O)[O-])o2)C1=O,evolved-adversarial,0.402,0.368,4.23,0.5514,13,0 1 2 3 19 20 21 22 23 24 25 26 27
-CCCCC(=O)CCC1(C)[C@@H](N2CCCCC2)Cc2ccc(O)cc2C1(C)C,CCCCCC(=O)CCC1(C)[C@@H]2Cc3ccc(O)cc3[C@@]1(C)CCN2C,evolved-adversarial,0.448,0.661,3.64,0.5616,7,11 12 13 14 15 16 27
-CNS(=O)(=O)c1ccccc1,CC(C)(C)c1nnc(NS(=O)(=O)c2ccccc2)s1,evolved-adversarial,0.404,0.708,1.47,0.4968,1,0
-Cc1ccccc1S(=O)(=O)Nc1nnc(C(C)(C)C)s1,CC(C)(C)c1nnc(NS(=O)(=O)c2ccccc2)s1,evolved-adversarial,0.554,0.946,2.24,0.6703,1,0
-CC(C)(C)c1nnc(NS(=O)(=O)c2cccc(-c3ccccc3)c2)s1,CC(C)(C)c1nnc(NS(=O)(=O)c2ccccc2)s1,evolved-adversarial,0.627,0.74,2.15,0.7358,6,17 18 19 20 21 22
-CC(C)(C)c1nnc(Nc2ccccc2)s1,CC(C)(C)c1nnc(NS(=O)(=O)c2ccccc2)s1,evolved-adversarial,0.436,0.861,2.02,0.7396,6,9 10 11 12 13 14
-CC(C)(C)c1nnc(NS(=O)(=O)c2cccs2)s1,CC(C)(C)c1nnc(NS(=O)(=O)c2ccccc2)s1,evolved-adversarial,0.536,0.946,2.49,0.7867,1,16
-COCCN1c2ccccc2Sc2ccc(S(=O)(=O)N3CCN(C)CC3)cc21,CN1CCN(CCCN2c3ccccc3Sc3ccc(S(=O)(=O)N(C)C)cc32)CC1,evolved-adversarial,0.495,0.743,2.35,0.6624,9,0 1 19 20 21 22 23 24 25
-CCN1c2ccccc2Sc2ccc(S(=O)(=O)CC)cc21,CN1CCN(CCCN2c3ccccc3Sc3ccc(S(=O)(=O)N(C)C)cc32)CC1,evolved-adversarial,0.412,0.853,2.27,0.7042,2,17 18
-CC[CH]C(F)=CCN1C[C@H](Nc2ncnc3[nH]ccc23)CC[C@@H]1C,C=CC(=O)N1C[C@H](Nc2ncnc3[nH]ccc23)CC[C@@H]1C,evolved-adversarial,0.522,0.848,4.07,0.654,4,0 1 2 4
-CC(F)=CCN1C[C@H](Nc2ncnc3[nH]ccc23)CC[C@@H]1C,C=CC(=O)N1C[C@H](Nc2ncnc3[nH]ccc23)CC[C@@H]1C,evolved-adversarial,0.56,0.911,3.77,0.6694,2,0 2
-CCO[C@H](COc1ccc(C(F)(F)F)cc1)C(=O)O,CCO[C@H](COc1ccc(C(F)(F)F)cc1)CSc1ccc(OCC(=O)O)c(C)c1,evolved-adversarial,0.412,0.869,2.52,0.5648,2,17 18
-Cc1cc(SF)ccc1OCC(=O)O,CCO[C@H](COc1ccc(C(F)(F)F)cc1)CSc1ccc(OCC(=O)O)c(C)c1,evolved-adversarial,0.416,0.839,2.39,0.7407,1,5
-C=CSCc1cnc(C)c(O)c1CC,Cc1ncc(CSSCc2cnc(C)c(O)c2CO)c(CO)c1O,evolved-adversarial,0.462,0.827,3.2,0.8933,3,0 1 13
-Cc1ccc(OC(C)C)c2oc(=O)ccc12,Cc1ccc(OCC(O)CNC(C)(C)C)c2oc(=O)ccc12,evolved-adversarial,0.471,0.727,2.14,0.6759,1,8
-C=C1/C(=C\C=C2/CCC[C@](C)(COP(=O)(O)C(C)(O)CCCC)[C@H]2CC)C[C@@H](O)C[C@@H]1O,C=C1/C(=C\C=C2/CCC[C@]3(C)[C@@H]([C@H](C)CCCC(C)(C)O)CC[C@@H]23)C[C@@H](O)C[C@@H]1O,evolved-adversarial,0.402,0.344,5.16,0.6372,12,11 12 13 14 15 16 17 18 19 20 21 22
-CCCCC(=O)C[C]1CC[C@H]2[C@@H](CCC3=CC(=O)CC[C@@]32C)[C@@H]1CC,CCCCCCC(=O)O[C@H]1CC[C@H]2[C@@H]3CCC4=CC(=O)CC[C@]4(C)[C@H]3CC[C@]12C,evolved-adversarial,0.463,0.606,4.2,0.6366,8,0 1 2 3 4 5 23 24
-COc1ccc(-c2ccnc(-c3nc(-c4ccnc(C(F)F)c4)ccc3N)c2)nc1C(F)F,CC(C)C[C@](C)(N)COc1ccc(-c2ccnc(C(F)F)c2)nc1C(F)F,evolved-adversarial,0.462,0.374,3.03,0.5468,16,11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26
-COc1ccc(-c2ccnc(C)c2)nc1C(F)c1nc(-c2ccnc(C(F)F)c2)ccc1N,CC(C)C[C@](C)(N)COc1ccc(-c2ccnc(C(F)F)c2)nc1C(F)F,evolved-adversarial,0.415,0.417,3.53,0.5894,16,17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32
-COc1ccc(-c2ccnc(C(C)F)c2)nc1C(F)F,CC(C)C[C@](C)(N)COc1ccc(-c2ccnc(C(F)F)c2)nc1C(F)F,evolved-adversarial,0.493,0.846,3.19,0.5926,1,12
-CCc1nc(-c2ccnc(C(F)F)c2)ccc1N,CC(C)C[C@](C)(N)COc1ccc(-c2ccnc(C(F)F)c2)nc1C(F)F,evolved-adversarial,0.436,0.908,2.64,0.6297,2,0 17
-Cc1cc2cnc(Nc3ccc(S(N)(=O)=O)cc3)nc2n1-c1ccccc1,NS(=O)(=O)c1ccc(Nc2ncc3cc4n(c3n2)C2(CCCCC2)C(=O)NN4)cc1,evolved-adversarial,0.412,0.567,2.24,0.5836,7,0 21 22 23 24 25 26
-CS(=O)(=O)c1ccc(-c2ncc3cc4n(c3n2)C2(CCCCC2)C(=O)NN4)cc1,NS(=O)(=O)c1ccc(Nc2ncc3cc4n(c3n2)C2(CCCCC2)C(=O)NN4)cc1,evolved-adversarial,0.516,0.671,3.59,0.6461,10,0 1 2 3 4 5 6 7 27 28
-O=C1NNc2cc3cnc(Nc4ccccc4F)nc3n2C12CCCCC2,NS(=O)(=O)c1ccc(Nc2ncc3cc4n(c3n2)C2(CCCCC2)C(=O)NN4)cc1,evolved-adversarial,0.604,0.647,3.58,0.6528,1,17
-Cc1ncc2cc3n(c2n1)C1(CCCCC1)C(=O)NN3,NS(=O)(=O)c1ccc(Nc2ncc3cc4n(c3n2)C2(CCCCC2)C(=O)NN4)cc1,evolved-adversarial,0.518,0.767,3.88,0.6553,1,0
-O=C1NNc2cc3cnc(-c4ccccc4)nc3n2C12CCCCC2,NS(=O)(=O)c1ccc(Nc2ncc3cc4n(c3n2)C2(CCCCC2)C(=O)NN4)cc1,evolved-adversarial,0.484,0.717,3.5,0.658,6,10 11 12 13 14 15
-CCc1cc(-c2ccccc2C)n(S(=O)(=O)c2cccnc2)c1,CNCc1cc(-c2ccccc2F)n(S(=O)(=O)c2cccnc2)c1.O=C(O)/C=C/C(=O)O,evolved-adversarial,0.477,0.735,2.34,0.6409,2,0 11
-CCNCc1cc(-c2cccs2)n(S(=O)(=O)c2cccnc2)c1,CNCc1cc(-c2ccccc2F)n(S(=O)(=O)c2cccnc2)c1.O=C(O)/C=C/C(=O)O,evolved-adversarial,0.412,0.745,2.6,0.6929,2,0 11
-CN1CCC(CC(=O)O)(c2ccccc2)CC1,CCOC(=O)C1(c2ccccc2)CCN(C)CC1.Cl,evolved-adversarial,0.424,0.869,2.18,0.5299,3,6 7 8
-CCCN1CCC(C(=O)O)(c2ccccc2)CC1,CCOC(=O)C1(c2ccccc2)CCN(C)CC1.Cl,evolved-adversarial,0.458,0.888,2.04,0.5686,2,0 1
-COc1ccc(OC2CC(c3ccc(Cl)cc3)C(C)N2)cc1,CC1NC(C2CC2)CC1c1ccc(Cl)cc1,evolved-adversarial,0.406,0.916,3.33,0.6528,9,0 1 2 3 4 5 6 20 21
-COc1ccc(C23CC2C(=O)NC3=O)cc1,O=C1NC(=O)C2(c3ccc(Cl)cc3)CC12,evolved-adversarial,0.587,0.738,3.12,0.5678,2,0 1
-CCC1(c2ccc(C34CC3C(=O)NC4=O)cc2)CC(=O)NC1=O,O=C1NC(=O)C2(c3ccc(Cl)cc3)CC12,evolved-adversarial,0.5,0.785,3.96,0.5914,9,0 1 2 17 18 19 20 21 22
-NC(=O)C1(c2ccccc2)CC1c1ccc(C23CC2C(=O)NC3=O)cc1,O=C1NC(=O)C2(c3ccc(Cl)cc3)CC12,evolved-adversarial,0.435,0.823,3.89,0.696,12,0 1 2 3 4 5 6 7 8 9 10 11
-CC(=O)c1ccccc1Sc1ccc2c(C)n[nH]c2c1,CNC(=O)c1ccccc1Sc1ccc2c(/C=C/c3ccccn3)n[nH]c2c1,evolved-adversarial,0.418,0.731,2.42,0.5995,1,0
-CC(C)[C@H](CCOP(=O)(O)O)NC(=O)c1cc2ccoc2cn1,O=C(N[C@H]1CN2CCC1CC2)c1cc2ccoc2cn1,evolved-adversarial,0.409,0.658,3.35,0.5452,11,0 1 2 3 4 5 6 7 8 9 10
-O=C(NCF)c1cc2ccoc2cn1,O=C(N[C@H]1CN2CCC1CC2)c1cc2ccoc2cn1,evolved-adversarial,0.493,0.737,2.9,0.586,2,3 4
-CC(=O)CNC(=O)c1cc2ccoc2cn1,O=C(N[C@H]1CN2CCC1CC2)c1cc2ccoc2cn1,evolved-adversarial,0.473,0.838,2.49,0.6217,4,0 1 2 3
-CC([CH]NC(=O)c1cc2ccoc2cn1)CCC1CC1,O=C(N[C@H]1CN2CCC1CC2)c1cc2ccoc2cn1,evolved-adversarial,0.453,0.874,3.61,0.6602,8,0 1 2 15 16 17 18 19
-CNC[C@H](NC(=O)c1cc2ccoc2cn1)C(C)C,O=C(N[C@H]1CN2CCC1CC2)c1cc2ccoc2cn1,evolved-adversarial,0.432,0.861,3.1,0.6952,7,0 1 2 3 16 17 18
-CC([CH]NC(=O)c1cc2ccoc2cn1)CN1CCCCC1,O=C(N[C@H]1CN2CCC1CC2)c1cc2ccoc2cn1,evolved-adversarial,0.427,0.922,3.49,0.7206,10,0 1 2 15 16 17 18 19 20 21
-CC(C)n1nnc2ncc(-c3ccc4nccn4c3)nc21,C[C@@H](c1ccc2nccn2c1)n1nnc2ncc(-c3cnn(C)c3)nc21,evolved-adversarial,0.541,0.562,2.91,0.6131,6,2 12 13 14 15 16
-CCn1nnc2ncc(-c3cnn(C)c3)nc21,C[C@@H](c1ccc2nccn2c1)n1nnc2ncc(-c3cnn(C)c3)nc21,evolved-adversarial,0.405,0.644,2.72,0.6594,0,
-C[C@H]1CN2CCNCc3cccc(c32)[C@H]1CC(=O)Cl,Cl.c1cc2c3c(c1)[C@H]1CCC[C@H]1CN3CCNC2,evolved-adversarial,0.43,0.844,3.72,0.6567,5,0 15 16 17 18
-CC[C@H]1CN2CCNCc3cccc(c32)[C@H]1c1ccccc1,Cl.c1cc2c3c(c1)[C@H]1CCC[C@H]1CN3CCNC2,evolved-adversarial,0.42,0.906,3.23,0.661,8,0 1 16 17 18 19 20 21
-C=CCC[C@H]1CN(c2ccc(-c3ccc(O)nc3)c(F)c2)C(=O)O1,Cn1nnc(-c2ccc(-c3ccc(N4C[C@H](CO)OC4=O)cc3F)cn2)n1,evolved-adversarial,0.484,0.846,3.21,0.5047,4,0 1 2 15
-CCC[C@H]1CN(c2ccc(-c3ccc(O)nc3)c(F)c2)C(=O)O1,Cn1nnc(-c2ccc(-c3ccc(N4C[C@H](CO)OC4=O)cc3F)cn2)n1,evolved-adversarial,0.516,0.934,3.04,0.554,3,0 1 14
-Fc1ccc(NNc2cc(Cl)cc(Cl)c2)cc1,Fc1ccc(NC(=S)Nc2cc(Cl)cc(Cl)c2)cc1,evolved-adversarial,0.458,0.799,1.95,0.7196,8,0 1 2 3 4 5 15 16
-S=C(Nc1ccccc1)Nc1ccc(Cl)cc1,Fc1ccc(NC(=S)Nc2cc(Cl)cc(Cl)c2)cc1,evolved-adversarial,0.429,0.795,1.43,0.8938,1,14
-Fc1ccc(NC(=S)Nc2ccc(Cl)cc2)cc1,Fc1ccc(NC(=S)Nc2cc(Cl)cc(Cl)c2)cc1,evolved-adversarial,0.667,0.803,1.52,0.9476,1,13
-COc1cc2c(cc1OP(=O)(O)O)CCN1CC(CC3c4cc(OP(=O)(O)OC)c(OC)cc4CCN3C)C(=O)CC21,COc1cc2c(cc1OC)C1CC(=O)C(CC(C)C)CN1CC2,evolved-adversarial,0.459,0.347,4.55,0.6208,23,9 10 11 12 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37
-COc1cc2c(cc1C)CCN1CC(CC(C)C)C(=O)CC21,COc1cc2c(cc1OC)C1CC(=O)C(CC(C)C)CN1CC2,evolved-adversarial,0.75,0.855,3.34,0.712,1,8
-ClN1CCN(c2cccc(-c3cnc(Oc4ncc(-c5ccccc5)cn4)nc3)c2)CC1,COc1ncc(-c2cccc(N3CCN(c4cnc(N)nc4N)CC3)c2)cn1,evolved-adversarial,0.419,0.414,2.71,0.5657,13,0 15 16 17 18 19 20 21 22 23 24 25 26
-COc1ncc(-c2cccc(N3CCN(C)CC3)c2)cn1,COc1ncc(-c2cccc(N3CCN(c4cnc(N)nc4N)CC3)c2)cn1,evolved-adversarial,0.606,0.861,2.13,0.5956,1,15
-CCC(CC1CCCc2ccccc21)C1=NCCN1,c1ccc2c(c1)CCCC2C1=NCCN1,evolved-adversarial,0.431,0.875,3.5,0.6548,9,0 1 2 3 14 15 16 17 18
-c1ccc2c(c1)CCCC2CC1=NCCN1,c1ccc2c(c1)CCCC2C1=NCCN1,evolved-adversarial,0.433,0.803,3.11,0.6777,6,10 11 12 13 14 15
-C=CCO[C@@H]1C[C@@]2(O)CC[C@H]3CC(=C)[C@H](CC[C@H]4C[C@@H](C)C(=C)[C@@H](C[C@@H]5O[C@H](C[C@H](O)CN)[C@H](OC)[C@H]5CC(=O)C[CH]CC[CH]O[CH][C@H]1O2)O4)O3,C=C1C[C@@H]2CC[C@@]34C[C@H]5O[C@H]6[C@@H](O3)[C@H]3O[C@H](CC[C@@H]3O[C@H]6[C@H]5O4)CC(=O)C[C@@H]3[C@@H](OC)[C@@H](C[C@H](O)CN)O[C@H]3C[C@H]3O[C@@H](CC[C@@H]1O2)C[C@@H](C)C3=C,evolved-adversarial,0.503,0.311,6.03,0.6226,5,0 1 2 3 7
-CCc1sc[n+](CC(=O)c2ccccc2)c1C,Cc1sc[n+](CC(=O)c2ccccc2)c1C.[Cl-],evolved-adversarial,0.635,0.6,2.57,0.603,1,0
-CC1(C)c2sc(-c3ccnc(NO)n3)cc2C(=O)N1S(C)(=O)=O,CS(=O)(=O)O.Cn1nccc1Nc1nccc(-c2cc3c(s2)C(C)(C)N(CCN2CCOCC2)C3=O)n1,evolved-adversarial,0.423,0.806,3.43,0.747,5,12 19 20 21 22
-CNc1nccc(-c2cc3c(s2)C(C)(C)N(COC(C)=O)C3=O)n1,CS(=O)(=O)O.Cn1nccc1Nc1nccc(-c2cc3c(s2)C(C)(C)N(CCN2CCOCC2)C3=O)n1,evolved-adversarial,0.413,0.856,3.21,0.8019,5,0 17 18 19 20
-CC[C@@H](O)c1ccc2cc(OC[C@H](O)CF)ccc2n1,CNc1ccc(-c2ccc3cc(OC[C@H](O)CF)ccc3n2)cn1,evolved-adversarial,0.487,0.852,3.21,0.5923,4,0 1 2 3
-Cc1cc(N2CCN([C@@H]3CN[C@H](C(=O)N4CCSC4)C3)CC2)n(-c2ccccc2F)n1,Cc1cc(N2CCN([C@@H]3CN[C@H](C(=O)N4CCSC4)C3)CC2)n(-c2ccccc2)n1,evolved-adversarial,0.708,0.775,3.64,0.5888,1,29
-Cc1cc(N2CCSC2)n(-c2ccccc2)n1,Cc1cc(N2CCN([C@@H]3CN[C@H](C(=O)N4CCSC4)C3)CC2)n(-c2ccccc2)n1,evolved-adversarial,0.465,0.811,2.48,0.6577,1,7
-COc1ccc(Cn2c(-c3ccc(O)cc3)c(C)c3cc(O)ccc32)cc1,CC(=O)O.Cc1c(-c2ccc(O)cc2)n(Cc2ccc(OCCN3CCCCCC3)cc2)c2ccc(O)cc12,evolved-adversarial,0.602,0.534,2.1,0.4915,0,
-COc1ccc(Cn2c(-c3ccccc3)c(C)c3cc(O)ccc32)cc1,CC(=O)O.Cc1c(-c2ccc(O)cc2)n(Cc2ccc(OCCN3CCCCCC3)cc2)c2ccc(O)cc12,evolved-adversarial,0.505,0.54,1.97,0.5152,0,
-CN1CCO[C@@H](c2ccccc2)[C@@H]1C(C(=O)O)c1ccccc1,C[C@H]1[C@H](c2ccccc2)OCCN1C.O=C(O)C(O)C(O)C(=O)O,evolved-adversarial,0.47,0.943,3.3,0.5715,9,14 15 16 17 18 19 20 21 22
-CN1CCO[C@@H](c2ccccc2)[C@@H]1c1ccccc1,C[C@H]1[C@H](c2ccccc2)OCCN1C.O=C(O)C(O)C(O)C(=O)O,evolved-adversarial,0.433,0.813,2.75,0.6427,6,13 14 15 16 17 18
-COc1ccc(O)c(-c2c(OC)c(=O)[nH]c3ccc(C(F)(F)F)cc23)c1,O=c1[nH]c2ccc(C(F)(F)F)cc2c(-c2cc(Cl)ccc2O)c1CCO,evolved-adversarial,0.425,0.738,2.41,0.5187,4,0 1 10 11
-CC[C@@H]1[C@@H](C(C)=O)[C@@H](c2ccc(I)cc2)C[C@H](C)N1CCCF,COC(=O)[C@H]1[C@@H](c2ccc(I)cc2)C[C@@H]2CC[C@H]1N2CCCF,evolved-adversarial,0.446,0.603,4.11,0.7728,4,0 1 5 17
-CC(C)CCC1(CCOP(=O)(O)O)C(=O)NC(=O)NC1=O,CCC1(CCC(C)C)C(=O)NC(=O)NC1=O,evolved-adversarial,0.48,0.389,3.14,0.6065,5,8 9 10 11 12
-CCC1(CCc2ccccc2)C(=O)NC(=O)NC1=O,CCC1(CCC(C)C)C(=O)NC(=O)NC1=O,evolved-adversarial,0.429,0.803,2.35,0.6256,6,5 6 7 8 9 10
-CC(C)CCC1(Cc2ccccc2Cl)C(=O)NC(=O)NC1=O,CCC1(CCC(C)C)C(=O)NC(=O)NC1=O,evolved-adversarial,0.444,0.818,2.58,0.6522,7,7 8 9 10 11 12 13
-CCCC(c1cc2ccccc2s1)c1cc2ccccc2s1,CC(c1cc2ccccc2s1)N(O)C(N)=O,evolved-adversarial,0.414,0.377,2.51,0.6083,11,0 1 13 14 15 16 17 18 19 20 21
-CCC(CC)c1cc2ccccc2s1,CC(c1cc2ccccc2s1)N(O)C(N)=O,evolved-adversarial,0.436,0.673,2.27,0.6183,3,0 3 4
-CCC(CCO)c1cc2ccccc2s1,CC(c1cc2ccccc2s1)N(O)C(N)=O,evolved-adversarial,0.41,0.831,2.8,0.6912,4,0 3 4 5
-C=CCN1CN(Cc2cccc(-c3ccccc3)c2)C(=O)C12CCN(CCCC(=O)Cc1cccc(C(=O)O)c1)CC2,O=C(O)c1cccc(CN2CN(C3CCCCC3)C3(CCN(CCCC(=O)c4ccccc4)CC3)C2=O)c1,evolved-adversarial,0.408,0.302,3.32,0.5659,19,0 1 2 12 13 14 15 16 17 30 31 32 33 34 35 36 37 38 39
-CCN1CN(Cc2cccc(C(=O)O)c2)C(=O)C12CCN(c1ccccc1)CC2,O=C(O)c1cccc(CN2CN(C3CCCCC3)C3(CCN(CCCC(=O)c4ccccc4)CC3)C2=O)c1,evolved-adversarial,0.409,0.846,2.94,0.5689,8,0 1 21 22 23 24 25 26
-CN1CCC2(CC1)C(=O)N(Cc1cccc(C(=O)O)c1)CN2c1ccccc1,O=C(O)c1cccc(CN2CN(C3CCCCC3)C3(CCN(CCCC(=O)c4ccccc4)CC3)C2=O)c1,evolved-adversarial,0.413,0.885,2.8,0.6058,0,
-CC(=O)OCCN1CCN(CCCN2c3ccccc3Sc3cc(OP(=O)(O)O)cnc32)CC1,OCCN1CCN(CCCN2c3ccccc3Sc3cc(Cl)cnc32)CC1,evolved-adversarial,0.51,0.385,2.93,0.6716,8,0 1 2 24 25 26 27 28
-COc1cnc2c(c1)Sc1ccccc1N2CCO,OCCN1CCN(CCCN2c3ccccc3Sc3cc(Cl)cnc32)CC1,evolved-adversarial,0.476,0.932,2.49,0.7197,3,0 1 18
-CCN1c2ccccc2Sc2cc(Cl)cnc21,OCCN1CCN(CCCN2c3ccccc3Sc3cc(Cl)cnc32)CC1,evolved-adversarial,0.562,0.76,2.44,0.758,0,
-COC(=O)c1cc(Cl)c(N)cc1OC,COc1cc(N)c(Cl)cc1C(=O)N[C@@H]1CCNC[C@@H]1OC,evolved-adversarial,0.406,0.603,1.91,0.6485,2,0 1
-CC[CH]NC(=O)c1cc(Cl)c(N)cc1OC,COc1cc(N)c(Cl)cc1C(=O)N[C@@H]1CCNC[C@@H]1OC,evolved-adversarial,0.432,0.795,2.76,0.6872,3,0 1 2
-CCCCN(C(=O)CCCc1ccccc1Cl)c1cccc(-c2cnn(C3CC3)c2)c1,COc1ccc(C2CCC(CN(C(=O)C3CCC(O)CC3)c3cccc(-c4cnn(C5CC5)c4)c3)CC2)cc1C,evolved-adversarial,0.402,0.355,2.45,0.5939,13,0 1 2 7 8 9 10 11 12 13 14 15 16
-C=CCc1ccc(OC)c(C(=O)N(CO)c2cccc(-c3cnn(C4CC4)c3)c2)c1,COc1ccc(C2CCC(CN(C(=O)C3CCC(O)CC3)c3cccc(-c4cnn(C5CC5)c4)c3)CC2)cc1C,evolved-adversarial,0.435,0.452,2.76,0.7341,6,0 1 2 7 8 14
-COCCC(=O)N(CO)c1cccc(-c2cnn(C3CC3)c2)c1,COc1ccc(C2CCC(CN(C(=O)C3CCC(O)CC3)c3cccc(-c4cnn(C5CC5)c4)c3)CC2)cc1C,evolved-adversarial,0.446,0.796,2.64,0.8373,5,0 1 2 3 8
-O=C(CCC[C@H]1CC[C@@H]2[C@@H](/C=C/[C@@H](O)c3cc(F)ccc3F)[C@H]([C@@H](O)F)C[C@@H]2OC1)OF,CC(C)OC(=O)CCC[C@H]1CC[C@@H]2[C@@H](/C=C/[C@@H](O)COc3cc(F)ccc3F)[C@H](O)C[C@@H]2OC1,evolved-adversarial,0.439,0.442,4.92,0.4888,12,14 15 16 17 18 19 20 21 23 24 25 31
-O=C(CCC[C@H]1CC[C@@H]2[C@@H](/C=C/[C@@H](O)COc3cccs3)[C@H]([C@@H](O)F)C[C@@H]2OC1)OF,CC(C)OC(=O)CCC[C@H]1CC[C@@H]2[C@@H](/C=C/[C@@H](O)COc3cc(F)ccc3F)[C@H](O)C[C@@H]2OC1,evolved-adversarial,0.417,0.514,5.07,0.5707,5,20 22 23 24 30
-Nc1ncc(-c2ccncc2)nc1Nc1ccccc1Nc1ccccc1Cl,Nc1ncc(-c2ccncc2)nc1Nc1ccc2[nH]ccc2c1,evolved-adversarial,0.44,0.432,2.33,0.6569,8,20 21 22 23 24 25 26 27
-Nc1ncc(-c2ccncc2)nc1Nc1ccccc1Cl,Nc1ncc(-c2ccncc2)nc1Nc1ccc2[nH]ccc2c1,evolved-adversarial,0.45,0.773,2.21,0.659,1,20
-CNC(=O)N1CC(Oc2cccc(-c3cccc(C(F)(F)F)c3)c2)C1,CNC(=O)N1CC(Oc2cccc(C(F)(F)F)c2)C1,evolved-adversarial,0.708,0.915,2.23,0.4885,10,13 14 15 16 17 18 19 20 21 22
-CNC(=O)N1CC(Oc2cccc(Cc3cccc(C)c3)c2)C1,CNC(=O)N1CC(Oc2cccc(C(F)(F)F)c2)C1,evolved-adversarial,0.543,0.943,2.14,0.6304,7,14 15 16 17 18 19 20
-CCc1nc(Cc2nc(CC(c3ccccc3)c3ccccc3)no2)no1,c1ccc(C(Cc2noc(CCN3CCCCC3)n2)c2ccccc2)cc1,evolved-adversarial,0.452,0.496,2.49,0.6153,7,0 1 2 3 4 25 26
-CCc1nc(CC(c2ccccc2)c2ccccc2)no1,c1ccc(C(Cc2noc(CCN3CCCCC3)n2)c2ccccc2)cc1,evolved-adversarial,0.524,0.708,2.07,0.6271,0,
-C[C@H]1c2cccc(C(C)(C)O)c2C[C@H](CCc2cccs2)N1C(=O)Cc1cccs1,C[C@H]1c2cccc(C(C)(C)O)c2C[C@H](CO)N1C(=O)Cc1c(Cl)ccc2c1c(Cl)nn2C,evolved-adversarial,0.413,0.533,3.68,0.603,7,15 16 17 18 19 20 29
-CCC(C)C(=O)N1[C@@H](CO)Cc2c(cccc2C(C)(C)O)[C@@H]1C,C[C@H]1c2cccc(C(C)(C)O)c2C[C@H](CO)N1C(=O)Cc1c(Cl)ccc2c1c(Cl)nn2C,evolved-adversarial,0.449,0.897,3.85,0.6121,3,0 1 3
-C[S@@](=N)(=O)C1(c2cc(O)nc(-c3cc[nH]c4nccc3-4)n2)CC1,C[C@@H]1COCCN1c1cc(C2([S@](C)(=N)=O)CC2)nc(-c2cc[nH]c3nccc2-3)n1,evolved-adversarial,0.576,0.682,3.87,0.9059,1,8
-COc1cccc(-c2ccc(NC3CC3)c(F)c2)c1,COc1cccc(-c2ccc(NC(=O)C3=C(C(=O)O)CCC3)c(F)c2)c1,evolved-adversarial,0.487,0.891,1.76,0.4969,3,12 13 14
-COc1cccc(-c2ccc(C)c(F)c2)c1,COc1cccc(-c2ccc(NC(=O)C3=C(C(=O)O)CCC3)c(F)c2)c1,evolved-adversarial,0.411,0.741,1.49,0.5354,1,11
-C=CC[C@H](CC/C=C\C[C@H]1C(=O)C[C@@H](O)[C@@H]1/C=C/CCCC)CCCO,C=CC(O)(C/C=C/[C@H]1[C@H](O)CC(=O)[C@@H]1C/C=C\CCCC(=O)OC)CCCC,evolved-adversarial,0.408,0.338,4.25,0.6692,6,0 1 22 23 24 25
-COC(=O)C(O)(c1ccccc1)C1CCCCC1,CCN(CC)CC#CCOC(=O)C(O)(c1ccccc1)C1CCCCC1.Cl,evolved-adversarial,0.537,0.836,2.52,0.5838,0,
-O=C(C1CCCCC1)C(O)(c1ccccc1)C1CCCCC1,CCN(CC)CC#CCOC(=O)C(O)(c1ccccc1)C1CCCCC1.Cl,evolved-adversarial,0.419,0.882,2.72,0.6967,6,2 3 4 5 6 7
-CCCCCCCCC(F)CCCCCCCC,CCCCCCCCC(F)CCCC[C@@H]1C[C@H]1CC(=O)O,evolved-adversarial,0.479,0.3,1.96,0.5071,4,14 15 16 17
-COCCCC[C@@H]1C[C@H]1CC(=O)O,CCCCCCCCC(F)CCCC[C@@H]1C[C@H]1CC(=O)O,evolved-adversarial,0.448,0.618,3.06,0.676,2,0 1
-CCCCCCCCC(F)CCCCCC,CCCCCCCCC(F)CCCC[C@@H]1C[C@H]1CC(=O)O,evolved-adversarial,0.469,0.358,2.45,0.7458,2,14 15
-O=C1c2nccnc2[C@H](OP(=O)(O)O)N1c1ccc(Cl)cn1,CN1CCN(C(=O)O[C@H]2c3nccnc3C(=O)N2c2ccc(Cl)cn2)CC1,evolved-adversarial,0.549,0.799,3.45,0.5018,4,10 11 12 13
-Cc1ccc2nc3ccc(=[N+](C)OP(=O)(O)O)cc-3sc2c1,CN(C)c1ccc2nc3ccc(=[N+](C)C)cc-3sc2c1.O.O.O.[Cl-],evolved-adversarial,0.418,0.324,3.19,0.6357,6,0 12 13 14 15 16
-C[N+](C)=c1ccc2nc3ccc(N(CC4CC4)c4ccccn4)cc3sc-2c1,CN(C)c1ccc2nc3ccc(=[N+](C)C)cc-3sc2c1.O.O.O.[Cl-],evolved-adversarial,0.543,0.385,2.96,0.6728,9,14 15 16 17 18 19 20 21 22
-CC(C)CNc1ccc2nc3ccc(=[N+](C)C)cc-3sc2c1,CN(C)c1ccc2nc3ccc(=[N+](C)C)cc-3sc2c1.O.O.O.[Cl-],evolved-adversarial,0.507,0.592,2.71,0.712,3,0 1 2
-CC(=O)N[C@@H](C)COc1ccccc1,C[C@@H](COc1ccccc1)N[C@@H](CO)[C@H](O)c1ccccc1,evolved-adversarial,0.441,0.788,2.07,0.5146,1,2
-C[C@@H](COc1ccccc1)NC(=O)c1ccccc1,C[C@@H](COc1ccccc1)N[C@@H](CO)[C@H](O)c1ccccc1,evolved-adversarial,0.4,0.892,1.91,0.5564,7,12 13 14 15 16 17 18
-COC(=O)C1=C(C)NC(c2cccc(OC)c2Cl)=C(Oc2ccccc2)C1c1cccc(Cl)c1Cl,CCOC(=O)C1=C(C)NC(C)=C(C(=O)OC)C1c1cccc(Cl)c1Cl,evolved-adversarial,0.411,0.341,3.13,0.6211,16,9 10 11 12 13 14 15 16 17 19 20 21 22 23 24 25
-COC(=O)C1=C(C)NC(C)=C(C(=O)c2cccc(Cl)c2Cl)C1c1cccc(Cl)c1Cl,CCOC(=O)C1=C(C)NC(C)=C(C(=O)OC)C1c1cccc(Cl)c1Cl,evolved-adversarial,0.634,0.392,2.95,0.648,8,13 14 15 16 17 18 19 20
-CCCC1=C(C)NC(C)=C(C(=O)c2cccc(Cl)c2Cl)C1c1cccc(Cl)c1Cl,CCOC(=O)C1=C(C)NC(C)=C(C(=O)OC)C1c1cccc(Cl)c1Cl,evolved-adversarial,0.427,0.447,3.21,0.6616,10,0 1 12 13 14 15 16 17 18 19
-O=C1CC(c2ccc(C(F)(F)F)cc2)Cc2c1c(=O)c1cc(F)ccc1n2O,O=C1CC(c2ccc(C(F)(F)F)cc2)Cc2c1c(=O)c1cc(Cl)ccc1n2O,evolved-adversarial,0.753,0.497,3.04,0.6935,1,22
-COc1ccc(OCCCN2CC[C@H](O)[C@@H](c3ccccc3)C2)cc1,COc1ccc(OC[C@H]2CN(C)CC[C@@H]2c2ccccc2)cc1,evolved-adversarial,0.42,0.785,2.66,0.58,15,8 9 10 11 12 13 14 15 16 17 18 19 20 21 22
-c1ccc(CN2CC[C@H](c3ccccc3)[C@@H](COc3ccccc3)C2)cc1,COc1ccc(OC[C@H]2CN(C)CC[C@@H]2c2ccccc2)cc1,evolved-adversarial,0.455,0.588,2.57,0.6282,6,0 1 2 3 25 26
-COc1cc(CN2CCN(C/C=C(\C)CC/C=C(/C)C)CC2)ccc1OP(=O)(O)O,CC(C)=CCC/C(C)=C/CC/C(C)=C/CN1CCN(Cc2ccc3c(c2)OCO3)CC1,evolved-adversarial,0.489,0.422,2.69,0.5778,7,0 1 25 26 27 28 29
-CC(C)Cc1cc(N(C(=O)CCC(=O)O)C(=O)c2ccccc2Cl)ccc1N(C)C(=O)CNC1CC1,CN(C(=O)CNC1CC1)c1ccc(Cl)cc1C(=O)c1ccccc1Cl,evolved-adversarial,0.444,0.464,2.83,0.665,20,0 1 2 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23
-CC(C)Cc1cc(Cl)ccc1N(C)C(=O)CNC1CC1,CN(C(=O)CNC1CC1)c1ccc(Cl)cc1C(=O)c1ccccc1Cl,evolved-adversarial,0.506,0.873,2.36,0.8109,3,0 1 2
-CCC(=O)OCC(C(=O)CC)c1ccccc1,CCC(=O)OCC(C(=O)O[C@@H]1C[C@@H]2[C@@H]3O[C@H]3[C@H](C1)N2C)c1ccccc1,evolved-adversarial,0.443,0.711,2.6,0.4692,2,9 10
-CCOC(=O)C(COC(=O)CC)c1ccccc1,CCC(=O)OCC(C(=O)O[C@@H]1C[C@@H]2[C@@H]3O[C@H]3[C@H](C1)N2C)c1ccccc1,evolved-adversarial,0.493,0.727,2.45,0.4891,2,0 1
-Cc1ccc(C(=O)C2CCN(Cc3ccc(-c4nc5ccc(C)cn5c(=O)c4F)cc3)CC2)cc1,Cc1ccc2nc(C)c(CCN3CCC(C(=O)c4ccc(F)cc4)CC3)c(=O)n2c1,evolved-adversarial,0.453,0.377,2.45,0.5397,20,0 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30
-Cc1ccc2nc(C)c(COP(=O)(O)Cc3ccc(F)cc3)c(=O)n2c1,Cc1ccc2nc(C)c(CCN3CCC(C(=O)c4ccc(F)cc4)CC3)c(=O)n2c1,evolved-adversarial,0.439,0.691,3.17,0.6485,12,10 11 12 13 14 15 16 17 18 19 20 21
-Cc1ccc2nc(C)c(C(=O)c3ccc(F)cc3)c(=O)n2c1,Cc1ccc2nc(C)c(CCN3CCC(C(=O)c4ccc(F)cc4)CC3)c(=O)n2c1,evolved-adversarial,0.438,0.683,2.19,0.652,8,10 11 12 13 14 15 16 17
-C=CN(Cc1cnc(C)nc1N)/C(C)=C(\OP(=O)(O)O)SC(=O)c1ccccc1,C/C(=C(/CCOC(=O)c1ccccc1)SC(=O)c1ccccc1)N(C=O)Cc1cnc(C)nc1N,evolved-adversarial,0.5,0.417,3.51,0.6702,6,0 15 16 17 18 19
-C=CN(Cc1cnc(C)nc1N)/C(C)=C(\C)SC(=O)c1ccccc1,C/C(=C(/CCOC(=O)c1ccccc1)SC(=O)c1ccccc1)N(C=O)Cc1cnc(C)nc1N,evolved-adversarial,0.532,0.84,3.23,0.9148,1,0
+CCCCCCCCCCCCCC(=O)OCC,CCCCCCCCCCCCCCCC(=O)OC[C@@H](O)[C@H]1OC[C@H](O)[C@H]1O,evolved,0.421,0.332,1.7,,0,
+CCCCCCCCCCC[C@@H](O)[C@H]1OC[C@H](O)[C@H]1O,CCCCCCCCCCCCCCCC(=O)OC[C@@H](O)[C@H]1OC[C@H](O)[C@H]1O,evolved,0.508,0.511,3.46,,7,13 14 15 16 17 18 19
+CCOc1ccc(N2C(=S)N(c3cccc(C)c3)C(=O)C2(C)C)cc1,CC1(C)C(=O)N(c2ccc(C#N)c(C(F)(F)F)c2)C(=S)N1c1ccc(OC[C@@H](O)CO)cc1,evolved,0.452,0.766,2.28,,0,
+CCC(=O)Nc1ccn2nc(-c3ccccc3)nc2c1,Cn1ncc(C(=O)N2CCOCC2)c1C(=O)Nc1ccn2nc(-c3ccccc3)nc2c1,evolved,0.516,0.793,2.18,,2,0 1
+c1ccc(-c2nc3cc(NCN4CCOCC4)ccn3n2)cc1,Cn1ncc(C(=O)N2CCOCC2)c1C(=O)Nc1ccn2nc(-c3ccccc3)nc2c1,evolved,0.455,0.8,2.52,,6,11 12 13 14 15 16
+c1ccc(-c2nc3cc(NN4CCOCC4)ccn3n2)cc1,Cn1ncc(C(=O)N2CCOCC2)c1C(=O)Nc1ccn2nc(-c3ccccc3)nc2c1,evolved,0.474,0.801,2.6,,6,10 11 12 13 14 15
+O=C(Nc1ccn2nc(-c3ccccc3)nc2c1)c1ccccc1,Cn1ncc(C(=O)N2CCOCC2)c1C(=O)Nc1ccn2nc(-c3ccccc3)nc2c1,evolved,0.516,0.628,2.0,,3,21 22 23
+CCCCCCN(CC(=O)[O-])CC(=O)O,C1CNCCN1.O=C([O-])CN(CCN(CC(=O)[O-])CC(=O)O)CC(=O)O.[Ca+2],evolved,0.455,0.535,2.66,,4,0 1 2 3
+Cn1nc(C(=O)NN2CCCCC2)c(C#N)c1Cl,COc1ccc(-c2c(C#N)c(C(=O)NN3CCCCC3)nn2-c2ccc(Cl)cc2Cl)cc1,evolved,0.407,0.87,2.78,,2,0 17
+COC(=O)c1nn(-c2ccc(OC)cc2Cl)c(-c2ccccc2)c1C#N,COc1ccc(-c2c(C#N)c(C(=O)NN3CCCCC3)nn2-c2ccc(Cl)cc2Cl)cc1,evolved,0.449,0.654,2.27,,4,0 1 11 12
+COc1ccc(-c2c(C#N)c(F)nn2-c2ccc(Cl)cc2Cl)cc1,COc1ccc(-c2c(C#N)c(C(=O)NN3CCCCC3)nn2-c2ccc(Cl)cc2Cl)cc1,evolved,0.533,0.668,2.4,,1,11
+N#Cc1c(C(=O)Nc2ccccc2)nn(-c2ccc(Cl)cc2Cl)c1-c1ccccc1,COc1ccc(-c2c(C#N)c(C(=O)NN3CCCCC3)nn2-c2ccc(Cl)cc2Cl)cc1,evolved,0.485,0.431,2.19,,6,7 8 9 10 11 12
+COCCN(C1=NCCN1)c1c(Cl)cccc1Cl,C=CCN(C1=NCCN1)c1c(Cl)cccc1Cl,evolved,0.542,0.924,2.88,,2,0 1
+CCN(C1=NCCN1)c1c(Cl)cccc1-c1ccccc1Cl,C=CCN(C1=NCCN1)c1c(Cl)cccc1Cl,evolved,0.433,0.898,2.71,,7,15 16 17 18 19 20 21
+COc1ncccc1C(=O)Nc1c(C)cccc1C,Cc1cccc(C)c1NC(=O)c1cccnc1O,evolved,0.579,0.918,1.81,,1,0
+CCc1cccc(C)c1NC(=O)c1cccnc1OC,Cc1cccc(C)c1NC(=O)c1cccnc1O,evolved,0.42,0.928,1.91,,2,0 19
+Cc1ccccc1C(=O)Nc1c(C)cccc1C,Cc1cccc(C)c1NC(=O)c1cccnc1O,evolved,0.529,0.847,1.5,,2,0 2
+Cc1cccc(C)c1NC(=O)c1ccccc1,Cc1cccc(C)c1NC(=O)c1cccnc1O,evolved,0.418,0.832,1.36,,1,15
+CCc1cccc(C)c1NC(=O)c1cccnc1OCl,Cc1cccc(C)c1NC(=O)c1cccnc1O,evolved,0.414,0.933,2.29,,2,0 19
+CCCOC(=O)Nc1nc2cc(CC)ccc2[nH]1,CCCCc1ccc2[nH]c(NC(=O)OC)nc2c1,evolved,0.543,0.872,2.22,,2,0 1
+CCc1ccc2[nH]c(NC(=O)CC3CC3)nc2c1,CCCCc1ccc2[nH]c(NC(=O)OC)nc2c1,evolved,0.434,0.867,2.21,,4,11 12 13 14
+CCCCc1ccc2[nH]c(NC(=O)CC)nc2c1,CCCCc1ccc2[nH]c(NC(=O)OC)nc2c1,evolved,0.726,0.849,2.14,,2,13 14
+CCCCCC(=O)Nc1nc2cc(F)ccc2[nH]1,CCCCc1ccc2[nH]c(NC(=O)OC)nc2c1,evolved,0.408,0.799,2.05,,6,0 1 2 3 4 13
+CCc1ccc2[nH]c(NC(=O)c3ccccc3)nc2c1,CCCCc1ccc2[nH]c(NC(=O)OC)nc2c1,evolved,0.434,0.762,1.88,,6,11 12 13 14 15 16
+CC(=O)Nc1ccc(C(=O)N2CCC(N(C)C)CC2)cc1,CN(C)C1CCN(C(=O)c2ccc(NC(=O)Nc3ccc(-c4nc(N5CCOCC5)nc(N5CCOCC5)n4)cc3)cc2)CC1,evolved,0.506,0.923,1.84,,1,0
+Cc1ccc(C(=O)N2CCC(N(C)C)CC2)cc1,CN(C)C1CCN(C(=O)c2ccc(NC(=O)Nc3ccc(-c4nc(N5CCOCC5)nc(N5CCOCC5)n4)cc3)cc2)CC1,evolved,0.407,0.798,1.74,,1,0
+c1coc(COc2cc(CN3CCCCC3)ccn2)c1,O=C(C[S+]([O-])Cc1ccco1)NC/C=C\COc1cc(CN2CCCCC2)ccn1,evolved,0.5,0.837,2.11,,5,0 1 2 3 19
+CC(=O)OCCOc1cc(CN2CCCCC2)ccn1,O=C(C[S+]([O-])Cc1ccco1)NC/C=C\COc1cc(CN2CCCCC2)ccn1,evolved,0.41,0.588,2.09,,4,0 1 2 3
+O=C(NC1CCNCC1)c1ccccc1Cl,O=C(NC1CCNCC1)c1n[nH]cc1NC(=O)c1c(Cl)cccc1Cl,evolved,0.4,0.825,1.83,,3,5 6 7
+Cc1cccc(Cl)c1C(=O)NC1CCNCC1,O=C(NC1CCNCC1)c1n[nH]cc1NC(=O)c1c(Cl)cccc1Cl,evolved,0.459,0.847,2.08,,4,0 13 14 15
+CC(C)c1n[nH]cc1NC(=O)c1c(Cl)cccc1Cl,O=C(NC1CCNCC1)c1n[nH]cc1NC(=O)c1c(Cl)cccc1Cl,evolved,0.429,0.896,2.62,,2,0 2
+O=C(Nc1c[nH]nc1CC1CC1)c1c(Cl)cccc1Cl,O=C(NC1CCNCC1)c1n[nH]cc1NC(=O)c1c(Cl)cccc1Cl,evolved,0.456,0.899,2.66,,3,9 10 11
+O=C(Nc1c[nH]nc1Cl)c1c(Cl)cccc1Cl,O=C(NC1CCNCC1)c1n[nH]cc1NC(=O)c1c(Cl)cccc1Cl,evolved,0.471,0.887,2.61,,1,8
+CCCCc1n[nH]cc1NC(=O)c1c(Cl)cccc1Cl,O=C(NC1CCNCC1)c1n[nH]cc1NC(=O)c1c(Cl)cccc1Cl,evolved,0.42,0.864,2.57,,3,0 1 2
+COC(=O)OCOC(=O)[C@@H]1c2ccccc2SCc2c1ccc(F)c2F,COC(=O)OCOc1c2n(ccc1=O)N([C@@H]1c3ccccc3SCc3c1ccc(F)c3F)CC1(CC1)C2=O,evolved,0.417,0.593,3.3,,9,0 1 2 3 4 5 6 7 8
+CCCc1nccc2cc(C(N)=O)c(OC)cc12,CC[C@@H]1[C@H](F)C(=O)N[C@@H]1COc1nccc2cc(C(N)=O)c(OC)cc12,evolved,0.414,0.897,2.17,,3,0 1 2
+CCOc1nccc2cc(C(N)=O)c(OC)cc12,CC[C@@H]1[C@H](F)C(=O)N[C@@H]1COc1nccc2cc(C(N)=O)c(OC)cc12,evolved,0.571,0.891,2.13,,1,0
+COc1cc2c(OCl)nccc2cc1C(N)=O,CC[C@@H]1[C@H](F)C(=O)N[C@@H]1COc1nccc2cc(C(N)=O)c(OC)cc12,evolved,0.5,0.905,2.56,,1,7
+COc1cc2c(C)nccc2cc1C(N)=O,CC[C@@H]1[C@H](F)C(=O)N[C@@H]1COc1nccc2cc(C(N)=O)c(OC)cc12,evolved,0.41,0.83,2.11,,1,6
+COc1cc2c(Oc3ccccc3)nccc2cc1C(N)=O,CC[C@@H]1[C@H](F)C(=O)N[C@@H]1COc1nccc2cc(C(N)=O)c(OC)cc12,evolved,0.449,0.802,2.02,,6,7 8 9 10 11 12
+O=C(C1CC1)N1CCN(/N=C\C=C\c2ccc(CO)o2)C1=O,CNC(=O)N1CCN(/N=C\C=C\c2ccc([N+](=O)[O-])o2)C1=O,evolved,0.437,0.834,3.16,,5,2 3 4 17 18
+COc1ccc(/C=C/C=N\N2CCN(C(=O)NCc3cccc(C)c3)C2=O)o1,CNC(=O)N1CCN(/N=C\C=C\c2ccc([N+](=O)[O-])o2)C1=O,evolved,0.455,0.777,3.04,,9,0 1 18 19 20 21 22 23 24
+CCCOc1cc2ncc(C#N)c(NCl)c2cc1OC,COc1cc(Nc2c(C#N)cnc3cc(OCCCN4CCN(C)CC4)c(OC)cc23)c(Cl)cc1Cl.O,evolved,0.429,0.854,2.58,,1,14
+CCCOc1cc2ncc(C#N)c(Nc3ccccc3Cl)c2cc1OC,COc1cc(Nc2c(C#N)cnc3cc(OCCCN4CCN(C)CC4)c(OC)cc23)c(Cl)cc1Cl.O,evolved,0.5,0.64,2.23,,0,
+CCCCOc1cc2ncc(C#N)c(Nc3ccccc3C)c2cc1OC,COc1cc(Nc2c(C#N)cnc3cc(OCCCN4CCN(C)CC4)c(OC)cc23)c(Cl)cc1Cl.O,evolved,0.472,0.575,2.21,,2,0 21
+CCCCC(=O)CCC1(C)[C@@H](N2CCN(C)CC2)Cc2ccc(O)cc2C1(C)C,CCCCCC(=O)CCC1(C)[C@@H]2Cc3ccc(O)cc3[C@@]1(C)CCN2C,evolved,0.468,0.737,3.7,,8,11 12 13 14 15 16 17 28
+CCc1nnc(NS(=O)(=O)c2ccccc2)s1,CC(C)(C)c1nnc(NS(=O)(=O)c2ccccc2)s1,evolved,0.574,0.92,1.97,,0,
+Cc1nnc(NS(=O)(=O)c2ccccc2)s1,CC(C)(C)c1nnc(NS(=O)(=O)c2ccccc2)s1,evolved,0.62,0.905,1.91,,0,
+CC(C)(C)c1nnc(NS(=O)(=O)c2ccccc2F)s1,CC(C)(C)c1nnc(NS(=O)(=O)c2ccccc2)s1,evolved,0.544,0.945,2.28,,1,18
+CC(C)(C)c1nnc(NS(=O)(=O)c2ccccc2Cl)s1,CC(C)(C)c1nnc(NS(=O)(=O)c2ccccc2)s1,evolved,0.544,0.936,2.27,,1,18
+CC(C)(C)c1nnc(NS(=O)(=O)c2cccs2)s1,CC(C)(C)c1nnc(NS(=O)(=O)c2ccccc2)s1,evolved,0.536,0.946,2.49,,1,16
+O=S(=O)(Nc1nnc(-c2ccccc2)s1)c1ccccc1,CC(C)(C)c1nnc(NS(=O)(=O)c2ccccc2)s1,evolved,0.536,0.803,1.83,,6,8 9 10 11 12 13
+CNS(=O)(=O)c1ccccc1,CC(C)(C)c1nnc(NS(=O)(=O)c2ccccc2)s1,evolved,0.404,0.708,1.47,,1,0
+CCCCN1c2ccccc2Sc2ccc(S(=O)(=O)NC)cc21,CN1CCN(CCCN2c3ccccc3Sc3ccc(S(=O)(=O)N(C)C)cc32)CC1,evolved,0.483,0.887,2.24,,1,0
+CC[C@H]1CC[C@@H](Nc2ncnc3[nH]ccc23)CN1OC,C=CC(=O)N1C[C@H](Nc2ncnc3[nH]ccc23)CC[C@@H]1C,evolved,0.482,0.895,3.73,,3,0 18 19
+C[C@H]1CC[C@@H](Nc2ncnc3[nH]ccc23)CN1C,C=CC(=O)N1C[C@H](Nc2ncnc3[nH]ccc23)CC[C@@H]1C,evolved,0.616,0.848,3.39,,0,
+CON1C[C@H](Nc2ncnc3[nH]ccc23)CC[C@@H]1C,C=CC(=O)N1C[C@H](Nc2ncnc3[nH]ccc23)CC[C@@H]1C,evolved,0.577,0.881,3.72,,2,0 1
+C=CC(=O)Nc1ncnc2[nH]ccc12,C=CC(=O)N1C[C@H](Nc2ncnc3[nH]ccc23)CC[C@@H]1C,evolved,0.434,0.693,2.66,,4,0 1 2 3
+Cc1cc(SF)ccc1OCC(=O)O,CCO[C@H](COc1ccc(C(F)(F)F)cc1)CSc1ccc(OCC(=O)O)c(C)c1,evolved,0.416,0.839,2.39,,1,5
+CCSc1ccc(OCC(=O)O)c(C)c1,CCO[C@H](COc1ccc(C(F)(F)F)cc1)CSc1ccc(OCC(=O)O)c(C)c1,evolved,0.467,0.784,1.97,,0,
+Cc1ncc(CCc2ccccc2)c(CO)c1O,Cc1ncc(CSSCc2cnc(C)c(O)c2CO)c(CO)c1O,evolved,0.446,0.866,2.13,,7,6 7 8 9 10 11 12
+Cc1ncc(Cc2ccccc2)c(CO)c1O,Cc1ncc(CSSCc2cnc(C)c(O)c2CO)c(CO)c1O,evolved,0.463,0.848,2.13,,6,6 7 8 9 10 11
+Cc1ccc(OCCO)c2oc(=O)ccc12,Cc1ccc(OCC(O)CNC(C)(C)C)c2oc(=O)ccc12,evolved,0.552,0.796,2.16,,0,
+CCC(O)COc1ccc(C)c2ccc(=O)oc12,Cc1ccc(OCC(O)CNC(C)(C)C)c2oc(=O)ccc12,evolved,0.703,0.843,2.71,,1,0
+CCOc1ccc(C)c2ccc(=O)oc12,Cc1ccc(OCC(O)CNC(C)(C)C)c2oc(=O)ccc12,evolved,0.562,0.705,2.01,,0,
+COc1ccc(COc2ccc(C)c3ccc(=O)oc23)cc1,Cc1ccc(OCC(O)CNC(C)(C)C)c2oc(=O)ccc12,evolved,0.468,0.689,1.93,,8,0 1 2 3 4 5 20 21
+Cc1ccc(OCc2ccccc2)c2oc(=O)ccc12,Cc1ccc(OCC(O)CNC(C)(C)C)c2oc(=O)ccc12,evolved,0.486,0.679,1.87,,6,7 8 9 10 11 12
+C=C1/C(=C\C=C2/CCC[C@]3(C)[C@@H](C(C)C)CC[C@@H]23)C[C@@H](O)C[C@@H]1O,C=C1/C(=C\C=C2/CCC[C@]3(C)[C@@H]([C@H](C)CCCC(C)(C)O)CC[C@@H]23)C[C@@H](O)C[C@@H]1O,evolved,0.699,0.764,4.34,,0,
+C=C1/C(=C\C=C2/CCC[C@]3(C)[C@@H]([C@@H](C)C)CC[C@@H]23)C[C@@H](O)C[C@@H]1O,C=C1/C(=C\C=C2/CCC[C@]3(C)[C@@H]([C@H](C)CCCC(C)(C)O)CC[C@@H]23)C[C@@H](O)C[C@@H]1O,evolved,0.699,0.764,4.34,,0,
+C[C@]12CC[C@H]3[C@@H](CCC4=CC(=O)CC[C@@]43C)[C@@H]1CC[C@@H]2CO,CCCCCCC(=O)O[C@H]1CC[C@H]2[C@@H]3CCC4=CC(=O)CC[C@]4(C)[C@H]3CC[C@]12C,evolved,0.506,0.791,4.03,,2,20 21
+CC[C@]12CC[C@H]3[C@@H](CCC4=CC(=O)CC[C@@]43C)[C@@H]1CC[C@@H]2CO,CCCCCCC(=O)O[C@H]1CC[C@H]2[C@@H]3CCC4=CC(=O)CC[C@]4(C)[C@H]3CC[C@]12C,evolved,0.427,0.813,4.27,,3,0 21 22
+OCCc1nc(-c2ccnc(C(F)F)c2)ccc1OF,CC(C)C[C@](C)(N)COc1ccc(-c2ccnc(C(F)F)c2)nc1C(F)F,evolved,0.444,0.917,2.96,,3,0 1 19
+COCCc1nc(-c2ccnc(C(F)F)c2)ccc1F,CC(C)C[C@](C)(N)COc1ccc(-c2ccnc(C(F)F)c2)nc1C(F)F,evolved,0.405,0.843,2.6,,4,0 1 2 19
+Cc1nc(-c2ccnc(C(F)F)c2)ccc1F,CC(C)C[C@](C)(N)COc1ccc(-c2ccnc(C(F)F)c2)nc1C(F)F,evolved,0.408,0.799,2.46,,1,16
+Cc1ccc(-c2ccnc(C(F)F)c2)nc1C,CC(C)C[C@](C)(N)COc1ccc(-c2ccnc(C(F)F)c2)nc1C(F)F,evolved,0.413,0.791,2.41,,1,0
+CN(C)S(=O)(=O)c1ccccc1Nc1ccc(CN2CCCCC2)cc1,CN1CCN(Cc2ccc(Nc3ncc(Cl)c(Nc4ccccc4S(=O)(=O)N(C)C)n3)cc2)CC1,evolved,0.505,0.839,1.96,,10,16 17 18 19 20 21 22 23 24 25
+CCCc1ncc2cc3n(c2n1)C1(CCCCC1)C(=O)NN3,NS(=O)(=O)c1ccc(Nc2ncc3cc4n(c3n2)C2(CCCCC2)C(=O)NN4)cc1,evolved,0.5,0.893,3.84,,3,0 1 2
+COCn1c(C)cc2cnc(Nc3ccc(S(N)(=O)=O)cc3)nc21,NS(=O)(=O)c1ccc(Nc2ncc3cc4n(c3n2)C2(CCCCC2)C(=O)NN4)cc1,evolved,0.417,0.727,2.47,,4,0 1 2 5
+O=C1NNc2cc3cnc(C4CCCCC4)nc3n2C12CCCCC2,NS(=O)(=O)c1ccc(Nc2ncc3cc4n(c3n2)C2(CCCCC2)C(=O)NN4)cc1,evolved,0.473,0.833,3.76,,6,10 11 12 13 14 15
+Cc1cc2cnc(Nc3ccc(S(N)(=O)=O)cc3)nc2n1CCO,NS(=O)(=O)c1ccc(Nc2ncc3cc4n(c3n2)C2(CCCCC2)C(=O)NN4)cc1,evolved,0.417,0.635,2.42,,4,0 21 22 23
+O=C1NNc2cc3cnc(CCc4ccccc4)nc3n2C12CCCCC2,NS(=O)(=O)c1ccc(Nc2ncc3cc4n(c3n2)C2(CCCCC2)C(=O)NN4)cc1,evolved,0.455,0.751,3.56,,8,10 11 12 13 14 15 16 17
+CNCc1cc(-c2ccccc2F)n(S(=O)(=O)c2cccnc2)c1,CNCc1cc(-c2ccccc2F)n(S(=O)(=O)c2cccnc2)c1.O=C(O)/C=C/C(=O)O,evolved,0.889,0.772,2.45,,0,
+Cc1ccccc1Cc1cc(-c2ccccc2F)n(S(=O)(=O)c2cccnc2)c1,CNCc1cc(-c2ccccc2F)n(S(=O)(=O)c2cccnc2)c1.O=C(O)/C=C/C(=O)O,evolved,0.607,0.477,2.39,,7,0 1 2 3 4 5 6
+Cc1ccccc1Cc1cc(-c2ccccc2Cl)n(S(=O)(=O)c2cccnc2)c1,CNCc1cc(-c2ccccc2F)n(S(=O)(=O)c2cccnc2)c1.O=C(O)/C=C/C(=O)O,evolved,0.43,0.436,2.38,,8,0 1 2 3 4 5 6 17
+CCOC(=O)N1CCC(C(=O)O)(c2ccccc2)CC1,CCOC(=O)C1(c2ccccc2)CCN(C)CC1.Cl,evolved,0.483,0.92,2.08,,4,0 1 2 4
+CCCCN1CCC(C(=O)O)(c2ccccc2)CC1,CCOC(=O)C1(c2ccccc2)CCN(C)CC1.Cl,evolved,0.435,0.886,2.02,,3,0 1 2
+COc1ccc(-c2ccc(C3CC(C4CC4)NC3C)cc2)cc1,CC1NC(C2CC2)CC1c1ccc(Cl)cc1,evolved,0.571,0.891,3.13,,8,0 1 2 3 4 5 21 22
+COC1CC(c2ccc(Cl)cc2)C(C2CC2)N1,CC1NC(C2CC2)CC1c1ccc(Cl)cc1,evolved,0.414,0.891,3.68,,5,0 1 13 14 15
+O=C1NC(=O)C2(c3ccc(OCc4ccccc4)cc3)CC12,O=C1NC(=O)C2(c3ccc(Cl)cc3)CC12,evolved,0.466,0.879,2.91,,8,10 11 12 13 14 15 16 17
+O=C1NC(=O)C2(c3ccc(Oc4ccc(Cl)cc4)cc3)CC12,O=C1NC(=O)C2(c3ccc(Cl)cc3)CC12,evolved,0.702,0.886,3.0,,8,10 11 12 13 14 15 16 17
+CCc1ccc(-c2ccc(C34CC3C(=O)NC4=O)cc2)cc1,O=C1NC(=O)C2(c3ccc(Cl)cc3)CC12,evolved,0.519,0.884,2.99,,8,0 1 2 3 4 5 20 21
+CNC(=O)c1ccc2c(/C=C/c3ccccn3)n[nH]c2c1,CNC(=O)c1ccccc1Sc1ccc2c(/C=C/c3ccccn3)n[nH]c2c1,evolved,0.576,0.773,2.42,,4,0 1 2 3
+Clc1ccc2c(/C=C/c3ccccn3)n[nH]c2c1,CNC(=O)c1ccccc1Sc1ccc2c(/C=C/c3ccccn3)n[nH]c2c1,evolved,0.471,0.757,2.39,,1,0
+Cc1ccc2c(/C=C/c3ccccn3)n[nH]c2c1,CNC(=O)c1ccccc1Sc1ccc2c(/C=C/c3ccccn3)n[nH]c2c1,evolved,0.488,0.739,2.37,,1,0
+C(=C\c1n[nH]c2cc(SC3CC3)ccc12)/c1ccccn1,CNC(=O)c1ccccc1Sc1ccc2c(/C=C/c3ccccn3)n[nH]c2c1,evolved,0.523,0.776,2.75,,0,
+CCCCNC(=O)c1ccc2c(/C=C/c3ccccn3)n[nH]c2c1,CNC(=O)c1ccccc1Sc1ccc2c(/C=C/c3ccccn3)n[nH]c2c1,evolved,0.474,0.681,2.37,,7,0 1 2 3 4 5 6
+CNC(=O)c1ccccc1Sc1ccc2c(-c3ccccc3Cl)n[nH]c2c1,CNC(=O)c1ccccc1Sc1ccc2c(/C=C/c3ccccn3)n[nH]c2c1,evolved,0.495,0.488,2.34,,7,16 17 18 19 20 21 22
+C(=C\c1n[nH]c2cc(-c3ccccc3-c3ccccc3)ccc12)/c1ccccn1,CNC(=O)c1ccccc1Sc1ccc2c(/C=C/c3ccccn3)n[nH]c2c1,evolved,0.412,0.393,2.29,,12,8 9 10 11 12 13 14 15 16 17 18 19
+O=C(NCN1CCCCC1)c1cc2ccoc2cn1,O=C(N[C@H]1CN2CCC1CC2)c1cc2ccoc2cn1,evolved,0.475,0.916,2.52,,7,3 4 5 6 7 8 9
+CC(C)CCNC(=O)c1cc2ccoc2cn1,O=C(N[C@H]1CN2CCC1CC2)c1cc2ccoc2cn1,evolved,0.468,0.881,2.36,,5,0 1 2 3 4
+CCCNC(=O)c1cc2ccoc2cn1,O=C(N[C@H]1CN2CCC1CC2)c1cc2ccoc2cn1,evolved,0.479,0.831,2.3,,3,0 1 2
+O=C(NCCc1ccccc1)c1cc2ccoc2cn1,O=C(N[C@H]1CN2CCC1CC2)c1cc2ccoc2cn1,evolved,0.432,0.79,2.07,,8,3 4 5 6 7 8 9 10
+CN1CCC(C2CC2)[C@@H](NC(=O)c2cc3ccoc3cn2)C1,O=C(N[C@H]1CN2CCC1CC2)c1cc2ccoc2cn1,evolved,0.6,0.944,3.47,,4,0 5 6 7
+O=C(NCc1ccccc1)c1cc2ccoc2cn1,O=C(N[C@H]1CN2CCC1CC2)c1cc2ccoc2cn1,evolved,0.474,0.779,2.03,,7,3 4 5 6 7 8 9
+CCCCNC(=O)c1cc2ccoc2cn1,O=C(N[C@H]1CN2CCC1CC2)c1cc2ccoc2cn1,evolved,0.455,0.801,2.27,,4,0 1 2 3
+CCCCCCNC(=O)c1cc2ccoc2cn1,O=C(N[C@H]1CN2CCC1CC2)c1cc2ccoc2cn1,evolved,0.45,0.797,2.24,,6,0 1 2 3 4 5
+CCCCC1CCN(C)C[C@@H]1NC(=O)c1cc2ccoc2cn1,O=C(N[C@H]1CN2CCC1CC2)c1cc2ccoc2cn1,evolved,0.558,0.921,3.42,,5,0 1 2 3 8
+O=C(Nc1ccccc1)c1cc2ccoc2cn1,O=C(N[C@H]1CN2CCC1CC2)c1cc2ccoc2cn1,evolved,0.48,0.746,2.01,,1,5
+CC(C)n1nnc2ncc(-c3cnn(CN)c3)nc21,C[C@@H](c1ccc2nccn2c1)n1nnc2ncc(-c3cnn(C)c3)nc21,evolved,0.414,0.737,3.11,,2,2 15
+Cn1cc(-c2cnc3nnn(-c4ccccn4)c3n2)cn1,C[C@@H](c1ccc2nccn2c1)n1nnc2ncc(-c3cnn(C)c3)nc21,evolved,0.4,0.543,2.74,,6,11 12 13 14 15 16
+CCC[C@@H]1c2cccc3c2N(CCNC3)C[C@@H]1c1ccccc1,Cl.c1cc2c3c(c1)[C@H]1CCC[C@H]1CN3CCNC2,evolved,0.427,0.91,3.22,,9,0 1 2 17 18 19 20 21 22
+CCNc1ccc(-c2ccc(-c3nnn(C)n3)nc2)c(F)c1,Cn1nnc(-c2ccc(-c3ccc(N4C[C@H](CO)OC4=O)cc3F)cn2)n1,evolved,0.5,0.801,2.45,,3,0 1 2
+CCCCc1ccc(-c2ccc(-c3nnn(C)n3)nc2)c(F)c1,Cn1nnc(-c2ccc(-c3ccc(N4C[C@H](CO)OC4=O)cc3F)cn2)n1,evolved,0.489,0.724,2.37,,4,0 1 2 3
+S=C(Nc1ccccc1)Nc1ccc(Cl)cc1,Fc1ccc(NC(=S)Nc2cc(Cl)cc(Cl)c2)cc1,evolved,0.429,0.795,1.43,,1,14
+COc1cc(Cl)cc(CNC(=S)Nc2ccc(F)cc2)c1,Fc1ccc(NC(=S)Nc2cc(Cl)cc(Cl)c2)cc1,evolved,0.409,0.834,1.85,,10,0 1 2 3 4 5 6 7 8 20
+Fc1cc(Cl)cc(NC(=S)Nc2ccccc2)c1,Fc1ccc(NC(=S)Nc2cc(Cl)cc(Cl)c2)cc1,evolved,0.509,0.803,1.76,,1,0
+COc1cc2c(cc1Cl)C1CC(=O)C(CC(C)CCO)CN1CC2,COc1cc2c(cc1OC)C1CC(=O)C(CC(C)C)CN1CC2,evolved,0.575,0.884,3.7,,3,8 18 19
+CCC1CN2CCc3cc(OC)c(Cl)cc3C2CC1=O,COc1cc2c(cc1OC)C1CC(=O)C(CC(C)C)CN1CC2,evolved,0.533,0.838,3.31,,1,13
+COc1cc2c(cc1OC)C1CC(=O)C(CC(C)CCO)CN1CC2,COc1cc2c(cc1OC)C1CC(=O)C(CC(C)C)CN1CC2,evolved,0.757,0.857,3.6,,2,19 20
+COc1cccc(N2CCN(c3cnc(C)nc3N)CC2)c1,COc1ncc(-c2cccc(N3CCN(c4cnc(N)nc4N)CC3)c2)cn1,evolved,0.451,0.93,2.21,,3,0 1 15
+Nc1ncc(N2CCN(c3ccccc3)CC2)c(N)n1,COc1ncc(-c2cccc(N3CCN(c4cnc(N)nc4N)CC3)c2)cn1,evolved,0.5,0.846,2.11,,0,
+Cc1ncc(-c2cccc(N3CCN(C)CC3)c2)cn1,COc1ncc(-c2cccc(N3CCN(c4cnc(N)nc4N)CC3)c2)cn1,evolved,0.423,0.836,2.07,,2,0 14
+COc1c(NC(=O)C(=O)Cc2ccccc2)cc(C(C)(C)C)cc1NS(C)(=O)=O,COc1c(NC(=O)C(=O)c2ccc(OCCN3CCOCC3)c3ccccc23)cc(C(C)(C)C)cc1NS(C)(=O)=O,evolved,0.43,0.673,2.38,,7,9 10 11 12 13 14 15
+OCCc1ccccc1C1CCCc2ccccc21,c1ccc2c(c1)CCCC2C1=NCCN1,evolved,0.409,0.883,2.5,,8,0 1 2 3 4 5 6 7
+c1ccc(C(C2=NCCN2)C2CCCc3ccccc32)cc1,c1ccc2c(c1)CCCC2C1=NCCN1,evolved,0.405,0.911,3.29,,12,0 1 2 3 4 5 6 7 8 9 20 21
+c1ccc(C2CCCc3ccccc32)cc1,c1ccc2c(c1)CCCC2C1=NCCN1,evolved,0.474,0.66,2.11,,5,0 1 2 14 15
+Cc1ccccc1C1CCCc2ccccc21,c1ccc2c(c1)CCCC2C1=NCCN1,evolved,0.45,0.668,2.24,,6,0 1 2 3 4 5
+O=C(C[n+]1csc(-c2ccccc2)c1-c1ccccc1)c1ccccc1,Cc1sc[n+](CC(=O)c2ccccc2)c1C.[Cl-],evolved,0.452,0.353,2.37,,12,7 8 9 10 11 12 14 15 16 17 18 19
+CCN1C(=O)c2cc(-c3ccnc(NC)n3)sc2C1(C)C,CS(=O)(=O)O.Cn1nccc1Nc1nccc(-c2cc3c(s2)C(C)(C)N(CCN2CCOCC2)C3=O)n1,evolved,0.455,0.947,3.08,,1,14
+CNc1nccc(-c2cc3c(s2)C(C)(C)N(CCN2CCCCC2)C3=O)n1,CS(=O)(=O)O.Cn1nccc1Nc1nccc(-c2cc3c(s2)C(C)(C)N(CCN2CCOCC2)C3=O)n1,evolved,0.559,0.854,2.99,,2,0 21
+Cc1ccc(-c2ccc3cc(OCCO)ccc3n2)cn1,CNc1ccc(-c2ccc3cc(OC[C@H](O)CF)ccc3n2)cn1,evolved,0.481,0.798,2.04,,1,0
+CNc1ccc(-c2ccc3cc(OC)ccc3n2)cn1,CNc1ccc(-c2ccc3cc(OC[C@H](O)CF)ccc3n2)cn1,evolved,0.625,0.789,2.0,,0,
+CCOc1ccc2nc(-c3ccc(OC)nc3)ccc2c1,CNc1ccc(-c2ccc3cc(OC[C@H](O)CF)ccc3n2)cn1,evolved,0.481,0.731,1.96,,2,13 14
+Cc1cc(N2CCN(C)CC2)n(-c2ccccc2)n1,Cc1cc(N2CCN([C@@H]3CN[C@H](C(=O)N4CCSC4)C3)CC2)n(-c2ccccc2)n1,evolved,0.453,0.82,2.04,,1,8
+Cc1cc([C@@H]2CN[C@H](C(=O)N3CCSC3)C2)n(-c2ccccc2)n1,Cc1cc(N2CCN([C@@H]3CN[C@H](C(=O)N4CCSC4)C3)CC2)n(-c2ccccc2)n1,evolved,0.515,0.929,3.46,,12,4 5 6 7 8 9 10 11 12 13 14 15
+Cc1cc([C@@H]2CN[C@H](C(=O)N3CCSC3)C2)n(Cc2ccccc2)n1,Cc1cc(N2CCN([C@@H]3CN[C@H](C(=O)N4CCSC4)C3)CC2)n(-c2ccccc2)n1,evolved,0.4,0.913,3.45,,13,0 1 2 3 16 17 18 19 20 21 22 23 24
+CCCn1c(-c2ccc(O)cc2)c(C)c2cc(O)ccc21,CC(=O)O.Cc1c(-c2ccc(O)cc2)n(Cc2ccc(OCCN3CCCCCC3)cc2)c2ccc(O)cc12,evolved,0.429,0.745,2.16,,2,0 1
+Cc1c(-c2ccc(O)cc2)n(Cc2ccccc2)c2ccc(O)cc12,CC(=O)O.Cc1c(-c2ccc(O)cc2)n(Cc2ccc(OCCN3CCCCCC3)cc2)c2ccc(O)cc12,evolved,0.539,0.551,2.04,,0,
+C[C@H]1[C@H](c2ccccc2)OCCN1Cc1ccccc1,C[C@H]1[C@H](c2ccccc2)OCCN1C.O=C(O)C(O)C(O)C(=O)O,evolved,0.409,0.841,2.69,,6,14 15 16 17 18 19
+CCN(CCO)N1CCO[C@@H](c2ccccc2)[C@@H]1C,C[C@H]1[C@H](c2ccccc2)OCCN1C.O=C(O)C(O)C(O)C(=O)O,evolved,0.4,0.878,3.55,,6,0 1 2 3 4 5
+O=c1[nH]c2ccc(C(F)(F)F)cc2c(CCO)c1F,O=c1[nH]c2ccc(C(F)(F)F)cc2c(-c2cc(Cl)ccc2O)c1CCO,evolved,0.442,0.826,2.5,,4,14 15 16 18
+O=c1[nH]c2ccc(C(F)(F)F)cc2c(-c2cc(Cl)ccc2O)c1-c1ccccc1,O=c1[nH]c2ccc(C(F)(F)F)cc2c(-c2cc(Cl)ccc2O)c1CCO,evolved,0.561,0.407,2.3,,6,23 24 25 26 27 28
+O=c1[nH]c2ccc(C(F)(F)F)cc2c(-c2cc(Cl)ccc2Cl)c1-c1ccccc1,O=c1[nH]c2ccc(C(F)(F)F)cc2c(-c2cc(Cl)ccc2O)c1CCO,evolved,0.427,0.356,2.28,,7,21 23 24 25 26 27 28
+COC(=O)[C@H]1[C@@H](c2ccc(CCO)cc2)C[C@@H]2CC[C@H]1N2C,COC(=O)[C@H]1[C@@H](c2ccc(I)cc2)C[C@@H]2CC[C@H]1N2CCCF,evolved,0.407,0.864,4.08,,3,10 11 12
+CCC1(CCCc2ccccc2)C(=O)NC(=O)NC1=O,CCC1(CCC(C)C)C(=O)NC(=O)NC1=O,evolved,0.404,0.803,2.34,,6,6 7 8 9 10 11
+CCCN(Cc1cc2ccccc2s1)C(N)=O,CC(c1cc2ccccc2s1)N(O)C(N)=O,evolved,0.415,0.887,2.28,,3,0 1 2
+CN(Cc1cc2ccccc2s1)C(N)=O,CC(c1cc2ccccc2s1)N(O)C(N)=O,evolved,0.45,0.83,2.25,,1,0
+NC(=O)Cc1cc2ccccc2s1,CC(c1cc2ccccc2s1)N(O)C(N)=O,evolved,0.446,0.774,2.13,,2,0 2
+CN1CN(C2CCCCC2)C2(CCN(Cc3cccc(C(=O)O)c3)CC2)C1=O,O=C(O)c1cccc(CN2CN(C3CCCCC3)C3(CCN(CCCC(=O)c4ccccc4)CC3)C2=O)c1,evolved,0.554,0.863,3.1,,9,15 16 17 18 19 20 21 22 23
+CN1CN(C2CCCCC2)C2(CCN(CC(=O)c3ccccc3)CC2)C1=O,O=C(O)c1cccc(CN2CN(C3CCCCC3)C3(CCN(CCCC(=O)c4ccccc4)CC3)C2=O)c1,evolved,0.442,0.766,3.07,,7,16 17 18 19 20 21 22
+CC1(C)C(=O)N(Cc2cccc(C(=O)c3ccccc3)c2)CN1C1CCCCC1,O=C(O)c1cccc(CN2CN(C3CCCCC3)C3(CCN(CCCC(=O)c4ccccc4)CC3)C2=O)c1,evolved,0.458,0.699,2.5,,8,0 2 14 15 16 17 18 19
+OCCCN1c2ccccc2Sc2cc(Cl)cnc21,OCCN1CCN(CCCN2c3ccccc3Sc3cc(Cl)cnc32)CC1,evolved,0.739,0.935,2.48,,1,0
+OCCCCN1c2ccccc2Sc2cc(Cl)cnc21,OCCN1CCN(CCCN2c3ccccc3Sc3cc(Cl)cnc32)CC1,evolved,0.718,0.862,2.48,,2,0 1
+Clc1cnc2c(c1)Sc1ccccc1N2CCN1CCCCC1,OCCN1CCN(CCCN2c3ccccc3Sc3cc(Cl)cnc32)CC1,evolved,0.628,0.793,2.44,,6,17 18 19 20 21 22
+CCCCCN1c2ccccc2Sc2cc(Cl)cnc21,OCCN1CCN(CCCN2c3ccccc3Sc3cc(Cl)cnc32)CC1,evolved,0.649,0.691,2.38,,2,0 1
+CCCCCCN1c2ccccc2Sc2cc(Cl)cnc21,OCCN1CCN(CCCN2c3ccccc3Sc3cc(Cl)cnc32)CC1,evolved,0.632,0.637,2.37,,3,0 1 2
+Cc1cccc(CCN2c3ccccc3Sc3cc(Cl)cnc32)c1,OCCN1CCN(CCCN2c3ccccc3Sc3cc(Cl)cnc32)CC1,evolved,0.523,0.584,2.34,,7,0 1 2 3 4 5 23
+CCCCN1c2ccccc2Sc2cc(Cc3ccccc3)cnc21,OCCN1CCN(CCCN2c3ccccc3Sc3cc(Cl)cnc32)CC1,evolved,0.418,0.557,2.31,,8,0 15 16 17 18 19 20 21
+COc1cc(N)c(Cl)cc1C(=O)Nc1ccccc1,COc1cc(N)c(Cl)cc1C(=O)N[C@@H]1CCNC[C@@H]1OC,evolved,0.41,0.846,1.69,,1,16
+COc1cc(C(=O)N[C@@H]2CCNC[C@@H]2C)c(OC)cc1Cl,COc1cc(N)c(Cl)cc1C(=O)N[C@@H]1CCNC[C@@H]1OC,evolved,0.444,0.894,2.96,,4,0 1 14 20
+CCN(C(=O)c1ccccn1)c1cccc(-c2cnn(C3CC3)c2)c1,COc1ccc(C2CCC(CN(C(=O)C3CCC(O)CC3)c3cccc(-c4cnn(C5CC5)c4)c3)CC2)cc1C,evolved,0.414,0.711,2.4,,2,0 10
+COc1ccc(C2CCC(c3cccc(-c4cnn(C5CC5)c4)c3)CC2)cc1C,COc1ccc(C2CCC(CN(C(=O)C3CCC(O)CC3)c3cccc(-c4cnn(C5CC5)c4)c3)CC2)cc1C,evolved,0.554,0.491,2.4,,14,10 11 12 13 14 15 16 17 18 19 20 21 22 23
+O[C@H](C=CC1CCCCC1)COc1cc(F)ccc1F,CC(C)OC(=O)CCC[C@H]1CC[C@@H]2[C@@H](/C=C/[C@@H](O)COc3cc(F)ccc3F)[C@H](O)C[C@@H]2OC1,evolved,0.422,0.831,2.9,,0,
+Nc1ncc(-c2ccncc2)nc1Nc1ccccc1Cl,Nc1ncc(-c2ccncc2)nc1Nc1ccc2[nH]ccc2c1,evolved,0.45,0.773,2.21,,1,20
+CCSNc1nc(-c2ccncc2)cnc1N,Nc1ncc(-c2ccncc2)nc1Nc1ccc2[nH]ccc2c1,evolved,0.405,0.807,2.92,,3,0 1 2
+CNC(=O)N1CC(Oc2cccc(-c3ccccc3)c2)C1,CNC(=O)N1CC(Oc2cccc(C(F)(F)F)c2)C1,evolved,0.552,0.94,1.97,,6,13 14 15 16 17 18
+CNC(=O)N1CC(Oc2cccc(Cc3ccccc3)c2)C1,CNC(=O)N1CC(Oc2cccc(C(F)(F)F)c2)C1,evolved,0.529,0.942,2.03,,6,14 15 16 17 18 19
+CNC(=O)N1CC(Oc2cccc(-c3cccc(C)c3)c2)C1,CNC(=O)N1CC(Oc2cccc(C(F)(F)F)c2)C1,evolved,0.559,0.946,2.08,,7,13 14 15 16 17 18 19
+CNC(=O)N1CC(Oc2cccc(-c3cccc(F)c3)c2)C1,CNC(=O)N1CC(Oc2cccc(C(F)(F)F)c2)C1,evolved,0.551,0.947,2.1,,7,13 14 15 16 17 18 19
+c1ccc(-c2noc(CCN3CCCCC3)n2)cc1,c1ccc(C(Cc2noc(CCN3CCCCC3)n2)c2ccccc2)cc1,evolved,0.493,0.844,1.86,,6,0 1 2 3 17 18
+Cc1cccc(Cc2noc(CCN3CCCCC3)n2)c1,c1ccc(C(Cc2noc(CCN3CCCCC3)n2)c2ccccc2)cc1,evolved,0.474,0.847,2.1,,7,0 1 2 3 4 5 20
+c1ccc(C(CCN2CCCCC2)c2ccccc2)cc1,c1ccc(C(Cc2noc(CCN3CCCCC3)n2)c2ccccc2)cc1,evolved,0.415,0.767,1.71,,7,6 7 8 9 10 11 12
+O=C1C[C@@H](O)[C@H](/C=C/[C@@H](O)COc2ccccc2)[C@H]1c1ccccc1,CS(=O)(=O)NC(=O)CCC/C=C\C[C@H]1C(=O)C[C@@H](O)[C@@H]1/C=C/[C@@H](O)COc1ccccc1,evolved,0.443,0.795,3.44,,6,19 20 21 22 23 24
+O=C1C[C@@H](O)[C@H](/C=C/[C@@H](O)COc2ccccc2)[C@H]1CCc1ccccc1,CS(=O)(=O)NC(=O)CCC/C=C\C[C@H]1C(=O)C[C@@H](O)[C@@H]1/C=C/[C@@H](O)COc1ccccc1,evolved,0.49,0.704,3.43,,6,21 22 23 24 25 26
+CS(=O)(=O)NC(=O)CCCC=CCOCCOc1ccccc1,CS(=O)(=O)NC(=O)CCC/C=C\C[C@H]1C(=O)C[C@@H](O)[C@@H]1/C=C/[C@@H](O)COc1ccccc1,evolved,0.449,0.491,2.3,,10,13 14 15 16 17 18 19 20 21 22
+CNC(=O)Cc1c(Cl)ccc2c1c(Cl)nn2C,C[C@H]1c2cccc(C(C)(C)O)c2C[C@H](CO)N1C(=O)Cc1c(Cl)ccc2c1c(Cl)nn2C,evolved,0.409,0.91,2.66,,2,0 1
+CCc1cc(N2CCOC[C@H]2C)nc(-c2cc[nH]c3nccc2-3)n1,C[C@@H]1COCCN1c1cc(C2([S@](C)(=N)=O)CC2)nc(-c2cc[nH]c3nccc2-3)n1,evolved,0.617,0.803,3.28,,2,0 1
+CCc1cc(N2CCOC[C@H]2c2ccccc2)nc(-c2cc[nH]c3nccc2-3)n1,C[C@@H]1COCCN1c1cc(C2([S@](C)(=N)=O)CC2)nc(-c2cc[nH]c3nccc2-3)n1,evolved,0.446,0.573,3.2,,8,0 1 11 12 13 14 15 16
+CCC(=O)Nc1ccc(-c2cccc(OC)c2)cc1F,COc1cccc(-c2ccc(NC(=O)C3=C(C(=O)O)CCC3)c(F)c2)c1,evolved,0.568,0.918,1.67,,2,0 1
+COCC(=O)Nc1ccc(-c2cccc(OC)c2)cc1F,COc1cccc(-c2ccc(NC(=O)C3=C(C(=O)O)CCC3)c(F)c2)c1,evolved,0.553,0.92,1.73,,3,0 1 2
+COc1cccc(-c2ccc(NC(=O)CF)c(F)c2)c1,COc1cccc(-c2ccc(NC(=O)C3=C(C(=O)O)CCC3)c(F)c2)c1,evolved,0.568,0.93,1.89,,2,14 15
+CCc1ccc(-c2cccc(OC)c2)cc1F,COc1cccc(-c2ccc(NC(=O)C3=C(C(=O)O)CCC3)c(F)c2)c1,evolved,0.413,0.772,1.65,,2,0 1
+COc1cccc(-c2ccc(Cl)c(F)c2)c1,COc1cccc(-c2ccc(NC(=O)C3=C(C(=O)O)CCC3)c(F)c2)c1,evolved,0.405,0.761,1.55,,1,11
+COc1cccc(-c2ccc(C)c(F)c2)c1,COc1cccc(-c2ccc(NC(=O)C3=C(C(=O)O)CCC3)c(F)c2)c1,evolved,0.411,0.741,1.49,,1,11
+CCCC=C[C@H]1[C@H](O)CC(=O)[C@@H]1C/C=C\CCO,C=CC(O)(C/C=C/[C@H]1[C@H](O)CC(=O)[C@@H]1C/C=C\CCCC(=O)OC)CCCC,evolved,0.425,0.683,3.94,,1,17
+CCCC=C[C@H]1[C@H](O)CC(=O)[C@@H]1C/C=C\CCOC,C=CC(O)(C/C=C/[C@H]1[C@H](O)CC(=O)[C@@H]1C/C=C\CCCC(=O)OC)CCCC,evolved,0.438,0.543,3.9,,2,17 18
+O=C(OCl)C(O)(c1ccccc1)C1CCCCC1,CCN(CC)CC#CCOC(=O)C(O)(c1ccccc1)C1CCCCC1.Cl,evolved,0.507,0.916,2.83,,1,3
+O=C(C1CCCCC1)C(O)(c1ccccc1)C1CCCCC1,CCN(CC)CC#CCOC(=O)C(O)(c1ccccc1)C1CCCCC1.Cl,evolved,0.419,0.882,2.72,,6,2 3 4 5 6 7
+O=C(c1ccccc1)C(O)(c1ccccc1)C1CCCCC1,CCN(CC)CC#CCOC(=O)C(O)(c1ccccc1)C1CCCCC1.Cl,evolved,0.405,0.852,2.5,,6,2 3 4 5 6 7
+O=C(Oc1ccccc1)C(O)(c1ccccc1)C1CCCCC1,CCN(CC)CC#CCOC(=O)C(O)(c1ccccc1)C1CCCCC1.Cl,evolved,0.493,0.684,2.47,,6,3 4 5 6 7 8
+CCCCCCCCC(F)CCCCC,CCCCCCCCC(F)CCCC[C@@H]1C[C@H]1CC(=O)O,evolved,0.46,0.391,2.45,,1,14
+CCCCCCCCC(F)CCCCCC,CCCCCCCCC(F)CCCC[C@@H]1C[C@H]1CC(=O)O,evolved,0.469,0.358,2.45,,2,14 15
+CCCCCCCCC(F)CCCCCCCC,CCCCCCCCC(F)CCCC[C@@H]1C[C@H]1CC(=O)O,evolved,0.479,0.3,1.96,,4,14 15 16 17
+CCNC(=O)O[C@H]1c2nccnc2C(=O)N1c1ccc(F)cn1,CN1CCN(C(=O)O[C@H]2c3nccnc3C(=O)N2c2ccc(Cl)cn2)CC1,evolved,0.467,0.919,3.28,,4,0 1 2 20
+CCO[C@H]1c2nccnc2C(=O)N1c1ccc(C)cn1,CN1CCN(C(=O)O[C@H]2c3nccnc3C(=O)N2c2ccc(Cl)cn2)CC1,evolved,0.404,0.851,3.2,,2,0 17
+CCCNc1ccc2nc3ccc(=[N+](C)C)cc-3sc2c1,CN(C)c1ccc2nc3ccc(=[N+](C)C)cc-3sc2c1.O.O.O.[Cl-],evolved,0.514,0.594,2.66,,2,0 1
+CCCc1ccc2nc3ccc(=[N+](C)CCO)cc-3sc2c1,CN(C)c1ccc2nc3ccc(=[N+](C)C)cc-3sc2c1.O.O.O.[Cl-],evolved,0.43,0.594,2.97,,5,0 1 2 15 16
+C[N+](C)=c1ccc2nc3ccc(NCCc4ccccc4)cc3sc-2c1,CN(C)c1ccc2nc3ccc(=[N+](C)C)cc-3sc2c1.O.O.O.[Cl-],evolved,0.457,0.439,2.48,,7,14 15 16 17 18 19 20
+C[N+](C)=c1ccc2nc3ccc(CCc4ccccc4)cc3sc-2c1,CN(C)c1ccc2nc3ccc(=[N+](C)C)cc-3sc2c1.O.O.O.[Cl-],evolved,0.493,0.401,2.45,,8,12 13 14 15 16 17 18 19
+C[N+](C)=c1ccc2nc3ccc(-c4ccccc4)cc3sc-2c1,CN(C)c1ccc2nc3ccc(=[N+](C)C)cc-3sc2c1.O.O.O.[Cl-],evolved,0.529,0.381,2.41,,6,12 13 14 15 16 17
+COCc1cc2c(Nc3cccc(C)c3)ncnc2cc1C,C#Cc1cccc(Nc2ncnc3cc(OCCOC)c(OCCOC)cc23)c1,evolved,0.411,0.785,2.13,,4,0 1 2 21
+CCOc1cc2ncnc(Nc3cccc(CC)c3)c2cc1Oc1ccccc1,C#Cc1cccc(Nc2ncnc3cc(OCCOC)c(OCCOC)cc23)c1,evolved,0.404,0.415,2.12,,7,17 23 24 25 26 27 28
+C[C@@H](COc1ccccc1)NC(=O)c1ccccc1,C[C@@H](COc1ccccc1)N[C@@H](CO)[C@H](O)c1ccccc1,evolved,0.4,0.892,1.91,,7,12 13 14 15 16 17 18
+C[C@@H](COc1ccccc1)NC(=O)Oc1ccccc1,C[C@@H](COc1ccccc1)N[C@@H](CO)[C@H](O)c1ccccc1,evolved,0.4,0.908,2.15,,8,12 13 14 15 16 17 18 19
+CCOC(=O)C1=C(C)NC(C)=C(C(=O)OC)C1c1ccccn1,CCOC(=O)C1=C(C)NC(C)=C(C(=O)OC)C1c1cccc(Cl)c1Cl,evolved,0.466,0.857,2.75,,1,22
+Cc1ccc2c(c1)c(=O)c1c(n2O)CC(c2ccc(Cl)cc2)CC1=O,O=C1CC(c2ccc(C(F)(F)F)cc2)Cc2c1c(=O)c1cc(Cl)ccc1n2O,evolved,0.593,0.67,2.89,,2,0 19
+O=C1CC(c2ccc(Cl)cc2)Cc2c1c(=O)c1cc(F)ccc1n2O,O=C1CC(c2ccc(C(F)(F)F)cc2)Cc2c1c(=O)c1cc(Cl)ccc1n2O,evolved,0.636,0.671,2.92,,2,8 19
+COc1ccc(-c2ccc3c(c2)c(=O)c2c(n3O)CC(c3ccc(Cl)cc3)CC2=O)cc1,O=C1CC(c2ccc(C(F)(F)F)cc2)Cc2c1c(=O)c1cc(Cl)ccc1n2O,evolved,0.522,0.424,2.89,,9,0 1 2 3 4 5 24 30 31
+COc1ccc(OC[C@H]2CN(CO)CC[C@@H]2c2cccs2)cc1,COc1ccc(OC[C@H]2CN(C)CC[C@@H]2c2ccccc2)cc1,evolved,0.42,0.881,3.13,,2,12 20
+COc1ccc(OC[C@H]2CN(C)CC[C@@H]2c2cccs2)cc1,COc1ccc(OC[C@H]2CN(C)CC[C@@H]2c2ccccc2)cc1,evolved,0.6,0.835,2.97,,1,19
+COc1ccc(N2CC[C@H](c3ccccc3)[C@@H](COC(C)=O)C2)cc1,COc1ccc(OC[C@H]2CN(C)CC[C@@H]2c2ccccc2)cc1,evolved,0.444,0.775,2.75,,11,0 1 2 3 4 5 19 20 21 23 24
+c1ccc(N2CCN(Cc3ccc4c(c3)OCO4)CC2)cc1,CC(C)=CCC/C(C)=C/CC/C(C)=C/CN1CCN(Cc2ccc3c(c2)OCO3)CC1,evolved,0.427,0.869,1.77,,6,0 1 2 3 20 21
+Cc1ccccc1-c1ccccc1N(C)C(=O)CNC1CC1,CN(C(=O)CNC1CC1)c1ccc(Cl)cc1C(=O)c1ccccc1Cl,evolved,0.407,0.917,2.08,,7,0 1 2 3 4 5 6
+CNc1ccc(Cl)cc1C(=O)c1ccccc1Cl,CN(C(=O)CNC1CC1)c1ccc(Cl)cc1C(=O)c1ccccc1Cl,evolved,0.419,0.851,1.78,,0,
+CCc1ccc(Cl)cc1C(=O)c1ccccc1Cl,CN(C(=O)CNC1CC1)c1ccc(Cl)cc1C(=O)c1ccccc1Cl,evolved,0.425,0.738,1.77,,2,0 1
+CCC(=O)OCC(C(=O)OC)c1ccccc1,CCC(=O)OCC(C(=O)O[C@@H]1C[C@@H]2[C@@H]3O[C@H]3[C@H](C1)N2C)c1ccccc1,evolved,0.5,0.733,2.45,,1,10
+CCC(=O)OCC(C(=O)c1ccccc1)c1ccccc1,CCC(=O)OCC(C(=O)O[C@@H]1C[C@@H]2[C@@H]3O[C@H]3[C@H](C1)N2C)c1ccccc1,evolved,0.425,0.6,2.37,,6,9 10 11 12 13 14
+Cc1ccc2nc(C)c(CCN3CCC(O)CC3)c(=O)n2c1,Cc1ccc2nc(C)c(CCN3CCC(C(=O)c4ccc(F)cc4)CC3)c(=O)n2c1,evolved,0.646,0.929,2.4,,1,15
+CCc1ccc2nc(C)c(CCN3CCC(O)CC3)c(=O)n2c1,Cc1ccc2nc(C)c(CCN3CCC(C(=O)c4ccc(F)cc4)CC3)c(=O)n2c1,evolved,0.468,0.93,2.47,,2,0 16
+Cc1ccc2nc(C)c(CCC(=O)O)c(=O)n2c1,Cc1ccc2nc(C)c(CCN3CCC(C(=O)c4ccc(F)cc4)CC3)c(=O)n2c1,evolved,0.476,0.886,2.23,,3,11 12 13
+Cc1ccc2nc(C)c(CCc3ccc(F)cc3)c(=O)n2c1,Cc1ccc2nc(C)c(CCN3CCC(C(=O)c4ccc(F)cc4)CC3)c(=O)n2c1,evolved,0.512,0.743,2.13,,7,11 12 13 14 15 16 17
+Cc1ncc(CCOC(=O)c2ccccc2)c(N)n1,C/C(=C(/CCOC(=O)c1ccccc1)SC(=O)c1ccccc1)N(C=O)Cc1cnc(C)nc1N,evolved,0.483,0.844,2.08,,8,0 1 2 3 4 16 17 18
+Cc1ncc(COC(=O)c2ccccc2)c(N)n1,C/C(=C(/CCOC(=O)c1ccccc1)SC(=O)c1ccccc1)N(C=O)Cc1cnc(C)nc1N,evolved,0.466,0.83,2.04,,8,0 1 2 3 4 15 16 17
+CCc1nc(Cl)cc(Nc2cccc(C)c2C)n1,Cc1cccc(Nc2cc(Cl)nc(SCC(=O)NCCO)n2)c1C,evolved,0.463,0.847,2.23,,2,0 1
+Cc1nc(Cl)cc(Nc2cccc(C)c2C)n1,Cc1cccc(Nc2cc(Cl)nc(SCC(=O)NCCO)n2)c1C,evolved,0.5,0.821,2.12,,1,0
+Cc1cccc(Nc2cc(Cl)nc(-c3ccccc3Cl)n2)c1C,Cc1cccc(Nc2cc(Cl)nc(SCC(=O)NCCO)n2)c1C,evolved,0.404,0.609,2.11,,7,13 14 15 16 17 18 19
+Cn1cnc2c(c(-c3ccccc3)c(-c3ccccc3)n2Cc2ccccn2)c1=N,N=c1c2c(-c3ccccc3)c(-c3ccccc3)n(Cc3ccccc3)c2ncn1[C@H]1CC[C@H](O)CC1,evolved,0.415,0.485,2.51,,2,0 27
+CCN(CC)c1c(-c2ccccc2)n(Cc2ccccc2)c2ncn(F)c(=N)c12,N=c1c2c(-c3ccccc3)c(-c3ccccc3)n(Cc3ccccc3)c2ncn1[C@H]1CC[C@H](O)CC1,evolved,0.415,0.523,2.86,,6,0 1 2 3 4 25
+CCn1cnc2c(c(-c3ccccc3)c(-c3ccccc3)n2Cc2ccccc2)c1=N,N=c1c2c(-c3ccccc3)c(-c3ccccc3)n(Cc3ccccc3)c2ncn1[C@H]1CC[C@H](O)CC1,evolved,0.566,0.4,2.35,,2,0 1
+COc1ccc2c(c1)/C(=C\CCO)c1ccccc1O2,COc1ccc2c(c1)/C(=C\CCN(C)C)c1ccccc1O2,evolved,0.734,0.788,2.3,,1,12
+CCC/C=C1/c2ccccc2Oc2ccc(OC)cc21,COc1ccc2c(c1)/C(=C\CCN(C)C)c1ccccc1O2,evolved,0.746,0.661,2.22,,1,0
+C/C=C1/c2ccccc2Oc2ccc(OC)cc21,COc1ccc2c(c1)/C(=C\CCN(C)C)c1ccccc1O2,evolved,0.619,0.631,2.21,,0,
+COc1ccc2c(c1)/C(=C\c1ccccc1O)c1ccccc1O2,COc1ccc2c(c1)/C(=C\CCN(C)C)c1ccccc1O2,evolved,0.513,0.559,2.15,,7,10 11 12 13 14 15 16
+COc1ccc2c(c1)/C(=C\c1ccccc1)c1ccccc1O2,COc1ccc2c(c1)/C(=C\CCN(C)C)c1ccccc1O2,evolved,0.542,0.494,1.98,,6,10 11 12 13 14 15
+COc1cc2cc(C)nc(CCO)c2cc1OC,CCOc1ccc(Cc2nc(C)cc3cc(OC)c(OC)cc23)cc1OC,evolved,0.456,0.899,2.25,,2,11 12
+Cc1cccc(N(C)C(=S)Oc2ccc3c(c2)C(CO)CC3)c1,Cc1cccc(N(C)C(=S)Oc2ccc3c(c2)C2CCC3C2)c1,evolved,0.543,0.869,3.03,,2,18 19
+Cc1cccc(N(C)C(=S)Oc2ccc3c(c2)C(O)CC3)c1,Cc1cccc(N(C)C(=S)Oc2ccc3c(c2)C2CCC3C2)c1,evolved,0.564,0.856,2.98,,1,18
+Fc1ccccc1Cc1ccccc1-c1nc(C(F)(F)F)n[nH]1,Fc1ccccc1Cc1nc(-c2nc(C(F)(F)F)n[nH]2)cn2ccnc12,evolved,0.429,0.734,2.41,,12,0 1 2 3 4 5 6 7 9 10 11 12
+CCCCc1nc(-c2nc(C(F)(F)F)n[nH]2)cn2ccnc12,Fc1ccccc1Cc1nc(-c2nc(C(F)(F)F)n[nH]2)cn2ccnc12,evolved,0.566,0.804,3.12,,3,0 1 2
+COc1ccc2c(c1)C(C1=CCCCC1)=NCC(=O)N2C,CN1C(=O)CN=C(C2=CCCCC2)c2cc(Cl)ccc21,evolved,0.662,0.838,2.69,,2,0 1
+COc1ccc2c(c1)C(C1=CCCCC1)=NCC(=O)N2c1ccccc1,CN1C(=O)CN=C(C2=CCCCC2)c2cc(Cl)ccc21,evolved,0.443,0.811,2.54,,8,0 1 20 21 22 23 24 25
+N#CCCc1c(C#N)nn(-c2c(Cl)cc(C(F)(F)F)cc2Cl)c1N,N#Cc1nn(-c2c(Cl)cc(C(F)(F)F)cc2Cl)c(N)c1C1(C(F)(F)F)CC1(F)F,evolved,0.493,0.875,3.06,,4,0 1 2 3
+N#Cc1nn(-c2c(Cl)cc(C(F)(F)F)cc2Cl)c(N)c1CC1CC1,N#Cc1nn(-c2c(Cl)cc(C(F)(F)F)cc2Cl)c(N)c1C1(C(F)(F)F)CC1(F)F,evolved,0.5,0.852,2.92,,4,20 21 22 23
+CCc1nc(Nc2cc(C3CCC3)n[nH]2)c2cccn2n1,C[C@@]1(C(=O)Nc2ccc(F)nc2)CCCN1c1nc(Nc2cc(C3CC3)n[nH]2)c2cccn2n1,evolved,0.43,0.771,2.99,,3,0 1 11
+FCc1nc(Nc2cc(C3CCC3)n[nH]2)c2cccn2n1,C[C@@]1(C(=O)Nc2ccc(F)nc2)CCCN1c1nc(Nc2cc(C3CC3)n[nH]2)c2cccn2n1,evolved,0.43,0.773,3.22,,3,0 1 11
+c1ccc(-c2nc(Nc3cc(C4CC4)n[nH]3)c3cccn3n2)cc1,C[C@@]1(C(=O)Nc2ccc(F)nc2)CCCN1c1nc(Nc2cc(C3CC3)n[nH]2)c2cccn2n1,evolved,0.419,0.601,2.7,,6,0 1 2 3 22 23
+CCCCN1CCC(n2c(=O)[nH]c3ccccc32)CC1,O=C(CCCN1CCC(n2c(=O)[nH]c3ccccc32)CC1)c1ccc(F)cc1,evolved,0.615,0.93,2.03,,0,
+CCN1CCC(N2CCC(n3c(=O)[nH]c4ccccc43)CC2)CC1,O=C(CCCN1CCC(n2c(=O)[nH]c3ccccc32)CC1)c1ccc(F)cc1,evolved,0.482,0.941,2.27,,8,0 1 2 3 4 5 22 23
+O=c1[nH]c2ccccc2n1C1CCN(CCCF)CC1,O=C(CCCN1CCC(n2c(=O)[nH]c3ccccc32)CC1)c1ccc(F)cc1,evolved,0.636,0.932,2.27,,1,17
+O=c1[nH]c2ccccc2n1C1CCN(Cc2ccccc2)CC1,O=C(CCCN1CCC(n2c(=O)[nH]c3ccccc32)CC1)c1ccc(F)cc1,evolved,0.494,0.807,1.9,,6,15 16 17 18 19 20
+CCc1ccc(-c2ccccc2-c2nnn[nH]2)cc1,CCOc1nc2cccc(C(=O)O)c2n1Cc1ccc(-c2ccccc2-c2nnn[nH]2)cc1,evolved,0.453,0.777,2.13,,1,0
+COc1ccc2c(c1)c(CCO)c(C)n2C(=O)c1ccccc1,COc1ccc2c(c1)c(CC(=O)N[C@@H](CO)C(=O)O)c(C)n2C(=O)c1ccc(Cl)cc1,evolved,0.477,0.805,2.06,,1,11
+CCCCc1c(C)n(C(=O)c2ccc(Cl)cc2)c2ccc(OC)cc12,COc1ccc2c(c1)c(CC(=O)N[C@@H](CO)C(=O)O)c(C)n2C(=O)c1ccc(Cl)cc1,evolved,0.595,0.592,2.06,,2,0 1
+COc1ccc2c(c1)c(-c1ccccc1)c(C)n2C(=O)c1ccc(Cl)cc1,COc1ccc2c(c1)c(CC(=O)N[C@@H](CO)C(=O)O)c(C)n2C(=O)c1ccc(Cl)cc1,evolved,0.506,0.442,1.99,,6,9 10 11 12 13 14
+CC[C@]1(OC)Oc2c(Cl)c(OC)cc(OC)c2C1=O,COC1=CC(=O)C[C@@H](C)[C@]12Oc1c(Cl)c(OC)cc(OC)c1C2=O,evolved,0.417,0.852,3.51,,4,0 1 3 4
+CC[C@]1(Cl)Oc2c(Cl)c(OC)cc(OC)c2C1=O,COC1=CC(=O)C[C@@H](C)[C@]12Oc1c(Cl)c(OC)cc(OC)c1C2=O,evolved,0.429,0.802,3.5,,3,0 1 3
+CN1C(c2ccccc2)Nc2cc(Cl)c(S(N)(=O)=O)cc2S1(=O)=O,CN1C(CSCC(F)(F)F)Nc2cc(Cl)c(S(N)(=O)=O)cc2S1(=O)=O,evolved,0.458,0.815,3.24,,6,3 4 5 6 7 8
+CC(C)C1Nc2cc(Cl)c(S(N)(=O)=O)cc2S(=O)(=O)N1C,CN1C(CSCC(F)(F)F)Nc2cc(Cl)c(S(N)(=O)=O)cc2S1(=O)=O,evolved,0.5,0.824,3.62,,2,0 2
+CCOc1ccc(-c2nc3ccc(O)cc3s2)cc1,CNc1ccc(-c2nc3ccc(O)cc3s2)cc1,evolved,0.607,0.781,1.87,,3,0 1 2
+COc1ccc(-c2nc3ccc(O)cc3s2)cc1,CNc1ccc(-c2nc3ccc(O)cc3s2)cc1,evolved,0.649,0.761,1.82,,2,0 1
+COc1ccccc1CC[C@@H]1CCc2cc([C@H](C)O)ccc2C1,COc1ccccc1CC[C@@H]1CCc2cc([C@H]3CC[C@](N)(CO)C3)ccc2C1,evolved,0.543,0.882,2.83,,3,16 17 18
+COc1ccc([C@H]2CC[C@](N)(CO)C2)cc1Cc1ccccc1,COc1ccccc1CC[C@@H]1CCc2cc([C@H]3CC[C@](N)(CO)C3)ccc2C1,evolved,0.418,0.891,3.0,,9,0 1 16 17 18 19 20 21 22
+N[C@]1(CO)CC[C@H](c2ccc3c(c2)CC[C@@H](c2ccccc2)C3)C1,COc1ccccc1CC[C@@H]1CCc2cc([C@H]3CC[C@](N)(CO)C3)ccc2C1,evolved,0.495,0.9,3.4,,6,16 17 18 19 20 21
+COC[C@@]1(N)CC[C@H](c2ccc3c(c2)CC[C@@H](OC)C3)C1,COc1ccccc1CC[C@@H]1CCc2cc([C@H]3CC[C@](N)(CO)C3)ccc2C1,evolved,0.417,0.927,3.76,,3,0 17 18
+COc1ccccc1CC[C@@H]1CCc2cc(C(C)C)ccc2C1,COc1ccccc1CC[C@@H]1CCc2cc([C@H]3CC[C@](N)(CO)C3)ccc2C1,evolved,0.544,0.703,2.5,,3,16 17 18
+CCN1/C(=C/C=C/COC)Sc2ccccc21,CCN1/C(=C/C=C/C=C/c2sc3ccccc3[n+]2CC)Sc2ccccc21.[I-],evolved,0.44,0.805,2.7,,2,8 9
+CCC/C=C/C=C1\Sc2ccccc2N1CC,CCN1/C(=C/C=C/C=C/c2sc3ccccc3[n+]2CC)Sc2ccccc21.[I-],evolved,0.451,0.748,2.59,,2,0 1
+OCc1cc2c(Cl)cc(Cl)cc2c2cc(C(F)(F)F)ccc12,CCCCN(CCCC)CCC(O)c1cc2c(Cl)cc(Cl)cc2c2cc(C(F)(F)F)ccc12.Cl,evolved,0.427,0.552,2.31,,0,
+CCc1cc2c(Cl)cc(Cl)cc2c2cc(C(F)(F)F)ccc12,CCCCN(CCCC)CCC(O)c1cc2c(Cl)cc(Cl)cc2c2cc(C(F)(F)F)ccc12.Cl,evolved,0.463,0.423,2.24,,0,
+Fc1cc2c(Cl)cc(Cl)cc2c2cc(C(F)(F)F)ccc12,CCCCN(CCCC)CCC(O)c1cc2c(Cl)cc(Cl)cc2c2cc(C(F)(F)F)ccc12.Cl,evolved,0.412,0.327,2.23,,1,0
+CC(C(=O)O)c1ccc(-c2ccccc2)c(F)c1,CC(C(=O)O)c1ccc2c(c1)Cc1ccccc1-2,evolved,0.403,0.894,2.16,,7,9 10 11 12 13 14 16
+OCCCc1ccc2c(c1)Cc1ccccc1-2,CC(C(=O)O)c1ccc2c(c1)Cc1ccccc1-2,evolved,0.4,0.724,1.91,,2,0 1
+OCCc1ccc2c(c1)Cc1ccccc1-2,CC(C(=O)O)c1ccc2c(c1)Cc1ccccc1-2,evolved,0.419,0.689,1.91,,0,
+OCc1ccc2c(c1)Cc1ccccc1-2,CC(C(=O)O)c1ccc2c(c1)Cc1ccccc1-2,evolved,0.441,0.634,1.85,,1,0
+CCCCc1ccc2c(c1)Cc1ccccc1-2,CC(C(=O)O)c1ccc2c(c1)Cc1ccccc1-2,evolved,0.4,0.607,1.8,,2,0 1
+COc1ccc2c(c1)Cc1ccccc1-2,CC(C(=O)O)c1ccc2c(c1)Cc1ccccc1-2,evolved,0.441,0.58,1.68,,2,0 1
+c1ccc(-c2ccc3c(c2)Cc2ccccc2-3)cc1,CC(C(=O)O)c1ccc2c(c1)Cc1ccccc1-2,evolved,0.426,0.444,1.65,,6,0 1 2 3 17 18
+CC(CCO)C(C(=O)N1CCCC1)(c1ccccc1)c1ccccc1,CC(CN1CCOCC1)C(C(=O)N1CCCC1)(c1ccccc1)c1ccccc1,evolved,0.585,0.875,2.83,,2,3 4
+CCC(C)C(C(=O)N1CCCC1)(c1ccccc1)c1ccccc1,CC(CN1CCOCC1)C(C(=O)N1CCCC1)(c1ccccc1)c1ccccc1,evolved,0.613,0.785,2.72,,1,0
+O=C(CN1CCOCC1)C(=O)C(C(=O)N1CCCCC1)(c1ccccc1)c1ccccc1,CC(CN1CCOCC1)C(C(=O)N1CCCC1)(c1ccccc1)c1ccccc1,evolved,0.425,0.495,2.62,,10,0 2 3 4 5 6 7 8 10 17
+CCC(=O)C(O)(c1ccccc1)c1cccs1,C[N+]1(C)CCC(OC(=O)C(O)(c2ccccc2)c2cccs2)C1.[Br-],evolved,0.435,0.9,2.81,,2,0 1
+CC(=O)C(O)(c1ccccc1)c1cccs1,C[N+]1(C)CCC(OC(=O)C(O)(c2ccccc2)c2cccs2)C1.[Br-],evolved,0.462,0.883,2.71,,1,0
+CCCCn1c(CC)nc2c(N)nc3ccccc3c21,CCOCc1nc2c(N)nc3ccccc3c2n1CC(C)(C)O,evolved,0.494,0.787,2.2,,2,0 7
+CCCCn1c(C)nc2c(N)nc3ccccc3c21,CCOCc1nc2c(N)nc3ccccc3c2n1CC(C)(C)O,evolved,0.443,0.78,2.17,,1,0
+CCn1c(CCC2CC2)nc2c(N)nc3ccccc3c21,CCOCc1nc2c(N)nc3ccccc3c2n1CC(C)(C)O,evolved,0.487,0.795,2.32,,4,5 6 7 8
+CCCCn1c(Cl)nc2c(N)nc3ccccc3c21,CCOCc1nc2c(N)nc3ccccc3c2n1CC(C)(C)O,evolved,0.438,0.794,2.31,,2,0 6
+CCn1c(COC(C)C)nc2c(N)nc3ccccc3c21,CCOCc1nc2c(N)nc3ccccc3c2n1CC(C)(C)O,evolved,0.553,0.799,2.41,,1,8
+CCCCCn1c(C)nc2c(N)nc3ccccc3c21,CCOCc1nc2c(N)nc3ccccc3c2n1CC(C)(C)O,evolved,0.432,0.734,2.17,,2,0 1
+CCc1nc2c(N)nc3ccccc3c2n1Cc1ccccc1,CCOCc1nc2c(N)nc3ccccc3c2n1CC(C)(C)O,evolved,0.481,0.626,2.04,,7,0 17 18 19 20 21 22
+Cc1nc2c(N)nc3ccccc3c2n1CCc1ccccc1,CCOCc1nc2c(N)nc3ccccc3c2n1CC(C)(C)O,evolved,0.405,0.627,2.06,,6,17 18 19 20 21 22
+Cc1nc2c(N)nc3ccccc3c2n1Cc1ccccc1,CCOCc1nc2c(N)nc3ccccc3c2n1CC(C)(C)O,evolved,0.42,0.614,2.0,,6,16 17 18 19 20 21
+CCCn1cnc2c1c(=O)n(CCCO)c(=O)n2C(C)C,CCCn1cnc2c1c(=O)n(CCCCC(C)=O)c(=O)n2C,evolved,0.447,0.851,2.63,,3,14 19 20
+CCCCn1c(=O)c2c(ncn2CCC)n(C)c1=O,CCCn1cnc2c1c(=O)n(CCCCC(C)=O)c(=O)n2C,evolved,0.717,0.812,2.28,,0,
+CCCCCn1cnc2c1c(=O)n(C)c(=O)n2C,CCCn1cnc2c1c(=O)n(CCCCC(C)=O)c(=O)n2C,evolved,0.435,0.747,2.23,,2,0 1
+CCCCn1c(=O)c2c(ncn2Cc2ccccc2)n(C)c1=O,CCCn1cnc2c1c(=O)n(CCCCC(C)=O)c(=O)n2C,evolved,0.462,0.721,2.1,,6,13 14 15 16 17 18
+N#CC(CCN1CCCCC1)(c1ccccc1)c1ccccc1,CCC(=O)n1c(=O)n(C2CCN(CCC(C#N)(c3ccccc3)c3ccccc3)CC2)c2ccccc21,evolved,0.443,0.82,2.13,,0,
+CCOC(=O)C1=C(C)NC(C)=C(CC)C1c1cccc([N+](=O)[O-])c1,COCCOC(=O)C1=C(C)NC(C)=C(C(=O)OC/C=C/c2ccccc2)C1c1cccc([N+](=O)[O-])c1,evolved,0.448,0.504,2.98,,1,13
+CCC1=C(C)NC(C)=C(C(=O)OCc2cccc(OC)c2)C1c1cccc([N+](=O)[O-])c1,COCCOC(=O)C1=C(C)NC(C)=C(C(=O)OC/C=C/c2ccccc2)C1c1cccc([N+](=O)[O-])c1,evolved,0.405,0.384,2.97,,9,0 13 14 15 16 17 18 19 20
+CCCCc1ccc(-c2ccccc2-c2nnn[nH]2)cc1,CCCCc1nc(C)n(Cc2sccc2C(=O)OC)c(=O)c1Cc1ccc(-c2ccccc2-c2nnn[nH]2)cc1,evolved,0.402,0.77,2.14,,3,0 1 2
+COC(=O)c1ccsc1Cn1c(C)nc(CCO)c(C)c1=O,CCCCc1nc(C)n(Cc2sccc2C(=O)OC)c(=O)c1Cc1ccc(-c2ccccc2-c2nnn[nH]2)cc1,evolved,0.421,0.839,2.8,,1,17
+COC(=O)c1ccsc1Cn1c(C)nc(CCCO)c(C)c1=O,CCCCc1nc(C)n(Cc2sccc2C(=O)OC)c(=O)c1Cc1ccc(-c2ccccc2-c2nnn[nH]2)cc1,evolved,0.435,0.812,2.78,,1,18
+CCNC(=O)Nc1cc(C(C)(C)C)nn1-c1ccc(C)cc1,Cc1ccc(-n2nc(C(C)(C)C)cc2NC(=O)NCc2cc(F)ccc2Oc2ccc3c(cnn3CCO)c2)cc1,evolved,0.43,0.909,2.1,,1,0
+CON(Cc1cnc(C)nc1N)/C(C)=C(/C)SC(=O)c1ccco1,CC(=O)OCC(=O)OCC/C(SC(=O)c1ccco1)=C(\C)N(C=O)Cc1cnc(C)nc1N,evolved,0.476,0.796,3.45,,2,0 1
+Cc1ncc(CN(C=O)C(=O)c2ccccc2OC(=O)c2ccco2)c(N)n1,CC(=O)OCC(=O)OCC/C(SC(=O)c1ccco1)=C(\C)N(C=O)Cc1cnc(C)nc1N,evolved,0.429,0.39,2.81,,15,10 11 12 13 14 15 16 17 18 19 20 21 22 23 24
+Fc1ccc(CN2CCN(c3ccccc3)CC2)cc1,O=c1oc(CCN2CCN(c3ccccc3)CC2)c(-c2ccc(F)cc2)o1,evolved,0.417,0.845,1.49,,7,0 1 2 3 4 18 19
+Fc1ccc(CCN2CCN(c3ccccc3)CC2)cc1,O=c1oc(CCN2CCN(c3ccccc3)CC2)c(-c2ccc(F)cc2)o1,evolved,0.514,0.851,1.57,,5,0 1 2 19 20
+c1ccc(CCN2CCN(c3ccccc3)CC2)cc1,O=c1oc(CCN2CCN(c3ccccc3)CC2)c(-c2ccc(F)cc2)o1,evolved,0.429,0.839,1.48,,4,0 1 18 19
+Cc1oc(=O)oc1CCN1CCN(c2ccccc2)CC1,O=c1oc(CCN2CCN(c3ccccc3)CC2)c(-c2ccc(F)cc2)o1,evolved,0.549,0.86,2.29,,1,0
+Cc1oc(=O)oc1CCN1CCN(c2ccc(F)cc2)CC1,O=c1oc(CCN2CCN(c3ccccc3)CC2)c(-c2ccc(F)cc2)o1,evolved,0.493,0.865,2.36,,2,0 17
+CC1(C)N=C(N)N=C(N)N1OCc1ccc(Cl)cc1,CC1(C)N=C(N)N=C(N)N1OCc1ccc(Cl)c(Cl)c1,evolved,0.633,0.877,2.73,,0,
+COc1ccc(CON2C(N)=NC(N)=NC2(C)C)cc1,CC1(C)N=C(N)N=C(N)N1OCc1ccc(Cl)c(Cl)c1,evolved,0.571,0.848,2.66,,2,0 1
+CC(C)ON1C(N)=NC(Cc2ccc(Cl)c(Cl)c2)=NC1(C)C,CC1(C)N=C(N)N=C(N)N1OCc1ccc(Cl)c(Cl)c1,evolved,0.425,0.908,3.21,,11,0 2 9 10 11 12 13 14 15 16 17
+COCc1ccc(Cl)c(Cl)c1,CC1(C)N=C(N)N=C(N)N1OCc1ccc(Cl)c(Cl)c1,evolved,0.411,0.697,1.6,,1,0
+O=C(CN1CCCC1=O)NCc1ccccc1,CC(C)N(CCNC(=O)CN1CCCC1=O)C(C)C,evolved,0.438,0.839,1.69,,6,11 12 13 14 15 16
+O=C(CN1CCCC1=O)NCCc1ccccc1,CC(C)N(CCNC(=O)CN1CCCC1=O)C(C)C,evolved,0.484,0.841,1.74,,6,12 13 14 15 16 17
+O=C(CCN1CCCCC1)c1ccc(O)cc1,CCCCOc1ccc(C(=O)CCN2CCCCC2)cc1.Cl,evolved,0.559,0.812,1.75,,0,
+COc1ccc(C(=O)CCN2CCCCC2)cc1,CCCCOc1ccc(C(=O)CCN2CCCCC2)cc1.Cl,evolved,0.655,0.749,1.64,,0,
+CC(=O)Oc1cc(N[C@@H](C)C)cc(OC(C)CCCc2ccccc2)c1,CC(=O)Oc1cc(OC(C)CCCc2ccccc2)cc2c1[C@@H]1C[C@H](O)CC[C@H]1[C@H](C)N2,evolved,0.406,0.495,2.66,,4,7 8 9 10
+CC(=O)Oc1cc(NC(C)C)cc(OC(C)CCCc2ccccc2)c1,CC(=O)Oc1cc(OC(C)CCCc2ccccc2)cc2c1[C@@H]1C[C@H](O)CC[C@H]1[C@H](C)N2,evolved,0.406,0.495,2.66,,4,7 8 9 10
+C[C@@H]1Nc2cc(CCc3ccccc3)cc(-c3ccccc3)c2[C@@H]2C[C@H](O)CC[C@@H]12,CC(=O)Oc1cc(OC(C)CCCc2ccccc2)cc2c1[C@@H]1C[C@H](O)CC[C@H]1[C@H](C)N2,evolved,0.444,0.549,3.62,,14,6 7 8 9 10 11 12 13 16 17 18 19 20 21
+N=C(N)c1ccc(C=Cc2ccccn2)cc1,N=C(N)c1ccc(/C=C/c2ccc(C(=N)N)cc2O)cc1,evolved,0.404,0.62,2.07,,1,14
+N=C(N)c1ccc(C=Cc2ccccc2)cc1,N=C(N)c1ccc(/C=C/c2ccc(C(=N)N)cc2O)cc1,evolved,0.469,0.468,1.75,,0,
+Cc1ccc2c(c1)[C@H](NC(=O)c1ccccc1)[C@@H](O)C(C)(C)O2,CC(=O)c1ccc2c(c1)[C@H](NC(=O)c1cc(F)cc(F)c1)[C@@H](O)C(C)(C)O2,evolved,0.487,0.896,2.84,,0,
+CC1(C)Oc2ccc(-c3ccccc3)cc2[C@H](NC(=O)c2ccccc2)[C@H]1O,CC(=O)c1ccc2c(c1)[C@H](NC(=O)c1cc(F)cc(F)c1)[C@@H](O)C(C)(C)O2,evolved,0.463,0.717,2.82,,6,8 9 10 11 12 13
+CCCc1nc(Nc2cc(C)[nH]n2)c2ccccc2n1,Cc1cc(Nc2nc(C(O)c3ccc(F)cc3)nc3ccccc23)n[nH]1,evolved,0.506,0.76,2.31,,2,0 1
+Cc1cc(Nc2nc(CC3CC3)nc3ccccc23)n[nH]1,Cc1cc(Nc2nc(C(O)c3ccc(F)cc3)nc3ccccc23)n[nH]1,evolved,0.465,0.768,2.42,,0,
+CCc1nc(Nc2cc(C)[nH]n2)c2ccccc2n1,Cc1cc(Nc2nc(C(O)c3ccc(F)cc3)nc3ccccc23)n[nH]1,evolved,0.506,0.753,2.31,,1,0
+Cc1ccc(-c2nc(Nc3cc(C)[nH]n3)c3ccccc3n2)cc1,Cc1cc(Nc2nc(C(O)c3ccc(F)cc3)nc3ccccc23)n[nH]1,evolved,0.512,0.589,2.14,,7,0 1 2 3 4 22 23
+CCc1cc2c(C)c(-c3ccc(F)cc3)oc2cc1N(CCO)S(C)(=O)=O,CNC(=O)c1c(-c2ccc(F)cc2)oc2cc(N(CCO)S(C)(=O)=O)c(C3CC3)cc12,evolved,0.433,0.692,2.57,,2,0 1
+CNC(=O)c1c(-c2ccc(C)cc2)oc2cc(-c3ccc(F)cc3)c(Cl)cc12,CNC(=O)c1c(-c2ccc(F)cc2)oc2cc(N(CCO)S(C)(=O)=O)c(C3CC3)cc12,evolved,0.432,0.448,2.19,,9,10 17 18 19 20 21 22 23 25
+CCOC(=O)C(C(=O)OCC)c1ccccc1,CCOC(=O)C(C(=O)OC1CC2CCC(C1)[N+]2(C)C)c1ccccc1.COS(=O)(=O)[O-],evolved,0.476,0.578,1.87,,2,9 10
+CCC(C(=O)OC1CC2CCC(C1)[N+]2(C)C)c1ccccc1,CCOC(=O)C(C(=O)OC1CC2CCC(C1)[N+]2(C)C)c1ccccc1.COS(=O)(=O)[O-],evolved,0.548,0.628,4.31,,1,0
+CCCNC1Cc2ccccc2N(C)c2ccccc21,CNC1Cc2ccccc2N(C)c2ccccc21,evolved,0.638,0.901,2.55,,2,0 1
+CN1c2ccccc2CC(NCC2CC2)c2ccccc21,CNC1Cc2ccccc2N(C)c2ccccc21,evolved,0.644,0.911,2.64,,3,12 13 14
+CN1c2ccccc2CC(NCc2ccccc2)c2ccccc21,CNC1Cc2ccccc2N(C)c2ccccc21,evolved,0.597,0.744,2.43,,6,12 13 14 15 16 17
+C[C@@H]1CC2=CC(=O)CC[C@@H]2[C@@H](O)[C@@H]1[C@@H]1CC[C@H](C)C1(C)C,CC(=O)O[C@H]1CC[C@H]2[C@H]3[C@H](CC[C@]12C)[C@H]1CCC(=O)C=C1C[C@H]3C,evolved,0.41,0.793,4.46,,9,11 13 14 15 16 17 18 19 20
+O=C(NCc1ccccc1)[C@@H]1CCN1c1ccc(F)cc1F,CC(C)C[C@H](NC(=O)CNC(=O)[C@@H]1CCN1c1ccc(F)cc1F)B1OC(=O)[C@H](CC(=O)O)O1,evolved,0.416,0.942,2.37,,6,4 5 6 7 8 9
+CC(C)S(=O)(=O)c1ccccc1Nc1nc(-c2ccccc2)nc2c1CCN2,COc1cc(N2CCC(N(C)C)CC2)ccc1Nc1nc2c(c(Nc3ccccc3S(=O)(=O)C(C)C)n1)CCN2,evolved,0.46,0.68,2.52,,6,16 17 18 19 20 21
+Cc1ccc(C(c2ccccc2)N2CCN(CO)CC2)cc1,O=C(O)COCCN1CCN(C(c2ccccc2)c2ccc(Cl)cc2)CC1,evolved,0.425,0.939,2.38,,2,0 17
+CN1CCN(C(c2ccccc2)c2ccc(Cl)cc2)CC1,O=C(O)COCCN1CCN(C(c2ccccc2)c2ccc(Cl)cc2)CC1,evolved,0.53,0.853,2.19,,0,
+CCCCN1CCN(C(c2ccccc2)c2ccccc2)CC1,O=C(O)COCCN1CCN(C(c2ccccc2)c2ccc(Cl)cc2)CC1,evolved,0.471,0.789,1.75,,2,0 1
+Cc1ccccc1N1CCN(CCOCC(=O)O)CC1,O=C(O)COCCN1CCN(C(c2ccccc2)c2ccc(Cl)cc2)CC1,evolved,0.41,0.793,1.89,,7,0 1 2 3 4 5 6
+O=C(O)C(Cn1ccnc1)c1ccc(Cl)cc1Cl,C=CCOC(Cn1ccnc1)c1ccc(Cl)cc1Cl,evolved,0.5,0.939,2.85,,3,0 1 2
+NC(Cn1ccnc1)c1ccc(Cl)cc1Cl,C=CCOC(Cn1ccnc1)c1ccc(Cl)cc1Cl,evolved,0.531,0.917,2.77,,1,0
+CO[C@H]1CC[C@@]2(C)C(=CC[C@H]3[C@@H]4CC[C@H](O)[C@@]4(C)CC[C@@H]32)C1,C[C@H](CCCC(C)(C)O)[C@H]1CC[C@H]2[C@@H]3CC=C4C[C@@H](OS(=O)(=O)O)CC[C@]4(C)[C@H]3CC[C@]12C,evolved,0.438,0.731,4.09,,2,0 15
+CNS(=O)(=O)c1cc(C(=O)Nc2cccc(C)c2)n(C)c1,C[C@H](NS(=O)(=O)c1cc(C(=O)Nc2ccc(F)c(C#N)c2)n(C)c1)C(F)(F)F,evolved,0.414,0.898,2.07,,0,
+Cn1cc(S(=O)(=O)CF)cc1C(=O)Nc1ccc(F)c(Cl)c1,C[C@H](NS(=O)(=O)c1cc(C(=O)Nc2ccc(F)c(C#N)c2)n(C)c1)C(F)(F)F,evolved,0.411,0.923,2.46,,3,7 8 20
+CCC(=O)Nc1ccc(F)c(C#N)c1,C[C@H](NS(=O)(=O)c1cc(C(=O)Nc2ccc(F)c(C#N)c2)n(C)c1)C(F)(F)F,evolved,0.41,0.779,1.9,,2,0 1
+CNC(=O)c1c(-c2ccc(F)cc2)oc2ccc(CF)c(F)c12,CNC(=O)c1c(-c2ccc(F)cc2)oc2ccc(-c3cc(C(=O)NC4(c5ncccn5)CC4)ccc3C)c(F)c12,evolved,0.404,0.786,2.55,,2,18 19
+CNC(=O)c1c(-c2ccc(F)cc2)oc2ccc(-c3ccccn3)c(F)c12,CNC(=O)c1c(-c2ccc(F)cc2)oc2ccc(-c3cc(C(=O)NC4(c5ncccn5)CC4)ccc3C)c(F)c12,evolved,0.5,0.568,2.38,,1,23
+CNC(=O)c1c(-c2ccc(C)cc2)oc2ccc(-c3ccccc3)c(F)c12,CNC(=O)c1c(-c2ccc(F)cc2)oc2ccc(-c3cc(C(=O)NC4(c5ncccn5)CC4)ccc3C)c(F)c12,evolved,0.402,0.519,2.19,,1,10
+CCN(CCO)Cc1cccc2ccccc12,CN(C/C=C/c1ccccc1)Cc1cccc2ccccc12.Cl,evolved,0.426,0.852,1.8,,2,4 5
+CN(Cc1cccc2ccccc12)C(=O)O,CN(C/C=C/c1ccccc1)Cc1cccc2ccccc12.Cl,evolved,0.492,0.836,1.75,,2,14 15
+O=C(O)N(Cc1ccccc1)Cc1cccc2ccccc12,CN(C/C=C/c1ccccc1)Cc1cccc2ccccc12.Cl,evolved,0.408,0.767,1.74,,8,0 2 5 6 7 8 9 10
+CCN(CC)Cc1cccc2ccccc12,CN(C/C=C/c1ccccc1)Cc1cccc2ccccc12.Cl,evolved,0.475,0.749,1.65,,1,4
+CN(Cc1cccc2ccccc12)C(=O)c1ccccc1,CN(C/C=C/c1ccccc1)Cc1cccc2ccccc12.Cl,evolved,0.437,0.704,1.59,,7,14 15 16 17 18 19 20
+COc1ccc2c(C(=S)N(C)C(=O)O)cccc2c1C(F)(F)F,COc1ccc2c(C(=S)N(C)CC(=O)O)cccc2c1C(F)(F)F,evolved,0.692,0.832,2.68,,2,12 13
+COc1ccc2c(C)cccc2c1C(F)(F)F,COc1ccc2c(C(=S)N(C)CC(=O)O)cccc2c1C(F)(F)F,evolved,0.412,0.726,2.01,,0,
+Cc1ccc(CN2CCN(C(=O)c3ccc(O)cc3)CC2)cc1,O=C(c1ccc(CN2CCOCC2)cc1)N1CCN(C2CC2)CC1,evolved,0.417,0.948,1.66,,9,10 11 12 13 14 15 16 17 18
+CCc1ccc(C(=O)N2CCN(Cc3ccc(C)cc3)CC2)cc1,O=C(c1ccc(CN2CCOCC2)cc1)N1CCN(C2CC2)CC1,evolved,0.437,0.86,1.63,,9,0 12 13 14 15 16 17 18 19
+CCc1ccc(CN2CCOCC2)cc1,O=C(c1ccc(CN2CCOCC2)cc1)N1CCN(C2CC2)CC1,evolved,0.419,0.749,1.56,,1,0
+O=C(NCCN1CCCCC1)c1ccc2nccnc2c1,O=C(c1ccc2nccnc2c1)N1CCCCC1,evolved,0.464,0.931,1.95,,9,2 3 4 5 6 7 8 9 10
+O=C(NCC1CC1)c1ccc2nccnc2c1,O=C(c1ccc2nccnc2c1)N1CCCCC1,evolved,0.4,0.869,1.93,,5,2 3 4 5 6
+CCNC(=O)c1ccc2nccnc2c1,O=C(c1ccc2nccnc2c1)N1CCCCC1,evolved,0.41,0.798,1.86,,3,0 1 2
+O=C(c1ccccc1)c1ccc2nccnc2c1,O=C(c1ccc2nccnc2c1)N1CCCCC1,evolved,0.41,0.64,1.74,,6,2 3 4 5 6 7
+CCC(CC)n1c(O)nc2ncc(Cl)nc21,C#Cc1cnc2nc(O)n(C(CC)CC)c2n1,evolved,0.611,0.896,3.22,,1,13
+CCCC(CC)n1c(O)nc2ncc(Cl)nc21,C#Cc1cnc2nc(O)n(C(CC)CC)c2n1,evolved,0.484,0.911,3.63,,2,0 14
+CCCCC(CC)n1c(O)nc2ncc(Cl)nc21,C#Cc1cnc2nc(O)n(C(CC)CC)c2n1,evolved,0.462,0.903,3.56,,3,0 1 15
+ON1CCN(C(c2ccccc2)c2ccc(Cl)cc2)CC1,Cl.Cl.OCCOCCN1CCN(C(c2ccccc2)c2ccc(Cl)cc2)CC1,evolved,0.538,0.941,2.52,,1,0
+CCCN1CCN(C(c2ccccc2)c2ccc(C)cc2)CC1,Cl.Cl.OCCOCCN1CCN(C(c2ccccc2)c2ccc(Cl)cc2)CC1,evolved,0.479,0.82,2.22,,2,0 18
+CCCN1CCC[C@H](NC(=O)c2n[nH]c3ccccc23)C1,Cl.O=C(N[C@@H]1CN2CCC1CC2)c1n[nH]c2ccccc12,evolved,0.506,0.905,2.56,,3,0 1 2
+CC(C)CNC(=O)c1n[nH]c2ccccc12,Cl.O=C(N[C@@H]1CN2CCC1CC2)c1n[nH]c2ccccc12,evolved,0.444,0.825,1.94,,4,0 1 2 3
+CCCNC(=O)c1n[nH]c2ccccc12,Cl.O=C(N[C@@H]1CN2CCC1CC2)c1n[nH]c2ccccc12,evolved,0.451,0.797,1.87,,3,0 1 2
+CCCN1CCC(C)[C@H](NC(=O)c2n[nH]c3ccccc23)C1,Cl.O=C(N[C@@H]1CN2CCC1CC2)c1n[nH]c2ccccc12,evolved,0.543,0.911,3.01,,4,0 1 2 7
+CCN1CCC(C)[C@H](NC(=O)c2n[nH]c3ccccc23)C1,Cl.O=C(N[C@@H]1CN2CCC1CC2)c1n[nH]c2ccccc12,evolved,0.564,0.907,3.01,,3,0 1 6
+O=C(NCc1ccccc1Cl)c1n[nH]c2ccccc12,Cl.O=C(N[C@@H]1CN2CCC1CC2)c1n[nH]c2ccccc12,evolved,0.405,0.777,1.86,,8,3 4 5 6 7 8 9 10
+O=C(NCc1ccccc1)c1n[nH]c2ccccc12,Cl.O=C(N[C@@H]1CN2CCC1CC2)c1n[nH]c2ccccc12,evolved,0.432,0.751,1.7,,7,3 4 5 6 7 8 9
+O=C(Nc1ccccc1)c1n[nH]c2ccccc12,Cl.O=C(N[C@@H]1CN2CCC1CC2)c1n[nH]c2ccccc12,evolved,0.471,0.72,1.66,,1,5
+CS(=O)(=O)Nc1ccc(OCl)c(F)c1,COc1ccc(NS(=O)(=O)c2c(F)c(F)c(F)c(F)c2F)cc1F,evolved,0.404,0.874,2.35,,2,0 10
+CS(=O)(=O)Nc1ccc(Oc2ccc(NS(C)(=O)=O)cc2F)c(F)c1,COc1ccc(NS(=O)(=O)c2c(F)c(F)c(F)c(F)c2F)cc1F,evolved,0.411,0.787,2.16,,13,0 10 11 12 13 14 15 16 17 18 19 20 21
+CC(CO)Oc1ccc2c(c1)CC[C@@H]1[C@@H]2CC[C@]2(C)[C@@H](O)CC[C@@H]12,C[C@]12CC[C@@H]3c4ccc(OC(=O)N(CCCl)CCCl)cc4CC[C@H]3[C@@H]1CC[C@@H]2O,evolved,0.611,0.889,3.83,,3,0 2 3
+CC(C)Oc1ccc2c(c1)CC[C@@H]1[C@@H]2CC[C@]2(C)[C@@H](O)CC[C@@H]12,C[C@]12CC[C@@H]3c4ccc(OC(=O)N(CCCl)CCCl)cc4CC[C@H]3[C@@H]1CC[C@@H]2O,evolved,0.647,0.858,3.58,,2,0 2
+C[C@@H]1[C@H]2C/C(=C/CCCC(=O)O)C[C@H]2C[C@H]1O,CC#CCC(C)[C@H](O)/C=C/[C@@H]1[C@H]2C/C(=C/CCCC(=O)O)C[C@H]2C[C@H]1O,evolved,0.463,0.584,4.06,,0,
+CN1C(=O)CN=C(c2ccccc2)c2cc([N+](C)=O)ccc21,CN1C(=O)CN=C(c2ccccc2F)c2cc([N+](=O)[O-])ccc21,evolved,0.468,0.799,2.56,,1,17
+O=C1CN=C(c2ccccc2F)c2cc([N+](=O)[O-])ccc2N1CCO,CN1C(=O)CN=C(c2ccccc2F)c2cc([N+](=O)[O-])ccc21,evolved,0.649,0.677,2.45,,2,23 24
+O=C1CN=C(c2ccccc2F)c2cc([N+](=O)[O-])ccc2N1c1ccccc1,CN1C(=O)CN=C(c2ccccc2F)c2cc([N+](=O)[O-])ccc21,evolved,0.62,0.507,2.3,,6,22 23 24 25 26 27
+Cc1ccccc1C1=NCC(=O)N(Cc2ccccc2)c2ccc([N+](=O)[O-])cc21,CN1C(=O)CN=C(c2ccccc2F)c2cc([N+](=O)[O-])ccc21,evolved,0.419,0.497,2.27,,7,0 14 15 16 17 18 19
+CCc1c(C)ccc2c(=O)c3cccc(CCO)c3oc12,Cc1ccc2c(=O)c3cccc(CC(=O)O)c3oc2c1C,evolved,0.413,0.749,2.44,,1,0
+Cc1ccc2c(=O)c3cccc(CCO)c3oc2c1O,Cc1ccc2c(=O)c3cccc(CC(=O)O)c3oc2c1C,evolved,0.425,0.702,2.43,,1,19
+Cc1ccc2c(=O)c3cccc(Cl)c3oc2c1C,Cc1ccc2c(=O)c3cccc(CC(=O)O)c3oc2c1C,evolved,0.516,0.565,2.09,,1,12
+Cc1nnn(CC2=C(C(=O)O)N3C(=O)[C@@H](c4ccccc4)[C@H]3SC2)n1,CO/N=C(\C(=O)N[C@@H]1C(=O)N2C(C(=O)O)=C(Cn3nnc(C)n3)CS[C@H]12)c1csc(N)n1,evolved,0.444,0.815,3.6,,6,15 16 17 18 19 20
+Cc1nnn(CC2=C(C(=O)O)N3C(=O)[C@@H](NC(=O)c4ccccc4)[C@H]3SC2)n1,CO/N=C(\C(=O)N[C@@H]1C(=O)N2C(C(=O)O)=C(Cn3nnc(C)n3)CS[C@H]12)c1csc(N)n1,evolved,0.547,0.673,3.44,,6,18 19 20 21 22 23
+Cc1nnn(CC2=C(C(=O)c3ccccc3)N3C(=O)[C@@H](NC(=O)c4ccccc4)[C@H]3SC2)n1,CO/N=C(\C(=O)N[C@@H]1C(=O)N2C(C(=O)O)=C(Cn3nnc(C)n3)CS[C@H]12)c1csc(N)n1,evolved,0.461,0.441,3.44,,12,10 11 12 13 14 15 23 24 25 26 27 28
+CC(C)CC1=Nc2cc(Cl)c(Cl)cc2S(=O)(=O)N1,O=S1(=O)NC(C2CC=CC2)=Nc2cc(Cl)c(Cl)cc21,evolved,0.422,0.91,3.2,,4,0 1 2 3
+CC(F)CC1=Nc2cc(Cl)c(Cl)cc2S(=O)(=O)N1,O=S1(=O)NC(C2CC=CC2)=Nc2cc(Cl)c(Cl)cc21,evolved,0.415,0.912,3.89,,4,0 1 2 3
+COc1ccccc1CC1CCN(Cc2ccccc2)CC1,COc1cc2c(cc1OC)C(=O)C(CC1CCN(Cc3ccccc3)CC1)C2.Cl,evolved,0.439,0.821,1.7,,0,
+COc1cc2c(cc1OC)C(=O)C(Cc1ccccc1)C2,COc1cc2c(cc1OC)C(=O)C(CC1CCN(Cc3ccccc3)CC1)C2.Cl,evolved,0.513,0.863,2.44,,1,17
+COCCC1CCN(Cc2ccccc2)CC1,COc1cc2c(cc1OC)C(=O)C(CC1CCN(Cc3ccccc3)CC1)C2.Cl,evolved,0.416,0.775,1.68,,3,0 1 2
+CCCc1cc2n(c(=O)c1)Cc1cc3c([N+](=O)[O-])cccc3nc1-2,CC[C@@]1(O)C(=O)OCc2c1cc1n(c2=O)Cc2cc3c([N+](=O)[O-])cccc3nc2-1,evolved,0.495,0.428,2.64,,3,0 1 2
+O=c1cc(CCCc2ccccc2)cc2n1Cc1cc3c([N+](=O)[O-])cccc3nc1-2,CC[C@@]1(O)C(=O)OCc2c1cc1n(c2=O)Cc2cc3c([N+](=O)[O-])cccc3nc2-1,evolved,0.44,0.323,2.55,,9,4 5 6 7 8 9 10 11 12
+ON1CCN(CCOc2cccc3ccccc23)CC1,CN(C)[C@@H](CCOc1cccc2ccccc12)c1ccccc1,evolved,0.405,0.926,2.08,,7,0 1 2 3 4 18 19
+CN1CCN(CCOc2cccc3ccccc23)CC1,CN(C)[C@@H](CCOc1cccc2ccccc12)c1ccccc1,evolved,0.431,0.849,1.74,,7,0 1 2 3 4 18 19
+OCCOc1cccc2ccccc12,CN(C)[C@@H](CCOc1cccc2ccccc12)c1ccccc1,evolved,0.5,0.8,1.54,,1,0
+CCCOc1cccc2ccccc12,CN(C)[C@@H](CCOc1cccc2ccccc12)c1ccccc1,evolved,0.525,0.711,1.43,,0,
+CCOc1cccc2ccccc12,CN(C)[C@@H](CCOc1cccc2ccccc12)c1ccccc1,evolved,0.475,0.675,1.33,,0,
+CC1(C)S[C@@H]2[C@H](Nc3cccs3)C(=O)N2[C@H]1C(=O)O,CC1(C)S[C@@H]2[C@H](NC(=O)C3(N)CCCCC3)C(=O)N2[C@H]1C(=O)O,evolved,0.44,0.831,3.88,,5,7 8 9 10 11
+CC1(C)S[C@@H]2[C@H](NC(=O)C3(N)CCCCC3)C(=O)N2[C@H]1Cc1ccccc1,CC1(C)S[C@@H]2[C@H](NC(=O)C3(N)CCCCC3)C(=O)N2[C@H]1C(=O)O,evolved,0.55,0.778,3.76,,6,21 22 23 24 25 26
+NS[C@@H]1[C@H](NC(=O)C2(N)CCCCC2)C(=O)N1c1ccccc1,CC1(C)S[C@@H]2[C@H](NC(=O)C3(N)CCCCC3)C(=O)N2[C@H]1C(=O)O,evolved,0.412,0.566,3.59,,8,0 1 17 18 19 20 21 22
+CC1(C)S[C@@H]2[C@H](N)C(=O)N2[C@H]1C(=O)O,CC1(C)S[C@@H]2[C@H](NC(=O)C3(N)CCCCC3)C(=O)N2[C@H]1C(=O)O,evolved,0.409,0.575,3.72,,0,
+O=C(O)c1cc(-c2ccc(F)cc2)ccc1OCl,CC(=O)Oc1ccc(-c2ccc(F)cc2)cc1C(=O)O,evolved,0.627,0.921,1.99,,1,17
+O=C(O)c1cc(-c2ccc(F)cc2)ccc1F,CC(=O)Oc1ccc(-c2ccc(F)cc2)cc1C(=O)O,evolved,0.5,0.865,1.58,,1,16
+Cc1nn(C)cc1Nc1nccc(-c2c[nH]c3c(C)cccc23)n1,COc1nn(C)cc1Nc1nccc(-c2c[nH]c3c(NC(=O)[C@@H](C)N4CCN(C)CC4)cccc23)n1,evolved,0.422,0.604,2.6,,2,0 18
+CNCCN(C)C1=Nc2ccccc2Oc2ccc(Cl)cc21,CN1CCN(C2=Nc3ccccc3Oc3ccc(Cl)cc32)CC1,evolved,0.417,0.939,2.6,,6,0 1 2 3 4 5
+CC1=Nc2ccccc2Oc2ccc(N3CCN(C)CC3)cc21,CN1CCN(C2=Nc3ccccc3Oc3ccc(Cl)cc32)CC1,evolved,0.463,0.804,2.38,,8,0 14 15 16 17 18 19 20
+Clc1ccc2c(c1)C(N1CCN(c3ccccc3)CC1)=Nc1ccccc1O2,CN1CCN(C2=Nc3ccccc3Oc3ccc(Cl)cc32)CC1,evolved,0.739,0.561,2.21,,6,12 13 14 15 16 17
+CC[C@@H]1CC[C@H]2Cc3n[nH]cc3C[C@]2(C)[C@H]1CC,C[C@]12Cc3c[nH]nc3C[C@@H]1CC[C@@H]1[C@@H]2CC[C@@]2(C)[C@H]1CC[C@]2(C)O,evolved,0.41,0.84,4.65,,2,0 17
+CC[C@@H]1CC[C@H]2Cc3n[nH]cc3C[C@]2(C)[C@H]1O,C[C@]12Cc3c[nH]nc3C[C@@H]1CC[C@@H]1[C@@H]2CC[C@@]2(C)[C@H]1CC[C@]2(C)O,evolved,0.427,0.783,4.6,,1,0
+CC1CC(OC(=O)CN2CCCC2=O)CC(C)(CO)C1,CC1CC(OC(=O)CN2CCCC2=O)CC(C)(C)C1,evolved,0.688,0.791,3.78,,1,18
+O=C(CN1CCCC1=O)OC(=O)CN1CCCC1=O,CC1CC(OC(=O)CN2CCCC2=O)CC(C)(C)C1,evolved,0.431,0.497,2.57,,9,10 11 12 13 14 15 16 17 18
+O=C(CNc1ccccc1Cl)OCc1ccccc1,CC(=O)SCC(Cc1ccccc1)C(=O)NCC(=O)OCc1ccccc1,evolved,0.4,0.849,1.61,,7,4 5 6 7 8 9 10
+Cc1ccccc1NCC(=O)OCc1ccccc1,CC(=O)SCC(Cc1ccccc1)C(=O)NCC(=O)OCc1ccccc1,evolved,0.4,0.834,1.58,,7,0 1 2 3 4 5 6
+CC(=O)SCC(Cc1ccccc1)C(=O)Nc1ccccc1,CC(=O)SCC(Cc1ccccc1)C(=O)NCC(=O)OCc1ccccc1,evolved,0.514,0.883,2.34,,6,16 17 18 19 20 21
+CCC(=O)c1ccccc1,Cc1sc[n+](CC(=O)c2ccccc2)c1C,evolved,0.422,0.567,1.32,,1,0
+Cc1sc[n+](CCc2ccccc2)c1C,Cc1sc[n+](CC(=O)c2ccccc2)c1C,evolved,0.4,0.697,2.54,,0,
+Cc1sc[n+](CC(=O)Cc2cccs2)c1C,Cc1sc[n+](CC(=O)c2ccccc2)c1C,evolved,0.424,0.766,3.15,,6,8 9 10 11 12 13
+Cc1sc[n+](Cc2ccccc2)c1C,Cc1sc[n+](CC(=O)c2ccccc2)c1C,evolved,0.423,0.662,2.48,,6,6 7 8 9 10 11
+O[S+](CC1CC1)c1nc2cc(OC(F)F)ccc2[n-]1,COc1ccnc(C[S+]([O-])c2nc3cc(OC(F)F)ccc3[n-]2)c1OC.O.[Na+],evolved,0.422,0.859,4.66,,0,
+[O-][S+](Cc1ccccc1)c1nc2cc(OC(F)F)ccc2[n-]1,COc1ccnc(C[S+]([O-])c2nc3cc(OC(F)F)ccc3[n-]2)c1OC.O.[Na+],evolved,0.541,0.678,4.14,,1,8
+COc1ccccc1Oc1c(OC)ccnc1-c1nc2cc(OC(F)F)ccc2[n-]1,COc1ccnc(C[S+]([O-])c2nc3cc(OC(F)F)ccc3[n-]2)c1OC.O.[Na+],evolved,0.408,0.437,3.22,,17,0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16
+CCCNc1ncc2sc(C)c(-c3ccc(F)cc3OC)c2n1,COc1cc(F)ccc1-c1c(C)sc2cnc(Nc3cnn(C4CCNCC4)c3)nc12,evolved,0.51,0.74,2.61,,3,0 1 2
+CCCCNc1ncc2sc(C)c(-c3ccc(F)cc3OC)c2n1,COc1cc(F)ccc1-c1c(C)sc2cnc(Nc3cnn(C4CCNCC4)c3)nc12,evolved,0.495,0.637,2.6,,4,0 1 2 3
+COc1cc(F)ccc1-c1c(C)sc2cnc(Nc3ccccc3)nc12,COc1cc(F)ccc1-c1c(C)sc2cnc(Nc3cnn(C4CCNCC4)c3)nc12,evolved,0.602,0.514,2.42,,3,20 21 22
+C/C=C(\c1ccccc1OCC)n1ccnc1,CCCCCOc1ccccc1/C(=C\SC)n1ccnc1,evolved,0.529,0.803,2.5,,1,0
+CCOc1ccccc1/C(=C\SC)n1ccnc1,CCCCCOc1ccccc1/C(=C\SC)n1ccnc1,evolved,0.75,0.823,2.79,,0,
+CCOc1ccccc1/C(=C\SC)Cn1ccnc1,CCCCCOc1ccccc1/C(=C\SC)n1ccnc1,evolved,0.407,0.804,2.69,,6,13 14 15 16 17 18
+CC/C=C(\c1ccccc1OP(=O)(O)O)n1ccnc1,CCCCCOc1ccccc1/C(=C\SC)n1ccnc1,evolved,0.425,0.828,2.99,,6,0 1 11 12 13 14
+NC[C@@H]1C[C@@]1(C(=O)N1CCCCC1)c1ccccc1,CCN(CC)C(=O)[C@@]1(c2ccccc2)C[C@H]1CN,evolved,0.452,0.9,3.11,,6,7 8 9 10 11 12
+CCN(C(=O)[C@@]1(c2ccccc2Cl)C[C@H]1CN)c1ccccc1,CCN(CC)C(=O)[C@@]1(c2ccccc2)C[C@H]1CN,evolved,0.4,0.911,3.25,,7,12 17 18 19 20 21 22
+NC[C@@H]1C[C@@]1(C(=O)c1ccccc1)c1ccccc1,CCN(CC)C(=O)[C@@]1(c2ccccc2)C[C@H]1CN,evolved,0.5,0.849,2.93,,6,7 8 9 10 11 12
+CC[C@@H]1CC1(C(=O)c1ccccc1)c1ccccc1,CCN(CC)C(=O)[C@@]1(c2ccccc2)C[C@H]1CN,evolved,0.424,0.742,2.86,,7,0 7 8 9 10 11 12
+CC1(c2ccccc2)C(=O)NC(=O)C1CCc1ccccc1,CCC1C(=O)NC(=O)C1(C)c1ccccc1,evolved,0.574,0.881,3.04,,6,16 17 18 19 20 21
+CC1(c2ccccc2)C(=O)NC(=O)C1Cc1ccccc1Cl,CCC1C(=O)NC(=O)C1(C)c1ccccc1,evolved,0.544,0.885,3.17,,7,15 16 17 18 19 20 21
+CC1(c2ccccc2)C(=O)NC(=O)C1c1ccccc1,CCC1C(=O)NC(=O)C1(C)c1ccccc1,evolved,0.444,0.847,2.98,,6,2 3 4 5 6 7
+Cc1ccccc1-n1c(CC(C)O)nc2ccccc2c1=O,Cc1ccccc1-n1c(/C=C/c2ccccn2)nc2ccccc2c1=O,evolved,0.427,0.808,2.45,,3,10 11 12
+CCCc1nc2ccccc2c(=O)n1-c1ccccc1C,Cc1ccccc1-n1c(/C=C/c2ccccn2)nc2ccccc2c1=O,evolved,0.443,0.733,1.83,,2,0 1
+CCc1nc2ccccc2c(=O)n1-c1ccccc1C,Cc1ccccc1-n1c(/C=C/c2ccccn2)nc2ccccc2c1=O,evolved,0.467,0.712,1.79,,1,0
+O=C(Nc1nc2cc(SCl)ccc2[nH]1)OC1CC1,COC(=O)Nc1nc2cc(Sc3ccccc3)ccc2[nH]1,evolved,0.455,0.904,2.86,,4,9 15 16 17
+COC(=O)Nc1nc2cc(OC)ccc2[nH]1,COC(=O)Nc1nc2cc(Sc3ccccc3)ccc2[nH]1,evolved,0.515,0.809,2.09,,2,10 11
+COc1ccc2[nH]c(NC(=O)c3ccccc3)nc2c1,COC(=O)Nc1nc2cc(Sc3ccccc3)ccc2[nH]1,evolved,0.4,0.766,1.8,,8,0 1 11 12 13 14 15 16
+COC(=O)Nc1nc2cc(Oc3ccccc3)ccc2[nH]1,COC(=O)Nc1nc2cc(Sc3ccccc3)ccc2[nH]1,evolved,0.563,0.771,2.03,,7,10 11 12 13 14 15 16
+COC(=O)Nc1nc2cc(OCCOCl)ccc2[nH]1,COC(=O)Nc1nc2cc(Sc3ccccc3)ccc2[nH]1,evolved,0.468,0.823,2.63,,5,10 11 12 13 14
+CC1C2Cc3ccc(O)cc3C1(C)CCN2CCN1CCCCC1,CC(C)=CCN1CCC2(C)c3cc(O)ccc3CC1C2C,evolved,0.579,0.921,4.11,,6,18 19 20 21 22 23
+CC12CCN(CCN3CCCCC3)C(Cc3ccc(O)cc31)C2F,CC(C)=CCN1CCC2(C)c3cc(O)ccc3CC1C2C,evolved,0.424,0.921,4.33,,7,7 8 9 10 11 12 23
+Cc1ccc2c(c1)C1(C)CCN(Cc3ccccc3)C(C2)C1C,CC(C)=CCN1CCC2(C)c3cc(O)ccc3CC1C2C,evolved,0.4,0.776,3.78,,7,0 13 14 15 16 17 18
+CCC(=O)OCC(C(=O)C(C)C)c1ccccc1,CCC(=O)OCC(C(=O)O[C@H]1C[C@H]2CC[C@@H](C1)N2C)c1ccccc1,evolved,0.478,0.727,2.64,,3,9 10 11
+CCC(=O)OCC(C(=O)C(C)CC(=O)O)c1ccccc1,CCC(=O)OCC(C(=O)O[C@H]1C[C@H]2CC[C@@H](C1)N2C)c1ccccc1,evolved,0.419,0.744,3.12,,6,9 10 11 12 13 14
+CC(C(=O)O[C@H]1C[C@H]2CC[C@@H](C1)N2O)c1ccccc1,CCC(=O)OCC(C(=O)O[C@H]1C[C@H]2CC[C@@H](C1)N2C)c1ccccc1,evolved,0.405,0.862,4.25,,1,13
+CN1[C@@H]2CC[C@H]1C[C@@H](OC(=O)C(CC1CC1)c1ccccc1)C2,CCC(=O)OCC(C(=O)O[C@H]1C[C@H]2CC[C@@H](C1)N2C)c1ccccc1,evolved,0.623,0.776,4.11,,3,13 14 15
+CC(=O)OCC(C(=O)O[C@H]1C[C@H]2CC[C@@H](C1)N2C)c1ccccc1,CCC(=O)OCC(C(=O)O[C@H]1C[C@H]2CC[C@@H](C1)N2C)c1ccccc1,evolved,0.778,0.776,4.16,,0,
+CCCC(=O)Nc1cccc(-c2nnn[nH]2)c1,O=C(O)C(=O)Nc1cccc(-c2nnn[nH]2)c1,evolved,0.623,0.837,2.26,,2,0 1
+O=C(CCCC1CC1)Nc1cccc(-c2nnn[nH]2)c1,O=C(O)C(=O)Nc1cccc(-c2nnn[nH]2)c1,evolved,0.565,0.845,2.35,,5,3 4 5 6 7
+CCCC(=O)Cc1cccc(-c2nnn[nH]2)c1,O=C(O)C(=O)Nc1cccc(-c2nnn[nH]2)c1,evolved,0.4,0.849,2.49,,6,0 1 2 3 4 5
+O=C(CCOCl)Nc1cccc(-c2nnn[nH]2)c1,O=C(O)C(=O)Nc1cccc(-c2nnn[nH]2)c1,evolved,0.585,0.853,2.72,,3,3 4 5
+O=C(Nc1cccc(-c2nnn[nH]2)c1)c1ccccc1Cl,O=C(O)C(=O)Nc1cccc(-c2nnn[nH]2)c1,evolved,0.576,0.779,2.11,,7,14 15 16 17 18 19 20
+O=C(Nc1cccc(-c2nnn[nH]2)c1)c1ccccc1,O=C(O)C(=O)Nc1cccc(-c2nnn[nH]2)c1,evolved,0.639,0.759,2.01,,6,14 15 16 17 18 19
+O=C(Cc1ccccc1)Nc1cccc(-c2nnn[nH]2)c1,O=C(O)C(=O)Nc1cccc(-c2nnn[nH]2)c1,evolved,0.6,0.765,2.07,,6,3 4 5 6 7 8
+CCN1CCc2c(n(CC(=O)OC)c3ccccc23)C1O,CCN1CCc2c3n(c4ccccc24)C(C(=O)OC)=CCC31,evolved,0.488,0.873,3.03,,6,8 9 10 11 12 20
+CCC1=C(O)[C@@H](N(C)C)[C@@H]2C[C@H]3C(=C(O)[C@]2(O)C1=O)C(=O)c1c(C)ccc(F)c1[C@H]3O,CN(C)[C@@H]1C(O)=C(C(N)=O)C(=O)[C@@]2(O)C(O)=C3C(=O)c4c(O)ccc(Cl)c4[C@@H](O)[C@H]3C[C@@H]12.Cl,evolved,0.442,0.567,4.63,,3,0 23 27
+Cc1ccc(F)c2c1C(=O)C1=C(O)[C@]3(O)C(=O)C(Cc4ccccc4)=C(O)[C@@H](N(C)C)[C@@H]3C[C@@H]1[C@@H]2O,CN(C)[C@@H]1C(O)=C(C(N)=O)C(=O)[C@@]2(O)C(O)=C3C(=O)c4c(O)ccc(Cl)c4[C@@H](O)[C@H]3C[C@@H]12.Cl,evolved,0.404,0.519,4.46,,8,0 5 19 20 21 22 23 24
+Cc1ccc(O)c2c1[C@@H](c1ccccc1)[C@H]1C[C@H]3[C@H](N(C)C)C(O)=C(C(N)=O)C(=O)[C@@]3(O)C(Cc3ccccc3)=C1C2=O,CN(C)[C@@H]1C(O)=C(C(N)=O)C(=O)[C@@]2(O)C(O)=C3C(=O)c4c(O)ccc(Cl)c4[C@@H](O)[C@H]3C[C@@H]12.Cl,evolved,0.408,0.338,4.45,,14,0 9 10 11 12 13 14 33 34 35 36 37 38 39
+Oc1c(Cl)cc(Cl)c(Cl)c1Cc1ccccc1,Oc1c(Cl)cc(Cl)c(Cl)c1Cc1c(O)c(Cl)cc(Cl)c1Cl,evolved,0.585,0.775,2.03,,0,
+CCN(CC)CCc1c(O)c(Cl)cc(Cl)c1Cl,Oc1c(Cl)cc(Cl)c(Cl)c1Cc1c(O)c(Cl)cc(Cl)c1Cl,evolved,0.444,0.822,2.48,,6,0 1 2 3 4 5
+Oc1ccc(CCc2c(O)c(Cl)cc(Cl)c2Cl)cc1,Oc1c(Cl)cc(Cl)c(Cl)c1Cc1c(O)c(Cl)cc(Cl)c1Cl,evolved,0.426,0.795,2.24,,8,0 1 2 3 4 5 17 18
+Oc1c(Cl)cc(Cl)c(Cl)c1CCOF,Oc1c(Cl)cc(Cl)c(Cl)c1Cc1c(O)c(Cl)cc(Cl)c1Cl,evolved,0.476,0.837,3.03,,3,11 12 13
+CCc1ccc2c(c1)N(C(=O)CCO)c1ccccc1S2,CN1CCN(CCC(=O)N2c3ccccc3Sc3ccc(C(F)(F)F)cc32)CC1,evolved,0.43,0.938,2.35,,2,0 13
+Cc1ccc2c(c1)N(C(=O)CCO)c1ccccc1S2,CN1CCN(CCC(=O)N2c3ccccc3Sc3ccc(C(F)(F)F)cc32)CC1,evolved,0.458,0.918,2.29,,1,12
+Cc1ccc2c(c1)N(C(=O)CN1CCN(C)CC1)c1ccccc1S2,CN1CCN(CCC(=O)N2c3ccccc3Sc3ccc(C(F)(F)F)cc32)CC1,evolved,0.512,0.827,2.27,,7,11 12 13 14 15 16 17
+Cc1ccc2c(c1)N(C(=O)Cc1ccccc1)c1ccccc1S2,CN1CCN(CCC(=O)N2c3ccccc3Sc3ccc(C(F)(F)F)cc32)CC1,evolved,0.4,0.629,2.06,,6,11 12 13 14 15 16
+CCCNC(=O)c1c(-c2c(Cl)cccc2Cl)noc1C,Cc1onc(-c2c(Cl)cccc2Cl)c1C(=O)N[C@@H]1C(=O)N2[C@@H]1SC(C)(C)[C@@H]2C(=O)[O-].O.[Na+],evolved,0.422,0.924,2.13,,3,0 1 2
+Cc1onc(-c2c(Cl)cccc2Cl)c1C(=O)Nc1ccccc1,Cc1onc(-c2c(Cl)cccc2Cl)c1C(=O)N[C@@H]1C(=O)N2[C@@H]1SC(C)(C)[C@@H]2C(=O)[O-].O.[Na+],evolved,0.413,0.708,1.96,,3,19 20 21
+CCOCC1=C(C(=O)OCC)[C@@H](c2ccccc2)C(C(C)=O)=C(C)N1,CCOC(=O)C1=C(COCCN)NC(C)=C(C(=O)OC)[C@@H]1c1ccccc1Cl,evolved,0.409,0.771,2.78,,1,20
+CC1(C)S[C@@H]2[C@H](C(C(=O)O)c3ccccc3)C(=O)N2[C@H]1C(=O)O,CC1(C)S[C@@H]2[C@H](NC(=O)C(C(=O)O)c3ccccc3)C(=O)N2[C@H]1C(=O)O,evolved,0.486,0.812,3.72,,10,6 7 8 9 10 11 12 13 14 15
+CC(=O)N[C@@H]1C(=O)N2[C@@H]1SC(C)(C)[C@@H]2C(=O)O,CC1(C)S[C@@H]2[C@H](NC(=O)C(C(=O)O)c3ccccc3)C(=O)N2[C@H]1C(=O)O,evolved,0.554,0.66,3.52,,0,
+CC1(C)S[C@@H]2[C@H](NCCNc3ccccc3)C(=O)N2[C@H]1C(=O)O,CC1(C)S[C@@H]2[C@H](NC(=O)C(C(=O)O)c3ccccc3)C(=O)N2[C@H]1C(=O)O,evolved,0.457,0.535,3.42,,7,9 10 11 12 13 14 15
+CC1(C)S[C@@H]2[C@H](NC(=O)C(=O)c3ccccc3)C(=O)N2[C@H]1C(=O)O,CC1(C)S[C@@H]2[C@H](NC(=O)C(C(=O)O)c3ccccc3)C(=O)N2[C@H]1C(=O)O,evolved,0.554,0.467,3.35,,1,10
+COC1=C(C(=O)Nc2nccs2)N(C)S(=O)(=O)c2ccccc21,CN1C(C(=O)Nc2nccs2)=C(O)c2ccccc2S1(=O)=O,evolved,0.658,0.91,2.67,,1,0
+CC1=C(C(=O)Nc2nccs2)N(C)S(=O)(=O)c2ccccc21,CN1C(C(=O)Nc2nccs2)=C(O)c2ccccc2S1(=O)=O,evolved,0.667,0.912,2.73,,1,0
+CN1C(C(=O)Nc2ccccc2Cl)=C(O)c2ccccc2S1(=O)=O,CN1C(C(=O)Nc2nccs2)=C(O)c2ccccc2S1(=O)=O,evolved,0.553,0.857,2.3,,6,7 8 9 10 11 12
+O=C1CCC(N2C(=O)c3ccc(N4CCCCC4)cc3C2=O)C(=O)N1,NC(=O)c1ncc(N2CCCCC2)nc1Nc1ccc(C2CCN(C[C@H]3CCN(c4ccc5c(c4)C(=O)N(C4CCC(=O)NC4=O)C5=O)C3)CC2)cc1,evolved,0.424,0.814,2.81,,1,15
+Fc1c[nH]c2ncc(-c3cnc(C4CC4)nc3)cc12,O=C(c1c(F)ccc(NS(=O)(=O)N2CC[C@@H](F)C2)c1F)c1c[nH]c2ncc(-c3cnc(C4CC4)nc3)cc12,evolved,0.402,0.764,2.68,,1,0
+CCC(=O)c1c[nH]c2ncc(-c3cnc(C4CC4)nc3)cc12,O=C(c1c(F)ccc(NS(=O)(=O)N2CC[C@@H](F)C2)c1F)c1c[nH]c2ncc(-c3cnc(C4CC4)nc3)cc12,evolved,0.446,0.747,2.62,,2,0 1
+O=C(Cc1ccccc1)c1c[nH]c2ncc(-c3cnc(C4CC4)nc3)cc12,O=C(c1c(F)ccc(NS(=O)(=O)N2CC[C@@H](F)C2)c1F)c1c[nH]c2ncc(-c3cnc(C4CC4)nc3)cc12,evolved,0.431,0.542,2.46,,7,2 3 4 5 6 7 8
+CCc1nc2ccc(C(=O)O)cc2n1C[C@@H]1CCO1,N#Cc1ccc(COc2cccc(C3CCN(Cc4nc5ccc(C(=O)O)cc5n4C[C@@H]4CCO4)CC3)n2)c(F)c1,evolved,0.404,0.914,2.62,,1,0
+O=C(O)c1ccc2nc(CF)n(C[C@@H]3CCO3)c2c1,N#Cc1ccc(COc2cccc(C3CCN(Cc4nc5ccc(C(=O)O)cc5n4C[C@@H]4CCO4)CC3)n2)c(F)c1,evolved,0.429,0.917,2.88,,1,10
+CC(=O)N1CCC(c2cccc(OCc3ccc(C#N)cc3C)n2)CC1,N#Cc1ccc(COc2cccc(C3CCN(Cc4nc5ccc(C(=O)O)cc5n4C[C@@H]4CCO4)CC3)n2)c(F)c1,evolved,0.431,0.846,2.45,,3,0 2 22
+CCN1CCC(c2cccc(OCc3ccc(OC(C)=O)cc3F)n2)CC1,N#Cc1ccc(COc2cccc(C3CCN(Cc4nc5ccc(C(=O)O)cc5n4C[C@@H]4CCO4)CC3)n2)c(F)c1,evolved,0.419,0.568,2.42,,5,0 17 18 19 20
+CCC(=O)N(c1ccccc1)C1(C(=O)OC)CCN(c2ccccc2)CC1,CCC(=O)N(c1ccccc1)C1(C(=O)OC)CCN(CCC(=O)OC)CC1,evolved,0.611,0.758,2.39,,6,19 20 21 22 23 24
+CCC(=O)N(c1ccccc1)C1(C(=O)OC)CCN(CC2=NCCN2)CC1,CCC(=O)N(c1ccccc1)C1(C(=O)OC)CCN(CCC(=O)OC)CC1,evolved,0.588,0.765,2.93,,5,20 21 22 23 24
+COc1ccc(-c2ccc(N3CCC(O)CC3)nn2)cc1,OC1CCN(c2ccc(-c3ccc(Cl)cc3Cl)nn2)CC1,evolved,0.456,0.936,1.99,,2,0 1
+OC1CCN(c2ccc(Cc3ccccc3Cl)nn2)CC1,OC1CCN(c2ccc(-c3ccc(Cl)cc3Cl)nn2)CC1,evolved,0.451,0.947,2.23,,8,9 10 11 12 13 14 15 16
+OC1CCN(c2ccc(-c3ccccc3)nn2)CC1,OC1CCN(c2ccc(-c3ccc(Cl)cc3Cl)nn2)CC1,evolved,0.492,0.893,1.94,,0,
+OC1CCN(c2ccc(Cl)cc2Cl)CC1,OC1CCN(c2ccc(-c3ccc(Cl)cc3Cl)nn2)CC1,evolved,0.433,0.823,1.88,,4,9 10 11 12
+CC(C)NC[C@H](O)COc1ccc(-c2ccccc2)cc1,CC(C)NC[C@H](O)COc1ccc(CCOCC2CC2)cc1,evolved,0.451,0.821,2.17,,6,13 14 15 16 17 18
+CCS(=O)(=O)c1cc(=O)c2c(F)cc(F)cc2[nH]1,CS(=O)(=O)c1ccc(C#N)cc1-c1cc(=O)c2c(F)cc(F)cc2[nH]1,evolved,0.413,0.903,2.81,,5,0 1 2 3 4
+CCc1ccc(S(C)(=O)=O)c(-c2cc(=O)c3c(C)cc(F)cc3[nH]2)c1,CS(=O)(=O)c1ccc(C#N)cc1-c1cc(=O)c2c(F)cc(F)cc2[nH]1,evolved,0.442,0.777,2.57,,2,0 17
+Cc1cc(F)cc2[nH]c(-c3cc(Cl)ccc3S(C)(=O)=O)cc(=O)c12,CS(=O)(=O)c1ccc(C#N)cc1-c1cc(=O)c2c(F)cc(F)cc2[nH]1,evolved,0.452,0.753,2.54,,2,0 12
+CC(C)(CCO)Oc1ccc(Cl)cc1,CCOC(=O)C(C)(C)Oc1ccc(Cl)cc1,evolved,0.42,0.835,2.08,,2,4 5
+COc1ccc(OC(C)(C)C(=O)c2ccc(Cl)cc2)cc1,CCOC(=O)C(C)(C)Oc1ccc(Cl)cc1,evolved,0.404,0.769,1.88,,9,0 1 12 13 14 15 16 17 18
+CCOC(=O)C(C)(C)Oc1ccc(OC)cc1,CCOC(=O)C(C)(C)Oc1ccc(Cl)cc1,evolved,0.667,0.739,1.79,,2,13 14
+CCOC(=O)C(C)(C)Oc1ccccc1,CCOC(=O)C(C)(C)Oc1ccc(Cl)cc1,evolved,0.609,0.713,1.76,,0,
+CCOC(=O)Oc1ccc(Cl)cc1,CCOC(=O)C(C)(C)Oc1ccc(Cl)cc1,evolved,0.449,0.544,1.62,,4,0 1 2 4
+FCc1cc(C(F)(F)C2CCCCN2)nc2c(C(F)(F)F)cccc12,Cl.OC(c1cc(C(F)(F)F)nc2c(C(F)(F)F)cccc12)C1CCCCN1,evolved,0.419,0.781,3.57,,7,0 8 9 10 11 12 13
+COCc1cc(C(C)(F)C2CCCCN2)nc2c(C(F)(F)F)cccc12,Cl.OC(c1cc(C(F)(F)F)nc2c(C(F)(F)F)cccc12)C1CCCCN1,evolved,0.407,0.791,3.68,,8,0 7 9 10 11 12 13 14
+CN1CCN(CC(F)c2cc(C(F)(F)F)nc3c(C(F)(F)F)cccc23)CC1,Cl.OC(c1cc(C(F)(F)F)nc2c(C(F)(F)F)cccc12)C1CCCCN1,evolved,0.414,0.695,3.22,,9,0 1 2 3 4 5 7 26 27
+CC(=O)C(C)[C@H]1CC[C@H]2[C@@H]3CC[C@H]4C[C@@H](N(C)C)CC[C@]4(C)[C@H]3CC[C@]12C,CC(=O)OC[C@]12CC[C@H]3[C@@H](CC[C@H]4C[C@@H](N(C)C)CC[C@@]43C)[C@@H]1CC[C@@H]2[C@H](C)OC(C)=O,evolved,0.511,0.623,4.39,,3,0 2 4
+CC(=O)O[C@@H](C)[C@H]1CC[C@H]2[C@@H]3CC[C@H]4C[C@@H](N(C)C)CC[C@]4(C)[C@H]3CC[C@]12C,CC(=O)OC[C@]12CC[C@H]3[C@@H](CC[C@H]4C[C@@H](N(C)C)CC[C@@]43C)[C@@H]1CC[C@@H]2[C@H](C)OC(C)=O,evolved,0.628,0.595,4.35,,0,
+CC(C)[C@H]1CC[C@H]2[C@@H]3CC[C@H]4C[C@@H](N(C)C)CC[C@]4(C)[C@H]3CC[C@]12C,CC(=O)OC[C@]12CC[C@H]3[C@@H](CC[C@H]4C[C@@H](N(C)C)CC[C@@]43C)[C@@H]1CC[C@@H]2[C@H](C)OC(C)=O,evolved,0.483,0.573,4.16,,1,2
+O=C1NC(=O)C(Cc2ccc(Oc3ccccc3)cc2)S1,CN(CCOc1ccc(CC2SC(=O)NC2=O)cc1)c1ccccn1.O=C(O)/C=C\C(=O)O,evolved,0.434,0.94,2.45,,6,12 13 14 15 16 17
+O=C1NC(=O)C(Cc2ccc(-c3ccccn3)cc2)S1,CN(CCOc1ccc(CC2SC(=O)NC2=O)cc1)c1ccccn1.O=C(O)/C=C\C(=O)O,evolved,0.435,0.941,2.6,,6,11 12 13 14 15 16
+CCc1ccc(OCCN(C)c2ccccn2)cc1,CN(CCOc1ccc(CC2SC(=O)NC2=O)cc1)c1ccccn1.O=C(O)/C=C\C(=O)O,evolved,0.526,0.794,1.89,,1,0
+CN1CCN(CCN(C)C(=O)c2ccc(O)cc2)CC1,CC(C)c1ccc(C(=O)N(C)CCN2CCN(c3cccc4ccoc34)CC2)cc1,evolved,0.405,0.88,1.95,,2,0 15
+CNCN1CCN(c2cccc3ccoc23)CC1,CC(C)c1ccc(C(=O)N(C)CCN2CCN(c3cccc4ccoc34)CC2)cc1,evolved,0.463,0.892,2.47,,2,0 1
+CN1CCN(NCN2CCN(c3cccc4ccoc34)CC2)CC1,CC(C)c1ccc(C(=O)N(C)CCN2CCN(c3cccc4ccoc34)CC2)cc1,evolved,0.429,0.911,2.72,,8,0 1 2 3 4 5 22 23
+CCc1c(F)cc2c(=O)c(C(=O)O)cn([C@@H]3C[C@@H]3F)c2c1F,N[C@@H]1CN(c2c(F)cc3c(=O)c(C(=O)O)cn([C@@H]4C[C@@H]4F)c3c2Cl)CC12CC2.O,evolved,0.418,0.948,3.42,,3,0 1 21
+CCc1c(C)c(F)cc2c(=O)c(C(=O)O)cn([C@@H]3C[C@@H]3F)c12,N[C@@H]1CN(c2c(F)cc3c(=O)c(C(=O)O)cn([C@@H]4C[C@@H]4F)c3c2Cl)CC12CC2.O,evolved,0.429,0.948,3.48,,3,0 1 4
+Cc1c(F)cc2c(=O)c(C(=O)O)cn([C@@H]3C[C@@H]3F)c2c1F,N[C@@H]1CN(c2c(F)cc3c(=O)c(C(=O)O)cn([C@@H]4C[C@@H]4F)c3c2Cl)CC12CC2.O,evolved,0.432,0.926,3.38,,2,0 20
+O=C(O)c1cn([C@@H]2C[C@@H]2F)c2c(F)c(-c3ccccc3)c(F)cc2c1=O,N[C@@H]1CN(c2c(F)cc3c(=O)c(C(=O)O)cn([C@@H]4C[C@@H]4F)c3c2Cl)CC12CC2.O,evolved,0.4,0.771,3.18,,7,12 14 15 16 17 18 19
+O=C(O)COCc1nc2cc(C(F)(F)F)ccc2s1,O=C(O)Cc1nn(Cc2nc3cc(C(F)(F)F)ccc3s2)c(=O)c2cscc12,evolved,0.437,0.941,2.33,,5,0 1 2 3 4
+OCCCc1nc2cc(C(F)(F)F)ccc2s1,O=C(O)Cc1nn(Cc2nc3cc(C(F)(F)F)ccc3s2)c(=O)c2cscc12,evolved,0.4,0.92,2.25,,3,0 1 2
+O=C(O)CCCCc1nc2cc(C(F)(F)F)ccc2s1,O=C(O)Cc1nn(Cc2nc3cc(C(F)(F)F)ccc3s2)c(=O)c2cscc12,evolved,0.448,0.846,2.19,,6,0 1 2 3 4 5
+CNC(=O)[C@@H](F)CC[C@H]1c2cc(OC)c(OC)cc2CCN1F,CNC(=O)[C@@H](c1ccccc1)N1CCc2cc(OC)c(OC)cc2[C@@H]1CCc1ccc(C(F)(F)F)cc1,evolved,0.402,0.815,3.78,,7,0 1 2 3 4 5 22
+COc1cc2c(cc1OC)[C@H](CCc1ccc(C(F)(F)F)cc1)N(OC)CC2,CNC(=O)[C@@H](c1ccccc1)N1CCc2cc(OC)c(OC)cc2[C@@H]1CCc1ccc(C(F)(F)F)cc1,evolved,0.516,0.702,3.0,,2,24 25
+CNC(=O)[C@H](CC[C@H]1c2cc(OC)c(OC)cc2CCN1F)c1ccccc1,CNC(=O)[C@@H](c1ccccc1)N1CCc2cc(OC)c(OC)cc2[C@@H]1CCc1ccc(C(F)(F)F)cc1,evolved,0.453,0.736,3.43,,12,0 1 2 3 4 21 22 23 24 25 26 27
+COc1cc2c(cc1OC)[C@H](CCc1ccc(C(F)(F)F)cc1)N(Cl)CC2,CNC(=O)[C@@H](c1ccccc1)N1CCc2cc(OC)c(OC)cc2[C@@H]1CCc1ccc(C(F)(F)F)cc1,evolved,0.516,0.627,2.96,,1,24
+CNC(=O)N1CCc2cc(OC)c(OC)cc2[C@@H]1CCc1ccc(-c2ccc(C(F)(F)F)cc2)cc1,CNC(=O)[C@@H](c1ccccc1)N1CCc2cc(OC)c(OC)cc2[C@@H]1CCc1ccc(C(F)(F)F)cc1,evolved,0.505,0.436,2.92,,13,0 1 3 24 25 26 27 28 29 30 31 32 33
+COc1cc2c(cc1OC)[C@H](CCc1ccc(-c3ccc(C(F)(F)F)cc3)cc1)N(C(C)=O)CC2,CNC(=O)[C@@H](c1ccccc1)N1CCc2cc(OC)c(OC)cc2[C@@H]1CCc1ccc(C(F)(F)F)cc1,evolved,0.481,0.404,2.82,,11,17 18 19 20 21 22 23 24 25 26 32
+CCC(C/C=C/c1ccccc1)(NC)c1ccccc1,CCC(C/C=C/c1ccccc1)(c1ccccc1)N(C)CC1CC1,evolved,0.431,0.804,2.72,,0,
+CNC(C/C=C/c1ccccc1)(c1ccccc1)C1CC1,CCC(C/C=C/c1ccccc1)(c1ccccc1)N(C)CC1CC1,evolved,0.448,0.812,2.95,,3,18 19 20
+CCC(CO)(c1ccccc1)N(C)CC1CC1,CCC(C/C=C/c1ccccc1)(c1ccccc1)N(C)CC1CC1,evolved,0.559,0.816,3.03,,1,4
+CCC(CC)(c1ccccc1)N(C)CC1CC1,CCC(C/C=C/c1ccccc1)(c1ccccc1)N(C)CC1CC1,evolved,0.6,0.714,2.51,,0,
+CC(C)(C)NC(=O)N1CC(O[C@H](c2ccc(Cl)cc2)c2ccccn2)C1,CC(C)(C)NC(=O)N1CC(O[C@H](c2ccc(Cl)cc2)c2ccccc2C(F)(F)F)C1,evolved,0.578,0.88,2.9,,1,24
+Cc1ccccc1[C@H](OC1CN(C(=O)NC(C)(C)C)C1)c1ccc(Cl)cc1,CC(C)(C)NC(=O)N1CC(O[C@H](c2ccc(Cl)cc2)c2ccccc2C(F)(F)F)C1,evolved,0.701,0.807,2.8,,0,
+CO[C@H](c1ccc(Cl)cc1)c1ccccc1C(F)(F)F,CC(C)(C)NC(=O)N1CC(O[C@H](c2ccc(Cl)cc2)c2ccccc2C(F)(F)F)C1,evolved,0.486,0.767,2.5,,1,0
+CNCCO[C@H](c1ccc(Cl)cc1)c1ccccc1C(F)(F)F,CC(C)(C)NC(=O)N1CC(O[C@H](c2ccc(Cl)cc2)c2ccccc2C(F)(F)F)C1,evolved,0.44,0.769,2.69,,4,0 1 2 3
+CNc1nc(C)n(-c2cccc(Cl)c2Cl)c(=O)c1C,Cc1c(N2CCC3(CC2)CO[C@@H](C)[C@H]3N)nc(C)n(-c2cccc(Cl)c2Cl)c1=O,evolved,0.419,0.926,2.57,,2,0 1
+CCc1nc(C)n(-c2cccc(Cl)c2Cl)c(=O)c1C,Cc1c(N2CCC3(CC2)CO[C@@H](C)[C@H]3N)nc(C)n(-c2cccc(Cl)c2Cl)c1=O,evolved,0.414,0.846,2.4,,2,0 1
+O=C(O)C(c1ccccc1)C1CCCCC1,CCN(CC)CCOC(=O)C(c1ccccc1)C1CCCCC1,evolved,0.483,0.843,2.32,,0,
+CP(=O)(O)OC(=O)C(c1ccccc1)C1CCCCC1,CCN(CC)CCOC(=O)C(c1ccccc1)C1CCCCC1,evolved,0.554,0.86,3.25,,4,0 1 2 3
+O=C(OCl)c1cccnc1N1CCN(Cc2ccccc2)CC1,CCN(Cc1ccc(CN2CCN(c3ncccc3C(=O)OC(C)C)CC2)cc1)Cc1c(Cl)cccc1Cl,evolved,0.448,0.862,2.1,,1,3
+CCN(CC)Cc1ccc(CN2CCN(c3ccccc3Cl)CC2)cc1,CCN(Cc1ccc(CN2CCN(c3ncccc3C(=O)OC(C)C)CC2)cc1)Cc1c(Cl)cccc1Cl,evolved,0.411,0.709,1.89,,3,4 20 21
+Cc1ccc2c(c1)-c1c(O)cc(CCCO)cc1OC2(C)C,CCCCCc1cc(O)c2c(c1)OC(C)(C)c1ccc(C)cc1-2,evolved,0.785,0.903,2.57,,1,15
+Cc1cc(O)c2c(c1)OC(C)(C)c1ccc(C)cc1-2,CCCCCc1cc(O)c2c(c1)OC(C)(C)c1ccc(C)cc1-2,evolved,0.567,0.759,2.49,,0,
+NCc1nccc(-c2ccccc2CC(=O)O)c1F,NCc1nccc(-c2cc(COc3ccccc3CC(=O)O)cc3ccoc23)c1F,evolved,0.444,0.881,2.37,,4,13 14 15 16
+O=C(O)c1ccc(C2CCCC(=NF)C2)cc1,CC(C(=O)O)c1ccc(C2CCCC(=NO)C2)cc1,evolved,0.431,0.854,3.04,,3,0 2 13
+CC(C(=O)O)c1ccc(C2CCCC(=NF)C2)cc1,CC(C(=O)O)c1ccc(C2CCCC(=NO)C2)cc1,evolved,0.737,0.9,3.45,,1,15
+CCCCc1ccc(C2CCCC(=NC(=O)C(C)C)C2)cc1,CC(C(=O)O)c1ccc(C2CCCC(=NO)C2)cc1,evolved,0.4,0.724,2.83,,7,0 1 14 15 16 17 18
+ON=C1CCCC(c2ccc(-c3ccccc3)cc2)C1,CC(C(=O)O)c1ccc(C2CCCC(=NO)C2)cc1,evolved,0.532,0.611,2.5,,6,11 12 13 14 15 16
+COc1ccc(CN(CCO)c2ncccn2)cc1,COc1ccc(CN(CCN(C)C)c2ncccn2)cc1,evolved,0.725,0.851,2.08,,1,10
+COc1ccc(CN(C)c2ncccn2)cc1,COc1ccc(CN(CCN(C)C)c2ncccn2)cc1,evolved,0.547,0.805,1.9,,0,
+CCN(Cc1ccc(OC)cc1)c1ncccn1,COc1ccc(CN(CCN(C)C)c2ncccn2)cc1,evolved,0.66,0.808,1.99,,0,
+Cc1ccc(OC(=O)[C@@H]2CC[C@@H](CC(N)=O)CC2)cc1,CC(C)(C)c1ccc(OC(=O)[C@H]2CC[C@H](CNC(=N)N)CC2)cc1,evolved,0.443,0.678,2.0,,3,13 14 15
+CC(C)CCCn1cnc2c1c(=O)n(C)c(=O)n2C,CN(C)CCn1cnc2c1c(=O)n(C)c(=O)n2C,evolved,0.6,0.823,2.35,,4,0 1 2 3
+Cn1c(=O)c2c(ncn2CCCN2CCCCC2)n(C)c1=O,CN(C)CCn1cnc2c1c(=O)n(C)c(=O)n2C,evolved,0.532,0.815,2.29,,7,11 12 13 14 15 16 17
+CCCCn1cnc2c1c(=O)n(C)c(=O)n2C,CN(C)CCn1cnc2c1c(=O)n(C)c(=O)n2C,evolved,0.647,0.766,2.25,,2,0 1
+CCCCCCn1cnc2c1c(=O)n(C)c(=O)n2C,CN(C)CCn1cnc2c1c(=O)n(C)c(=O)n2C,evolved,0.611,0.757,2.23,,4,0 1 2 3
+Cn1c(=O)c2c(ncn2CCCc2ccccc2)n(C)c1=O,CN(C)CCn1cnc2c1c(=O)n(C)c(=O)n2C,evolved,0.532,0.724,2.1,,7,11 12 13 14 15 16 17
+COCC(O)c1ccc(C2CCc3cc(F)ccc3O2)cc1,Cl.OC(CNCC(O)C1CCc2cc(F)ccc2O1)C1CCc2cc(F)ccc2O1,evolved,0.405,0.938,2.97,,11,0 1 2 3 4 5 6 7 8 20 21
+Fc1ccc2c(c1)CCC(CC1CCC1)O2,Cl.OC(CNCC(O)C1CCc2cc(F)ccc2O1)C1CCc2cc(F)ccc2O1,evolved,0.406,0.738,2.72,,4,11 12 13 14
+CC1CCc2cc(F)ccc2O1,Cl.OC(CNCC(O)C1CCc2cc(F)ccc2O1)C1CCc2cc(F)ccc2O1,evolved,0.435,0.575,2.48,,0,
+CCCN(CCc1ccccc1)c1cnc(O)nc1O,Oc1ncc(N(CCCl)CCCl)c(O)n1,evolved,0.474,0.845,2.64,,7,0 6 7 8 9 10 11
+CCCN(CCc1cccc(C)c1)c1cnc(O)nc1O,Oc1ncc(N(CCCl)CCCl)c(O)n1,evolved,0.429,0.854,2.74,,8,0 6 7 8 9 10 11 12
