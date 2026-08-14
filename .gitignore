@@ -4,3 +4,5 @@ __pycache__/
 *.pyc
 intelligent_pharma_50k_v2.pt
 mmp_mining/
+mmp_mining_big/
+public_molecules.smi
