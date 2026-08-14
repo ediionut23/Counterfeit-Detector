@@ -231,10 +231,52 @@ def _frag_profile(frag_smiles: str) -> Optional[Dict]:
     }
 
 
-def categorize_rule(from_smiles: str, to_smiles: str, delta_heavies: int) -> str:
-    """Heuristic chemical category for a mined transformation, aligned with the
-    benchmark's per-category dataset design (proposal C1). Categories:
+def _transition(a: frozenset, b: frozenset) -> str:
+    """Compact label for an element-set change, e.g. {F}->{Cl} => 'F->Cl'."""
+    added, removed = sorted(b - a), sorted(a - b)
+    if removed and added:
+        return f"{'/'.join(removed)}->{'/'.join(added)}"
+    if added:
+        return f"add-{'/'.join(added)}"
+    if removed:
+        return f"remove-{'/'.join(removed)}"
+    return "count-change"
 
+
+def _subcategorize(category: str, pf: Dict, pt: Dict, delta_heavies: int) -> str:
+    """Finer chemical subcategory within a top-level category (proposal C1:
+    'per subcategory wherever the chemistry supports the distinction')."""
+    if category == "halogen-walk":
+        hf = frozenset(x for x in pf["heteroatoms"] if x in _HALOGENS)
+        ht = frozenset(x for x in pt["heteroatoms"] if x in _HALOGENS)
+        return _transition(hf, ht)  # e.g. H->F (add-F), F->Cl, remove-Cl
+    if category == "homologation":
+        d = abs(delta_heavies)
+        size = "single" if d <= 1 else ("short" if d <= 3 else "long")
+        return f"{'grow' if delta_heavies > 0 else 'shrink'}-{size}"
+    if category == "scaffold-hop":
+        if (pf["aromatic_atoms"] > 0) != (pt["aromatic_atoms"] > 0):
+            return "aromatize" if pt["aromatic_atoms"] > 0 else "saturate"
+        if pf["n_rings"] != pt["n_rings"]:
+            return "add-ring" if pt["n_rings"] > pf["n_rings"] else "remove-ring"
+        if pf["ring_hetero"] != pt["ring_hetero"]:
+            return "ring-heteroatom-swap"
+        if pf["ring_sizes"] != pt["ring_sizes"]:
+            return "ring-resize"
+        return "ring-other"
+    if category == "bioisostere":
+        if pf["heteroatoms"] == pt["heteroatoms"] and pf["n_multi_bonds"] != pt["n_multi_bonds"]:
+            return "unsaturation-change"
+        return _transition(pf["heteroatoms"], pt["heteroatoms"])
+    return "other"
+
+
+def categorize_rule(from_smiles: str, to_smiles: str,
+                    delta_heavies: int) -> Tuple[str, str]:
+    """Heuristic (category, subcategory) for a mined transformation, aligned with
+    the benchmark's per-category / per-subcategory dataset design (proposal C1).
+
+    Top-level categories:
       scaffold-hop  : ring system changes (count / aromaticity / size /
                       in-ring heteroatom composition, e.g. benzene->thiophene)
       halogen-walk  : only halogen identity/placement changes (low-effort)
@@ -247,7 +289,7 @@ def categorize_rule(from_smiles: str, to_smiles: str, delta_heavies: int) -> str
     """
     pf, pt = _frag_profile(from_smiles), _frag_profile(to_smiles)
     if pf is None or pt is None:
-        return "other"
+        return "other", "other"
 
     # (1) any change to the ring system -> scaffold-hop. Now also catches
     #     in-ring heteroatom swaps (benzene<->thiophene) and ring-size changes.
@@ -257,29 +299,25 @@ def categorize_rule(from_smiles: str, to_smiles: str, delta_heavies: int) -> str
                    or pf["ring_hetero"] != pt["ring_hetero"]
                    or (pf["aromatic_atoms"] > 0) != (pt["aromatic_atoms"] > 0))
     if ring_change:
-        return "scaffold-hop"
-
-    # (2) only halogens involved as heteroatoms, and their count/identity moves
-    only_halogen_hetero = (pf["heteroatoms"] <= _HALOGENS
-                           and pt["heteroatoms"] <= _HALOGENS)
-    halogen_change = (pf["halogens"] != pt["halogens"]
-                      or pf["heteroatoms"] != pt["heteroatoms"])
-    if only_halogen_hetero and halogen_change:
-        return "halogen-walk"
-
-    # (3) pure saturated carbon-chain change: same heteroatom set, no halogens,
-    #     and NO new unsaturation (so acylation O->OC(C)=O is excluded here)
-    if (pf["heteroatoms"] == pt["heteroatoms"]
-            and pf["halogens"] == pt["halogens"] == 0
-            and pf["n_multi_bonds"] == pt["n_multi_bonds"]
-            and abs(delta_heavies) >= 1):
-        return "homologation"
-
-    # (4) heteroatom composition OR functional-group (unsaturation) change
-    if pf["heteroatoms"] != pt["heteroatoms"] or pf["n_multi_bonds"] != pt["n_multi_bonds"]:
-        return "bioisostere"
-
-    return "other"
+        cat = "scaffold-hop"
+    else:
+        only_halogen_hetero = (pf["heteroatoms"] <= _HALOGENS
+                               and pt["heteroatoms"] <= _HALOGENS)
+        halogen_change = (pf["halogens"] != pt["halogens"]
+                          or pf["heteroatoms"] != pt["heteroatoms"])
+        if only_halogen_hetero and halogen_change:
+            cat = "halogen-walk"
+        elif (pf["heteroatoms"] == pt["heteroatoms"]
+                and pf["halogens"] == pt["halogens"] == 0
+                and pf["n_multi_bonds"] == pt["n_multi_bonds"]
+                and abs(delta_heavies) >= 1):
+            cat = "homologation"
+        elif (pf["heteroatoms"] != pt["heteroatoms"]
+                or pf["n_multi_bonds"] != pt["n_multi_bonds"]):
+            cat = "bioisostere"
+        else:
+            cat = "other"
+    return cat, _subcategorize(cat, pf, pt, delta_heavies)
 
 
 def is_clean_fragment(frag_smiles: str) -> bool:
@@ -418,8 +456,10 @@ def export(rules: List[Dict], out_stem: Path, source_label: str) -> None:
         rule = dict(rule)
         rule["name"] = make_name(i, rule["from_smiles"], rule["to_smiles"])
         rule["difficulty"] = difficulty_of(rule["delta_heavies"])
-        rule["category"] = categorize_rule(rule["from_smiles"], rule["to_smiles"],
-                                            rule["delta_heavies"])
+        cat, subcat = categorize_rule(rule["from_smiles"], rule["to_smiles"],
+                                      rule["delta_heavies"])
+        rule["category"] = cat
+        rule["subcategory"] = subcat
         rule["reactant_smarts"] = reactant
         rule["product_smarts"] = product
         rule["citation"] = f"mmpdb-mined({source_label})"
@@ -435,6 +475,7 @@ def export(rules: List[Dict], out_stem: Path, source_label: str) -> None:
             "n_rules": len(compiled),
             "difficulty_distribution": _dist(compiled, "difficulty"),
             "category_distribution": _dist(compiled, "category"),
+            "subcategory_distribution": _dist(compiled, "subcategory"),
             "rules": compiled,
         }, fh, indent=2)
     logger.info(f"Wrote {json_path}")
@@ -460,6 +501,11 @@ def export(rules: List[Dict], out_stem: Path, source_label: str) -> None:
         fh.write("SUPPORT = {\n")
         for r in compiled:
             fh.write(f"    {r['name']!r}: {r['support_pairs']},\n")
+        fh.write("}\n\n")
+        fh.write("# Finer chemical subcategory per rule (proposal C1):\n")
+        fh.write("SUBCATEGORY = {\n")
+        for r in compiled:
+            fh.write(f"    {r['name']!r}: {r['subcategory']!r},\n")
         fh.write("}\n")
     logger.info(f"Wrote {py_path}")
 
@@ -475,6 +521,7 @@ def _dist(rules: List[Dict], key: str) -> Dict[str, int]:
 
 def _print_top(rules: List[Dict], n: int = 20) -> None:
     logger.info(f"\nCategory distribution: {_dist(rules, 'category')}")
+    logger.info(f"Subcategory distribution: {_dist(rules, 'subcategory')}")
     logger.info(f"\nTop {n} mined transformations by support:")
     logger.info(f"  {'support':>8}  {'Δheavy':>6}  {'category':>13}  from  ->  to")
     for r in rules[:n]:
