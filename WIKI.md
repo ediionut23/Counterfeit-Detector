@@ -331,10 +331,71 @@ signal**.
 
 ---
 
-## 6. File-by-file reference
+## 6. Is the task learnable? Baseline results
+
+Before any elaborate model, the first question is whether authentic and
+counterfeit molecules actually differ in a learnable way — or whether, after
+property matching, they are effectively indistinguishable. Three scripts answer
+this, always on each dataset's **scaffold-disjoint test split** (train on seen
+scaffolds, test on unseen ones), reporting the proposal's C4 metrics
+(False-Negative Rate first, then Precision / Recall / F1, plus accuracy and
+ROC-AUC):
+
+- [`train_baseline.py`](train_baseline.py) — property-only logistic regression
+  (MW / heavy atoms / logP) and a Morgan-fingerprint Random Forest (the C2 lower
+  tier).
+- [`train_gnn.py`](train_gnn.py) — a small Graph Isomorphism Network (the C2
+  middle tier), kept CPU-friendly.
+- [`learnability_nn.py`](learnability_nn.py) — adds "distance to nearest known
+  drug" features, to test a relational signal.
+
+### Headline results (ROC-AUC on unseen scaffolds)
+
+| Dataset | property-only | fingerprint RF | GNN (GIN) |
+|---|---|---|---|
+| **M** — halogen-walk | 0.65 | 0.95 | **0.97** |
+| **M** — bioisostere | 0.58 | 0.87 | — |
+| **M** — homologation | 0.56 | 0.89 | — |
+| **M** — scaffold-hop | 0.60 | 0.80 | — |
+| pooled (M + E) | 0.54 | 0.83 | — |
+| **E** — evolved (small, 108 test) | 0.40 | 0.53 | 0.49 |
+| **E** — evolved (2× data, 265 test) | 0.40 | **0.67** | **0.67** |
+
+### What it tells us
+
+1. **The task is real, not noise.** For rule-based counterfeits (M) a fingerprint
+   model reaches AUC 0.80–0.95 on scaffolds it never trained on — the edit is a
+   genuine, transferable structural signal.
+2. **The signal is structural, not a shortcut.** The property-only baseline stays
+   near 0.5 — property matching removed the gross-property shortcut, so any real
+   signal must come from structure.
+3. **M generalizes; the GNN confirms it.** On halogen-walk the GIN reaches 0.97
+   on unseen scaffolds — the consistent edit pattern transfers across scaffolds.
+4. **E is hard but learnable, and it scales with data.** With only ~1k evolved
+   molecules the models sat near chance on unseen scaffolds (0.49–0.53); doubling
+   the data lifted both to **0.67**. The earlier near-chance number was a
+   small-sample artefact, not fundamental unlearnability — E is the *hard tier*,
+   not an impossible one.
+5. **A negative result, stated honestly.** Adding "distance to nearest known
+   drug" features did **not** help on E (+0.016) — a naive relational signal does
+   not crack the evolved set.
+
+### The finding that matters for the thesis
+
+The gap **M ≈ 0.95–0.97 vs E ≈ 0.67** on unseen scaffolds is the benchmark's
+central claim, measured: **detectors handle the modifications we enumerated but
+struggle with those discovered by evolutionary search.** And a scaffold split is
+essential to see it — on E the GNN scored ~0.90 on a *same-scaffold* validation
+split but only ~0.67 on unseen scaffolds, so a random split would have massively
+overstated performance.
+
+---
+
+## 7. File-by-file reference
 
 | File | Role |
 |---|---|
+| [`fetch_public_molecules.py`](fetch_public_molecules.py) | Fetch real molecules from ChEMBL / PubChem (mining input) |
 | [`mine_mmp_rules.py`](mine_mmp_rules.py) | Mine + categorize MMP rules from authentic drugs → `mined_transformations.py/.json` |
 | [`mmp_transformations.py`](mmp_transformations.py) | The original 21 hand-written rules (Version R source) |
 | [`build_version_m.py`](build_version_m.py) | Apply mined rules per category → `version_m/` |
@@ -342,11 +403,15 @@ signal**.
 | [`build_version_e.py`](build_version_e.py) | Scale the evolutionary search over many parents → `version_e/` |
 | [`assemble_benchmark.py`](assemble_benchmark.py) | Pair + property-match + scaffold-split + 3D → `benchmark/` |
 | [`generate_conformers.py`](generate_conformers.py) | Central parallel 3D conformer library |
+| [`audit_realism.py`](audit_realism.py) | Realism / bias audit (GuacaMol/MOSES + decoy-bias metrics) |
+| [`train_baseline.py`](train_baseline.py) | Learnability: property-only + fingerprint-RF baselines (C2 lower tier) |
+| [`train_gnn.py`](train_gnn.py) | Learnability: small GIN GNN (C2 middle tier) |
+| [`learnability_nn.py`](learnability_nn.py) | Distance-to-known-drug signal test |
 | [`evaluate_generalization.py`](evaluate_generalization.py) | Detection-rate experiment across R/M/E |
 
 ---
 
-## 7. Glossary & references (things to look up)
+## 8. Glossary & references (things to look up)
 
 - **Matched Molecular Pair (MMP)** — Hussain & Rea, *J. Chem. Inf. Model.* 2010;
   tool: `mmpdb` (Dalke, Hert, Kramer 2018).
@@ -366,7 +431,7 @@ signal**.
 
 ---
 
-## 8. Reproduce from scratch
+## 9. Reproduce from scratch
 
 ```bash
 # Phase A — mine rules from an authentic-molecule set
@@ -380,6 +445,11 @@ python build_version_e.py --no-adversarial --max-parents 200  # Version E
 # Phase C — assemble datasets + 3D
 python assemble_benchmark.py --conformers
 python generate_conformers.py
+
+# Audit realism/bias, and check learnability (baselines + GNN)
+python audit_realism.py
+python train_baseline.py --all              # property-only + fingerprint RF
+python train_gnn.py --dataset evolved       # GNN on the hard tier
 
 # (optional) generalization probe on an existing detector
 python evaluate_generalization.py --sample 250
