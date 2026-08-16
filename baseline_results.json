@@ -1,0 +1,122 @@
+{
+  "pooled": {
+    "n_train": 18822,
+    "n_test": 2090,
+    "property_only": {
+      "false_negative_rate": 0.146,
+      "precision": 0.185,
+      "recall": 0.854,
+      "f1": 0.304,
+      "accuracy": 0.305,
+      "roc_auc": 0.538
+    },
+    "fingerprint_rf": {
+      "false_negative_rate": 0.164,
+      "precision": 0.345,
+      "recall": 0.836,
+      "f1": 0.489,
+      "accuracy": 0.689,
+      "roc_auc": 0.83
+    }
+  },
+  "evolved": {
+    "n_train": 964,
+    "n_test": 108,
+    "property_only": {
+      "false_negative_rate": 0.6,
+      "precision": 0.055,
+      "recall": 0.4,
+      "f1": 0.096,
+      "accuracy": 0.306,
+      "roc_auc": 0.337
+    },
+    "fingerprint_rf": {
+      "false_negative_rate": 0.5,
+      "precision": 0.106,
+      "recall": 0.5,
+      "f1": 0.175,
+      "accuracy": 0.565,
+      "roc_auc": 0.527
+    }
+  },
+  "category_bioisostere": {
+    "n_train": 3597,
+    "n_test": 401,
+    "property_only": {
+      "false_negative_rate": 0.216,
+      "precision": 0.281,
+      "recall": 0.784,
+      "f1": 0.414,
+      "accuracy": 0.464,
+      "roc_auc": 0.579
+    },
+    "fingerprint_rf": {
+      "false_negative_rate": 0.278,
+      "precision": 0.547,
+      "recall": 0.722,
+      "f1": 0.622,
+      "accuracy": 0.788,
+      "roc_auc": 0.869
+    }
+  },
+  "category_scaffold-hop": {
+    "n_train": 3597,
+    "n_test": 401,
+    "property_only": {
+      "false_negative_rate": 0.294,
+      "precision": 0.29,
+      "recall": 0.706,
+      "f1": 0.411,
+      "accuracy": 0.486,
+      "roc_auc": 0.6
+    },
+    "fingerprint_rf": {
+      "false_negative_rate": 0.147,
+      "precision": 0.437,
+      "recall": 0.853,
+      "f1": 0.578,
+      "accuracy": 0.683,
+      "roc_auc": 0.802
+    }
+  },
+  "category_halogen-walk": {
+    "n_train": 3537,
+    "n_test": 393,
+    "property_only": {
+      "false_negative_rate": 0.351,
+      "precision": 0.409,
+      "recall": 0.649,
+      "f1": 0.501,
+      "accuracy": 0.57,
+      "roc_auc": 0.649
+    },
+    "fingerprint_rf": {
+      "false_negative_rate": 0.084,
+      "precision": 0.759,
+      "recall": 0.916,
+      "f1": 0.83,
+      "accuracy": 0.875,
+      "roc_auc": 0.947
+    }
+  },
+  "category_homologation": {
+    "n_train": 3597,
+    "n_test": 401,
+    "property_only": {
+      "false_negative_rate": 0.256,
+      "precision": 0.223,
+      "recall": 0.744,
+      "f1": 0.343,
+      "accuracy": 0.389,
+      "roc_auc": 0.56
+    },
+    "fingerprint_rf": {
+      "false_negative_rate": 0.163,
+      "precision": 0.626,
+      "recall": 0.837,
+      "f1": 0.716,
+      "accuracy": 0.858,
+      "roc_auc": 0.89
+    }
+  }
+}
