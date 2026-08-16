@@ -375,6 +375,8 @@ def main():
     ap.add_argument("--conf-cap", type=int, default=None,
                     help="Cap conformers per dataset (speed)")
     ap.add_argument("--out", default="benchmark")
+    ap.add_argument("--slices", nargs="*", default=None,
+                    help="Only (re)build these slice names (e.g. evolved pooled)")
     ap.add_argument("--seed", type=int, default=42)
     args = ap.parse_args()
 
@@ -385,9 +387,13 @@ def main():
 
     authentic_pool = load_authentic(args.authentic, args.authentic_limit)
     slices = load_counterfeit_slices(args.min_subcat)
+    if args.slices:
+        slices = {k: v for k, v in slices.items() if k in set(args.slices)}
     logger.info(f"Assembling {len(slices)} datasets: {sorted(slices)}")
 
-    index = {}
+    # keep prior index if only rebuilding a subset
+    index_path = outdir / "index.json"
+    index = json.loads(index_path.read_text()) if (args.slices and index_path.exists()) else {}
     for name, cfs in slices.items():
         s = assemble_one(name, cfs, authentic_pool, outdir,
                          args.conformers, args.conf_cap, args.seed)

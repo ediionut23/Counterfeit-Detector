@@ -1,10 +1,10 @@
 {
-  "n_parents": 200,
-  "n_counterfeits": 571,
+  "n_parents": 500,
+  "n_counterfeits": 1326,
   "adversarial": false,
   "n_fool_detector": 0,
   "frac_fool_detector": 0.0,
-  "mean_similarity": 0.485,
+  "mean_similarity": 0.48,
   "mean_p_counterfeit": null,
   "similarity_band": [
     0.4,
