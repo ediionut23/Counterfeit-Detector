@@ -1,0 +1,74 @@
+{
+  "evolved": {
+    "n_test": 108,
+    "A_fingerprint": {
+      "auc": 0.527,
+      "f1": 0.175,
+      "fnr": 0.5
+    },
+    "B_nn_only": {
+      "auc": 0.445,
+      "f1": 0.148,
+      "fnr": 0.4
+    },
+    "C_fingerprint_plus_nn": {
+      "auc": 0.543,
+      "f1": 0.2,
+      "fnr": 0.4
+    }
+  },
+  "pooled": {
+    "n_test": 2090,
+    "A_fingerprint": {
+      "auc": 0.83,
+      "f1": 0.489,
+      "fnr": 0.164
+    },
+    "B_nn_only": {
+      "auc": 0.584,
+      "f1": 0.333,
+      "fnr": 0.183
+    },
+    "C_fingerprint_plus_nn": {
+      "auc": 0.803,
+      "f1": 0.425,
+      "fnr": 0.086
+    }
+  },
+  "category_bioisostere": {
+    "n_test": 401,
+    "A_fingerprint": {
+      "auc": 0.869,
+      "f1": 0.622,
+      "fnr": 0.278
+    },
+    "B_nn_only": {
+      "auc": 0.582,
+      "f1": 0.421,
+      "fnr": 0.206
+    },
+    "C_fingerprint_plus_nn": {
+      "auc": 0.855,
+      "f1": 0.612,
+      "fnr": 0.196
+    }
+  },
+  "category_scaffold-hop": {
+    "n_test": 401,
+    "A_fingerprint": {
+      "auc": 0.802,
+      "f1": 0.578,
+      "fnr": 0.147
+    },
+    "B_nn_only": {
+      "auc": 0.564,
+      "f1": 0.432,
+      "fnr": 0.206
+    },
+    "C_fingerprint_plus_nn": {
+      "auc": 0.8,
+      "f1": 0.56,
+      "fnr": 0.108
+    }
+  }
+}
