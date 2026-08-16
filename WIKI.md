@@ -25,7 +25,7 @@ piece. For the dataset *format*, see [`benchmark/README.md`](benchmark/README.md
         ▼
  ┌───────────────────────┐   Phase A — LEARN the edits
  │ mine_mmp_rules.py     │   Matched Molecular Pairs (mmpdb)
- │  → mined_transformations.py (131 rules, categorized, with support)
+ │  → mined_transformations.py (1216 rules, categorized, with support)
  └───────────────────────┘
         │                         │
         ▼                         ▼
@@ -123,9 +123,13 @@ that are identical except in one small region — e.g. the same drug once with
 > radius > 0 crashes on some fragments (`neither end atom traversed`). We index
 > with `--max-radius 0`, which still yields every rule and its support.
 
-**Result:** 131 categorized rules with support counts — a data-driven catalogue,
-2.7× the size of the 21 hand-written ones, and it *discovered* transformations
-that were never enumerated (CF₃→Cl, aromatizations, ring swaps, demethylation).
+**Result:** mined from ~16k real molecules fetched from public databases
+(ChEMBL + PubChem, see `fetch_public_molecules.py`), the catalogue holds **1216
+categorized rules** with support counts — median support 8 matched pairs, max
+452 — vastly larger than the 21 hand-written ones, and it *discovered*
+transformations that were never enumerated (CF₃→Cl, aromatizations, ring swaps,
+demethylation). (The first pass, from ~7.7k molecules, gave 131 rules at median
+support 4; mining from more real data raised both the count and the support.)
 
 ---
 
@@ -313,7 +317,7 @@ representation experiments in C1/C3.
 | Version | Counterfeits made by | Distribution shift |
 |---|---|---|
 | **R** | 21 hand-written rules (original 50k set) | in-distribution baseline |
-| **M** | 131 mined rules, per category/subcategory | mild — new rule *types* |
+| **M** | 1216 mined rules, per category/subcategory | mild — new rule *types* |
 | **E** | evolutionary search, no rule list | large — discovered, combined edits |
 
 The benchmark's central question: **does a detector trained on the edits we
@@ -366,7 +370,8 @@ signal**.
 
 ```bash
 # Phase A — mine rules from an authentic-molecule set
-python mine_mmp_rules.py --from-pt intelligent_pharma_50k_v2.pt --min-support 3
+python fetch_public_molecules.py --target 20000            # real molecules (ChEMBL/PubChem)
+python mine_mmp_rules.py --smiles-file public_molecules.smi --min-support 5
 
 # Phase B — make counterfeits
 python build_version_m.py --per-category 1500                 # Version M
