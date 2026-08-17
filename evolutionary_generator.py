@@ -195,6 +195,67 @@ def tanimoto(fp1, fp2) -> float:
     return DataStructs.TanimotoSimilarity(fp1, fp2)
 
 
+# --- structural alerts (PAINS + Brenk): a plausible compound avoids them ---
+from rdkit.Chem.FilterCatalog import FilterCatalog, FilterCatalogParams
+
+_alert_params = FilterCatalogParams()
+_alert_params.AddCatalog(FilterCatalogParams.FilterCatalogs.PAINS)
+_alert_params.AddCatalog(FilterCatalogParams.FilterCatalogs.BRENK)
+_ALERT_CATALOG = FilterCatalog(_alert_params)
+
+
+def structural_alerts(mol: Chem.Mol) -> int:
+    """Number of PAINS/Brenk unwanted-substructure hits (0 = clean)."""
+    try:
+        return len(_ALERT_CATALOG.GetMatches(mol))
+    except Exception:
+        return 0
+
+
+def edit_metrics(parent_smiles: str, child_smiles: str, edited: List[int]) -> Dict:
+    """Evaluate the CHANGE itself (not just the molecule): its size, where it
+    sits (scaffold vs periphery), and the property shift it causes. These are
+    the difficulty knobs — small, peripheral, low-shift edits are subtler."""
+    from rdkit.Chem.Scaffolds import MurckoScaffold
+    out: Dict = {"edit_size": len(edited)}
+    parent, child = Chem.MolFromSmiles(parent_smiles), Chem.MolFromSmiles(child_smiles)
+    if parent is None or child is None:
+        return out
+    out["delta_logp"] = round(Descriptors.MolLogP(child) - Descriptors.MolLogP(parent), 2)
+    out["delta_mw"] = round(Descriptors.MolWt(child) - Descriptors.MolWt(parent), 1)
+    out["delta_tpsa"] = round(Descriptors.TPSA(child) - Descriptors.TPSA(parent), 1)
+    try:
+        scaf = MurckoScaffold.GetScaffoldForMol(child)
+        scaf_atoms = set(child.GetSubstructMatch(scaf)) if scaf.GetNumAtoms() else set()
+        if edited:
+            frac = sum(1 for a in edited if a in scaf_atoms) / len(edited)
+            out["scaffold_edit_fraction"] = round(frac, 2)
+            out["edit_location"] = "scaffold" if frac > 0.5 else "periphery"
+    except Exception:
+        pass
+    return out
+
+
+def shape_similarity_3d(parent_mol: Chem.Mol, child_smiles: str) -> Optional[float]:
+    """3D shape Tanimoto (O3A-aligned) between parent and child. Uses the
+    conformers we can build; run post-hoc on the Pareto front, not in the inner
+    loop (ETKDG per candidate would slow the GA ~10-20x)."""
+    try:
+        from rdkit.Chem import rdMolAlign, rdShapeHelpers
+        ref = Chem.AddHs(Chem.Mol(parent_mol))
+        prb = Chem.AddHs(Chem.MolFromSmiles(child_smiles))
+        params = AllChem.ETKDGv3()
+        params.randomSeed = 42
+        if AllChem.EmbedMolecule(ref, params) != 0 or AllChem.EmbedMolecule(prb, params) != 0:
+            return None
+        AllChem.MMFFOptimizeMolecule(ref)
+        AllChem.MMFFOptimizeMolecule(prb)
+        rdMolAlign.GetO3A(prb, ref).Align()
+        return round(1.0 - rdShapeHelpers.ShapeTanimotoDist(prb, ref), 3)
+    except Exception:
+        return None
+
+
 class Objectives:
     """Vector of minimization objectives for one candidate vs. the parent."""
 
@@ -218,10 +279,15 @@ class Objectives:
             return [1.0] * self.n_obj
 
         band = max(0.0, self.sim_lo - sim) + max(0.0, sim - self.sim_hi)
-        qed_obj = 1.0 - float(Descriptors.qed(mol))
+        # objective 2 = medicinal implausibility: low drug-likeness AND any
+        # PAINS/Brenk structural alert both push it up (worse).
+        plausibility_obj = 1.0 - float(Descriptors.qed(mol))
+        n_alerts = structural_alerts(mol)
+        if n_alerts:
+            plausibility_obj = min(1.0, plausibility_obj + 0.3 * min(n_alerts, 3))
         sa_obj = ((sascorer.calculateScore(mol) - 1.0) / 9.0) if sascorer else 0.0
         sa_obj = min(max(sa_obj, 0.0), 1.0)
-        objs = [band, qed_obj, sa_obj]
+        objs = [band, plausibility_obj, sa_obj]
         if self.adversarial:
             objs.append(float(self.adversarial(smiles)))  # P(counterfeit): low = fools detector
         return objs
@@ -317,7 +383,8 @@ def load_detector_scorer(results_dir: str = "HGT_Enhanced_Results"
 #  pymoo wiring — custom operators over SMILES objects
 # ==================================================================
 def build_and_run(parent_smiles: str, rule_lib: RuleLibrary, objectives: Objectives,
-                  pop_size: int, generations: int, seed: int) -> List[Dict]:
+                  pop_size: int, generations: int, seed: int,
+                  compute_shape: bool = False) -> List[Dict]:
     from pymoo.core.problem import ElementwiseProblem
     from pymoo.core.sampling import Sampling
     from pymoo.core.crossover import Crossover
@@ -390,7 +457,7 @@ def build_and_run(parent_smiles: str, rule_lib: RuleLibrary, objectives: Objecti
     front = []
     X = np.atleast_2d(res.X)
     F = np.atleast_2d(res.F)
-    obj_names = ["band_penalty", "one_minus_qed", "sa_over_10"]
+    obj_names = ["band_penalty", "implausibility", "sa_over_10"]
     if objectives.n_obj == 4:
         obj_names.append("p_counterfeit")
     seen = set()
@@ -401,14 +468,20 @@ def build_and_run(parent_smiles: str, rule_lib: RuleLibrary, objectives: Objecti
         seen.add(smi)
         mol = Chem.MolFromSmiles(smi)
         sim = tanimoto(objectives.parent_fp, morgan(mol))
-        front.append({
+        edits = edited_atoms(parent_smiles, smi)
+        rec = {
             "smiles": smi,
             "similarity_to_parent": round(sim, 3),
             "qed": round(float(Descriptors.qed(mol)), 3),
             "sa_score": round(sascorer.calculateScore(mol), 2) if sascorer else None,
+            "structural_alerts": structural_alerts(mol),
             "objectives": {n: round(float(v), 4) for n, v in zip(obj_names, fi)},
-            "edited_atoms": edited_atoms(parent_smiles, smi),
-        })
+            "edited_atoms": edits,
+            **edit_metrics(parent_smiles, smi, edits),
+        }
+        if compute_shape:
+            rec["shape_similarity_3d"] = shape_similarity_3d(objectives.parent_mol, smi)
+        front.append(rec)
     front.sort(key=lambda d: sum(d["objectives"].values()))
     return front
 
@@ -428,6 +501,8 @@ def main():
     p.add_argument("--sim-hi", type=float, default=0.9, help="Upper Tanimoto band")
     p.add_argument("--adversarial", action="store_true",
                    help="Add the trained detector as a 4th, adversarial objective")
+    p.add_argument("--no-shape", action="store_true",
+                   help="Skip 3D shape similarity on the Pareto front (faster)")
     p.add_argument("--seed", type=int, default=42)
     p.add_argument("--out", default="evolved_counterfeits.json")
     args = p.parse_args()
@@ -449,7 +524,8 @@ def main():
     objectives = Objectives(canon_parent, args.sim_lo, args.sim_hi, adversarial=adv)
 
     front = build_and_run(canon_parent, rule_lib, objectives,
-                          pop_size=args.pop, generations=args.generations, seed=args.seed)
+                          pop_size=args.pop, generations=args.generations, seed=args.seed,
+                          compute_shape=not args.no_shape)
 
     out = {
         "parent_smiles": canon_parent,
