@@ -81,8 +81,35 @@ def morgan(mol):
     return rdMolDescriptors.GetMorganFingerprintAsBitVect(mol, 3, 2048)
 
 
+def reaction_edited_atoms(child: Chem.Mol) -> List[int]:
+    """Edited atoms via reaction provenance (fast, no MCS).
+
+    After RunReactants, product atoms carried over from the reactant get a
+    'react_atom_idx' property; atoms the reaction introduced do not. The edit =
+    those new atoms plus their immediate neighbours (the boundary). Indices are
+    mapped to canonical-SMILES atom order, so they index the stored `smiles`.
+    Requires Chem.MolToSmiles(child) to have been called first (it sets
+    '_smilesAtomOutputOrder')."""
+    try:
+        new_atoms = {a.GetIdx() for a in child.GetAtoms()
+                     if not a.HasProp("react_atom_idx")}
+        if not new_atoms or len(new_atoms) == child.GetNumAtoms():
+            return []  # provenance unavailable/degenerate -> let caller fall back
+        edited = set(new_atoms)
+        for idx in list(new_atoms):
+            for nb in child.GetAtomWithIdx(idx).GetNeighbors():
+                edited.add(nb.GetIdx())
+        order = child.GetProp("_smilesAtomOutputOrder")
+        order = [int(x) for x in order.strip("[]").split(",") if x.strip() != ""]
+        prod_to_canon = {p: c for c, p in enumerate(order)}
+        return sorted(prod_to_canon[p] for p in edited if p in prod_to_canon)
+    except Exception:
+        return []
+
+
 def edited_atoms(parent: Chem.Mol, child: Chem.Mol) -> List[int]:
-    """Child atom indices outside the parent<->child MCS = what changed."""
+    """Child atom indices outside the parent<->child MCS = what changed.
+    Fallback for when reaction provenance is unavailable."""
     try:
         res = rdFMCS.FindMCS([parent, child], timeout=5,
                              ringMatchesRingOnly=True, completeRingsOnly=False)
@@ -203,7 +230,7 @@ def generate_category(category: str, rules: List[Dict], parents: List[str],
             if child is None:
                 continue
             try:
-                canon = Chem.MolToSmiles(child)
+                canon = Chem.MolToSmiles(child)  # also sets _smilesAtomOutputOrder
             except Exception:
                 continue
             if canon == parent_smi or canon in global_seen:
@@ -214,6 +241,10 @@ def generate_category(category: str, rules: List[Dict], parents: List[str],
             if sim < sim_lo or sim > sim_hi:
                 continue
             global_seen.add(canon)
+            # fast provenance-based edit tracking, MCS only as fallback
+            edits = reaction_edited_atoms(child)
+            if not edits:
+                edits = edited_atoms(parent_mol, Chem.MolFromSmiles(canon))
             rows.append({
                 "counterfeit_smiles": canon,
                 "parent_smiles": parent_smi,
@@ -222,7 +253,7 @@ def generate_category(category: str, rules: List[Dict], parents: List[str],
                 "difficulty": rule["difficulty"],
                 "citation": rule["citation"],
                 "similarity_to_parent": round(float(sim), 3),
-                "edited_atoms": edited_atoms(parent_mol, child),
+                "edited_atoms": edits,
                 **descriptors(child),
             })
     logger.info(f"[{category}] generated {len(rows)}/{target}")
