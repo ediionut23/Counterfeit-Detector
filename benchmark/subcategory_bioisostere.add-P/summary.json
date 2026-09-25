@@ -1,19 +1,18 @@
 {
   "name": "subcategory_bioisostere.add-P",
-  "n_total": 464,
-  "n_authentic": 232,
-  "n_counterfeit": 232,
+  "n_total": 736,
+  "n_authentic": 368,
+  "n_counterfeit": 368,
   "balance": 1.0,
   "shortcut_metrics": {
-    "cohens_d_mw": 0.144,
-    "cohens_d_heavy_atoms": 0.018,
-    "cohens_d_smiles_length": 0.012,
-    "trivial_lr_accuracy": 0.607
+    "cohens_d_mw": 0.061,
+    "cohens_d_heavy_atoms": 0.077,
+    "cohens_d_smiles_length": 0.041,
+    "trivial_lr_accuracy": 0.624
   },
   "split_counts": {
-    "train": 371,
-    "val": 46,
-    "test": 47
-  },
-  "conformers_written": 149
+    "train": 588,
+    "val": 73,
+    "test": 75
+  }
 }

@@ -1,0 +1,18 @@
+{
+  "name": "subcategory_bioisostere.add-Cl",
+  "n_total": 120,
+  "n_authentic": 60,
+  "n_counterfeit": 60,
+  "balance": 1.0,
+  "shortcut_metrics": {
+    "cohens_d_mw": 0.054,
+    "cohens_d_heavy_atoms": 0.042,
+    "cohens_d_smiles_length": 0.047,
+    "trivial_lr_accuracy": 0.417
+  },
+  "split_counts": {
+    "train": 96,
+    "val": 12,
+    "test": 12
+  }
+}

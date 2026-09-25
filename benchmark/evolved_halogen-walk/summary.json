@@ -1,0 +1,18 @@
+{
+  "name": "evolved_halogen-walk",
+  "n_total": 1800,
+  "n_authentic": 900,
+  "n_counterfeit": 900,
+  "balance": 1.0,
+  "shortcut_metrics": {
+    "cohens_d_mw": 0.016,
+    "cohens_d_heavy_atoms": 0.0,
+    "cohens_d_smiles_length": 0.036,
+    "trivial_lr_accuracy": 0.493
+  },
+  "split_counts": {
+    "train": 1440,
+    "val": 180,
+    "test": 180
+  }
+}

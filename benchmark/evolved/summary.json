@@ -1,19 +1,18 @@
 {
   "name": "evolved",
-  "n_total": 2650,
-  "n_authentic": 1325,
-  "n_counterfeit": 1325,
+  "n_total": 94380,
+  "n_authentic": 47190,
+  "n_counterfeit": 47190,
   "balance": 1.0,
   "shortcut_metrics": {
-    "cohens_d_mw": 0.056,
-    "cohens_d_heavy_atoms": 0.03,
-    "cohens_d_smiles_length": 0.012,
-    "trivial_lr_accuracy": 0.542
+    "cohens_d_mw": 0.084,
+    "cohens_d_heavy_atoms": 0.058,
+    "cohens_d_smiles_length": 0.131,
+    "trivial_lr_accuracy": 0.526
   },
   "split_counts": {
-    "train": 2120,
-    "val": 265,
-    "test": 265
-  },
-  "conformers_written": 0
+    "train": 75505,
+    "val": 9439,
+    "test": 9436
+  }
 }

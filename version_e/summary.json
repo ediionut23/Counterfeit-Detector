@@ -1,17 +1,23 @@
 {
-  "n_parents": 500,
-  "n_counterfeits": 1326,
+  "n_parents_processed": 8000,
+  "n_counterfeits": 13683,
+  "target_count": 15000,
+  "crossover_operator": "mass-balanced",
   "adversarial": false,
   "n_fool_detector": 0,
   "frac_fool_detector": 0.0,
-  "mean_similarity": 0.48,
+  "mean_similarity": 0.506,
+  "mean_qed": 0.754,
+  "mean_sa_score": 2.489,
   "mean_p_counterfeit": null,
   "similarity_band": [
     0.4,
     0.9
   ],
   "search": {
-    "pop": 30,
-    "generations": 15
-  }
+    "pop": 20,
+    "generations": 6,
+    "workers": 8
+  },
+  "elapsed_seconds": 2344.33
 }

@@ -1,0 +1,192 @@
+{
+  "bioisostere": {
+    "file": "counterfeits_evolved_bioisostere.csv",
+    "n_molecules": 1083,
+    "tanimoto": {
+      "mean": 0.657,
+      "median": 0.653,
+      "min": 0.55,
+      "max": 0.869,
+      "passed": true
+    },
+    "drug_likeness": {
+      "qed_median": 0.734,
+      "sa_median": 2.74,
+      "qed_passed": true,
+      "sa_passed": true
+    },
+    "multi_step_edits": {
+      "mean_atoms_edited": 2.2,
+      "median_atoms_edited": 2,
+      "max_atoms_edited": 14
+    },
+    "shortcut_audit": {
+      "n_matched_pairs": 1083,
+      "trivial_lr_accuracy_mean": 0.53,
+      "trivial_lr_accuracy_std": 0.024,
+      "cohens_d_mw": 0.034,
+      "cohens_d_heavy_atoms": 0.011,
+      "cohens_d_smiles_length": 0.051,
+      "passed": true
+    },
+    "conformer_3d_audit": {
+      "sample_size": 50,
+      "etkdg_embedding_success_rate": 1.0,
+      "mmff_convergence_rate": 1.0,
+      "passed": true
+    },
+    "overall_quality_pass": true
+  },
+  "halogen-walk": {
+    "file": "counterfeits_evolved_halogen-walk.csv",
+    "n_molecules": 900,
+    "tanimoto": {
+      "mean": 0.661,
+      "median": 0.657,
+      "min": 0.55,
+      "max": 0.864,
+      "passed": true
+    },
+    "drug_likeness": {
+      "qed_median": 0.723,
+      "sa_median": 2.78,
+      "qed_passed": true,
+      "sa_passed": true
+    },
+    "multi_step_edits": {
+      "mean_atoms_edited": 2.3,
+      "median_atoms_edited": 1,
+      "max_atoms_edited": 18
+    },
+    "shortcut_audit": {
+      "n_matched_pairs": 900,
+      "trivial_lr_accuracy_mean": 0.488,
+      "trivial_lr_accuracy_std": 0.013,
+      "cohens_d_mw": 0.02,
+      "cohens_d_heavy_atoms": 0.012,
+      "cohens_d_smiles_length": 0.071,
+      "passed": true
+    },
+    "conformer_3d_audit": {
+      "sample_size": 50,
+      "etkdg_embedding_success_rate": 1.0,
+      "mmff_convergence_rate": 1.0,
+      "passed": true
+    },
+    "overall_quality_pass": true
+  },
+  "homologation": {
+    "file": "counterfeits_evolved_homologation.csv",
+    "n_molecules": 1238,
+    "tanimoto": {
+      "mean": 0.659,
+      "median": 0.656,
+      "min": 0.55,
+      "max": 0.878,
+      "passed": true
+    },
+    "drug_likeness": {
+      "qed_median": 0.737,
+      "sa_median": 2.72,
+      "qed_passed": true,
+      "sa_passed": true
+    },
+    "multi_step_edits": {
+      "mean_atoms_edited": 2.4,
+      "median_atoms_edited": 2,
+      "max_atoms_edited": 16
+    },
+    "shortcut_audit": {
+      "n_matched_pairs": 1238,
+      "trivial_lr_accuracy_mean": 0.5,
+      "trivial_lr_accuracy_std": 0.016,
+      "cohens_d_mw": 0.011,
+      "cohens_d_heavy_atoms": 0.008,
+      "cohens_d_smiles_length": 0.041,
+      "passed": true
+    },
+    "conformer_3d_audit": {
+      "sample_size": 50,
+      "etkdg_embedding_success_rate": 1.0,
+      "mmff_convergence_rate": 0.98,
+      "passed": true
+    },
+    "overall_quality_pass": true
+  },
+  "other": {
+    "file": "counterfeits_evolved_other.csv",
+    "n_molecules": 638,
+    "tanimoto": {
+      "mean": 0.646,
+      "median": 0.639,
+      "min": 0.55,
+      "max": 0.859,
+      "passed": true
+    },
+    "drug_likeness": {
+      "qed_median": 0.73,
+      "sa_median": 2.63,
+      "qed_passed": true,
+      "sa_passed": true
+    },
+    "multi_step_edits": {
+      "mean_atoms_edited": 2.4,
+      "median_atoms_edited": 1,
+      "max_atoms_edited": 19
+    },
+    "shortcut_audit": {
+      "n_matched_pairs": 638,
+      "trivial_lr_accuracy_mean": 0.538,
+      "trivial_lr_accuracy_std": 0.015,
+      "cohens_d_mw": 0.064,
+      "cohens_d_heavy_atoms": 0.022,
+      "cohens_d_smiles_length": 0.036,
+      "passed": true
+    },
+    "conformer_3d_audit": {
+      "sample_size": 50,
+      "etkdg_embedding_success_rate": 1.0,
+      "mmff_convergence_rate": 1.0,
+      "passed": true
+    },
+    "overall_quality_pass": true
+  },
+  "scaffold-hop": {
+    "file": "counterfeits_evolved_scaffold-hop.csv",
+    "n_molecules": 592,
+    "tanimoto": {
+      "mean": 0.642,
+      "median": 0.633,
+      "min": 0.551,
+      "max": 0.833,
+      "passed": true
+    },
+    "drug_likeness": {
+      "qed_median": 0.694,
+      "sa_median": 2.55,
+      "qed_passed": true,
+      "sa_passed": true
+    },
+    "multi_step_edits": {
+      "mean_atoms_edited": 4.3,
+      "median_atoms_edited": 5,
+      "max_atoms_edited": 16
+    },
+    "shortcut_audit": {
+      "n_matched_pairs": 591,
+      "trivial_lr_accuracy_mean": 0.557,
+      "trivial_lr_accuracy_std": 0.037,
+      "cohens_d_mw": 0.031,
+      "cohens_d_heavy_atoms": 0.02,
+      "cohens_d_smiles_length": 0.046,
+      "passed": false
+    },
+    "conformer_3d_audit": {
+      "sample_size": 50,
+      "etkdg_embedding_success_rate": 1.0,
+      "mmff_convergence_rate": 1.0,
+      "passed": true
+    },
+    "overall_quality_pass": false
+  }
+}

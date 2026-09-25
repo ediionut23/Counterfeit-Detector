@@ -1,0 +1,18 @@
+{
+  "name": "subcategory_bioisostere.add-O/P",
+  "n_total": 26,
+  "n_authentic": 13,
+  "n_counterfeit": 13,
+  "balance": 1.0,
+  "shortcut_metrics": {
+    "cohens_d_mw": 0.26,
+    "cohens_d_heavy_atoms": 0.086,
+    "cohens_d_smiles_length": 0.174,
+    "trivial_lr_accuracy": 0.375
+  },
+  "split_counts": {
+    "train": 20,
+    "val": 2,
+    "test": 4
+  }
+}

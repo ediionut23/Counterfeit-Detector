@@ -1,19 +1,18 @@
 {
   "name": "category_homologation",
-  "n_total": 3998,
-  "n_authentic": 1999,
-  "n_counterfeit": 1999,
+  "n_total": 81644,
+  "n_authentic": 40822,
+  "n_counterfeit": 40822,
   "balance": 1.0,
   "shortcut_metrics": {
-    "cohens_d_mw": 0.011,
-    "cohens_d_heavy_atoms": 0.002,
-    "cohens_d_smiles_length": 0.035,
-    "trivial_lr_accuracy": 0.503
+    "cohens_d_mw": 0.044,
+    "cohens_d_heavy_atoms": 0.032,
+    "cohens_d_smiles_length": 0.073,
+    "trivial_lr_accuracy": 0.519
   },
   "split_counts": {
-    "train": 3198,
-    "val": 399,
-    "test": 401
-  },
-  "conformers_written": 150
+    "train": 65316,
+    "val": 8165,
+    "test": 8163
+  }
 }

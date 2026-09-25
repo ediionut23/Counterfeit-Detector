@@ -1,0 +1,18 @@
+{
+  "name": "subcategory_bioisostere.N->S",
+  "n_total": 452,
+  "n_authentic": 226,
+  "n_counterfeit": 226,
+  "balance": 1.0,
+  "shortcut_metrics": {
+    "cohens_d_mw": 0.034,
+    "cohens_d_heavy_atoms": 0.067,
+    "cohens_d_smiles_length": 0.041,
+    "trivial_lr_accuracy": 0.603
+  },
+  "split_counts": {
+    "train": 361,
+    "val": 45,
+    "test": 46
+  }
+}

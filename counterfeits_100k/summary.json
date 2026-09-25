@@ -1,0 +1,19 @@
+{
+  "dataset_name": "counterfeits_100k",
+  "total_counterfeits": 104380,
+  "unique_smiles_count": 104380,
+  "category_distribution": {
+    "homologation": 31778,
+    "halogen-walk": 11618,
+    "bioisostere": 21042,
+    "scaffold-hop": 23296,
+    "other": 4358,
+    "evolved": 12288
+  },
+  "metrics": {
+    "mean_similarity_to_parent": 0.615,
+    "median_similarity_to_parent": 0.619,
+    "mean_qed": 0.685,
+    "mean_sa_score": 2.721
+  }
+}

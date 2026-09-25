@@ -1,0 +1,593 @@
+counterfeit_smiles,parent_smiles,category,subcategory,similarity_to_parent,qed,sa_score,n_edited_atoms,edited_atoms,mw,logp,heavy_atoms,smiles_length
+CC(CCc1ccccc1)c1cc(F)c2c(N)nncc2c1,CCC(C)c1cc(F)c2c(N)nncc2c1,evolved_scaffold-hop,evolved_scaffold-hop,0.631,0.788,2.96,6,4 5 6 7 8 9,295.36,4.09,22,34
+CCCN(c1ccccc1)C1CCc2ccc(O)c(OC)c2C1,CCCN(CCC)C1CCc2ccc(O)c(OC)c2C1,evolved_scaffold-hop,evolved_scaffold-hop,0.6,0.899,2.88,6,4 5 6 7 8 9,311.43,4.17,23,35
+CNCCN1C(=O)[C@H](O)[C@H](c2cccs2)Sc2ccccc21,CNCCN1C(=O)[C@H](O)[C@H](c2ccc(OC)cc2)Sc2ccccc21,evolved_scaffold-hop,evolved_scaffold-hop,0.588,0.902,3.37,1,14,334.47,2.51,22,43
+CNCCN1C(=O)[C@H](O)[C@H](c2ccc(Oc3ccccc3)cc2)Sc2ccccc21,CNCCN1C(=O)[C@H](O)[C@H](c2ccc(OC)cc2)Sc2ccccc21,evolved_scaffold-hop,evolved_scaffold-hop,0.766,0.625,3.08,6,15 16 17 18 19 20,420.53,4.24,30,55
+Cc1ccc(C)n1Nc1ccc(N(CCO)Cc2ccccc2)nn1,Cc1ccc(C)n1Nc1ccc(N(CCO)CCO)nn1,evolved_scaffold-hop,evolved_scaffold-hop,0.656,0.694,2.69,6,17 18 19 20 21 22,337.43,2.77,25,37
+Cc1ccc(C)n1Nc1ccc(N(CCO)CCc2ccccc2)nn1,Cc1ccc(C)n1Nc1ccc(N(CCO)CCO)nn1,evolved_scaffold-hop,evolved_scaffold-hop,0.717,0.653,2.72,6,18 19 20 21 22 23,351.45,2.81,26,38
+CCN1CCN(C2=Nc3cc(C4CC4)ccc3Nc3cc(F)ccc32)CC1,CCN1CCN(C2=Nc3cc(C)ccc3Nc3cc(F)ccc32)CC1,evolved_scaffold-hop,evolved_scaffold-hop,0.679,0.853,2.58,3,11 12 13,364.47,4.48,27,44
+Cc1ccc2c(c1)N=C(N1CCN(c3ccncc3)CC1)c1ccc(F)cc1N2,CCN1CCN(C2=Nc3cc(C)ccc3Nc3cc(F)ccc32)CC1,evolved_scaffold-hop,evolved_scaffold-hop,0.701,0.668,2.52,6,13 14 15 16 17 18,387.46,4.49,29,48
+O=C(Nc1ccc(Oc2ccncc2)cc1)Nc1ccc(Cl)c(C2CCCCC2)c1,O=C(Nc1ccc(Oc2ccncc2)cc1)Nc1ccc(Cl)c(C(F)(F)F)c1,evolved_scaffold-hop,evolved_scaffold-hop,0.562,0.457,2.15,6,23 24 25 26 27 28,421.93,7.22,30,48
+CN1CCC(N(Cc2ccco2)c2ccccc2)CC1,CN1CCC(N(Cc2ccccc2)c2ccccc2)CC1,evolved_scaffold-hop,evolved_scaffold-hop,0.593,0.849,2.14,1,11,270.38,3.38,20,30
+Clc1ccc2c(c1)N=C(c1ccccc1)CC(c1ccccc1)=N2,CN1CCN(C2=Nc3cc(Cl)ccc3N=C(c3ccccc3)C2)CC1,evolved_scaffold-hop,evolved_scaffold-hop,0.569,0.551,2.21,6,9 10 11 12 13 14,330.82,5.99,24,41
+CN1CCN(S(=O)(=O)c2ccc(-n3ncc(=O)[nH]c3=O)cc2)CC1,O=c1cnn(-c2ccc(S(=O)(=O)N3CCCCC3)cc2)c(=O)[nH]1,evolved_scaffold-hop,evolved_scaffold-hop,0.717,0.749,2.28,2,0 1,351.39,-1.14,24,48
+CCCN(C)c1nc2ccc(Cl)cc2c2nc(-c3ccco3)nn12,CS(=O)(=O)O.Nc1nc2ccc(Cl)cc2c2nc(-c3ccco3)nn12,evolved_scaffold-hop,evolved_scaffold-hop,0.553,0.56,2.68,4,0 1 2 4,341.8,4.04,24,40
+Clc1ccc2nc(-c3ccccc3)n3nc(-c4ccco4)nc3c2c1,CS(=O)(=O)O.Nc1nc2ccc(Cl)cc2c2nc(-c3ccco3)nn12,evolved_scaffold-hop,evolved_scaffold-hop,0.561,0.458,2.25,6,7 8 9 10 11 12,346.78,4.86,25,42
+c1ccc(COc2ccccc2CC2=NCCN2)cc1,c1ccc(Cc2ccccc2OCC2=NCCN2)cc1,evolved_scaffold-hop,evolved_scaffold-hop,0.625,0.903,2.1,9,0 1 2 14 15 16 17 18 19,266.34,2.81,20,29
+c1ccc(OCC2=NCCN2)c(Cc2ccncc2)c1,c1ccc(Cc2ccccc2OCC2=NCCN2)cc1,evolved_scaffold-hop,evolved_scaffold-hop,0.767,0.902,2.38,1,16,267.33,2.05,20,31
+COc1ccc(C2Sc3cc(Oc4ccccc4)ccc3N(CCN3CCOCC3)C(=O)C2O)cc1,COc1ccc(C2Sc3cc(Oc4ccc(F)cc4)ccc3N(CCN(C)C)C(=O)C2O)cc1,evolved_scaffold-hop,evolved_scaffold-hop,0.563,0.511,3.25,6,24 25 26 27 28 29,506.62,4.36,36,55
+COc1ccc(C2Sc3cc(Oc4ccc(C)cc4)ccc3N(CCN3CCOCC3)C(=O)C2O)cc1,COc1ccc(C2Sc3cc(Oc4ccc(F)cc4)ccc3N(CCN(C)C)C(=O)C2O)cc1,evolved_scaffold-hop,evolved_scaffold-hop,0.578,0.486,3.29,7,16 25 26 27 28 29 30,520.65,4.67,37,58
+COc1ccc(C2Sc3cc(Oc4ccc(F)cc4)ccc3N(CCN3CCOCC3)C(=O)C2O)cc1,COc1ccc(C2Sc3cc(Oc4ccc(F)cc4)ccc3N(CCN(C)C)C(=O)C2O)cc1,evolved_scaffold-hop,evolved_scaffold-hop,0.705,0.488,3.3,6,25 26 27 28 29 30,524.61,4.5,37,58
+CNS(=O)(=O)CCc1ccc2[nH]cc(C3CC3)c2c1,CNS(=O)(=O)CCc1ccc2[nH]cc(C3CCN(C)CC3)c2c1.Cl,evolved_scaffold-hop,evolved_scaffold-hop,0.788,0.88,2.4,0,,278.38,2.14,19,36
+COC(=O)c1cccc(COc2cccc(C(CC3CCC3)OC)c2)c1,CCCCCC(OC)c1cccc(OCc2cccc(C(=O)OC)c2)c1,evolved_scaffold-hop,evolved_scaffold-hop,0.654,0.631,2.59,4,18 19 20 21,354.45,4.93,26,41
+COC(=O)c1cccc(COc2cccc(C(C)c3ccccc3)c2)c1,CCCCCC(OC)c1cccc(OCc2cccc(C(=O)OC)c2)c1,evolved_scaffold-hop,evolved_scaffold-hop,0.58,0.575,2.28,6,18 19 20 21 22 23,346.43,5.2,26,41
+COC(=O)c1cccc(COc2cccc(C(Cc3ccccc3)OC)c2)c1,CCCCCC(OC)c1cccc(OCc2cccc(C(=O)OC)c2)c1,evolved_scaffold-hop,evolved_scaffold-hop,0.671,0.52,2.42,6,18 19 20 21 22 23,376.45,4.98,28,43
+COC(=O)c1cccc(COc2cccc(C(OC)C3CCC3)c2)c1,CCCCCC(OC)c1cccc(OCc2cccc(C(=O)OC)c2)c1,evolved_scaffold-hop,evolved_scaffold-hop,0.578,0.694,2.55,4,19 20 21 22,340.42,4.54,25,40
+O=C(NCc1c[nH]c2ccccc12)c1ccccc1Br,O=C(NCCc1c[nH]c2ccccc12)c1ccccc1Br,evolved_scaffold-hop,evolved_scaffold-hop,0.657,0.753,1.79,9,4 5 6 7 8 9 10 11 12,329.2,3.86,20,33
+CN1CCc2cc(C3CC3)c(Cl)cc2[C@@H](c2ccccc2)C1,CN1CCc2cc(Cl)c(O)cc2[C@@H](c2ccccc2)C1,evolved_scaffold-hop,evolved_scaffold-hop,0.597,0.767,2.71,4,7 8 9 11,311.86,4.84,22,42
+CCc1nc(-c2ccc(F)cc2)c(/C=C/[C@H](O)C[C@H](O)CC(=O)O)c(C(C)C)n1,CC(C)c1nc(NS(C)(=O)=O)nc(-c2ccc(F)cc2)c1/C=C/[C@H](O)C[C@H](O)CC(=O)O,evolved_scaffold-hop,evolved_scaffold-hop,0.667,0.592,3.44,2,0 1,402.47,3.57,29,62
+CC(C)c1nc(O)nc(-c2ccc(F)cc2)c1/C=C/[C@H](O)C[C@H](O)CC(=O)O,CC(C)c1nc(NS(C)(=O)=O)nc(-c2ccc(F)cc2)c1/C=C/[C@H](O)C[C@H](O)CC(=O)O,evolved_scaffold-hop,evolved_scaffold-hop,0.683,0.546,3.55,1,6,390.41,2.71,28,59
+CC1=C(C)C(=O)N(C(=O)NCCc2ccc(S(=O)(=O)NC(=O)c3ccccc3)cc2)C1,CCCCNC(=O)NS(=O)(=O)c1ccc(CCNC(=O)N2CC(C)=C(C)C2=O)cc1,evolved_scaffold-hop,evolved_scaffold-hop,0.646,0.714,2.48,6,22 23 24 25 26 27,441.51,2.24,31,59
+CC1=C(C)C(=O)N(C(=O)NCCc2ccc(S(=O)(=O)NC(=O)NCc3ccncc3)cc2)C1,CCCCNC(=O)NS(=O)(=O)c1ccc(CCNC(=O)N2CC(C)=C(C)C2=O)cc1,evolved_scaffold-hop,evolved_scaffold-hop,0.679,0.562,2.71,6,24 25 26 27 28 29,471.54,1.7,33,61
+CC1=C(C)C(=O)N(C(=O)NCCc2ccc(S(=O)(=O)NC(=O)Nc3ccccc3)cc2)C1,CCCCNC(=O)NS(=O)(=O)c1ccc(CCNC(=O)N2CC(C)=C(C)C2=O)cc1,evolved_scaffold-hop,evolved_scaffold-hop,0.695,0.616,2.52,6,23 24 25 26 27 28,456.52,2.63,32,60
+CC1=C(C)C(=O)N(C(=O)NCCc2ccc(S(=O)(=O)NC(=O)NCc3ccc(C)cc3)cc2)C1,CCCCNC(=O)NS(=O)(=O)c1ccc(CCNC(=O)N2CC(C)=C(C)C2=O)cc1,evolved_scaffold-hop,evolved_scaffold-hop,0.704,0.557,2.61,7,24 25 26 27 28 29 30,484.58,2.61,34,64
+CC(C)c1c(CN(C)CCc2ccccc2)n(C)n(-c2ccccc2)c1=O,CC(C)c1c(CN(C)[C@@H](C)Cc2ccccc2)n(C)n(-c2ccccc2)c1=O,evolved_scaffold-hop,evolved_scaffold-hop,0.597,0.636,2.31,0,,363.51,3.97,27,45
+CC(C)c1c(CN(C)Cc2ccccc2)n(C)n(-c2ccccc2)c1=O,CC(C)c1c(CN(C)[C@@H](C)Cc2ccccc2)n(C)n(-c2ccccc2)c1=O,evolved_scaffold-hop,evolved_scaffold-hop,0.623,0.675,2.26,6,9 10 11 12 13 14,349.48,3.93,26,44
+Oc1cn2c(n1)sc1ccccc12,O=C(O)c1cn2c(n1)sc1ccccc12,evolved_scaffold-hop,evolved_scaffold-hop,0.569,0.59,2.64,1,0,190.23,2.25,13,21
+O=C(c1cn2c(n1)sc1ccccc12)c1cccs1,O=C(O)c1cn2c(n1)sc1ccccc12,evolved_scaffold-hop,evolved_scaffold-hop,0.583,0.524,2.47,5,14 15 16 17 18,284.37,3.84,19,32
+C1=C(c2ccncc2)CCN(CCCc2ccncc2)C1,COc1ccc(C2=CCN(CCCCc3ccncc3)CC2)cc1,evolved_scaffold-hop,evolved_scaffold-hop,0.597,0.841,2.28,7,5 14 15 16 17 18 19,279.39,3.2,21,32
+COc1cccc(-c2cc(O)c3cc(Oc4ccncc4)ccc3n2)c1,COc1cccc(-c2cc(O)c3cc(OC)ccc3n2)c1,evolved_scaffold-hop,evolved_scaffold-hop,0.727,0.576,2.19,6,15 16 17 18 19 20,344.37,4.8,26,41
+COc1cccc(-c2cc(O)c3cc(OCc4ccccc4)ccc3n2)c1,COc1cccc(-c2cc(O)c3cc(OC)ccc3n2)c1,evolved_scaffold-hop,evolved_scaffold-hop,0.696,0.534,1.98,6,16 17 18 19 20 21,357.41,5.2,27,42
+COc1ccc2nc(-c3cccc(-c4cccs4)c3)cc(O)c2c1,COc1cccc(-c2cc(O)c3cc(OC)ccc3n2)c1,evolved_scaffold-hop,evolved_scaffold-hop,0.623,0.55,2.17,5,13 14 15 16 17,333.41,5.34,24,40
+COc1ccc2nc(-c3cccc(Oc4cccc(F)c4)c3)cc(O)c2c1,COc1cccc(-c2cc(O)c3cc(OC)ccc3n2)c1,evolved_scaffold-hop,evolved_scaffold-hop,0.701,0.518,2.12,7,14 15 16 17 18 19 20,361.37,5.55,27,44
+c1cc(-c2ccc(OCCC3CC3)cc2)ccn1,CCCCOc1ccc(-c2ccncc2)cc1,evolved_scaffold-hop,evolved_scaffold-hop,0.583,0.788,1.76,3,10 11 12,239.32,3.93,18,29
+CC(C)(c1ccccc1)c1cc(/C=C/c2cccnc2)ccc1O,CC(C)(C)c1cc(/C=C/c2cccnc2)ccc1O,evolved_scaffold-hop,evolved_scaffold-hop,0.645,0.71,2.26,6,3 4 5 6 7 8,315.42,5.28,24,39
+CC1(C)C=C(n2ccccc2=O)c2cc(S(=O)(=O)NCc3ccccc3)ccc2O1,CNS(=O)(=O)c1ccc2c(c1)C(n1ccccc1=O)=CC(C)(C)O2,evolved_scaffold-hop,evolved_scaffold-hop,0.7,0.684,2.55,6,20 21 22 23 24 25,422.51,3.39,30,52
+O[C@H]1O[C@@H](c2ccc(Cl)c(Cc3ccc4c(c3)OCO4)c2)CS1,OC[C@H]1O[C@@H](c2ccc(Cl)c(Cc3ccc4c(c3)OCO4)c2)[C@H](O)[C@@H](O)[C@@H]1O,evolved_scaffold-hop,evolved_scaffold-hop,0.583,0.913,3.54,2,0 22,350.82,3.74,23,49
+OC[C@H]1O[C@@H](c2ccc(Cl)c(Cc3ccc4c(c3)OCO4)c2)CS1,OC[C@H]1O[C@@H](c2ccc(Cl)c(Cc3ccc4c(c3)OCO4)c2)[C@H](O)[C@@H](O)[C@@H]1O,evolved_scaffold-hop,evolved_scaffold-hop,0.563,0.894,3.46,1,23,364.85,3.78,24,50
+OC[C@H]1O[C@@H](c2ccc(Cl)c(Cc3ccncc3)c2)[C@H](O)[C@@H](O)[C@@H]1O,OC[C@H]1O[C@@H](c2ccc(Cl)c(Cc3ccc4c(c3)OCO4)c2)[C@H](O)[C@@H](O)[C@@H]1O,evolved_scaffold-hop,evolved_scaffold-hop,0.6,0.64,3.57,1,15,365.81,0.84,25,65
+CCN(Cc1ccc(-c2ccccc2-c2nn[nH]n2)cc1)[C@H](C(N)=O)c1ccccc1,CCCCC(=O)N(Cc1ccc(-c2ccccc2-c2nn[nH]n2)cc1)[C@H](C(N)=O)C(C)C,evolved_scaffold-hop,evolved_scaffold-hop,0.571,0.461,2.79,6,25 26 27 28 29 30,412.5,3.58,31,57
+CN(Cc1ccc(-c2ccccc2-c2nn[nH]n2)cc1)[C@H](C(N)=O)c1ccccc1,CCCCC(=O)N(Cc1ccc(-c2ccccc2-c2nn[nH]n2)cc1)[C@H](C(N)=O)C(C)C,evolved_scaffold-hop,evolved_scaffold-hop,0.573,0.498,2.7,6,24 25 26 27 28 29,398.47,3.19,30,56
+CCCCC(=O)N(Cc1ccc(-c2ccccc2-c2nn[nH]n2)cc1)C1CC1,CCCCC(=O)N(Cc1ccc(-c2ccccc2-c2nn[nH]n2)cc1)[C@H](C(N)=O)C(C)C,evolved_scaffold-hop,evolved_scaffold-hop,0.614,0.64,2.26,3,25 26 27,375.48,4.21,28,48
+Clc1ncnc2c1ncn2Cc1ccccc1,CN(C)c1ncnc2c1ncn2Cc1ccccc1,evolved_scaffold-hop,evolved_scaffold-hop,0.559,0.651,2.03,1,0,244.69,2.53,17,24
+CN(c1ncnc2c1ncn2Cc1ccccc1)C1CC1,CN(C)c1ncnc2c1ncn2Cc1ccccc1,evolved_scaffold-hop,evolved_scaffold-hop,0.677,0.736,2.29,3,18 19 20,279.35,2.47,21,31
+CN(Cc1ccccc1)c1ncnc2c1ncn2Cc1ccccc1,CN(C)c1ncnc2c1ncn2Cc1ccccc1,evolved_scaffold-hop,evolved_scaffold-hop,0.7,0.562,2.12,6,3 4 5 6 7 8,329.41,3.51,25,35
+Cc1c(C)n(Cc2ccc(-c3ccccc3-c3nn[nH]n3)cc2)c(CC2CC2)nc1=O,CCCCc1nc(=O)c(C)c(C)n1Cc1ccc(-c2ccccc2-c2nn[nH]n2)cc1,evolved_scaffold-hop,evolved_scaffold-hop,0.697,0.521,2.58,3,25 26 27,412.5,3.71,31,55
+OC(COc1ccccc1C1CCCCC1)Cc1ccccc1,CC(C)NCC(O)COc1ccccc1C1CCCCC1,evolved_scaffold-hop,evolved_scaffold-hop,0.612,0.837,2.31,6,17 18 19 20 21 22,310.44,4.72,23,31
+Cc1cn2c(=O)c3ncn(COCc4ccccc4)c3nc2n1C,Cc1cn2c(=O)c3ncn(COCCO)c3nc2n1C,evolved_scaffold-hop,evolved_scaffold-hop,0.645,0.575,2.72,6,13 14 15 16 17 18,323.36,1.87,24,37
+Cc1cn2c(=O)c3ncn(Cc4ccccc4)c3nc2n1C,Cc1cn2c(=O)c3ncn(COCCO)c3nc2n1C,evolved_scaffold-hop,evolved_scaffold-hop,0.581,0.565,2.56,6,11 12 13 14 15 16,293.33,1.74,22,35
+CN[C@@H](C)C(=O)N[C@H](C(=O)N1CCC[C@H]1C(=O)NCCc1ccccc1)c1ccccc1,CN[C@@H](C)C(=O)N[C@H](C(=O)N1CCC[C@H]1C(=O)NCCc1ccccc1)C(C)(C)C,evolved_scaffold-hop,evolved_scaffold-hop,0.706,0.559,3.06,6,26 27 28 29 30 31,436.56,1.8,32,64
+CN[C@@H](C)C(=O)Nc1ccccc1C(=O)N1CCC[C@H]1C(=O)NCCc1ccccc1,CN[C@@H](C)C(=O)N[C@H](C(=O)N1CCC[C@H]1C(=O)NCCc1ccccc1)C(C)(C)C,evolved_scaffold-hop,evolved_scaffold-hop,0.568,0.608,2.75,13,0 1 2 3 4 5 6 7 8 9 10 11 12,422.53,2.2,31,57
+C[C@H](C(=O)N1CCC[C@H]1C(=O)NCCc1ccccc1)c1ccccc1,CN[C@@H](C)C(=O)N[C@H](C(=O)N1CCC[C@H]1C(=O)NCCc1ccccc1)C(C)(C)C,evolved_scaffold-hop,evolved_scaffold-hop,0.634,0.87,2.58,6,20 21 22 23 24 25,350.46,3.14,26,48
+O=[13C]1[13CH2]N=C(c2ccccc2Cl)c2cc(-c3ccccc3)ccc2N1,O=[13C]1[13CH2]N=C(c2ccccc2Cl)c2cc([N+](=O)[O-])ccc2N1,evolved_scaffold-hop,evolved_scaffold-hop,0.587,0.664,2.17,6,15 16 17 18 19 20,348.8,4.8,25,51
+O=C(Nc1ccccc1)c1cc(Oc2ccc(/C=C/c3ccncc3)cc2)ccn1,O=C(Nc1ccc(Cl)cc1)c1cc(Oc2ccc(/C=C/c3ccncc3)cc2)ccn1,evolved_scaffold-hop,evolved_scaffold-hop,0.795,0.457,2.13,0,,393.45,5.69,30,48
+O=C(Nc1cccnc1)c1cc(Oc2ccc(/C=C/c3ccncc3)cc2)ccn1,O=C(Nc1ccc(Cl)cc1)c1cc(Oc2ccc(/C=C/c3ccncc3)cc2)ccn1,evolved_scaffold-hop,evolved_scaffold-hop,0.718,0.493,2.29,1,7,394.43,5.09,30,48
+O=C(Nc1ccc(Cl)cc1)c1cc(Oc2ccc(CC3CC3)cc2)ccn1,O=C(Nc1ccc(Cl)cc1)c1cc(Oc2ccc(/C=C/c3ccncc3)cc2)ccn1,evolved_scaffold-hop,evolved_scaffold-hop,0.578,0.595,1.96,3,19 20 21,378.86,5.73,27,45
+c1ccc(C2(C3=NCCN3)COc3ccccc3O2)cc1,C1=C(C2(C3=NCCN3)COc3ccccc3O2)CCCC1,evolved_scaffold-hop,evolved_scaffold-hop,0.557,0.918,3.22,0,,280.33,2.36,21,34
+COC(=O)C1C2CCC(CC1c1ccc(Cc3ccc(Cl)cc3)cc1)N2,C=CCc1ccc(C2CC3CCC(N3)C2C(=O)OC)cc1,evolved_scaffold-hop,evolved_scaffold-hop,0.658,0.815,4.06,7,16 17 18 19 20 21 22,369.89,4.33,26,44
+Cc1cc(Sc2cncc3sc(C(N)=O)cc23)cc(C2CC2)c1,Cc1cc(C)cc(Sc2cncc3sc(C(N)=O)cc23)c1,evolved_scaffold-hop,evolved_scaffold-hop,0.716,0.747,2.81,3,19 20 21,340.47,4.73,23,40
+Cc1ccc(-c2cc(C)cc(Sc3cncc4sc(C(N)=O)cc34)c2)cc1,Cc1cc(C)cc(Sc2cncc3sc(C(N)=O)cc23)c1,evolved_scaffold-hop,evolved_scaffold-hop,0.696,0.477,2.59,7,0 1 2 3 4 25 26,390.53,5.83,27,47
+NC(=O)c1cc2c(Sc3cccnc3)cncc2s1,Cc1cc(C)cc(Sc2cncc3sc(C(N)=O)cc23)c1,evolved_scaffold-hop,evolved_scaffold-hop,0.606,0.804,2.75,1,12,287.37,2.94,19,30
+O=C1CN=C(c2ccsc2)c2ccccc2N1,O=C1CN=C(c2ccccc2)c2ccccc2N1,evolved_scaffold-hop,evolved_scaffold-hop,0.638,0.82,2.49,1,8,242.3,2.54,17,27
+O=C1CN=C(c2ccncc2)c2ccccc2N1,O=C1CN=C(c2ccccc2)c2ccccc2N1,evolved_scaffold-hop,evolved_scaffold-hop,0.722,0.823,2.3,1,8,237.26,1.87,18,28
+O=C1CN=C(c2cccnc2)c2ccccc2N1,O=C1CN=C(c2ccccc2)c2ccccc2N1,evolved_scaffold-hop,evolved_scaffold-hop,0.655,0.823,2.3,1,9,237.26,1.87,18,28
+CCCN1CCN2CC(c3ccccc3)c3ccccc3C2C1,CCN1CCN2CC(c3ccccc3)c3ccccc3C2C1,evolved_scaffold-hop,evolved_scaffold-hop,0.759,0.848,2.87,1,0,306.45,3.9,23,33
+CN1CCN2CC(c3ccccc3)c3ccccc3C2C1,CCN1CCN2CC(c3ccccc3)c3ccccc3C2C1,evolved_scaffold-hop,evolved_scaffold-hop,0.644,0.791,2.84,0,,278.4,3.12,21,31
+CCNCN1CCN2CC(c3ccccc3)c3ccccc3C2C1,CCN1CCN2CC(c3ccccc3)c3ccccc3C2C1,evolved_scaffold-hop,evolved_scaffold-hop,0.698,0.934,3.17,3,0 1 2,321.47,3.06,24,34
+Cc1nc2c(n3ccnc13)Cc1ccccc1-2,Oc1nc2c(n3ccnc13)Cc1ccccc1-2,evolved_scaffold-hop,evolved_scaffold-hop,0.629,0.457,2.65,1,0,221.26,2.61,17,28
+c1ccc2c(c1)Cc1c-2nc(C2CC2)c2nccn12,Oc1nc2c(n3ccnc13)Cc1ccccc1-2,evolved_scaffold-hop,evolved_scaffold-hop,0.625,0.517,2.78,3,11 12 13,247.3,3.18,19,34
+CCCC(=O)NCCc1cccc2ccccc12,O=C(NCCc1cccc2ccccc12)C1CCC1,evolved_scaffold-hop,evolved_scaffold-hop,0.571,0.855,1.64,3,0 1 2,241.33,3.3,18,25
+c1ccc2c(CCNC3CCC3)cccc2c1,O=C(NCCc1cccc2ccccc12)C1CCC1,evolved_scaffold-hop,evolved_scaffold-hop,0.574,0.839,1.71,4,8 9 10 11,225.33,3.52,17,25
+COc1cc2ncnc(NCc3ccccc3)c2cc1OC,COc1cccc(CNc2ncnc3cc(OC)c(OC)cc23)c1,evolved_scaffold-hop,evolved_scaffold-hop,0.682,0.783,1.84,0,,295.34,3.26,22,30
+COc1cccc(CNc2ncnc3cc(-c4ccccc4)c(OC)cc23)c1,COc1cccc(CNc2ncnc3cc(OC)c(OC)cc23)c1,evolved_scaffold-hop,evolved_scaffold-hop,0.693,0.521,2.04,6,16 17 18 19 20 21,371.44,4.93,28,43
+Cn1c(=O)c2nc(-c3ccc(S(=O)(=O)c4ccccc4)cc3)[nH]c2n(C)c1=O,Cn1c(=O)c2nc(-c3ccc(S(=O)(=O)O)cc3)[nH]c2n(C)c1=O,evolved_scaffold-hop,evolved_scaffold-hop,0.682,0.564,2.41,6,14 15 16 17 18 19,396.43,1.46,28,56
+Cn1c(=O)c2nc(-c3ccc(-c4cccnc4)cc3)[nH]c2n(C)c1=O,Cn1c(=O)c2nc(-c3ccc(S(=O)(=O)O)cc3)[nH]c2n(C)c1=O,evolved_scaffold-hop,evolved_scaffold-hop,0.571,0.605,2.42,6,11 12 13 14 15 16,333.35,1.69,25,48
+COc1ccc(Cl)cc1C(=O)NCCc1ccc(Br)cc1,COc1ccc(CNS(=O)(=O)c2ccc(CCNC(=O)c3cc(Cl)ccc3OC)cc2)cc1,evolved_scaffold-hop,evolved_scaffold-hop,0.59,0.863,1.66,1,18,368.66,4.08,21,34
+COc1ccc(Cl)cc1C(=O)NCCc1ccc(S(=O)(=O)c2ccccc2)cc1,COc1ccc(CNS(=O)(=O)c2ccc(CCNC(=O)c3cc(Cl)ccc3OC)cc2)cc1,evolved_scaffold-hop,evolved_scaffold-hop,0.607,0.612,1.88,6,21 22 23 24 25 26,429.93,4.15,29,49
+O=C(O)[C@@H]1C[C@@H]2CCC[C@@H]2N1C(=O)[C@H](CCc1ccccc1)NC1CC1,CCOC(=O)[C@H](CCc1ccccc1)N[C@@H](C(=O)O)C(=O)N1[C@H](C(=O)O)C[C@@H]2CCC[C@@H]21,evolved_scaffold-hop,evolved_scaffold-hop,0.605,0.788,3.46,10,15 16 17 18 19 20 21 23 24 25,356.47,2.59,26,61
+CNC(=O)c1cc(Oc2cccc(CCC(=O)Nc3cccs3)c2)ccn1,CNC(=O)c1cc(Oc2cccc(CCC(=O)Nc3ccc(Cl)c(C(F)(F)F)c3)c2)ccn1,evolved_scaffold-hop,evolved_scaffold-hop,0.596,0.651,2.33,1,22,381.46,3.87,27,43
+c1ccc(O[C@@H](c2ccccc2)[C@@H]2CNCCO2)cc1,Fc1ccc(O[C@@H](c2ccccc2)[C@@H]2CNCCO2)cc1,evolved_scaffold-hop,evolved_scaffold-hop,0.768,0.926,2.82,0,,269.34,2.8,20,40
+c1ccc([C@H](Oc2ccsc2)[C@@H]2CNCCO2)cc1,Fc1ccc(O[C@@H](c2ccccc2)[C@@H]2CNCCO2)cc1,evolved_scaffold-hop,evolved_scaffold-hop,0.656,0.93,3.34,1,9,275.37,2.86,19,38
+Oc1ncncc1Oc1cccc(OC2CC2)c1,COc1cccc(Oc2cncnc2O)c1,evolved_scaffold-hop,evolved_scaffold-hop,0.627,0.895,2.48,3,14 15 16,244.25,2.52,18,26
+Oc1ncncc1Oc1cccc(Oc2ccccc2)c1,COc1cccc(Oc2cncnc2O)c1,evolved_scaffold-hop,evolved_scaffold-hop,0.673,0.788,2.18,6,14 15 16 17 18 19,280.28,3.77,21,29
+Cc1ccc(S(=O)(=O)N2CC=C(c3ccc4[nH]cc(C[C@H]5CCCN5CNC5CC5)c4c3)CC2)cc1,Cc1ccc(S(=O)(=O)N2CC=C(c3ccc4[nH]cc(C[C@H]5CCCN5C)c4c3)CC2)cc1,evolved_scaffold-hop,evolved_scaffold-hop,0.709,0.468,3.31,4,26 27 28 29,504.7,4.67,36,68
+CN1CCC[C@@H]1Cc1c[nH]c2ccc(C3=CCN(S(=O)(=O)c4ccncc4)CC3)cc12,Cc1ccc(S(=O)(=O)N2CC=C(c3ccc4[nH]cc(C[C@H]5CCCN5C)c4c3)CC2)cc1,evolved_scaffold-hop,evolved_scaffold-hop,0.804,0.663,3.18,1,24,436.58,3.68,31,60
+Cc1cccc(NC(=O)CCN2CCOCC2)c1,Cc1cccc(NC(=O)CCN2CC(C)CC(C)C2)c1.Cl,evolved_scaffold-hop,evolved_scaffold-hop,0.582,0.881,1.7,1,14,248.33,1.66,18,27
+CCC(C[C@H](O)/C=C/c1c(-c2ccc(F)cc2)nc(S(C)(=O)=O)nc1C(C)C1CC1)OC,CCC(C[C@H](O)/C=C/c1c(-c2ccc(F)cc2)nc(N(C)S(C)(=O)=O)nc1C(C)C)OC,evolved_scaffold-hop,evolved_scaffold-hop,0.557,0.527,4.05,7,19 20 21 22 27 28 29,462.59,4.39,32,64
+CCC(C[C@H](O)/C=C/c1c(-c2ccc(F)cc2)nc(N(C)S(C)(=O)=O)nc1C(C)C1CC1)OC,CCC(C[C@H](O)/C=C/c1c(-c2ccc(F)cc2)nc(N(C)S(C)(=O)=O)nc1C(C)C)OC,evolved_scaffold-hop,evolved_scaffold-hop,0.773,0.501,4.08,3,29 30 31,491.63,4.38,34,68
+CCC(C[C@H](O)/C=C/c1c(-c2ccc(F)cc2)nc(NCC2CC2)nc1C(C)C)OC,CCC(C[C@H](O)/C=C/c1c(-c2ccc(F)cc2)nc(N(C)S(C)(=O)=O)nc1C(C)C)OC,evolved_scaffold-hop,evolved_scaffold-hop,0.591,0.501,3.6,3,21 22 23,427.56,5.42,31,57
+CC1=C(c2ccccc2)C(c2c(F)ccc(Cl)c2C(F)(F)F)C2=C(COC2=O)N1,CC1=C(C(=O)OC(C)C)C(c2c(F)ccc(Cl)c2C(F)(F)F)C2=C(COC2=O)N1,evolved_scaffold-hop,evolved_scaffold-hop,0.56,0.517,3.3,6,3 4 5 6 7 8,423.79,5.43,29,55
+O=C(c1cc2ccccc2[nH]1)N1CCN(c2ncccc2CN2CCCC2)CC1,CC(C)(C)Nc1cccnc1N1CCN(C(=O)c2cc3ccccc3[nH]2)CC1,evolved_scaffold-hop,evolved_scaffold-hop,0.571,0.745,2.26,6,21 22 23 24 25 26,389.5,3.12,29,47
+O=C(c1cc2ccccc2[nH]1)N1CCN(c2ncccc2Nc2ccccc2)CC1,CC(C)(C)Nc1cccnc1N1CCN(C(=O)c2cc3ccccc3[nH]2)CC1,evolved_scaffold-hop,evolved_scaffold-hop,0.694,0.54,2.2,6,22 23 24 25 26 27,397.48,4.27,30,48
+CC(Oc1ccc2ccccc2c1)C(O)CNC1CC1,CC(C)NCC(O)C(C)Oc1ccc2ccccc2c1,evolved_scaffold-hop,evolved_scaffold-hop,0.678,0.849,2.84,3,17 18 19,271.36,2.72,20,30
+O=C(O)c1ccccc1COc1cccc(C(O)Cc2ccc(Cl)cc2)c1,CCCCCC(O)c1cccc(OCc2ccccc2C(=O)O)c1,evolved_scaffold-hop,evolved_scaffold-hop,0.608,0.61,2.35,7,19 20 21 22 23 24 25,382.84,4.89,27,43
+O=C(O)c1ccccc1COc1cccc(C(O)Cc2ccc(O)cc2)c1,CCCCCC(O)c1cccc(OCc2ccccc2C(=O)O)c1,evolved_scaffold-hop,evolved_scaffold-hop,0.623,0.591,2.41,7,19 20 21 22 23 24 25,364.4,3.95,27,42
+CCOc1ccc2nc(S(=O)Cc3ccccc3)[nH]c2c1,CCOc1ccc2nc(S(=O)Cc3ccccc3N)[nH]c2c1,evolved_scaffold-hop,evolved_scaffold-hop,0.63,0.787,2.64,0,,300.38,3.27,21,35
+CCOc1ccc2nc(S(=O)Cc3cccnc3)[nH]c2c1,CCOc1ccc2nc(S(=O)Cc3ccccc3N)[nH]c2c1,evolved_scaffold-hop,evolved_scaffold-hop,0.57,0.786,2.87,1,16,301.37,2.66,21,35
+CC(C)c1cc(O)c2cccc(C(C)C)c2n1,Cc1cc(C(C)C)nc2c(C(C)C)cccc12,evolved_scaffold-hop,evolved_scaffold-hop,0.56,0.837,2.39,1,6,229.32,4.19,17,29
+Cc1cc(C(O)c2ccccn2)nc2c(C(C)C)cccc12,Cc1cc(C(C)C)nc2c(C(C)C)cccc12,evolved_scaffold-hop,evolved_scaffold-hop,0.586,0.789,2.88,7,5 6 7 8 9 10 11,292.38,4.14,22,36
+Cc1cc(C(C)c2ccccn2)nc2c(C(C)C)cccc12,Cc1cc(C(C)C)nc2c(C(C)C)cccc12,evolved_scaffold-hop,evolved_scaffold-hop,0.596,0.661,2.9,6,6 7 8 9 10 11,290.41,5.21,22,36
+Cc1cc(C(C)c2ccccc2)nc2c(C(C)C)cccc12,Cc1cc(C(C)C)nc2c(C(C)C)cccc12,evolved_scaffold-hop,evolved_scaffold-hop,0.63,0.592,2.65,6,6 7 8 9 10 11,289.42,5.82,22,36
+COc1cccc2c1C[C@H]1CCN(C3CC3)[C@H]1C2,CCCN1CC[C@@H]2Cc3c(cccc3OC)C[C@@H]21,evolved_scaffold-hop,evolved_scaffold-hop,0.561,0.792,3.17,3,13 14 15,243.35,2.65,18,36
+COc1cccc2c1C[C@H]1CCN(CCc3ccccc3)[C@H]1C2,CCCN1CC[C@@H]2Cc3c(cccc3OC)C[C@@H]21,evolved_scaffold-hop,evolved_scaffold-hop,0.691,0.853,2.87,6,15 16 17 18 19 20,307.44,3.73,23,41
+Cc1cc(Oc2ccc(NC(=O)Nc3cccc(CCN4CCCC4)c3)c(F)c2)ccn1,CNC(=O)c1cc(Oc2ccc(NC(=O)Nc3cccc(CCN)c3)c(F)c2)ccn1,evolved_scaffold-hop,evolved_scaffold-hop,0.552,0.508,2.26,5,20 21 22 23 24,434.52,5.6,32,51
+CNC(=O)c1cc(Oc2ccc(NC(=O)NC3=NCCCN3)c(F)c2)ccn1,CNC(=O)c1cc(Oc2ccc(NC(=O)Nc3cccc(CCN)c3)c(F)c2)ccn1,evolved_scaffold-hop,evolved_scaffold-hop,0.551,0.64,2.65,5,17 18 19 20 21,386.39,1.84,28,47
+N#Cc1ccc([C@](O)(CCCN2CCCC2)c2ccc(F)cc2)c(CO)c1,CN(C)CCC[C@](O)(c1ccc(F)cc1)c1ccc(C#N)cc1CO,evolved_scaffold-hop,evolved_scaffold-hop,0.636,0.787,2.95,5,11 12 13 14 15,368.45,3.3,27,47
+CN(CCC[C@](O)(c1ccc(F)cc1)c1ccc(C#N)cc1CO)Cc1ccccc1,CN(C)CCC[C@](O)(c1ccc(F)cc1)c1ccc(C#N)cc1CO,evolved_scaffold-hop,evolved_scaffold-hop,0.696,0.543,2.94,6,25 26 27 28 29 30,418.51,4.34,31,51
+c1ccn2ncc(CN3CCCC3)c2c1,Clc1cccc(N2CCN(Cc3cnn4ccccc34)CC2)c1,evolved_scaffold-hop,evolved_scaffold-hop,0.567,0.74,2.17,0,,201.27,1.93,15,23
+c1ccn2ncc(CN3CCCCC3)c2c1,Clc1cccc(N2CCN(Cc3cnn4ccccc34)CC2)c1,evolved_scaffold-hop,evolved_scaffold-hop,0.551,0.766,2.16,1,11,215.3,2.32,16,24
+CCCCN1C(=O)CC2(CCCC2)N=C1c1ccc(-c2ccccc2-c2nn[nH]n2)cc1,CCCCC1=NC2(CCCC2)CC(=O)N1Cc1ccc(-c2ccccc2-c2nn[nH]n2)cc1,evolved_scaffold-hop,evolved_scaffold-hop,0.592,0.62,3.26,15,0 1 2 3 4 5 6 7 8 9 10 11 12 13 14,428.54,4.63,32,55
+O=C1CN=C(c2ccccc2Cl)c2cc(-c3ccccc3)ccc2N1,O=C1CN=C(c2ccccc2Cl)c2cc(I)ccc2N1,evolved_scaffold-hop,evolved_scaffold-hop,0.62,0.711,2.17,6,15 16 17 18 19 20,346.82,4.8,25,41
+O=S(=O)(NCC1CC1)c1cc2c(cc1Cl)NC(c1ccc(Cl)cc1)NS2(=O)=O,NS(=O)(=O)c1cc2c(cc1Cl)NC(c1ccc(Cl)cc1)NS2(=O)=O,evolved_scaffold-hop,evolved_scaffold-hop,0.618,0.634,3.25,4,4 5 6 7,462.38,3.08,28,54
+Fc1ccc([C@@]2(CCCc3ccccc3)OCc3ccccc32)cc1,CN(C)CCC[C@]1(c2ccc(F)cc2)OCc2ccccc21,evolved_scaffold-hop,evolved_scaffold-hop,0.643,0.589,2.65,6,9 10 11 12 13 14,332.42,5.62,25,41
+CN1CCC(CN(C(=O)CC2CC2)c2ccccc2)(N2CCN(Cc3ccccc3)CC2)CC1,CCC(=O)N(CC1(N2CCN(Cc3ccccc3)CC2)CCN(C)CC1)c1ccccc1,evolved_scaffold-hop,evolved_scaffold-hop,0.763,0.593,2.64,3,10 11 12,460.67,4.1,34,55
+CCC(=O)N(CC1(N2CCN(Cc3ccccc3)CC2)CCN(C)CC1)c1ccco1,CCC(=O)N(CC1(N2CCN(Cc3ccccc3)CC2)CCN(C)CC1)c1ccccc1,evolved_scaffold-hop,evolved_scaffold-hop,0.675,0.682,2.84,1,30,424.59,3.3,31,50
+CN1CCC(CN(C(=O)c2ccccc2)c2ccccc2)(N2CCN(Cc3ccccc3)CC2)CC1,CCC(=O)N(CC1(N2CCN(Cc3ccccc3)CC2)CCN(C)CC1)c1ccccc1,evolved_scaffold-hop,evolved_scaffold-hop,0.701,0.492,2.51,6,9 10 11 12 13 14,482.67,4.62,36,57
+CC(=O)NN1CCN(C2=Nc3cc(Cl)ccc3N(NC(C)=O)c3ccccc32)CC1,CC(=O)NN1c2ccc(Cl)cc2N=C(N2CCN(C)CC2)c2ccccc21,evolved_scaffold-hop,evolved_scaffold-hop,0.803,0.771,2.87,4,0 1 2 3,426.91,2.59,30,52
+CC(=O)NN1c2ccc(Cl)cc2N=C(N2CCN(C3CCCCC3)CC2)c2ccccc21,CC(=O)NN1c2ccc(Cl)cc2N=C(N2CCN(C)CC2)c2ccccc21,evolved_scaffold-hop,evolved_scaffold-hop,0.718,0.707,2.7,6,18 19 20 21 22 23,452.0,4.87,32,53
+CC(=O)NN1c2ccc(Cl)cc2N=C(N(C)CCN2CCN(C)CC2)c2ccccc21,CC(=O)NN1c2ccc(Cl)cc2N=C(N2CCN(C)CC2)c2ccccc21,evolved_scaffold-hop,evolved_scaffold-hop,0.574,0.791,2.85,11,14 15 16 17 18 19 20 21 22 23 24,440.98,3.1,31,52
+N#Cc1ccc(C(F)(F)F)cc1O[C@H](CCC1CC1)c1ccccc1,CNCC[C@@H](Oc1cc(C(F)(F)F)ccc1C#N)c1ccccc1.Cl,evolved_scaffold-hop,evolved_scaffold-hop,0.667,0.654,2.76,3,16 17 18,345.36,5.89,25,44
+COC(=O)C1=C(C)NC(C)=C(C(=O)OC2CCCCC2)C1c1ccccc1Cl,COC(=O)C1=C(C)NC(C)=C(C(=O)OC(C)(C)C)C1c1ccccc1Cl,evolved_scaffold-hop,evolved_scaffold-hop,0.606,0.743,2.78,6,14 15 16 17 18 19,403.91,4.62,28,49
+COC(=O)C1=C(C)NC(C)=C(C(=O)OC(C)(C)C)C1c1ccccc1-c1ccccc1,COC(=O)C1=C(C)NC(C)=C(C(=O)OC(C)(C)C)C1c1ccccc1Cl,evolved_scaffold-hop,evolved_scaffold-hop,0.614,0.698,2.71,6,25 26 27 28 29 30,419.52,5.1,31,56
+CCc1ccc2nc(SCc3ccccn3)[nH]c2c1,COc1ccc2nc(SCc3ccccn3)[nH]c2c1,evolved_scaffold-hop,evolved_scaffold-hop,0.638,0.732,2.15,2,0 1,269.37,3.81,19,30
+Cc1ccc2nc(SCc3ccccn3)[nH]c2c1,COc1ccc2nc(SCc3ccccn3)[nH]c2c1,evolved_scaffold-hop,evolved_scaffold-hop,0.657,0.728,2.09,1,0,255.35,3.56,18,29
+c1ccc(CSc2nc3ccc(OC4CC4)cc3[nH]2)nc1,COc1ccc2nc(SCc3ccccn3)[nH]c2c1,evolved_scaffold-hop,evolved_scaffold-hop,0.71,0.728,2.28,3,13 14 15,297.38,3.79,21,36
+Oc1ccc2c(c1CSc1ccccc1)CCO2,Oc1ccc2c(c1CCCSc1ccccc1)CCO2,evolved_scaffold-hop,evolved_scaffold-hop,0.606,0.853,2.23,7,8 9 10 11 12 13 14,258.34,3.62,18,26
+O=C(c1ccccc1)c1cccnc1N1CCN(C(=O)c2cc3ccccc3[nH]2)CC1,CC(=O)c1cccnc1N1CCN(C(=O)c2cc3ccccc3[nH]2)CC1,evolved_scaffold-hop,evolved_scaffold-hop,0.725,0.52,2.19,6,2 3 4 5 6 7,410.48,3.76,31,52
+O=C(c1cc2ccccc2[nH]1)N1CCN(c2ccccc2)CC1,CC(=O)c1cccnc1N1CCN(C(=O)c2cc3ccccc3[nH]2)CC1,evolved_scaffold-hop,evolved_scaffold-hop,0.553,0.79,1.82,1,20,305.38,3.13,23,39
+CN1CCN(C(=O)c2cc3ccccc3[nH]2)CC1,CC(=O)c1cccnc1N1CCN(C(=O)c2cc3ccccc3[nH]2)CC1,evolved_scaffold-hop,evolved_scaffold-hop,0.556,0.825,1.91,1,0,243.31,1.56,18,32
+O=C1c2ccc(-c3ccccc3)cc2CCC1CCCN1CCC(c2ccncc2)CC1,O=C1c2ccc(-c3ccccc3)cc2CCC1CCN1CCC(c2ccccc2)CC1,evolved_scaffold-hop,evolved_scaffold-hop,0.667,0.475,2.84,13,19 20 21 22 23 24 25 26 27 28 29 30 31,424.59,6.15,32,48
+O=C1c2ccc(-c3ccccc3)cc2CCC1CN1CCC(c2ccncc2)CC1,O=C1c2ccc(-c3ccccc3)cc2CCC1CCN1CCC(c2ccccc2)CC1,evolved_scaffold-hop,evolved_scaffold-hop,0.586,0.594,2.78,12,18 19 20 21 22 23 24 25 26 27 28 29,396.53,5.37,30,46
+O=C(O)c1cccc(-c2cc(O)c(Sc3ccccc3C3CCC3)c(=O)o2)c1,CC(C)c1ccccc1Sc1c(O)cc(-c2cccc(C(=O)O)c2)oc1=O,evolved_scaffold-hop,evolved_scaffold-hop,0.607,0.624,2.54,4,20 21 22 23,394.45,5.13,28,49
+O=C(O)c1cccc(-c2cc(O)c(Sc3ccncc3)c(=O)o2)c1,CC(C)c1ccccc1Sc1c(O)cc(-c2cccc(C(=O)O)c2)oc1=O,evolved_scaffold-hop,evolved_scaffold-hop,0.57,0.751,2.5,1,17,341.34,3.26,24,43
+O=C(O)c1cccc(-c2cc(O)c(Sc3ccco3)c(=O)o2)c1,CC(C)c1ccccc1Sc1c(O)cc(-c2cccc(C(=O)O)c2)oc1=O,evolved_scaffold-hop,evolved_scaffold-hop,0.577,0.755,2.75,1,18,330.32,3.45,23,42
+CO[C@H]1[C@H](O)[C@@H](O)[C@H](c2ccc(Cl)c(Cc3cccs3)c2)O[C@@H]1CO,COc1ccc(Cc2cc([C@@H]3O[C@H](CO)[C@@H](OC)[C@H](O)[C@H]3O)ccc2Cl)cc1,evolved_scaffold-hop,evolved_scaffold-hop,0.632,0.736,3.74,1,19,384.88,2.16,25,64
+CO[C@H]1[C@H](O)[C@@H](O)[C@H](c2ccc(Cl)c(Cc3ccc(OCc4ccccc4)cc3)c2)O[C@@H]1CO,COc1ccc(Cc2cc([C@@H]3O[C@H](CO)[C@@H](OC)[C@H](O)[C@H]3O)ccc2Cl)cc1,evolved_scaffold-hop,evolved_scaffold-hop,0.734,0.452,3.54,6,21 22 23 24 25 26,484.98,3.68,34,77
+CO[C@H]1[C@H](O)[C@@H](O)[C@H](c2ccc(Cl)c(Cc3ccc(OCc4ccccc4)cc3)c2)O[C@@H]1C,COc1ccc(Cc2cc([C@@H]3O[C@H](CO)[C@@H](OC)[C@H](O)[C@H]3O)ccc2Cl)cc1,evolved_scaffold-hop,evolved_scaffold-hop,0.551,0.525,3.51,6,21 22 23 24 25 26,468.98,4.71,33,76
+CO[C@H]1[C@H](O)[C@@H](O)[C@H](c2ccc(Cl)c(Cc3ccc(OCc4ccccc4)cc3)c2)O[C@@H]1O,COc1ccc(Cc2cc([C@@H]3O[C@H](CO)[C@@H](OC)[C@H](O)[C@H]3O)ccc2Cl)cc1,evolved_scaffold-hop,evolved_scaffold-hop,0.557,0.488,3.55,7,21 22 23 24 25 26 32,470.95,3.64,33,76
+c1ccc2cc(CCC3=NCCN3)ccc2c1,c1ccc2cc(CC3=NCCN3)ccc2c1,evolved_scaffold-hop,evolved_scaffold-hop,0.607,0.851,2.23,6,7 8 9 10 11 12,224.31,2.77,17,26
+O=C(OCC(O)CNCC1CC1)c1ccccc1F,CC(C)NCC(O)COC(=O)c1ccccc1F,evolved_scaffold-hop,evolved_scaffold-hop,0.603,0.732,2.49,3,9 10 11,267.3,1.34,19,28
+CC(NCC(O)COC(=O)c1ccccc1F)c1ccc(F)cc1,CC(C)NCC(O)COC(=O)c1ccccc1F,evolved_scaffold-hop,evolved_scaffold-hop,0.672,0.764,2.7,7,17 18 19 20 21 22 23,335.35,2.83,24,37
+Cc1ccc(Oc2ccc(C(F)(F)F)cc2CNc2ccccc2)cc1,CNCc1cc(C(F)(F)F)ccc1Oc1ccc(C)cc1,evolved_scaffold-hop,evolved_scaffold-hop,0.656,0.569,1.87,6,18 19 20 21 22 23,357.38,6.42,26,40
+Cc1ccc(NCc2cc(C(F)(F)F)ccc2Oc2ccc(C)cc2)cc1,CNCc1cc(C(F)(F)F)ccc1Oc1ccc(C)cc1,evolved_scaffold-hop,evolved_scaffold-hop,0.7,0.537,1.92,7,0 1 2 3 4 25 26,371.4,6.73,27,43
+O=S(=O)(Cl)c1cc2c(cc1Cl)NC(CCCc1ccco1)NS2(=O)=O,O=S(=O)(Cl)c1cc2c(cc1Cl)NC(CCc1ccccc1)NS2(=O)=O,evolved_scaffold-hop,evolved_scaffold-hop,0.582,0.714,3.61,6,15 16 17 18 19 20,425.32,2.91,25,47
+O=S(=O)(Cl)c1cc2c(cc1Cl)NC(CCc1ccncc1)NS2(=O)=O,O=S(=O)(Cl)c1cc2c(cc1Cl)NC(CCc1ccccc1)NS2(=O)=O,evolved_scaffold-hop,evolved_scaffold-hop,0.754,0.733,3.51,1,18,422.32,2.33,25,47
+O=S(=O)(Cl)c1cc2c(cc1Cl)NC(Cc1ccccc1)NS2(=O)=O,O=S(=O)(Cl)c1cc2c(cc1Cl)NC(CCc1ccccc1)NS2(=O)=O,evolved_scaffold-hop,evolved_scaffold-hop,0.681,0.763,3.33,6,14 15 16 17 18 19,407.3,2.54,24,46
+COc1ccc2c(c1)c(CCN1CCOCC1)c1n2CCc2ccccc2-1,CCCC(=O)NCCc1c2n(c3ccc(OC)cc13)CCc1ccccc1-2,evolved_scaffold-hop,evolved_scaffold-hop,0.62,0.707,2.37,6,11 12 13 14 15 16,362.47,3.75,27,42
+COc1ccc2c(c1)c(CCNc1ccccc1)c1n2CCc2ccccc2-1,CCCC(=O)NCCc1c2n(c3ccc(OC)cc13)CCc1ccccc1-2,evolved_scaffold-hop,evolved_scaffold-hop,0.667,0.501,2.24,6,12 13 14 15 16 17,368.48,5.53,28,43
+CCCC(=O)NCN1CCN(CCc2c3n(c4ccc(OC)cc24)CCc2ccccc2-3)CC1,CCCC(=O)NCCc1c2n(c3ccc(OC)cc13)CCc1ccccc1-2,evolved_scaffold-hop,evolved_scaffold-hop,0.708,0.554,2.65,13,0 1 2 3 4 5 6 7 8 9 10 32 33,460.62,3.91,34,54
+Fc1ccc2c(c1)N=C(N1CCOCC1)c1cscc1N2,CN1CCN(C2=Nc3cc(F)ccc3Nc3cscc32)CC1,evolved_scaffold-hop,evolved_scaffold-hop,0.729,0.811,2.8,1,12,303.36,3.35,21,34
+Fc1ccc2c(c1)N=C(N1CCN(C3CCCCC3)CC1)c1cscc1N2,CN1CCN(C2=Nc3cc(F)ccc3Nc3cscc32)CC1,evolved_scaffold-hop,evolved_scaffold-hop,0.688,0.753,2.79,6,13 14 15 16 17 18,384.52,4.97,27,44
+CNS(=O)(=O)c1cc2c(cc1Cl)NC(CSCc1ccccc1)NS2(=O)=O,CNS(=O)(=O)c1cc2c(cc1Cl)NC(CSCC(F)(F)F)NS2(=O)=O,evolved_scaffold-hop,evolved_scaffold-hop,0.662,0.627,3.43,6,17 18 19 20 21 22,447.99,2.21,27,48
+CNS(=O)(=O)c1cc2c(cc1Cl)NC(Cc1ccccc1)NS2(=O)=O,CNS(=O)(=O)c1cc2c(cc1Cl)NC(CSCC(F)(F)F)NS2(=O)=O,evolved_scaffold-hop,evolved_scaffold-hop,0.556,0.72,3.28,6,15 16 17 18 19 20,401.9,1.52,25,46
+CCc1nnc2c(NC3CCCCC3)nc3ccccc3n12,CCCc1nnc2c(NC3CCCC3)nc3ccccc3n12,evolved_scaffold-hop,evolved_scaffold-hop,0.732,0.802,2.32,1,11,295.39,3.58,22,32
+COCc1nnc2c(NC3CCCCC3)nc3ccccc3n12,CCCc1nnc2c(NC3CCCC3)nc3ccccc3n12,evolved_scaffold-hop,evolved_scaffold-hop,0.68,0.802,2.39,3,0 1 12,311.39,3.17,23,33
+Cc1nc(O)c2cc(CN(C)c3ccc(C(=O)NCc4ccccc4)c(F)c3)c(C)cc2n1,C#CCN(Cc1cc2c(O)nc(C)nc2cc1C)c1ccc(C(=O)NCc2cccc(C#N)c2)c(F)c1,evolved_scaffold-hop,evolved_scaffold-hop,0.562,0.452,2.54,0,,444.51,4.66,33,56
+CCN(CC)c1cc(N)c2cc(OC3CCC3)c(OC)cc2n1,CCN(CC)c1cc(N)c2cc(OC)c(OC)cc2n1,evolved_scaffold-hop,evolved_scaffold-hop,0.683,0.882,2.48,4,13 14 15 16,315.42,3.6,23,37
+Cc1ccc2nc(S(=O)Cc3nccc(N4CCCCC4)c3Cl)[nH]c2c1,COc1ccc2nc(S(=O)Cc3nccc(N4CCCCC4)c3Cl)[nH]c2c1,evolved_scaffold-hop,evolved_scaffold-hop,0.738,0.726,3.16,1,0,388.92,4.22,26,45
+COc1ccc2nc(S(=O)Cc3nccc(N(C)CC4CC4)c3Cl)[nH]c2c1,COc1ccc2nc(S(=O)Cc3nccc(N4CCCCC4)c3Cl)[nH]c2c1,evolved_scaffold-hop,evolved_scaffold-hop,0.583,0.649,3.33,6,16 17 18 19 20 21,404.92,3.77,27,48
+COc1ccc2nc(S(=O)Cc3nccc(NC4CCCC4)c3Cl)[nH]c2c1,COc1ccc2nc(S(=O)Cc3nccc(N4CCCCC4)c3Cl)[nH]c2c1,evolved_scaffold-hop,evolved_scaffold-hop,0.579,0.64,3.21,6,16 17 18 19 20 21,404.92,4.28,27,46
+C[C@H]1Nc2cc3nc(O)cc(C(F)(F)F)c3cc2C[C@H]1Cc1ccccc1,CC[C@@H]1Cc2cc3c(C(F)(F)F)cc(O)nc3cc2N[C@@H]1C,evolved_scaffold-hop,evolved_scaffold-hop,0.671,0.652,3.58,6,21 22 23 24 25 26,372.39,5.17,27,51
+O=C(Cc1cccs1)c1ccc2n1CCC2C(=O)O,O=C(Cc1ccccc1)c1ccc2n1CCC2C(=O)O,evolved_scaffold-hop,evolved_scaffold-hop,0.6,0.872,3.16,1,7,275.33,2.55,19,31
+O=C(Cc1ccccn1)c1ccc2n1CCC2C(=O)O,O=C(Cc1ccccc1)c1ccc2n1CCC2C(=O)O,evolved_scaffold-hop,evolved_scaffold-hop,0.606,0.861,3.05,1,8,270.29,1.88,20,32
+O=C(Cc1ccccc1)c1ccc2n1CCC2C(=O)c1cccs1,O=C(Cc1ccccc1)c1ccc2n1CCC2C(=O)O,evolved_scaffold-hop,evolved_scaffold-hop,0.638,0.65,2.99,5,19 20 21 22 23,335.43,4.35,24,38
+O=C(Cc1ccccc1)c1ccc2n1CCC2C(=O)Cc1ccccc1,O=C(Cc1ccccc1)c1ccc2n1CCC2C(=O)O,evolved_scaffold-hop,evolved_scaffold-hop,0.733,0.629,2.8,7,19 20 21 22 23 24 25,343.43,4.21,26,40
+O=C(Cc1ccccc1)c1ccc2n1CCC2c1ccccc1,O=C(Cc1ccccc1)c1ccc2n1CCC2C(=O)O,evolved_scaffold-hop,evolved_scaffold-hop,0.585,0.653,2.71,6,17 18 19 20 21 22,301.39,4.45,23,34
+COc1cccc(Oc2ccc(NC(=O)CC3CC3)cc2)c1,CCCC(=O)Nc1ccc(Oc2cccc(OC)c2)cc1,evolved_scaffold-hop,evolved_scaffold-hop,0.656,0.868,1.69,3,16 17 18,297.35,4.23,22,35
+N[C@@H](CC(=O)N1CCn2c(nnc2C2CC2)C1)Cc1c(F)cc(F)cc1F,N[C@@H](CC(=O)N1CCn2c(nnc2C(F)(F)F)C1)Cc1c(F)cc(F)cc1F,evolved_scaffold-hop,evolved_scaffold-hop,0.63,0.861,3.22,3,13 14 15,379.39,1.88,27,51
+COc1ccc(-c2ccc(N3CC(CNc4ccc(F)cc4)OC3=O)cc2C(F)(F)F)ccc1=O,COc1ccc(-c2ccc(N3CC(CNC(C)=O)OC3=O)cc2C(F)(F)F)ccc1=O,evolved_scaffold-hop,evolved_scaffold-hop,0.71,0.476,2.98,7,15 16 17 18 19 20 21,488.44,5.32,35,58
+CC(=O)NCC1CN(c2ccc(-c3ccc(Oc4ccccc4)c(=O)cc3)c(C(F)(F)F)c2)C(=O)O1,COc1ccc(-c2ccc(N3CC(CNC(C)=O)OC3=O)cc2C(F)(F)F)ccc1=O,evolved_scaffold-hop,evolved_scaffold-hop,0.774,0.518,3.02,6,17 18 19 20 21 22,498.46,4.99,36,66
+CC[C@@H](NC(=O)c1c(O)c(-c2ccncc2)nc2ccccc12)c1ccccc1,CC[C@@H](NC(=O)c1c(O)c(-c2ccccc2)nc2ccccc12)c1ccccc1,evolved_scaffold-hop,evolved_scaffold-hop,0.819,0.515,2.64,1,13,383.45,4.88,29,52
+O=C(NCc1ccccc1)c1c(O)c(-c2ccccc2)nc2ccccc12,CC[C@@H](NC(=O)c1c(O)c(-c2ccccc2)nc2ccccc12)c1ccccc1,evolved_scaffold-hop,evolved_scaffold-hop,0.558,0.566,1.88,0,,354.41,4.54,27,43
+C=CNC(=O)c1c(O)c(-c2ccccc2)nc2ccccc12,CC[C@@H](NC(=O)c1c(O)c(-c2ccccc2)nc2ccccc12)c1ccccc1,evolved_scaffold-hop,evolved_scaffold-hop,0.568,0.776,2.3,1,0,290.32,3.48,22,37
+O=C(NC1CC1)c1c(O)c(-c2ccccc2)nc2ccccc12,CC[C@@H](NC(=O)c1c(O)c(-c2ccccc2)nc2ccccc12)c1ccccc1,evolved_scaffold-hop,evolved_scaffold-hop,0.553,0.778,1.96,3,3 4 5,304.35,3.5,23,39
+c1ccc2c(c1)N=C(N1CCN(CN3CCCCC3)CC1)c1ccccc1S2,[2H]C([2H])(C)C([2H])([2H])OC([2H])([2H])C([2H])([2H])N1CCN(C2=Nc3ccccc3Sc3ccccc32)CC1,evolved_scaffold-hop,evolved_scaffold-hop,0.578,0.76,2.45,6,13 14 15 16 17 18,392.57,4.29,28,45
+c1ccc(CN2CCN(C3=Nc4ccccc4Sc4ccccc43)CC2)cc1,[2H]C([2H])(C)C([2H])([2H])OC([2H])([2H])C([2H])([2H])N1CCN(C2=Nc3ccccc3Sc3ccccc32)CC1,evolved_scaffold-hop,evolved_scaffold-hop,0.593,0.615,2.18,6,0 1 2 3 26 27,385.54,5.05,28,43
+[2H]C([2H])(C)C([2H])([2H])N1CCN(C2=Nc3ccccc3Sc3ccccc32)CC1,[2H]C([2H])(C)C([2H])([2H])OC([2H])([2H])C([2H])([2H])N1CCN(C2=Nc3ccccc3Sc3ccccc32)CC1,evolved_scaffold-hop,evolved_scaffold-hop,0.778,0.813,3.64,1,3,341.52,4.26,24,59
+[2H]C([2H])(C)N1CCN(C2=Nc3ccccc3Sc3ccccc32)CC1,[2H]C([2H])(C)C([2H])([2H])OC([2H])([2H])C([2H])([2H])N1CCN(C2=Nc3ccccc3Sc3ccccc32)CC1,evolved_scaffold-hop,evolved_scaffold-hop,0.703,0.793,3.03,0,,325.48,3.87,23,46
+c1ccc2c(c1)N=C(N1CCN(CCN3CCOCC3)CC1)c1ccccc1S2,[2H]C([2H])(C)C([2H])([2H])OC([2H])([2H])C([2H])([2H])N1CCN(C2=Nc3ccccc3Sc3ccccc32)CC1,evolved_scaffold-hop,evolved_scaffold-hop,0.59,0.779,2.44,6,14 15 16 17 18 19,408.57,3.18,29,46
+COc1ccc(C2Sc3cc(F)ccc3N(CCN(C)C3=NN=NC3)C(=O)C2O)cc1,COc1ccc(C2Sc3cc(F)ccc3N(CCN(C)C)C(=O)C2O)cc1.Cl,evolved_scaffold-hop,evolved_scaffold-hop,0.703,0.767,3.94,5,20 21 22 23 24,443.5,3.09,31,52
+COc1ccc(C2Sc3cc(F)ccc3N(C3CC3)C(=O)C2O)cc1,COc1ccc(C2Sc3cc(F)ccc3N(CCN(C)C)C(=O)C2O)cc1.Cl,evolved_scaffold-hop,evolved_scaffold-hop,0.565,0.911,3.17,3,16 17 18,359.42,3.54,25,42
+Cc1cc(-n2ncc(=O)[nH]c2=O)cc(C)c1S(=O)(=O)N(C)c1ccccc1,CCCN(C)S(=O)(=O)c1c(C)cc(-n2ncc(=O)[nH]c2=O)cc1C,evolved_scaffold-hop,evolved_scaffold-hop,0.583,0.729,2.51,6,21 22 23 24 25 26,386.43,1.36,27,53
+CCCN(c1ccccc1)S(=O)(=O)c1c(C)cc(-n2ncc(=O)[nH]c2=O)cc1C,CCCN(C)S(=O)(=O)c1c(C)cc(-n2ncc(=O)[nH]c2=O)cc1C,evolved_scaffold-hop,evolved_scaffold-hop,0.622,0.665,2.59,6,4 5 6 7 8 9,414.49,2.14,29,55
+Cc1cc(-n2ncc(=O)[nH]c2=O)cc(C)c1S(=O)(=O)N(C)CCOc1cccs1,CCCN(C)S(=O)(=O)c1c(C)cc(-n2ncc(=O)[nH]c2=O)cc1C,evolved_scaffold-hop,evolved_scaffold-hop,0.628,0.597,2.94,6,23 24 25 26 27 28,436.52,1.3,29,55
+COc1cccc([C@@]2(OC)CCCC[C@@H]2CN2CCOCC2)c1,CNC[C@H]1CCCC[C@]1(OC)c1cccc(OC)c1,evolved_scaffold-hop,evolved_scaffold-hop,0.581,0.834,3.24,6,16 17 18 19 20 21,319.45,3.06,23,42
+O=C(O)c1cn2c(ccc3ccc(OCC4CC4)cc32)n1,COc1ccc2ccc3nc(C(=O)O)cn3c2c1,evolved_scaffold-hop,evolved_scaffold-hop,0.612,0.799,2.39,3,15 16 17,282.3,2.97,21,36
+COc1ccc(Oc2ccc3ccc4nc(C(=O)O)cn4c3c2)cc1,COc1ccc2ccc3nc(C(=O)O)cn3c2c1,evolved_scaffold-hop,evolved_scaffold-hop,0.738,0.611,2.21,8,0 1 2 3 4 5 23 24,334.33,3.99,25,40
+Cc1ccc(Oc2ccc3ccc4nc(C(=O)O)cn4c3c2)cc1,COc1ccc2ccc3nc(C(=O)O)cn3c2c1,evolved_scaffold-hop,evolved_scaffold-hop,0.656,0.612,2.21,7,0 1 2 3 4 22 23,318.33,4.29,24,39
+O=C(O)c1cn2c(ccc3ccc(Oc4ccc(F)cc4)cc32)n1,COc1ccc2ccc3nc(C(=O)O)cn3c2c1,evolved_scaffold-hop,evolved_scaffold-hop,0.631,0.616,2.23,7,14 15 16 17 18 19 20,322.3,4.12,24,41
+O=C(C1CC1)N(c1ccccc1F)C1CCN(CCc2ccccc2)CC1,C=CC(=O)N(c1ccccc1F)C1CCN(CCc2ccccc2)CC1,evolved_scaffold-hop,evolved_scaffold-hop,0.685,0.762,2.14,3,2 3 4,366.48,4.28,27,42
+O=C1[C@H](CC2CC2)[C@@H](c2ccc(-c3cccc(O)c3)cc2)N1c1ccccc1,O=C1[C@H](CC[C@H](O)c2ccc(F)cc2)[C@@H](c2ccc(-c3cccc(O)c3)cc2)N1c1ccccc1,evolved_scaffold-hop,evolved_scaffold-hop,0.556,0.598,2.94,3,4 5 6,369.46,5.56,28,57
+c1ccc(CCC2CN(N3CCCC3)Cc3ccccc3N2Cc2c[nH]cn2)cc1,N#Cc1ccc(S(=O)(=O)N2Cc3ccccc3N(Cc3c[nH]cn3)C(CCc3ccccc3)C2)cc1,evolved_scaffold-hop,evolved_scaffold-hop,0.592,0.67,3.37,5,9 10 11 12 13,401.56,4.24,30,47
+COCC(=O)N(c1cccs1)C1CCN(CCc2ccccc2)CC1C,COCC(=O)N(c1ccccc1F)C1CCN(CCc2ccccc2)CC1C,evolved_scaffold-hop,evolved_scaffold-hop,0.632,0.743,3.26,1,10,372.53,3.68,26,39
+COCC(=O)N(c1ccccc1-c1cccs1)C1CCN(CCc2ccccc2)CC1C,COCC(=O)N(c1ccccc1F)C1CCN(CCc2ccccc2)CC1C,evolved_scaffold-hop,evolved_scaffold-hop,0.656,0.466,3.27,5,12 13 14 15 16,448.63,5.35,32,48
+COCC(=O)N(c1ccccc1-c1ccc(F)cc1)C1CCN(CCc2ccccc2)CC1C,COCC(=O)N(c1ccccc1F)C1CCN(CCc2ccccc2)CC1C,evolved_scaffold-hop,evolved_scaffold-hop,0.692,0.45,3.14,7,12 13 14 15 16 17 18,460.59,5.43,34,52
+CC1CN(CCc2ccccc2)CCC1N(Cc1ccccc1)c1ccccc1F,COCC(=O)N(c1ccccc1F)C1CCN(CCc2ccccc2)CC1C,evolved_scaffold-hop,evolved_scaffold-hop,0.57,0.494,2.92,6,17 18 19 20 21 22,402.56,5.79,30,42
+Cc1ccc2c(c1)-n1cc(C3CC3)nc1CO2,Cc1ccc2c(c1)-n1cc(C(=O)O)nc1CO2,evolved_scaffold-hop,evolved_scaffold-hop,0.561,0.747,2.72,3,10 11 12,226.28,2.95,17,30
+Cc1ccc2c(c1)-n1cc(C(=O)OCc3ccccc3)nc1CO2,Cc1ccc2c(c1)-n1cc(C(=O)O)nc1CO2,evolved_scaffold-hop,evolved_scaffold-hop,0.605,0.694,2.37,7,13 14 15 16 17 18 19,320.35,3.43,24,40
+COc1cccc(Oc2ccccc2NC(=O)c2ccccc2)c1,CCCC(=O)Nc1ccccc1Oc1cccc(OC)c1,evolved_scaffold-hop,evolved_scaffold-hop,0.618,0.739,1.55,6,17 18 19 20 21 22,319.36,4.74,24,35
+COc1cccc(Oc2ccccc2NC(=O)CCC2CCCC2)c1,CCCC(=O)Nc1ccccc1Oc1cccc(OC)c1,evolved_scaffold-hop,evolved_scaffold-hop,0.681,0.735,1.85,5,19 20 21 22 23,339.44,5.4,25,36
+COc1cccc(Oc2ccccc2NC(=O)CCc2ccccc2)c1,CCCC(=O)Nc1ccccc1Oc1cccc(OC)c1,evolved_scaffold-hop,evolved_scaffold-hop,0.71,0.65,1.66,6,19 20 21 22 23 24,347.41,5.06,26,37
+O=C(OCc1ccccc1)C1=C(O)C(=O)N(C2c3ccccc3-c3ccccc32)C1,CCOC(=O)C1=C(O)C(=O)N(C2c3ccccc3-c3ccccc32)C1,evolved_scaffold-hop,evolved_scaffold-hop,0.691,0.672,2.43,6,4 5 6 7 8 9,397.43,4.15,30,52
+COC(=O)c1ccc(C(=O)OCc2ccccc2)c(O)c1,COC(=O)c1ccc(C(=O)OC)c(O)c1,evolved_scaffold-hop,evolved_scaffold-hop,0.558,0.874,1.68,6,12 13 14 15 16 17,286.28,2.54,21,35
+NS(=O)(=O)c1cc2c(cc1Cl)NC(CSCc1ccccc1)NS2(=O)=O,C=CCSCC1Nc2cc(Cl)c(S(N)(=O)=O)cc2S(=O)(=O)N1,evolved_scaffold-hop,evolved_scaffold-hop,0.653,0.663,3.42,6,16 17 18 19 20 21,433.96,1.95,26,47
+NS(=O)(=O)c1cc2c(cc1Cl)NC(CSc1ccccc1)NS2(=O)=O,C=CCSCC1Nc2cc(Cl)c(S(N)(=O)=O)cc2S(=O)(=O)N1,evolved_scaffold-hop,evolved_scaffold-hop,0.613,0.65,3.43,6,15 16 17 18 19 20,419.94,1.81,25,46
+Cc1cc(-c2[nH]c3ccc(C(C)C)cc3c2C(C)C)c(C)cn1,Cc1cc(-c2[nH]c3ccc(C4CCNCC4)cc3c2C(C)C)c(C)cn1,evolved_scaffold-hop,evolved_scaffold-hop,0.592,0.623,2.61,3,10 11 12,306.45,6.09,23,43
+Cc1ccc2[nH]c(-c3cc(C)ncc3C)c(C(C)C)c2c1,Cc1cc(-c2[nH]c3ccc(C4CCNCC4)cc3c2C(C)C)c(C)cn1,evolved_scaffold-hop,evolved_scaffold-hop,0.579,0.679,2.52,1,0,278.4,5.28,21,39
+Cn1c(-c2ccc(OC3CC3)cc2)cc(=O)c2ccccc21,COCOc1ccc(-c2cc(=O)c3ccccc3n2C)cc1,evolved_scaffold-hop,evolved_scaffold-hop,0.612,0.736,2.07,3,8 9 10,291.35,3.75,22,38
+Cn1c(-c2ccc(Oc3ccccc3)cc2)cc(=O)c2ccccc21,COCOc1ccc(-c2cc(=O)c3ccccc3n2C)cc1,evolved_scaffold-hop,evolved_scaffold-hop,0.621,0.53,1.9,6,8 9 10 11 12 13,327.38,5.0,25,41
+Cn1c(-c2ccc(OCCc3ccccc3)cc2)cc(=O)c2ccccc21,COCOc1ccc(-c2cc(=O)c3ccccc3n2C)cc1,evolved_scaffold-hop,evolved_scaffold-hop,0.634,0.514,1.95,7,9 10 11 12 13 14 15,355.44,4.83,27,43
+C[C@@H](O)[C@H]1C(=O)N2C(C(=O)O)=C(SC3CCCC3)C[C@H]12,C[C@@H](O)[C@H]1C(=O)N2C(C(=O)O)=C(S[C@@H]3CN[C@H](C(=O)N(C)C)C3)C[C@H]12,evolved_scaffold-hop,evolved_scaffold-hop,0.575,0.77,3.72,1,16,297.38,1.57,20,52
+O=C(OC1CCCCC1)C(c1ccccc1)c1ccccc1,C[NH+]1CCC(OC(=O)C(c2ccccc2)c2ccccc2)CC1.[Cl-],evolved_scaffold-hop,evolved_scaffold-hop,0.604,0.764,1.89,1,6,294.39,4.69,22,33
+CC1(C)CC(C)(C)c2cccc(NC(=O)Nc3ccc(-c4ccccc4)cc3)c2O1,CCOC(=O)c1ccc(NC(=O)Nc2cccc3c2OC(C)(C)CC3(C)C)cc1,evolved_scaffold-hop,evolved_scaffold-hop,0.634,0.506,2.31,6,20 21 22 23 24 25,400.52,6.84,30,52
+Cc1cc(-c2cnc3c(NCC4CC4)nccn23)ccc1C(=O)NC1CC1,Cc1cc(-c2cnc3c(NCC(C)C)nccn23)ccc1C(=O)NC1CC1,evolved_scaffold-hop,evolved_scaffold-hop,0.762,0.706,2.5,3,11 12 13,361.45,3.42,27,45
+CC(C)(Oc1cccc(OCC2CC2)c1)C(=O)O,CC(C)(Oc1cccc(OC(C)(C)C(=O)O)c1)C(=O)O,evolved_scaffold-hop,evolved_scaffold-hop,0.604,0.843,2.05,3,11 12 13,250.29,2.72,18,31
+CC(C)(Oc1cccc(Oc2ccc(O)cc2)c1)C(=O)O,CC(C)(Oc1cccc(OC(C)(C)C(=O)O)c1)C(=O)O,evolved_scaffold-hop,evolved_scaffold-hop,0.617,0.881,1.96,7,10 11 12 13 14 15 16,288.3,3.43,21,36
+CC(C)(Oc1cccc(OCc2ccccc2)c1)C(=O)O,CC(C)(Oc1cccc(OC(C)(C)C(=O)O)c1)C(=O)O,evolved_scaffold-hop,evolved_scaffold-hop,0.592,0.883,1.78,6,11 12 13 14 15 16,286.33,3.51,21,34
+Cc1ccc(Oc2cccc(OC(C)(C)C(=O)O)c2)cc1,CC(C)(Oc1cccc(OC(C)(C)C(=O)O)c1)C(=O)O,evolved_scaffold-hop,evolved_scaffold-hop,0.617,0.901,1.86,7,0 1 2 3 4 19 20,286.33,4.03,21,36
+CC(C)(Oc1cccc(Oc2ccc(F)cc2)c1)C(=O)O,CC(C)(Oc1cccc(OC(C)(C)C(=O)O)c1)C(=O)O,evolved_scaffold-hop,evolved_scaffold-hop,0.604,0.908,1.88,7,10 11 12 13 14 15 16,290.29,3.86,21,36
+CC(C)(Oc1cccc(OC2CCC2)c1)C(=O)O,CC(C)(Oc1cccc(OC(C)(C)C(=O)O)c1)C(=O)O,evolved_scaffold-hop,evolved_scaffold-hop,0.63,0.873,2.1,4,10 11 12 13,250.29,2.86,18,31
+CCOC(=O)c1cc2c([nH]c3ccccc32)c(-c2ccccc2)n1,COC(=O)c1cc2c([nH]c3ccccc32)c(-c2ccccc2)n1,evolved_scaffold-hop,evolved_scaffold-hop,0.776,0.564,2.07,1,0,316.36,4.56,24,43
+O=C(c1cc2c([nH]c3ccccc32)c(-c2ccccc2)n1)C1CC1,COC(=O)c1cc2c([nH]c3ccccc32)c(-c2ccccc2)n1,evolved_scaffold-hop,evolved_scaffold-hop,0.648,0.542,2.23,3,21 22 23,312.37,4.98,24,45
+CCCOC(=O)c1cc2c([nH]c3ccccc32)c(-c2ccccc2)n1,COC(=O)c1cc2c([nH]c3ccccc32)c(-c2ccccc2)n1,evolved_scaffold-hop,evolved_scaffold-hop,0.743,0.539,2.14,2,0 1,330.39,4.95,25,44
+O=C(Oc1ccco1)c1cc2c([nH]c3ccccc32)c(-c2ccccc2)n1,COC(=O)c1cc2c([nH]c3ccccc32)c(-c2ccccc2)n1,evolved_scaffold-hop,evolved_scaffold-hop,0.689,0.452,2.5,5,3 4 5 6 7,354.37,5.2,27,48
+Clc1ccc2c(c1)N=C(N1CCN(CCOc3ccccc3N3CCNCC3)CC1)c1ccccc1N2,ClCCCCCCOCCOCCN1CCN(C2=Nc3cc(Cl)ccc3Nc3ccccc32)CC1,evolved_scaffold-hop,evolved_scaffold-hop,0.583,0.517,2.66,12,16 17 18 19 20 21 22 23 24 25 26 27,517.08,4.58,37,57
+Cc1ccccc1OCCN1CCN(C2=Nc3cc(Cl)ccc3Nc3ccccc32)CC1,ClCCCCCCOCCOCCN1CCN(C2=Nc3cc(Cl)ccc3Nc3ccccc32)CC1,evolved_scaffold-hop,evolved_scaffold-hop,0.63,0.576,2.4,7,0 1 2 3 4 5 6,446.98,5.48,32,48
+Clc1ccc2c(c1)N=C(N1CCCCC1)c1ccccc1N2,ClCCCCCCOCCOCCN1CCN(C2=Nc3cc(Cl)ccc3Nc3ccccc32)CC1,evolved_scaffold-hop,evolved_scaffold-hop,0.556,0.744,2.27,1,12,311.82,4.96,22,36
+CNS(=O)(=O)c1ccc(CCNC(=O)c2cc(Cl)ccc2Oc2ccccc2)cc1,CNS(=O)(=O)c1ccc(CCNC(=O)c2cc(Cl)ccc2OC)cc1,evolved_scaffold-hop,evolved_scaffold-hop,0.701,0.549,1.98,6,22 23 24 25 26 27,444.94,4.01,30,50
+CNn1cc(C(=O)O)c(=O)c2cc(C)c(N3CCCCC3)cc21,CNn1cc(C(=O)O)c(=O)c2cc(F)c(N3CCCC3)cc21,evolved_scaffold-hop,evolved_scaffold-hop,0.614,0.908,2.51,2,13 18,315.37,2.17,23,41
+CNn1cc(C(=O)O)c(=O)c2cc(F)c(N3CCN(C)CC3)cc21,CNn1cc(C(=O)O)c(=O)c2cc(F)c(N3CCCC3)cc21,evolved_scaffold-hop,evolved_scaffold-hop,0.769,0.863,2.59,2,18 19,334.35,0.76,24,44
+C/C=C(\NC(=O)CCc1ccccc1)c1ccccc1,C/C=C(\NC(=O)CCc1ccccc1)C(=O)O,evolved_scaffold-hop,evolved_scaffold-hop,0.588,0.875,1.97,6,14 15 16 17 18 19,265.36,3.8,20,32
+c1ccc2c(N(CCCN3CCCCC3)C3CC3)ccnc2c1,CCN(CCCN1CCCCC1)c1ccnc2ccccc12,evolved_scaffold-hop,evolved_scaffold-hop,0.613,0.801,2.21,3,15 16 17,309.46,4.08,23,35
+c1ccc(CCCN(CCCN2CCCCC2)c2ccnc3ccccc23)cc1,CCN(CCCN1CCCCC1)c1ccnc2ccccc12,evolved_scaffold-hop,evolved_scaffold-hop,0.675,0.48,2.16,7,0 1 2 3 4 27 28,387.57,5.55,29,41
+CCN(CCCN1CCNCC1)c1ccnc2ccccc12,CCN(CCCN1CCCCC1)c1ccnc2ccccc12,evolved_scaffold-hop,evolved_scaffold-hop,0.739,0.887,2.28,1,9,298.43,2.36,22,30
+CCC(C(=O)NCCc1cccnc1)c1ccccc1,CCC(C(=O)NCCc1ccccc1)c1ccccc1,evolved_scaffold-hop,evolved_scaffold-hop,0.672,0.875,2.28,1,12,268.36,2.93,20,29
+O=C(NCCc1ccccc1)C(CC1CCCCC1)c1ccccc1,CCC(C(=O)NCCc1ccccc1)c1ccccc1,evolved_scaffold-hop,evolved_scaffold-hop,0.597,0.749,2.31,6,13 14 15 16 17 18,335.49,5.1,25,36
+COc1ccccc1OCC(O)CNC(C)c1ccc(C)cc1,COc1ccccc1OCC(O)CNC(C)C,evolved_scaffold-hop,evolved_scaffold-hop,0.621,0.786,2.53,7,16 17 18 19 20 21 22,315.41,3.09,23,33
+COc1ccc2nc(SCc3ccccc3)[nH]c2c1,COc1ccc2nc(SCc3ccc(C)cc3)[nH]c2c1,evolved_scaffold-hop,evolved_scaffold-hop,0.726,0.731,1.83,0,,270.36,3.86,19,30
+COc1ccc2nc(SCc3ccc(-c4ccccc4)cc3)[nH]c2c1,COc1ccc2nc(SCc3ccc(C)cc3)[nH]c2c1,evolved_scaffold-hop,evolved_scaffold-hop,0.691,0.483,1.89,6,14 15 16 17 18 19,346.46,5.53,25,41
+C[C@H]1CCCC(=O)CCC/C=C/c2cc(O)cc(-n3cncn3)c2C(=O)O1,C[C@H]1CCCC(=O)CCC/C=C/c2cc(O)cc(O)c2C(=O)O1,evolved_scaffold-hop,evolved_scaffold-hop,0.595,0.774,3.97,5,18 19 20 21 22,369.42,3.45,27,51
+C[C@H]1CCCC(=O)CCC/C=C/c2cc(-c3ccccc3)cc(O)c2C(=O)O1,C[C@H]1CCCC(=O)CCC/C=C/c2cc(O)cc(O)c2C(=O)O1,evolved_scaffold-hop,evolved_scaffold-hop,0.662,0.662,3.49,6,15 16 17 18 19 20,378.47,5.54,28,52
+COc1cc2ncnc(N3CCC(NC(=O)NCc4ccccc4)CC3)c2cc1OC,CCCCNC(=O)NC1CCN(c2ncnc3cc(OC)c(OC)cc23)CC1,evolved_scaffold-hop,evolved_scaffold-hop,0.69,0.636,2.21,6,18 19 20 21 22 23,421.5,3.12,31,46
+O=C(O)c1cn2c(ccc3ccc(C(F)(F)c4ccc(F)cc4)cc32)n1,O=C(O)c1cn2c(ccc3ccc(C(F)(F)F)cc32)n1,evolved_scaffold-hop,evolved_scaffold-hop,0.662,0.589,2.6,7,16 17 18 19 20 21 22,356.3,4.46,26,47
+O=C(OC1CC1)c1oc2c(sc3ccccc32)c1O,COC(=O)c1oc2c(sc3ccccc32)c1O,evolved_scaffold-hop,evolved_scaffold-hop,0.672,0.724,2.73,3,3 4 5,274.3,3.67,19,32
+O=C(OCC1CC1)c1oc2c(sc3ccccc32)c1O,COC(=O)c1oc2c(sc3ccccc32)c1O,evolved_scaffold-hop,evolved_scaffold-hop,0.631,0.742,2.66,3,4 5 6,288.32,3.92,20,33
+CCCc1ccc(C(CC)C(=O)O)cc1,CCC(C(=O)O)c1ccc(CC(C)C)cc1,evolved_scaffold-hop,evolved_scaffold-hop,0.595,0.803,2.21,0,,206.28,3.22,15,24
+CCC(C(=O)O)c1ccc(CC(C)Cc2ccccc2)cc1,CCC(C(=O)O)c1ccc(CC(C)C)cc1,evolved_scaffold-hop,evolved_scaffold-hop,0.617,0.805,2.62,6,14 15 16 17 18 19,296.41,4.69,22,35
+O=C1c2cccc3cccc(c23)N1CCCN1C(=O)c2cccc3cccc1c23,CC(C)C1CCN(CCCCN2C(=O)c3cccc4cccc2c34)CC1,evolved_scaffold-hop,evolved_scaffold-hop,0.585,0.501,2.23,13,0 1 2 3 4 5 6 7 8 9 10 11 12,378.43,5.0,29,47
+O=C1c2cccc3cccc(c23)N1CCCN1CCOCC1,CC(C)C1CCN(CCCCN2C(=O)c3cccc4cccc2c34)CC1,evolved_scaffold-hop,evolved_scaffold-hop,0.566,0.869,2.07,6,16 17 18 19 20 21,296.37,2.52,22,33
+O=C1c2cccc3cccc(c23)N1CCCC1CC1,CC(C)C1CCN(CCCCN2C(=O)c3cccc4cccc2c34)CC1,evolved_scaffold-hop,evolved_scaffold-hop,0.569,0.804,2.02,3,16 17 18,251.33,3.99,19,30
+CN1c2ccc(Cl)cc2N=C(N2CCCC2)c2ccccc21,CN1CCN(C2=Nc3cc(Cl)ccc3N(C)c3ccccc32)CC1,evolved_scaffold-hop,evolved_scaffold-hop,0.785,0.708,2.27,0,,311.82,4.6,22,36
+c1ccc(C(OCC2CCN(CCCC3CCCC3)CC2)c2ccccc2)cc1,CCCCCCCCN1CCC(COC(c2ccccc2)c2ccccc2)CC1,evolved_scaffold-hop,evolved_scaffold-hop,0.623,0.485,2.19,5,14 15 16 17 18,391.6,6.48,29,43
+CC(C)NCC(O)COc1cc2c(cc1OCC(O)CN1CCCCC1)CCCC2,CC(C)NCC(O)COc1cc2c(cc1OCC(O)CNC(C)C)CCCC2,evolved_scaffold-hop,evolved_scaffold-hop,0.712,0.511,3.15,6,20 21 22 23 24 25,420.59,2.53,30,44
+CC(C)NCC(O)COc1cc2c(cc1Oc1ccccc1)CCCC2,CC(C)NCC(O)COc1cc2c(cc1OCC(O)CNC(C)C)CCCC2,evolved_scaffold-hop,evolved_scaffold-hop,0.683,0.749,2.62,6,16 17 18 19 20 21,355.48,4.1,26,38
+CN1CCN(CC(O)COc2ccc(NC(=O)c3cccs3)cc2)CC1,CC(C)NCC(O)COc1ccc(NC(=O)c2cccs2)cc1,evolved_scaffold-hop,evolved_scaffold-hop,0.603,0.775,2.49,7,0 1 2 3 4 24 25,375.49,1.99,26,41
+O=C(Nc1ccc(OCC(O)CNc2ccccc2)cc1)c1cccs1,CC(C)NCC(O)COc1ccc(NC(=O)c2cccs2)cc1,evolved_scaffold-hop,evolved_scaffold-hop,0.671,0.565,2.35,6,13 14 15 16 17 18,368.46,3.85,26,39
+COC(=O)C1=C(C)N(C)C(C)=C(C(=O)OCC2CC2)C1c1ccccc1Cl,COC(=O)C1=C(C)N(C)C(C)=C(C(=O)OC)C1c1ccccc1Cl,evolved_scaffold-hop,evolved_scaffold-hop,0.746,0.711,2.89,3,16 17 18,389.88,4.04,27,50
+COC(=O)C1=C(C)N(C)C(C)=C(C(=O)OC2CCCCC2)C1c1ccccc1Cl,COC(=O)C1=C(C)N(C)C(C)=C(C(=O)OC)C1c1ccccc1Cl,evolved_scaffold-hop,evolved_scaffold-hop,0.71,0.647,2.92,6,15 16 17 18 19 20,417.93,4.97,29,52
+CC(=O)NCCc1ccc(S(=O)(=O)NC(=O)NC2CCC(C3CC3)CC2)cc1,CC(=O)NCCc1ccc(S(=O)(=O)NC(=O)NC2CCC(C)CC2)cc1,evolved_scaffold-hop,evolved_scaffold-hop,0.812,0.645,2.27,3,21 22 23,407.54,2.32,28,50
+CC1CCC(NC(=O)NS(=O)(=O)c2ccc(CCNc3ccccc3)cc2)CC1,CC(=O)NCCc1ccc(S(=O)(=O)NC(=O)NC2CCC(C)CC2)cc1,evolved_scaffold-hop,evolved_scaffold-hop,0.662,0.64,2.12,6,19 20 21 22 23 24,415.56,3.91,29,48
+COc1cc(CS(=O)c2nc3ccc(OC(F)F)cc3[nH]2)ncc1-c1ccccc1,COc1cnc(CS(=O)c2nc3ccc(OC(F)F)cc3[nH]2)cc1OC,evolved_scaffold-hop,evolved_scaffold-hop,0.698,0.467,3.1,6,24 25 26 27 28 29,429.45,4.54,30,51
+COc1cnc(CS(=O)c2nc3ccc(OCc4ccccc4)cc3[nH]2)cc1OC,COc1cnc(CS(=O)c2nc3ccc(OC(F)F)cc3[nH]2)cc1OC,evolved_scaffold-hop,evolved_scaffold-hop,0.644,0.463,2.92,6,17 18 19 20 21 22,423.49,3.86,30,48
+COc1ccc2nc(S(=O)Cc3cc(OC)c(Oc4ccccc4)cn3)[nH]c2c1,COc1cnc(CS(=O)c2nc3ccc(OC(F)F)cc3[nH]2)cc1OC,evolved_scaffold-hop,evolved_scaffold-hop,0.584,0.495,2.98,6,18 19 20 21 22 23,409.47,4.08,29,49
+CCCCn1c(=O)c2c(nc3ccccn32)n(Cc2ccccc2)c1=O,CC(C)Cn1c(=O)c2c(nc3ccccn32)n(Cc2ccccc2)c1=O,evolved_scaffold-hop,evolved_scaffold-hop,0.684,0.557,2.24,1,0,348.41,2.66,26,42
+O=c1c2c(nc3ccccn32)n(Cc2ccccc2)c(=O)n1CC1CC1,CC(C)Cn1c(=O)c2c(nc3ccccn32)n(Cc2ccccc2)c1=O,evolved_scaffold-hop,evolved_scaffold-hop,0.662,0.569,2.32,3,23 24 25,346.39,2.27,26,44
+O=c1c2c(nc3ccccn32)n(CC2CC2)c(=O)n1Cc1ccccc1,CC(C)Cn1c(=O)c2c(nc3ccccn32)n(Cc2ccccc2)c1=O,evolved_scaffold-hop,evolved_scaffold-hop,0.58,0.569,2.31,4,0 13 14 15,346.39,2.27,26,44
+CC(O)(CCCC1CC1)c1cccc(OCc2ccccc2)c1,CCCCCC(C)(O)c1cccc(OCc2ccccc2)c1,evolved_scaffold-hop,evolved_scaffold-hop,0.697,0.739,2.46,3,6 7 8,310.44,5.05,23,35
+CC(O)(c1ccccc1)c1cccc(OCc2ccccc2)c1,CCCCCC(C)(O)c1cccc(OCc2ccccc2)c1,evolved_scaffold-hop,evolved_scaffold-hop,0.554,0.751,2.2,6,3 4 5 6 7 8,304.39,4.52,23,35
+CC(=O)NCN1CCN(CCC2CCCc3cc4c(cc32)OCCO4)CC1,CC(=O)NCCC1CCCc2cc3c(cc21)OCCO3,evolved_scaffold-hop,evolved_scaffold-hop,0.618,0.855,3.07,11,0 1 2 3 4 5 6 7 8 25 26,373.5,1.98,27,42
+CC(=O)NN1CCN(CCC2CCCc3cc4c(cc32)OCCO4)CC1,CC(=O)NCCC1CCCc2cc3c(cc21)OCCO3,evolved_scaffold-hop,evolved_scaffold-hop,0.592,0.89,3.14,10,0 1 2 3 4 5 6 7 24 25,359.47,1.94,26,41
+COC(=O)Cc1ccc(-c2ccccc2)cc1,CCOC(=O)Cc1ccc(-c2ccccc2)cc1,evolved_scaffold-hop,evolved_scaffold-hop,0.667,0.752,1.4,0,,226.28,3.07,17,27
+CN(CCc1ccccn1)Cc1ccc(-c2ccccn2)cc1,CCOc1ccc(CN(C)CCc2ccccn2)cc1,evolved_scaffold-hop,evolved_scaffold-hop,0.603,0.693,1.93,6,15 16 17 18 19 20,303.41,3.82,23,34
+CN(CCc1ccccn1)Cc1ccc(Oc2ccccc2)cc1,CCOc1ccc(CN(C)CCc2ccccn2)cc1,evolved_scaffold-hop,evolved_scaffold-hop,0.677,0.639,1.82,6,16 17 18 19 20 21,318.42,4.55,24,34
+CN(CCc1ccccn1)Cc1ccccn1,CCOc1ccc(CN(C)CCc2ccccn2)cc1,evolved_scaffold-hop,evolved_scaffold-hop,0.554,0.783,1.97,1,16,227.31,2.15,17,23
+CCCCN(CC1CCCCC1)C1Cc2cccc3nc(O)n(c23)C1,CCCCN(CCCC)C1Cc2cccc3nc(O)n(c23)C1,evolved_scaffold-hop,evolved_scaffold-hop,0.703,0.849,3.31,6,6 7 8 9 10 11,341.5,4.35,25,39
+CC(CC1CC1)c1cc2c(=O)n3cc(C(=O)O)ccc3nc2s1,CC(C)c1cc2c(=O)n3cc(C(=O)O)ccc3nc2s1,evolved_scaffold-hop,evolved_scaffold-hop,0.681,0.795,3.21,3,3 4 5,328.39,3.51,23,41
+Cc1cc(Oc2ccccc2CC2CC2)c(CN(C)C)cn1,CCCc1ccccc1Oc1cc(C)ncc1CN(C)C,evolved_scaffold-hop,evolved_scaffold-hop,0.647,0.799,2.34,3,12 13 14,296.41,4.2,22,34
+Cc1cc(Oc2ccccc2CCc2ccccc2)c(CN(C)C)cn1,CCCc1ccccc1Oc1cc(C)ncc1CN(C)C,evolved_scaffold-hop,evolved_scaffold-hop,0.716,0.6,2.15,6,13 14 15 16 17 18,346.47,5.03,26,38
+Cc1cc(Oc2ccccc2CCc2ccc(F)cc2)c(CN(C)C)cn1,CCCc1ccccc1Oc1cc(C)ncc1CN(C)C,evolved_scaffold-hop,evolved_scaffold-hop,0.686,0.578,2.22,7,13 14 15 16 17 18 19,364.46,5.17,27,41
+Cc1cc2nc(N3CCC(C(=O)N(C)Cc4ccccc4)CC3)nc(N)c2cc1OCCN1CCOCC1,COc1cc2nc(N3CCC(C(=O)N(C)Cc4ccccc4)CC3)nc(N)c2cc1OC,evolved_scaffold-hop,evolved_scaffold-hop,0.654,0.486,2.6,8,0 31 32 33 34 35 36 37,518.66,3.11,38,59
+COc1cc2nc(N3CCCC3)nc(N3CCC(C(=O)N(C)Cc4ccccc4)CC3)c2cc1OC,COc1cc2nc(N3CCC(C(=O)N(C)Cc4ccccc4)CC3)nc(N)c2cc1OC,evolved_scaffold-hop,evolved_scaffold-hop,0.653,0.494,2.42,16,0 1 2 3 4 5 7 8 9 10 11 31 32 33 34 35,489.62,4.12,36,57
+OC(Cn1cncn1)(Cn1cncn1)c1ccccc1,OC(Cn1cncn1)(Cn1cncn1)c1ccc(F)cc1,evolved_scaffold-hop,evolved_scaffold-hop,0.638,0.728,2.61,0,,270.3,0.46,20,30
+OC(Cc1ccccc1)(Cn1cncn1)c1ccc(F)cc1,OC(Cn1cncn1)(Cn1cncn1)c1ccc(F)cc1,evolved_scaffold-hop,evolved_scaffold-hop,0.643,0.787,2.68,6,3 4 5 6 7 8,297.33,2.55,22,34
+COc1cc2ncnc(N3CC[C@@H](Oc4cccnc4)C3)c2cc1OC,COc1ccc2cc(O[C@@H]3CCN(c4ncnc5cc(OC)c(OC)cc45)C3)ccc2c1,evolved_scaffold-hop,evolved_scaffold-hop,0.644,0.699,2.78,1,18,352.39,2.7,26,43
+Oc1cc(-c2ccc(OC3CC3)cc2)nc2ccc(Cl)cc12,COc1ccc(-c2cc(O)c3cc(Cl)ccc3n2)cc1,evolved_scaffold-hop,evolved_scaffold-hop,0.683,0.755,2.12,3,9 10 11,311.77,4.8,22,38
+COc1cccc(Oc2ccc(-c3cc(O)c4cc(Cl)ccc4n3)cc2)c1,COc1ccc(-c2cc(O)c3cc(Cl)ccc3n2)cc1,evolved_scaffold-hop,evolved_scaffold-hop,0.701,0.469,2.05,8,0 1 2 3 4 5 6 26,377.83,6.06,27,45
+CCCC(N)[C@@]1(c2ccc(F)cc2)OCc2cc(-c3ccc(C#N)cc3)ccc21,CCCC(N)[C@@]1(c2ccc(F)cc2)OCc2cc(C#N)ccc21,evolved_scaffold-hop,evolved_scaffold-hop,0.714,0.65,3.44,8,18 19 20 21 22 23 24 25,386.47,5.27,29,53
+CCNCC1CCN(c2c(F)cc3c(=O)c(C(=O)O)cn(Cc4ccccc4)c3c2F)C1,CCNCC1CCN(c2c(F)cc3c(=O)c(C(=O)O)cn(C4CCC4)c3c2F)C1,evolved_scaffold-hop,evolved_scaffold-hop,0.602,0.588,3.0,7,21 22 23 24 25 26 27,441.48,3.46,32,54
+CCNCC1CCN(c2c(F)cc3c(=O)c(C(=O)O)cn(C(CC)C4CCCCC4)c3c2F)C1,CCNCC1CCN(c2c(F)cc3c(=O)c(C(=O)O)cn(C4CCC4)c3c2F)C1,evolved_scaffold-hop,evolved_scaffold-hop,0.622,0.565,3.68,9,21 22 23 24 25 26 27 28 29,475.58,4.95,34,58
+O=C(N[C@@H](Cc1ccccc1)[C@H](O)CN1CCCC1)O[C@H]1CO[C@H]2OCC[C@H]21,CC(C)CN(C[C@@H](O)[C@H](Cc1ccccc1)NC(=O)O[C@H]1CO[C@H]2OCC[C@H]21)S(=O)(=O)c1ccc(B(O)O)cc1,evolved_scaffold-hop,evolved_scaffold-hop,0.554,0.735,3.74,5,14 15 16 17 18,390.48,1.54,28,64
+CC(C)CN(C[C@@H](O)[C@H](Cc1ccccc1)NC(=O)O[C@H]1CO[C@H]2OCC[C@H]21)S(=O)(=O)c1cccs1,CC(C)CN(C[C@@H](O)[C@H](Cc1ccccc1)NC(=O)O[C@H]1CO[C@H]2OCC[C@H]21)S(=O)(=O)c1ccc(B(O)O)cc1,evolved_scaffold-hop,evolved_scaffold-hop,0.721,0.452,4.04,1,35,538.69,2.85,36,82
+CC(C)N(C[C@@H](O)[C@H](Cc1ccccc1)NC(=O)O[C@H]1CO[C@H]2OCC[C@H]21)S(=O)(=O)c1cccs1,CC(C)CN(C[C@@H](O)[C@H](Cc1ccccc1)NC(=O)O[C@H]1CO[C@H]2OCC[C@H]21)S(=O)(=O)c1ccc(B(O)O)cc1,evolved_scaffold-hop,evolved_scaffold-hop,0.612,0.491,4.09,2,2 34,524.66,2.61,35,81
+O=C(OCc1ccccc1)[C@H](c1ccccc1)[C@@H]1CCCCN1,COC(=O)[C@H](c1ccccc1)[C@@H]1CCCCN1,evolved_scaffold-hop,evolved_scaffold-hop,0.639,0.857,2.77,6,4 5 6 7 8 9,309.41,3.66,23,43
+O=C(c1ccccc1)[C@H](c1ccccc1)[C@@H]1CCCCN1,COC(=O)[C@H](c1ccccc1)[C@@H]1CCCCN1,evolved_scaffold-hop,evolved_scaffold-hop,0.576,0.863,2.78,6,2 3 4 5 6 7,279.38,3.8,21,41
+Clc1ccc2c(c1)N(CCC1CC1)c1ccccc1S2,CN(C)CCCN1c2ccccc2Sc2ccc(Cl)cc21,evolved_scaffold-hop,evolved_scaffold-hop,0.603,0.711,2.16,3,10 11 12,301.84,5.74,20,33
+Clc1ccc2c(c1)N(CCCC1CC1)c1ccccc1S2,CN(C)CCCN1c2ccccc2Sc2ccc(Cl)cc21,evolved_scaffold-hop,evolved_scaffold-hop,0.647,0.667,2.16,3,11 12 13,315.87,6.13,21,34
+CCCN1c2ccccc2Sc2ccc(Cl)cc21,CN(C)CCCN1c2ccccc2Sc2ccc(Cl)cc21,evolved_scaffold-hop,evolved_scaffold-hop,0.689,0.726,2.02,0,,275.8,5.35,18,27
+CC1CC1n1cc(C(=O)O)c(=O)c2cc(F)c(N3CCCC3)c(F)c21,CCNCC1CCN(c2c(F)cc3c(=O)c(C(=O)O)cn(C4CC4C)c3c2F)C1,evolved_scaffold-hop,evolved_scaffold-hop,0.619,0.926,3.3,0,,348.35,3.16,25,47
+COc1cc2ncnc(Nc3cccc(C)c3)c2cc1OC1CC1,COc1cc2ncnc(Nc3cccc(Br)c3)c2cc1OC,evolved_scaffold-hop,evolved_scaffold-hop,0.553,0.762,2.13,4,15 21 22 23,321.38,4.23,24,36
+COc1cc2ncnc(Nc3cccc(Br)c3)c2cc1OC1CC1,COc1cc2ncnc(Nc3cccc(Br)c3)c2cc1OC,evolved_scaffold-hop,evolved_scaffold-hop,0.761,0.69,2.2,3,21 22 23,386.25,4.69,24,37
+COc1cc2ncnc(Nc3cccc(Br)c3)c2cc1OCC1CC1,COc1cc2ncnc(Nc3cccc(Br)c3)c2cc1OC,evolved_scaffold-hop,evolved_scaffold-hop,0.718,0.636,2.2,3,22 23 24,400.28,4.93,25,38
+COc1cc2c(Nc3cccc(Br)c3)ncnc2cc1OC1CCCC1,COc1cc2ncnc(Nc3cccc(Br)c3)c2cc1OC,evolved_scaffold-hop,evolved_scaffold-hop,0.708,0.601,2.24,5,21 22 23 24 25,414.3,5.47,26,39
+Nc1nc(N)c2nc(Sc3cccc(-c4ccccc4)c3)cnc2n1,Nc1nc(N)c2nc(Sc3cccc(C(F)(F)F)c3)cnc2n1,evolved_scaffold-hop,evolved_scaffold-hop,0.6,0.586,2.45,6,14 15 16 17 18 19,346.42,3.4,25,40
+Nc1nc(N)c2nc(Sc3ccccc3)cnc2n1,Nc1nc(N)c2nc(Sc3cccc(C(F)(F)F)c3)cnc2n1,evolved_scaffold-hop,evolved_scaffold-hop,0.597,0.73,2.49,0,,270.32,1.74,19,29
+O=C(NCC1CCc2ccccc2N1Cc1ccccc1)c1ccccc1,O=C(NCC1CCc2ccccc2N1Cc1ccccc1)C1CC1,evolved_scaffold-hop,evolved_scaffold-hop,0.686,0.733,2.34,3,23 24 25,356.47,4.44,27,38
+CCC1CCc2ccccc2N1Cc1ccccc1,O=C(NCC1CCc2ccccc2N1Cc1ccccc1)C1CC1,evolved_scaffold-hop,evolved_scaffold-hop,0.591,0.78,2.28,1,0,251.37,4.42,19,25
+FC(F)(F)c1ccc2c(c1)N=C(N1CCCC1)c1cscc1N2,CN(C)CCN1CCN(C2=Nc3cc(C(F)(F)F)ccc3Nc3cscc32)CC1,evolved_scaffold-hop,evolved_scaffold-hop,0.688,0.733,2.8,0,,337.37,5.0,23,40
+COc1cc2c(N3CC[C@@H](Oc4ccccc4Cl)C3)ncnc2cc1Cl,COc1cc2ncnc(N3CC[C@@H](Oc4ccccc4Cl)C3)c2cc1OC,evolved_scaffold-hop,evolved_scaffold-hop,0.808,0.652,2.75,1,25,390.27,4.6,26,45
+COc1cc2c(N3CC[C@@H](Oc4ccccc4OC)C3)ncnc2cc1C,COc1cc2ncnc(N3CC[C@@H](Oc4ccccc4Cl)C3)c2cc1OC,evolved_scaffold-hop,evolved_scaffold-hop,0.598,0.688,2.7,3,17 18 26,365.43,3.61,27,44
+Cc1cc2c(N3CC[C@@H](Oc4ccccc4Cl)C3)ncnc2cc1Cl,COc1cc2ncnc(N3CC[C@@H](Oc4ccccc4Cl)C3)c2cc1OC,evolved_scaffold-hop,evolved_scaffold-hop,0.707,0.654,2.75,2,0 24,374.27,4.9,25,44
+CCc1cc2ncnc(N3CC[C@@H](Oc4ccccc4Cl)C3)c2cc1OC1CC1,COc1cc2ncnc(N3CC[C@@H](Oc4ccccc4Cl)C3)c2cc1OC,evolved_scaffold-hop,evolved_scaffold-hop,0.698,0.57,2.98,5,0 1 26 27 28,409.92,5.04,29,49
+CCOC(=O)Nc1cc(C2=Nc3c(cc(C)nc3N)NC2)ccc1C,CCOC(=O)Nc1cc2c(c(N)n1)N=C(c1ccc(C)c(C)c1)CN2,evolved_scaffold-hop,evolved_scaffold-hop,0.567,0.795,2.82,7,0 1 2 3 4 5 15,339.4,3.4,25,41
+CCOC(=O)Nc1cc2c(c(N)n1)N=C(c1ccc(C)c(CC)c1)CN2,CCOC(=O)Nc1cc2c(c(N)n1)N=C(c1ccc(C)c(C)c1)CN2,evolved_scaffold-hop,evolved_scaffold-hop,0.797,0.779,2.9,1,22,353.43,3.65,26,46
+Cc1ccc(C2=Nc3c(cc(NCC4CC4)nc3N)NC2)cc1C,CCOC(=O)Nc1cc2c(c(N)n1)N=C(c1ccc(C)c(C)c1)CN2,evolved_scaffold-hop,evolved_scaffold-hop,0.588,0.803,2.87,3,13 14 15,321.43,3.65,24,39
+CCOC(=O)Nc1cc2c(c(N)n1)N=C(c1ccc(C)c(OCC)c1)CN2,CCOC(=O)Nc1cc2c(c(N)n1)N=C(c1ccc(C)c(C)c1)CN2,evolved_scaffold-hop,evolved_scaffold-hop,0.768,0.744,2.84,3,21 22 23,369.43,3.49,27,47
+CCCNc1cc2c(c(N)n1)N=C(c1ccc(C)c(C)c1)CN2,CCOC(=O)Nc1cc2c(c(N)n1)N=C(c1ccc(C)c(C)c1)CN2,evolved_scaffold-hop,evolved_scaffold-hop,0.63,0.806,2.82,2,0 1,309.42,3.65,23,40
+CCOC(=O)Nc1cc2c(c(N)n1)N=C(c1ccc(CC)c(CC)c1)CN2,CCOC(=O)Nc1cc2c(c(N)n1)N=C(c1ccc(C)c(C)c1)CN2,evolved_scaffold-hop,evolved_scaffold-hop,0.741,0.744,2.95,2,20 23,367.45,3.9,27,47
+O=C(NCCN1CCCC1)c1cc2c(Sc3ccc(O)cc3)cncc2s1,Cc1ccc(Sc2cncc3sc(C(=O)NCCCN4CCOCC4)cc23)cc1,evolved_scaffold-hop,evolved_scaffold-hop,0.556,0.656,2.54,6,5 6 7 8 9 19,399.54,3.98,27,42
+Cc1ccc(Sc2cncc3sc(C(=O)NCCN4CCCC4)cc23)cc1,Cc1ccc(Sc2cncc3sc(C(=O)NCCCN4CCOCC4)cc23)cc1,evolved_scaffold-hop,evolved_scaffold-hop,0.685,0.661,2.47,5,18 19 20 21 22,397.57,4.58,27,42
+Cc1ccccc1NC(=O)NS(=O)(=O)c1ccc(CCNC(=O)N2CCC(C)CC2=O)cc1,CCC1CCC(NC(=O)NS(=O)(=O)c2ccc(CCNC(=O)N3CCC(C)CC3=O)cc2)CC1,evolved_scaffold-hop,evolved_scaffold-hop,0.626,0.596,2.83,1,0,472.57,3.02,33,56
+COc1cc(-c2cc3c(O)c(CCO)ccc3o2)c(C)c(O)c1C,COc1cc(-c2cc3c(O)c(C)ccc3o2)c(C)c(O)c1C,evolved_scaffold-hop,evolved_scaffold-hop,0.652,0.68,2.69,2,12 13,328.36,3.67,24,41
+c1ccc2c(c1)N=C(N1CCN(CC3CC3)CC1)c1ccccc1S2,CCCN1CCN(C2=Nc3ccccc3Sc3ccccc32)CC1,evolved_scaffold-hop,evolved_scaffold-hop,0.696,0.807,2.36,3,13 14 15,349.5,4.26,25,42
+c1ccc2c(c1)N=C(N1CCN(C3CC3)CC1)c1ccccc1S2,CCCN1CCN(C2=Nc3ccccc3Sc3ccccc32)CC1,evolved_scaffold-hop,evolved_scaffold-hop,0.638,0.785,2.36,3,12 13 14,335.48,4.01,24,41
+CN(C)CCC[C@@]1(c2ccc(F)cc2)OCc2cc(C3=NC(C)(C)CO3)ccc21,Br.CN(C)CCC[C@@]1(c2ccc(F)cc2)OCc2cc(C#N)ccc21,evolved_scaffold-hop,evolved_scaffold-hop,0.563,0.721,3.41,7,19 20 21 22 23 24 25,396.51,4.5,29,54
+CN(C)CCC[C@@]1(c2ccc(F)cc2)OCc2cc(C3OCCO3)ccc21,Br.CN(C)CCC[C@@]1(c2ccc(F)cc2)OCc2cc(C#N)ccc21,evolved_scaffold-hop,evolved_scaffold-hop,0.59,0.768,3.3,5,19 20 21 22 23,371.45,3.99,27,47
+CN(CCC[C@@]1(c2ccc(F)cc2)OCc2cc(C#N)ccc21)CCOC1CCCC1,Br.CN(C)CCC[C@@]1(c2ccc(F)cc2)OCc2cc(C#N)ccc21,evolved_scaffold-hop,evolved_scaffold-hop,0.659,0.561,3.31,7,24 25 26 27 28 29 30,422.54,5.14,31,52
+N#Cc1ccc2c(c1)CO[C@@]2(CCCN1CCOCC1)c1ccc(F)cc1,Br.CN(C)CCC[C@@]1(c2ccc(F)cc2)OCc2cc(C#N)ccc21,evolved_scaffold-hop,evolved_scaffold-hop,0.627,0.811,3.09,6,14 15 16 17 18 19,366.44,3.58,27,46
+N#Cc1ccc2c(c1)CO[C@@]2(CCCc1ccccc1)c1ccc(F)cc1,Br.CN(C)CCC[C@@]1(c2ccc(F)cc2)OCc2cc(C#N)ccc21,evolved_scaffold-hop,evolved_scaffold-hop,0.658,0.604,2.88,6,14 15 16 17 18 19,357.43,5.49,27,46
+OCCC(Cc1ccc(-c2ccccc2)cc1)c1nnn[nH]1,O=P(O)(O)CCC(Cc1ccc(-c2ccccc2)cc1)c1nnn[nH]1,evolved_scaffold-hop,evolved_scaffold-hop,0.721,0.732,2.81,1,0,294.36,2.58,22,36
+Oc1ccc(CC(Cc2ccc(-c3ccccc3)cc2)c2nnn[nH]2)cc1,O=P(O)(O)CCC(Cc1ccc(-c2ccccc2)cc1)c1nnn[nH]1,evolved_scaffold-hop,evolved_scaffold-hop,0.597,0.544,2.77,7,0 1 2 3 4 25 26,356.43,4.14,27,45
+Fc1nnc2c(NC3CCCC3)nc3ccccc3n12,Cc1nnc2c(NC3CCCC3)nc3ccccc3n12,evolved_scaffold-hop,evolved_scaffold-hop,0.647,0.778,2.59,1,0,271.3,2.77,20,30
+Cc1nnc2c(NC(C)C3CC3)nc3ccccc3n12,Cc1nnc2c(NC3CCCC3)nc3ccccc3n12,evolved_scaffold-hop,evolved_scaffold-hop,0.569,0.792,2.91,5,7 8 9 10 11,267.34,2.8,20,32
+N#Cc1ccc2c(c1)CO[C@]2(CCCN1CCCC1)c1ccc(F)cc1,CCCCN(C)CCC[C@]1(c2ccc(F)cc2)OCc2cc(C#N)ccc21,evolved_scaffold-hop,evolved_scaffold-hop,0.619,0.804,3.04,5,14 15 16 17 18,350.44,4.35,26,44
+Cc1cc2c(s1)N(S(=O)(=O)c1ccccc1)c1ccccc1N=C2N1CCN(C)CC1,Cc1cc2c(s1)N(S(=O)(=O)F)c1ccccc1N=C2N1CCN(C)CC1,evolved_scaffold-hop,evolved_scaffold-hop,0.713,0.584,2.74,6,10 11 12 13 14 15,452.61,4.22,31,54
+Cc1cc2c(s1)N(S(=O)(=O)F)c1ccccc1N=C2N1CCN(c2cccnc2)CC1,Cc1cc2c(s1)N(S(=O)(=O)F)c1ccccc1N=C2N1CCN(C)CC1,evolved_scaffold-hop,evolved_scaffold-hop,0.699,0.544,3.02,6,23 24 25 26 27 28,457.56,4.02,31,54
+Cc1cc2c(s1)N(S(=O)(=O)F)c1ccccc1N=C2N1CCCC1,Cc1cc2c(s1)N(S(=O)(=O)F)c1ccccc1N=C2N1CCN(C)CC1,evolved_scaffold-hop,evolved_scaffold-hop,0.789,0.72,3.02,0,,365.46,3.9,24,43
+COc1ccc2nc([S@](=O)Cc3ncc(C)c(OC4CC4)c3C)[nH]c2c1,COc1ccc2nc([S@](=O)Cc3ncc(C)c(OC)c3C)[nH]c2c1,evolved_scaffold-hop,evolved_scaffold-hop,0.76,0.718,3.2,3,18 19 20,371.46,3.43,26,49
+COc1ccc2nc([S@](=O)Cc3ncc(C)c(-c4ccc(F)cc4)c3C)[nH]c2c1,COc1ccc2nc([S@](=O)Cc3ncc(C)c(OC)c3C)[nH]c2c1,evolved_scaffold-hop,evolved_scaffold-hop,0.642,0.519,3.05,7,17 18 19 20 21 22 23,409.49,4.7,29,55
+COc1ccc2nc([S@](=O)Cc3ncc(C)c(OCc4ccccc4)c3C)[nH]c2c1,COc1ccc2nc([S@](=O)Cc3ncc(C)c(OC)c3C)[nH]c2c1,evolved_scaffold-hop,evolved_scaffold-hop,0.704,0.476,2.96,6,19 20 21 22 23 24,421.52,4.47,30,53
+COc1ccc2nc([S@](=O)Cc3ncc(C)s3)[nH]c2c1,COc1ccc2nc([S@](=O)Cc3ncc(C)c(OC)c3C)[nH]c2c1,evolved_scaffold-hop,evolved_scaffold-hop,0.579,0.804,3.26,1,16,307.4,2.64,20,39
+CCC(O)(c1cccc(OC)c1)C(C)CN(C)c1ccccc1,CCC(O)(c1cccc(OC)c1)C(C)CN(C)C.Cl,evolved_scaffold-hop,evolved_scaffold-hop,0.661,0.836,3.01,6,17 18 19 20 21 22,313.44,4.07,23,37
+CCCCc1nc2c(c(=O)n1Cc1ccc(-c3cccs3)cc1)CCCC2,CCCCc1nc2c(c(=O)n1Cc1ccc(-c3ccccc3-c3nn[nH]n3)cc1)CCCC2,evolved_scaffold-hop,evolved_scaffold-hop,0.571,0.588,2.33,1,20,378.54,5.24,27,43
+O=C(CSc1nc2ccc(-n3cncn3)cc2[nH]1)NCc1ccccc1,CCOc1ccc2nc(SCC(=O)NCc3ccccc3)[nH]c2c1,evolved_scaffold-hop,evolved_scaffold-hop,0.565,0.513,2.26,5,10 11 12 13 14,364.43,2.55,26,43
+O=C(CSc1nc2ccc(-c3ccccc3)cc2[nH]1)NCc1ccccc1,CCOc1ccc2nc(SCC(=O)NCc3ccccc3)[nH]c2c1,evolved_scaffold-hop,evolved_scaffold-hop,0.627,0.484,1.91,6,10 11 12 13 14 15,373.48,4.64,27,44
+O=C(CSc1nc2ccc(Oc3ccncc3)cc2[nH]1)NCc1ccccc1,CCOc1ccc2nc(SCC(=O)NCc3ccccc3)[nH]c2c1,evolved_scaffold-hop,evolved_scaffold-hop,0.702,0.463,2.16,6,11 12 13 14 15 16,390.47,4.16,28,44
+CCOc1ccc2nc(SCCc3ccccc3)[nH]c2c1,CCOc1ccc2nc(SCC(=O)NCc3ccccc3)[nH]c2c1,evolved_scaffold-hop,evolved_scaffold-hop,0.588,0.69,1.98,6,12 13 14 15 16 17,298.41,4.3,21,32
+COc1oc(=O)c2cc(NC(=O)OCC3CC3)ccc2c1Cl,CCOC(=O)Nc1ccc2c(Cl)c(OC)oc(=O)c2c1,evolved_scaffold-hop,evolved_scaffold-hop,0.721,0.932,2.56,3,14 15 16,323.73,3.41,22,37
+COc1oc(=O)c2cc(NC(=O)OCc3ccccc3)ccc2c1Cl,CCOC(=O)Nc1ccc2c(Cl)c(OC)oc(=O)c2c1,evolved_scaffold-hop,evolved_scaffold-hop,0.69,0.755,2.29,6,14 15 16 17 18 19,359.76,4.2,25,40
+COc1ccc([C@@H]2[C@@H](CC[C@H](OC)c3cccnc3)C(=O)N2c2ccc(CN)cc2)cc1,COc1ccc([C@@H]2[C@@H](CC[C@H](O)c3ccc(F)cc3)C(=O)N2c2ccc(CN)cc2)cc1,evolved_scaffold-hop,evolved_scaffold-hop,0.568,0.508,3.4,2,12 17,431.54,4.42,32,65
+COc1ccc([C@@H]2[C@@H](CC[C@H](O)c3cccnc3)C(=O)N2c2ccc(OC)cc2)cc1,COc1ccc([C@@H]2[C@@H](CC[C@H](O)c3ccc(F)cc3)C(=O)N2c2ccc(CN)cc2)cc1,evolved_scaffold-hop,evolved_scaffold-hop,0.56,0.552,3.18,3,16 25 26,418.49,4.32,31,64
+COc1ccc([C@@H]2[C@@H](CC[C@H](O)c3cccnc3)C(=O)N2c2ccc(CN)cc2)cc1,COc1ccc([C@@H]2[C@@H](CC[C@H](O)c3ccc(F)cc3)C(=O)N2c2ccc(CN)cc2)cc1,evolved_scaffold-hop,evolved_scaffold-hop,0.685,0.545,3.28,1,16,417.51,3.77,31,64
+Cc1cc(-c2c(F)cc3c(=O)c(Cc4ccccn4)cn(C4CC4)c3c2F)cc(C)n1,Cc1cc(-c2c(F)cc3c(=O)c(Cc4ccc(O)cc4)cn(C4CC4)c3c2F)cc(C)n1,evolved_scaffold-hop,evolved_scaffold-hop,0.656,0.454,2.79,1,18,417.46,5.28,31,55
+Cc1cc(-c2c(F)cc3c(=O)c(CC4CC4)cn(C4CC4)c3c2F)cc(C)n1,Cc1cc(-c2c(F)cc3c(=O)c(Cc4ccc(O)cc4)cn(C4CC4)c3c2F)cc(C)n1,evolved_scaffold-hop,evolved_scaffold-hop,0.651,0.62,2.82,0,,380.44,5.25,28,52
+Cc1ccc(OCC(CNC2CC2)CC(O)CNC2CC2)cc1C,Cc1ccc(OCC(O)CNC2CCCC2)cc1C.Cl,evolved_scaffold-hop,evolved_scaffold-hop,0.565,0.583,3.21,8,13 14 15 16 17 18 19 20,332.49,2.55,24,36
+Cc1ccc(OCC(O)CNC2CC2)cc1C,Cc1ccc(OCC(O)CNC2CCCC2)cc1C.Cl,evolved_scaffold-hop,evolved_scaffold-hop,0.833,0.79,2.37,0,,235.33,1.8,17,25
+Cc1cc(OCC(O)CNC2CC2)ccc1O,Cc1ccc(OCC(O)CNC2CCCC2)cc1C.Cl,evolved_scaffold-hop,evolved_scaffold-hop,0.603,0.695,2.53,1,16,237.3,1.19,17,25
+CCc1nnc2c(NC3CC3)nc3ccccc3n12,CCc1nnc2c(NCC(C)O)nc3ccccc3n12,evolved_scaffold-hop,evolved_scaffold-hop,0.577,0.778,2.34,3,8 9 10,253.31,2.41,19,29
+CCc1nnc2c(NCCc3ccccc3)nc3ccccc3n12,CCc1nnc2c(NCC(C)O)nc3ccccc3n12,evolved_scaffold-hop,evolved_scaffold-hop,0.608,0.612,2.15,6,10 11 12 13 14 15,317.4,3.49,24,34
+CCc1ccc(-c2cc3c(s2)Nc2ccc(F)cc2N=C3N2CCN(C)CC2)cc1,CN1CCN(C2=Nc3cc(F)ccc3Nc3sc(C(C)(C)C)cc32)CC1,evolved_scaffold-hop,evolved_scaffold-hop,0.602,0.594,2.75,8,0 1 2 3 4 5 28 29,420.56,5.5,30,50
+CN1CCN(C2=Nc3cc(F)ccc3Nc3sc(-c4ccc(Cl)cc4)cc32)CC1,CN1CCN(C2=Nc3cc(F)ccc3Nc3sc(C(C)(C)C)cc32)CC1,evolved_scaffold-hop,evolved_scaffold-hop,0.616,0.55,2.74,7,18 19 20 21 22 23 24,426.95,5.59,29,50
+O=C(O)CN(C(=O)c1ccccc1)c1ccc(-c2ccccc2)cc1,COc1ccc(N(CC(=O)O)C(=O)c2ccccc2)cc1,evolved_scaffold-hop,evolved_scaffold-hop,0.611,0.766,1.73,6,17 18 19 20 21 22,331.37,4.09,25,42
+c1ccc(C/C(CN2CCCC2)=C(\CN2CCCC2)c2ccc(OCN3CCCC3)cc2)cc1,CC/C(=C(\Cc1ccccc1)c1ccccc1)c1ccc(OCN2CCCC2)cc1,evolved_scaffold-hop,evolved_scaffold-hop,0.56,0.479,2.6,11,6 7 8 9 10 11 14 15 16 17 18,459.68,5.31,34,55
+N#Cc1ccc(-c2ccc(OCCC3CC3)cc2)nc1,CCCCCCCOc1ccc(-c2ccc(C#N)cn2)cc1,evolved_scaffold-hop,evolved_scaffold-hop,0.565,0.825,2.01,3,13 14 15,264.33,3.8,20,32
+COc1ccc(-c2c(F)cc(N3CC(Cc4ccccc4)OC3=O)cc2F)ccc1=O,COc1ccc(-c2c(F)cc(N3CC(CNC(C)=O)OC3=O)cc2F)ccc1=O,evolved_scaffold-hop,evolved_scaffold-hop,0.628,0.603,2.89,6,15 16 17 18 19 20,423.42,4.57,31,50
+COc1ccc(-c2c(F)cc(N3CC(CNCc4cccc(F)c4)OC3=O)cc2F)ccc1=O,COc1ccc(-c2c(F)cc(N3CC(CNC(C)=O)OC3=O)cc2F)ccc1=O,evolved_scaffold-hop,evolved_scaffold-hop,0.637,0.559,3.02,7,17 18 19 20 21 22 23,470.45,4.25,34,55
+COc1cc(C2=C(C)C(=O)NC2)ccc1Oc1ccccc1,COc1ccc(C2=C(C)C(=O)NC2)cc1OC,evolved_scaffold-hop,evolved_scaffold-hop,0.638,0.94,2.27,6,16 17 18 19 20 21,295.34,3.39,22,36
+CNn1cc(C(=O)O)c(=O)c2cc(F)c(N3CCNCC3)cc21,CNn1cc(C(=O)O)c(=O)c2cc(F)c(N3CC[N+](C)([O-])CC3)cc21,evolved_scaffold-hop,evolved_scaffold-hop,0.685,0.76,2.7,0,,320.32,0.42,23,41
+O=S(Cc1ccccn1)c1nc2c(F)cccc2[nH]1,COc1ccnc(CS(=O)c2nc3c(F)cccc3[nH]2)c1,evolved_scaffold-hop,evolved_scaffold-hop,0.597,0.798,2.99,0,,275.31,2.4,19,33
+O=S(Cc1cc(OC2CCCC2)ccn1)c1nc2c(F)cccc2[nH]1,COc1ccnc(CS(=O)c2nc3c(F)cccc3[nH]2)c1,evolved_scaffold-hop,evolved_scaffold-hop,0.684,0.754,3.18,5,7 8 9 10 11,359.43,3.73,25,43
+O=S(Cc1cc(CC2CC2)ccn1)c1nc2c(F)cccc2[nH]1,COc1ccnc(CS(=O)c2nc3c(F)cccc3[nH]2)c1,evolved_scaffold-hop,evolved_scaffold-hop,0.6,0.781,3.16,4,6 7 8 9,329.4,3.36,23,41
+CCCN(CCC)C(=O)Cc1c(-c2ccsc2)nc2ccc(Br)cn12,CCCN(CCC)C(=O)Cc1c(-c2ccccc2)nc2ccc(Br)cn12,evolved_scaffold-hop,evolved_scaffold-hop,0.693,0.539,2.69,1,15,420.38,5.02,25,42
+CCN(C(=O)Cc1c(-c2ccccc2)nc2ccc(Br)cn12)C1=NCCC1,CCCN(CCC)C(=O)Cc1c(-c2ccccc2)nc2ccc(Br)cn12,evolved_scaffold-hop,evolved_scaffold-hop,0.614,0.624,2.83,5,22 23 24 25 26,425.33,4.35,27,47
+CN(C(=O)Cc1c(-c2ccccc2)nc2ccc(Br)cn12)C1=NCCC1,CCCN(CCC)C(=O)Cc1c(-c2ccccc2)nc2ccc(Br)cn12,evolved_scaffold-hop,evolved_scaffold-hop,0.61,0.655,2.81,5,21 22 23 24 25,411.3,3.96,26,46
+CCCN(CCN1CCCCC1)C(=O)Cc1c(-c2ccccc2)nc2ccc(Br)cn12,CCCN(CCC)C(=O)Cc1c(-c2ccccc2)nc2ccc(Br)cn12,evolved_scaffold-hop,evolved_scaffold-hop,0.762,0.451,2.49,6,6 7 8 9 10 11,483.45,5.03,31,50
+OCC1(CO)O[C@@H](c2ccc(Cl)c(Cc3cccnc3)c2)[C@H](O)[C@@H](O)[C@@H]1O,COc1ccc(Cc2cc([C@@H]3OC(CO)(CO)[C@@H](O)[C@H](O)[C@H]3O)ccc2Cl)cc1,evolved_scaffold-hop,evolved_scaffold-hop,0.62,0.49,3.9,1,18,395.84,0.2,27,65
+COC1O[C@@H](c2ccc(Cl)c(Cc3ccc(-c4cccs4)cc3)c2)[C@H](O)[C@@H](O)[C@@H]1O,COC1O[C@@H](c2ccc(Cl)c(Cc3ccc(OCCO)cc3)c2)[C@H](O)[C@@H](O)[C@@H]1O,evolved_scaffold-hop,evolved_scaffold-hop,0.663,0.555,3.65,5,16 17 18 19 20,446.95,3.79,30,71
+Oc1c(-c2ccccc2)cnc2ccccc12,Oc1c(-c2cccc(Cl)c2)cnc2ccccc12,evolved_scaffold-hop,evolved_scaffold-hop,0.6,0.681,1.8,0,,221.26,3.61,17,26
+Oc1c(-c2cccc(-c3ccccc3)c2)cnc2ccccc12,Oc1c(-c2cccc(Cl)c2)cnc2ccccc12,evolved_scaffold-hop,evolved_scaffold-hop,0.623,0.546,1.89,6,8 9 10 11 12 13,297.36,5.27,23,37
+COc1ccc2c(c1)c(CCN1CCOCC1)c1n2Cc2ccccc2-1,CCC(=O)NCCc1c2n(c3ccc(OC)cc13)Cc1ccccc1-2,evolved_scaffold-hop,evolved_scaffold-hop,0.614,0.564,2.37,6,11 12 13 14 15 16,348.45,3.55,26,41
+CCC(=O)NN1CCN(CCc2c3n(c4ccc(OC)cc24)Cc2ccccc2-3)CC1,CCC(=O)NCCc1c2n(c3ccc(OC)cc13)Cc1ccccc1-2,evolved_scaffold-hop,evolved_scaffold-hop,0.649,0.522,2.68,11,0 1 2 3 4 5 6 7 8 29 30,418.54,3.28,31,51
+COc1ccc(Cl)c(Nc2ncnc3cc(OC4CC4)c(OC)cc23)c1,COc1ccc(Cl)c(Nc2ncnc3cc(OCCCN4CCOCC4)c(OC)cc23)c1,evolved_scaffold-hop,evolved_scaffold-hop,0.573,0.683,2.23,3,17 18 19,371.82,4.59,26,43
+COC(=O)[C@H](c1ccc(-c2ccccc2)cc1)[C@H]1CCCCN1,COC(=O)[C@H](c1ccc(F)cc1)[C@H]1CCCCN1,evolved_scaffold-hop,evolved_scaffold-hop,0.672,0.874,2.81,6,9 10 11 12 13 14,309.41,3.75,23,45
+CCCC1=NC(C)(CC)C(=O)N1Cc1ccc(-c2ccccc2-c2nn[nH]n2)cc1,CCCCC1=NC(C)(C)C(=O)N1Cc1ccc(-c2ccccc2-c2nn[nH]n2)cc1,evolved_scaffold-hop,evolved_scaffold-hop,0.663,0.64,3.21,1,8,402.5,4.24,30,53
+CCC1(C)N=C(C)N(Cc2ccc(-c3ccccc3-c3nn[nH]n3)cc2)C1=O,CCCCC1=NC(C)(C)C(=O)N1Cc1ccc(-c2ccccc2-c2nn[nH]n2)cc1,evolved_scaffold-hop,evolved_scaffold-hop,0.6,0.741,3.17,1,0,374.45,3.46,28,51
+Cc1ccc(S(=O)(=O)n2cc(CCN3CCCC3)c3ccccc32)cc1,Cc1ccc(S(=O)(=O)n2cc(CCN(C)C)c3ccccc32)cc1,evolved_scaffold-hop,evolved_scaffold-hop,0.639,0.687,2.08,5,13 14 15 16 17,368.5,3.83,26,44
+Cc1ccc(S(=O)(=O)n2cc(CCN(C)C3CCC3)c3ccccc32)cc1,Cc1ccc(S(=O)(=O)n2cc(CCN(C)C)c3ccccc32)cc1,evolved_scaffold-hop,evolved_scaffold-hop,0.729,0.641,2.24,4,15 16 17 18,382.53,4.21,27,47
+Cc1ccc(S(=O)(=O)n2cc(CN3CCCCC3)c3ccccc32)cc1,Cc1ccc(S(=O)(=O)n2cc(CCN(C)C)c3ccccc32)cc1,evolved_scaffold-hop,evolved_scaffold-hop,0.56,0.694,2.04,6,12 13 14 15 16 17,368.5,4.17,26,44
+CC1(C)N=C(N)N=C(N)N1c1cccc(OCCc2ccc(F)cc2)c1,CC1(C)N=C(N)N=C(N)N1c1cccc(OCCCCOc2cccc(C(F)(F)F)c2)c1,evolved_scaffold-hop,evolved_scaffold-hop,0.58,0.863,2.49,7,18 19 20 21 22 23 24,355.42,2.63,26,44
+Cn1c(=O)nc(Nc2ccccc2)n(Cc2ccc(Cl)cc2)c1=O,COC(=O)c1cc(Oc2ccc(Nc3nc(=O)n(C)c(=O)n3Cc3ccc(Cl)cc3)cc2)ccn1,evolved_scaffold-hop,evolved_scaffold-hop,0.552,0.79,2.1,0,,342.79,2.39,24,41
+CCN(CC)CC(C(=O)Nc1ccccc1OC)N(CC)CC1CCCO1,CCN(CC)CC(C(=O)Nc1ccccc1OC)N(CC)CC,evolved_scaffold-hop,evolved_scaffold-hop,0.658,0.643,3.11,5,22 23 24 25 26,377.53,2.85,27,40
+CN(CCCN1CCOCC1)CCC[C@]1(c2ccc(F)cc2)OCc2cc(C#N)ccc21,CCCN(C)CCC[C@]1(c2ccc(F)cc2)OCc2cc(C#N)ccc21,evolved_scaffold-hop,evolved_scaffold-hop,0.705,0.595,3.25,6,5 6 7 8 9 10,437.56,3.91,32,52
+CCOc1ccc(Cc2cc([C@@H]3CS[C@H](O)O3)c3c(c2Cl)CC(C)O3)cc1,CCOc1ccc(Cc2cc([C@@H]3O[C@H](S(C)=O)[C@@H](O)[C@H](O)[C@H]3O)c3c(c2Cl)CC(C)O3)cc1,evolved_scaffold-hop,evolved_scaffold-hop,0.588,0.777,4.04,2,13 15,406.93,4.73,27,55
+N[C@@H](CC(=O)N1CCn2c(nnc2-c2ccccc2)C1)Cc1ccc(F)c(F)c1,N[C@@H](CC(=O)N1CCn2c(nnc2C(F)(F)F)C1)Cc1ccc(F)c(F)c1,evolved_scaffold-hop,evolved_scaffold-hop,0.644,0.718,2.85,6,13 14 15 16 17 18,397.43,2.53,29,54
+CCC(=O)N(c1cccc(F)c1)C1CCN(Cc2ccccc2)CC1,CCC(=O)N(c1cccc(F)c1)C1CCN(CCc2ccccc2)CC1,evolved_scaffold-hop,evolved_scaffold-hop,0.716,0.813,2.04,6,17 18 19 20 21 22,340.44,4.23,25,40
+CN(CCCC1CCCCC1)CCc1c[nH]c2ccccc12,CN(CCc1c[nH]c2ccccc12)CCC1CCCCCC1,evolved_scaffold-hop,evolved_scaffold-hop,0.75,0.762,2.14,7,4 5 6 7 8 9 10,298.47,5.0,22,33
+O=C(c1ccccc1)N(CC1CCCCC1)c1cccc2ccccc12,O=C(O)CN(C(=O)c1ccccc1)c1cccc2ccccc12,evolved_scaffold-hop,evolved_scaffold-hop,0.58,0.563,1.98,6,10 11 12 13 14 15,343.47,6.07,26,39
+NC1=Nc2ccc(F)cc2Nc2sc(F)cc21,Cc1cc2c(s1)Nc1cc(F)ccc1N=C2N,evolved_scaffold-hop,evolved_scaffold-hop,0.667,0.755,3.2,1,14,251.26,3.12,17,28
+NC1=Nc2ccc(F)cc2Nc2sc(C3CC3)cc21,Cc1cc2c(s1)Nc1cc(F)ccc1N=C2N,evolved_scaffold-hop,evolved_scaffold-hop,0.606,0.829,3.12,3,14 15 16,273.34,3.86,19,32
+COc1ccc(Cc2cc3c(cc2OC2CC2)OCO3)cc1,CCOc1cc2c(cc1Cc1ccc(OC)cc1)OCO2,evolved_scaffold-hop,evolved_scaffold-hop,0.683,0.846,2.1,3,14 15 16,298.34,3.56,22,34
+CCOc1cc2c(cc1Cc1ccc(CC3CC3)cc1)OCO2,CCOc1cc2c(cc1Cc1ccc(OC)cc1)OCO2,evolved_scaffold-hop,evolved_scaffold-hop,0.689,0.793,2.1,4,14 15 16 17,310.39,4.36,23,35
+COc1ccc(Cc2cc3c(cc2OCC2CCCC2)OCO3)cc1,CCOc1cc2c(cc1Cc1ccc(OC)cc1)OCO2,evolved_scaffold-hop,evolved_scaffold-hop,0.71,0.771,2.13,5,15 16 17 18 19,340.42,4.58,25,37
+COC(=O)c1cccnc1NN1CCN(C(=O)c2cc3ccccc3[nH]2)CC1,COC(=O)c1cccnc1N1CCN(C(=O)c2cc3ccccc3[nH]2)CC1,evolved_scaffold-hop,evolved_scaffold-hop,0.614,0.675,2.46,11,0 1 2 3 4 5 6 7 8 9 10,379.42,2.13,28,47
+O=c1oc(Nc2ccc(Cl)cc2)nc2cc(Cl)ccc12,O=c1oc(Nc2c(Cl)cccc2Cl)nc2cc(Cl)ccc12,evolved_scaffold-hop,evolved_scaffold-hop,0.603,0.769,2.06,1,9,307.14,4.24,20,35
+O=c1oc(Nc2ccccc2)nc2cc(Cl)ccc12,O=c1oc(Nc2c(Cl)cccc2Cl)nc2cc(Cl)ccc12,evolved_scaffold-hop,evolved_scaffold-hop,0.609,0.775,2.0,0,,272.69,3.59,19,31
+Cc1ccc(Nc2nc3cc(Cl)ccc3c(=O)o2)cc1,O=c1oc(Nc2c(Cl)cccc2Cl)nc2cc(Cl)ccc12,evolved_scaffold-hop,evolved_scaffold-hop,0.567,0.776,2.04,1,0,286.72,3.89,20,34
+O=c1oc(Nc2c(Cl)cccc2-c2ccccc2)nc2cc(Cl)ccc12,O=c1oc(Nc2c(Cl)cccc2Cl)nc2cc(Cl)ccc12,evolved_scaffold-hop,evolved_scaffold-hop,0.671,0.478,2.25,6,12 13 14 15 16 17,383.23,5.91,26,44
+O=c1oc(Nc2c(Cl)cccc2Cl)nc2cc(-c3ccccc3)ccc12,O=c1oc(Nc2c(Cl)cccc2Cl)nc2cc(Cl)ccc12,evolved_scaffold-hop,evolved_scaffold-hop,0.647,0.478,2.2,6,17 18 19 20 21 22,383.23,5.91,26,44
+NCCc1cn(S(=O)(=O)c2ccccc2)c2ccccc12,NCCc1cn(S(=O)(=O)c2ccc(N)cc2)c2ccccc12,evolved_scaffold-hop,evolved_scaffold-hop,0.768,0.804,2.0,0,,300.38,2.38,21,35
+NCCc1cn(S(=O)(=O)c2ccc(-c3ccccc3)cc2)c2ccccc12,NCCc1cn(S(=O)(=O)c2ccc(N)cc2)c2ccccc12,evolved_scaffold-hop,evolved_scaffold-hop,0.714,0.571,2.02,6,13 14 15 16 17 18,376.48,4.05,27,46
+CCOC(=O)[C@H](CCc1ccccc1)N[C@@H](C)C(=O)N1CCC[C@H]1c1ccccc1,CCOC(=O)[C@H](CCc1ccccc1)N[C@@H](C)C(=O)N1CCC[C@H]1C(=O)O.Cl,evolved_scaffold-hop,evolved_scaffold-hop,0.654,0.64,3.03,6,24 25 26 27 28 29,408.54,3.89,30,59
+CCOC(=O)[C@H](CCc1cccs1)N[C@@H](C)C(=O)N1CCC[C@H]1C(=O)O,CCOC(=O)[C@H](CCc1ccccc1)N[C@@H](C)C(=O)N1CCC[C@H]1C(=O)O.Cl,evolved_scaffold-hop,evolved_scaffold-hop,0.679,0.631,3.3,1,12,382.48,1.67,26,56
+C[C@H](NCCc1ccccc1)C(=O)N1CCC[C@H]1C(=O)O,CCOC(=O)[C@H](CCc1ccccc1)N[C@@H](C)C(=O)N1CCC[C@H]1C(=O)O.Cl,evolved_scaffold-hop,evolved_scaffold-hop,0.564,0.828,2.62,6,5 6 7 8 9 10,290.36,1.28,21,41
+CCNCC1CCN(c2c(F)cc3c(=O)c(C(=O)O)cn(-c4cccc(F)c4)c3c2F)C1,CCNCC1CCN(c2c(F)cc3c(=O)c(C(=O)O)cn(C4(C)CC4)c3c2F)C1,evolved_scaffold-hop,evolved_scaffold-hop,0.584,0.607,3.14,4,23 24 25 26,445.44,3.54,32,57
+Cc1cc(Cl)nnc1NS(=O)(=O)c1cccc2c(N3CCCCC3)cccc12,Cc1cc(Cl)nnc1NS(=O)(=O)c1cccc2c(N(C)C)cccc12,evolved_scaffold-hop,evolved_scaffold-hop,0.554,0.682,2.43,6,18 19 20 21 22 23,416.93,4.38,28,47
+Cc1cc(-c2ccccc2)nnc1NS(=O)(=O)c1cccc2c(N(C)C)cccc12,Cc1cc(Cl)nnc1NS(=O)(=O)c1cccc2c(N(C)C)cccc12,evolved_scaffold-hop,evolved_scaffold-hop,0.649,0.517,2.36,6,4 5 6 7 8 9,418.52,4.47,30,51
+Cc1cc(Cl)nnc1NS(=O)(=O)c1cccc2c(S(=O)(=O)N3CCCC3)cccc12,Cc1cc(Cl)nnc1NS(=O)(=O)c1cccc2c(N(C)C)cccc12,evolved_scaffold-hop,evolved_scaffold-hop,0.582,0.618,2.51,8,18 19 20 21 22 23 24 25,466.97,3.18,30,55
+Cc1cc(Cl)nnc1NS(=O)(=O)c1cccc2c(N(C)c3ccncc3)cccc12,Cc1cc(Cl)nnc1NS(=O)(=O)c1cccc2c(N(C)C)cccc12,evolved_scaffold-hop,evolved_scaffold-hop,0.692,0.49,2.68,6,20 21 22 23 24 25,439.93,4.56,30,51
+O=C1N(Cc2ccc(-c3ccccc3-c3nn[nH]n3)cc2)C(c2ccccc2)=NC12CCCC2,[2H]C([2H])([2H])C([2H])([2H])C([2H])([2H])C([2H])([2H])C1=NC2(CCCC2)C(=O)N1Cc1ccc(-c2ccccc2-c2nn[nH]n2)cc1,evolved_scaffold-hop,evolved_scaffold-hop,0.58,0.482,3.06,6,22 23 24 25 26 27,448.53,4.64,34,59
+O=C(O)Cc1ccc(-c2ccccc2)cc1,O=C(O)CCc1ccc(-c2ccccc2)cc1,evolved_scaffold-hop,evolved_scaffold-hop,0.575,0.849,1.33,2,0 2,212.25,2.98,16,26
+O=C(CNC(=O)C1CC1)c1c2n(c3ccccc13)CCCc1ccccc1-2,O=C(NCCc1c2n(c3ccccc13)CCCc1ccccc1-2)C1CC1,evolved_scaffold-hop,evolved_scaffold-hop,0.584,0.718,2.31,1,0,358.44,3.96,27,46
+O=C(NCc1c2n(c3ccccc13)CCCc1ccccc1-2)C1CC1,O=C(NCCc1c2n(c3ccccc13)CCCc1ccccc1-2)C1CC1,evolved_scaffold-hop,evolved_scaffold-hop,0.728,0.764,2.24,6,0 1 2 22 23 24,330.43,4.28,25,41
+CC(C)(C)OC(=O)C1=C(O)C(=O)N(Cc2cccnc2)C1,CC(C)(C)OC(=O)C1=C(O)C(=O)N(Cc2ccccc2)C1,evolved_scaffold-hop,evolved_scaffold-hop,0.662,0.855,2.6,1,18,290.32,1.58,21,40
+CN1C(=O)CC(c2ccc(-n3c(C4CC4)nc4cnccc43)cc2)=Nc2ccccc21,Cc1nc2cnccc2n1-c1ccc(C2=Nc3ccccc3N(C)C(=O)C2)cc1,evolved_scaffold-hop,evolved_scaffold-hop,0.703,0.491,2.68,3,12 13 14,407.48,4.79,31,54
+CC(OCn1cnc2c(=O)[nH]c(N)nc21)c1cccc(Cl)c1,CCC(CO)OCn1cnc2c(=O)[nH]c(N)nc21,evolved_scaffold-hop,evolved_scaffold-hop,0.577,0.767,3.1,7,15 16 17 18 19 20 21,319.75,2.09,22,41
+Cc1ccc(C(C(=O)O)c2ccc(Cc3ccc(O)cc3)cc2)cc1,Cc1ccc(C(C(=O)O)c2ccc(C)cc2)cc1,evolved_scaffold-hop,evolved_scaffold-hop,0.595,0.723,2.35,7,14 15 16 17 18 19 20,332.4,4.51,25,42
+Cc1ccc(C(C(=O)O)c2ccc(-c3ccccc3C)cc2)cc1,Cc1ccc(C(C(=O)O)c2ccc(C)cc2)cc1,evolved_scaffold-hop,evolved_scaffold-hop,0.568,0.719,2.24,7,13 14 15 16 17 18 19,316.4,5.19,24,40
+Cc1ccc(C(C(=O)O)c2ccco2)cc1,Cc1ccc(C(C(=O)O)c2ccc(C)cc2)cc1,evolved_scaffold-hop,evolved_scaffold-hop,0.564,0.858,2.55,1,13,216.24,2.8,16,27
+CC(C)c1nc(-c2ccccc2)nc(-c2ccc(F)cc2)c1C=CC(O)CCN1CCOCC1,CC(C)c1nc(-c2ccccc2)nc(-c2ccc(F)cc2)c1C=CC(O)CC(O)CC(=O)O,evolved_scaffold-hop,evolved_scaffold-hop,0.588,0.502,3.04,6,28 29 30 31 32 33,461.58,5.17,34,55
+c1ccc(CCOc2cc(CCN3CCCC3)ccc2CN2CCCC2)cc1,COc1ccc(CCN2CCCC2)cc1OCCc1ccccc1.O=C(O)C(=O)O,evolved_scaffold-hop,evolved_scaffold-hop,0.59,0.637,2.0,6,20 21 22 23 24 25,378.56,4.54,28,40
+COCCc1ccc(OC)c(OCCc2ccccc2)c1,COc1ccc(CCN2CCCC2)cc1OCCc1ccccc1.O=C(O)C(=O)O,evolved_scaffold-hop,evolved_scaffold-hop,0.594,0.743,1.68,2,0 1,286.37,3.51,21,29
+Fc1ccc(C2(CCCN3CCOCC3)OCc3cc(-c4ccccc4)ccc32)cc1,CN(C)CCCC1(c2ccc(F)cc2)OCc2cc(-c3ccccc3)ccc21,evolved_scaffold-hop,evolved_scaffold-hop,0.659,0.538,2.91,6,9 10 11 12 13 14,417.52,5.38,31,48
+Fc1ccc(C2(CCCN3CCCCC3)OCc3cc(-c4ccccc4)ccc32)cc1,CN(C)CCCC1(c2ccc(F)cc2)OCc2cc(-c3ccccc3)ccc21,evolved_scaffold-hop,evolved_scaffold-hop,0.675,0.454,2.86,6,9 10 11 12 13 14,415.55,6.53,31,48
+CC(C)CCNC(=O)NS(=O)(=O)c1ccc(CCNC(=O)N2CCCCC2=O)cc1,CC(C)CNC(=O)NS(=O)(=O)c1ccc(CCNC(=O)N2CCCCC2=O)cc1,evolved_scaffold-hop,evolved_scaffold-hop,0.792,0.572,2.41,2,0 2,438.55,1.99,30,51
+O=C1CCCCN1C(=O)NCCc1ccc(S(=O)(=O)N2CCCCC2)cc1,CC(C)CNC(=O)NS(=O)(=O)c1ccc(CCNC(=O)N2CCCCC2=O)cc1,evolved_scaffold-hop,evolved_scaffold-hop,0.58,0.83,2.18,6,19 20 21 22 23 24,393.51,2.13,27,45
+O=C1CCCCN1C(=O)NCCc1ccc(S(=O)(=O)CNC(=O)N2CCCCC2=O)cc1,CC(C)CNC(=O)NS(=O)(=O)c1ccc(CCNC(=O)N2CCCCC2=O)cc1,evolved_scaffold-hop,evolved_scaffold-hop,0.588,0.654,2.66,11,19 20 21 22 23 24 25 26 27 28 29,464.54,1.4,32,54
+O=C(Nc1ccccc1)NS(=O)(=O)c1ccc(CCNC(=O)N2CCCCC2=O)cc1,CC(C)CNC(=O)NS(=O)(=O)c1ccc(CCNC(=O)N2CCCCC2=O)cc1,evolved_scaffold-hop,evolved_scaffold-hop,0.667,0.631,2.23,6,3 4 5 6 7 8,444.51,2.46,31,52
+O=C(NN1CCCCC1=O)NS(=O)(=O)c1ccc(CCNC(=O)N2CCCCC2=O)cc1,CC(C)CNC(=O)NS(=O)(=O)c1ccc(CCNC(=O)N2CCCCC2=O)cc1,evolved_scaffold-hop,evolved_scaffold-hop,0.691,0.568,2.72,7,3 4 5 6 7 8 9,465.53,0.87,32,54
+COC(=O)c1cccc(COc2cccc(C(O)Cc3ccccc3)c2)n1,CCCCCC(O)c1cccc(OCc2cccc(C(=O)OC)n2)c1,evolved_scaffold-hop,evolved_scaffold-hop,0.658,0.648,2.48,6,19 20 21 22 23 24,363.41,3.72,27,42
+COC(=O)c1cccc(COc2cccc(C(O)CCCC3CCCCC3)c2)n1,CCCCCC(O)c1cccc(OCc2cccc(C(=O)OC)n2)c1,evolved_scaffold-hop,evolved_scaffold-hop,0.679,0.587,2.75,6,21 22 23 24 25 26,397.52,5.23,29,44
+O=C(O)c1c(Oc2ccccc2)ccc2c1Nc1ccccc1O2,COc1ccc2c(c1C(=O)O)Nc1ccccc1O2,evolved_scaffold-hop,evolved_scaffold-hop,0.672,0.554,2.24,6,6 7 8 9 10 11,319.32,5.03,24,37
+C(=C1/CCCN=C1c1cccnc1)/c1ccc(Cc2cccnc2)cc1,CC(C)(C)C(=O)Oc1ccc(/C=C2\CCCN=C2c2cccnc2)cc1,evolved_scaffold-hop,evolved_scaffold-hop,0.554,0.689,2.45,7,17 18 19 20 21 22 23,339.44,4.73,26,42
+C(=C1/CCCN=C1c1cccnc1)/c1ccc(Oc2cccnc2)cc1,CC(C)(C)C(=O)Oc1ccc(/C=C2\CCCN=C2c2cccnc2)cc1,evolved_scaffold-hop,evolved_scaffold-hop,0.633,0.675,2.45,6,18 19 20 21 22 23,341.41,4.94,26,42
+ClOc1ccc(/C=C2\CCCN=C2c2cccnc2)cc1,CC(C)(C)C(=O)Oc1ccc(/C=C2\CCCN=C2c2cccnc2)cc1,evolved_scaffold-hop,evolved_scaffold-hop,0.676,0.847,2.72,1,0,298.77,4.28,21,34
+C(=C1/CCCN=C1c1cccnc1)/c1ccc(/C=C2\CCCN=C2c2cccnc2)cc1,CC(C)(C)C(=O)Oc1ccc(/C=C2\CCCN=C2c2cccnc2)cc1,evolved_scaffold-hop,evolved_scaffold-hop,0.676,0.537,2.91,13,0 1 2 3 4 5 6 7 8 9 10 11 12,418.54,5.81,32,54
+COc1ccc(N(C)C(=O)C2(C)NC(=O)c3ccccc3N2)cc1,CN(C)C(=O)C1(C)NC(=O)c2ccccc2N1,evolved_scaffold-hop,evolved_scaffold-hop,0.613,0.908,2.97,8,0 1 2 3 4 5 22 23,325.37,2.23,24,42
+CN1CCN(C2=Nc3ccc(CC4CC4)cc3Nc3cscc32)CC1,CN1CCN(C2=Nc3ccc(C(F)(F)F)cc3Nc3cscc32)CC1,evolved_scaffold-hop,evolved_scaffold-hop,0.598,0.883,2.82,3,12 13 14,352.51,4.08,25,40
+CN1CCN(C2=Nc3ccc(N4CCCCC4)cc3Nc3cscc32)CC1,CN1CCN(C2=Nc3ccc(C(F)(F)F)cc3Nc3cscc32)CC1,evolved_scaffold-hop,evolved_scaffold-hop,0.605,0.806,2.75,6,11 12 13 14 15 16,381.55,4.12,27,42
+CN1CCN(C2=Nc3ccc(-c4ccccc4)cc3Nc3cscc32)CC1,CN1CCN(C2=Nc3ccc(C(F)(F)F)cc3Nc3cscc32)CC1,evolved_scaffold-hop,evolved_scaffold-hop,0.613,0.664,2.59,6,11 12 13 14 15 16,374.51,4.8,27,43
+CN1CCN(C2=Nc3ccc(C(F)(F)c4ccc(F)cc4)cc3Nc3cscc32)CC1,CN1CCN(C2=Nc3ccc(C(F)(F)F)cc3Nc3cscc32)CC1,evolved_scaffold-hop,evolved_scaffold-hop,0.722,0.576,2.97,7,14 15 16 17 18 19 20,442.51,5.41,31,52
+CN1CCN(C2=Nc3ccc(C(C)(F)c4ccc(F)cc4)cc3Nc3cscc32)CC1,CN1CCN(C2=Nc3ccc(C(F)(F)F)cc3Nc3cscc32)CC1,evolved_scaffold-hop,evolved_scaffold-hop,0.713,0.573,3.48,8,12 14 15 16 17 18 19 20,438.55,5.5,31,52
+Cc1c(C)n(C2CCCCC2)c(=O)n1Cc1ccc(-c2ccccc2-c2nn[nH]n2)cc1,CC(C)CCc1c(C(=O)O)n(C2CCCCC2)c(=O)n1Cc1ccc(-c2ccccc2-c2nn[nH]n2)cc1,evolved_scaffold-hop,evolved_scaffold-hop,0.608,0.501,2.5,0,,428.54,4.67,32,56
+O=C(c1ccco1)c1ccc2n1CCCC2C(=O)O,O=C(c1ccc(F)cc1)c1ccc2n1CCCC2C(=O)O,evolved_scaffold-hop,evolved_scaffold-hop,0.552,0.858,3.03,1,6,259.26,2.27,19,31
+CCCN(CCC)C(=O)Cc1c(-c2ccc(Cl)cc2)nc2c(N3CCNCC3)cccn12,CCCN(CCC)C(=O)Cc1c(-c2ccc(Cl)cc2)nc2c(NC)cccn12,evolved_scaffold-hop,evolved_scaffold-hop,0.593,0.553,2.67,6,22 23 24 25 26 27,454.02,4.26,32,53
+CCCN(CCC)C(=O)Cc1c(-c2cccnc2)nc2c(NC)cccn12,CCCN(CCC)C(=O)Cc1c(-c2ccc(Cl)cc2)nc2c(NC)cccn12,evolved_scaffold-hop,evolved_scaffold-hop,0.679,0.662,2.65,1,16,365.48,3.63,27,43
+CCC[C@@H](C(=O)N1CCC[C@H]1C(N)=O)N1CCCCC1,CCC[C@H](N)C(=O)N1CCC[C@H]1C(N)=O,evolved_scaffold-hop,evolved_scaffold-hop,0.561,0.821,3.01,6,14 15 16 17 18 19,281.4,1.12,20,41
+Fc1ccc(-c2cc(F)c(Cl)nn2)cc1Cl,NC(=O)c1cc(-c2ccc(F)c(Cl)c2)nnc1Cl,evolved_scaffold-hop,evolved_scaffold-hop,0.566,0.781,2.35,1,8,261.06,3.73,16,29
+NC(=O)c1cc(-c2ccc(-c3ccccc3)c(Cl)c2)nnc1Cl,NC(=O)c1cc(-c2ccc(F)c(Cl)c2)nnc1Cl,evolved_scaffold-hop,evolved_scaffold-hop,0.571,0.774,2.11,6,10 11 12 13 14 15,344.2,4.22,23,42
+Fc1cccc(OC(c2ccsc2)C2CCNCC2)c1,Fc1cccc(OC(c2ccccc2)C2CCNCC2)c1,evolved_scaffold-hop,evolved_scaffold-hop,0.672,0.919,2.99,1,11,291.39,4.01,20,30
+CCc1ccc(Sc2cccc(NC3=NCCN3)c2)cc1,COc1ccc(Sc2cccc(NC3=NCCN3)c2)cc1,evolved_scaffold-hop,evolved_scaffold-hop,0.703,0.902,2.35,2,0 1,297.43,3.77,21,32
+CCOC(=O)[C@H](CCc1ccccc1)N[C@@H](C)C(=O)N1CCCCC1,CCOC(=O)[C@H](CCc1ccccc1)N[C@@H](C)C(=O)N1CCC[C@H]1C(=O)O.O=C(O)/C=C/C(=O)O,evolved_scaffold-hop,evolved_scaffold-hop,0.554,0.735,2.74,1,22,346.47,2.54,25,48
+NCCOc1ccc(Cc2ccsc2)cc1,NCCOc1ccc(Cc2ccccc2)cc1,evolved_scaffold-hop,evolved_scaffold-hop,0.551,0.861,1.99,1,12,233.34,2.68,16,22
+c1ccc(CCOc2ccc(Cc3ccccc3)cc2)cc1,NCCOc1ccc(Cc2ccccc2)cc1,evolved_scaffold-hop,evolved_scaffold-hop,0.644,0.627,1.45,6,0 1 2 3 20 21,288.39,4.9,22,32
+NCCOc1ccc(COc2ccc(Cc3ccccc3)cc2)cc1,NCCOc1ccc(Cc2ccccc2)cc1,evolved_scaffold-hop,evolved_scaffold-hop,0.8,0.672,1.69,10,0 1 2 3 4 5 6 7 23 24,333.43,4.19,25,35
+NCc1ccc(COc2ccc(Cc3ccccc3)cc2)cc1,NCCOc1ccc(Cc2ccccc2)cc1,evolved_scaffold-hop,evolved_scaffold-hop,0.56,0.736,1.59,8,0 1 2 3 4 5 21 22,303.41,4.32,23,33
+c1ccc(COc2ccc(Cc3ccccc3)cc2)cc1,NCCOc1ccc(Cc2ccccc2)cc1,evolved_scaffold-hop,evolved_scaffold-hop,0.578,0.646,1.36,6,0 1 2 3 19 20,274.36,4.86,21,31
+COC(=O)c1oc2c(sc3ccccc32)c1OC(=O)C1CC1,COC(=O)c1oc2c(sc3ccccc32)c1OC(=O)C(C)C,evolved_scaffold-hop,evolved_scaffold-hop,0.676,0.688,2.67,3,19 20 21,316.33,3.75,22,38
+CCC(N)C1(c2cccnc2)OCc2cc(C#N)ccc21,CCC(N)C1(c2ccc(F)cc2)OCc2cc(C#N)ccc21,evolved_scaffold-hop,evolved_scaffold-hop,0.627,0.936,3.75,1,9,279.34,2.46,21,34
+CCC(n1cncn1)C1(c2ccc(F)cc2)OCc2cc(C#N)ccc21,CCC(N)C1(c2ccc(F)cc2)OCc2cc(C#N)ccc21,evolved_scaffold-hop,evolved_scaffold-hop,0.585,0.721,3.83,5,3 4 5 6 7,348.38,3.71,26,43
+CCC(c1ccccc1)C1(c2ccc(F)cc2)OCc2cc(C#N)ccc21,CCC(N)C1(c2ccc(F)cc2)OCc2cc(C#N)ccc21,evolved_scaffold-hop,evolved_scaffold-hop,0.623,0.603,3.4,6,3 4 5 6 7 8,357.43,5.66,27,44
+COc1cccc(N(C)c2ccc(NC(C)=O)cc2)c1,CCOC(=O)Nc1ccc(N(C)c2cccc(OC)c2)cc1,evolved_scaffold-hop,evolved_scaffold-hop,0.689,0.925,1.8,1,15,270.33,3.42,20,33
+COc1cccc(N(C)c2ccc(NC(=O)OCc3ccccc3)cc2)c1,CCOC(=O)Nc1ccc(N(C)c2cccc(OC)c2)cc1,evolved_scaffold-hop,evolved_scaffold-hop,0.71,0.654,1.9,6,18 19 20 21 22 23,362.43,5.21,27,42
+Oc1ccc(OC(c2ccccc2)C2CCCNC2)cc1,Fc1ccc(C(Oc2ccccc2)C2CCCNC2)cc1,evolved_scaffold-hop,evolved_scaffold-hop,0.569,0.902,2.84,1,0,283.37,3.51,21,31
+c1ccc(OC(c2ccccc2)C2CCCNC2)cc1,Fc1ccc(C(Oc2ccccc2)C2CCCNC2)cc1,evolved_scaffold-hop,evolved_scaffold-hop,0.745,0.909,2.7,0,,267.37,3.81,20,30
+Fc1ccc(C(Oc2ccccn2)C2CCCNC2)cc1,Fc1ccc(C(Oc2ccccc2)C2CCCNC2)cc1,evolved_scaffold-hop,evolved_scaffold-hop,0.597,0.936,3.05,1,12,286.35,3.34,21,31
+Fc1ccc(-c2ccc(OC(c3ccccc3)C3CCCNC3)cc2)cc1,Fc1ccc(C(Oc2ccccc2)C2CCCNC2)cc1,evolved_scaffold-hop,evolved_scaffold-hop,0.662,0.637,2.78,7,0 1 2 3 4 25 26,361.46,5.61,27,42
+CC1(C)[C@H](C(=O)O)N2C(=O)C(CC=Cc3ccccc3)[C@@H]2S1(=O)=O,COC(=O)/C=C/CC1C(=O)N2[C@@H](C(=O)O)C(C)(C)S(=O)(=O)[C@@H]12,evolved_scaffold-hop,evolved_scaffold-hop,0.565,0.833,3.73,6,14 15 16 17 18 19,349.41,1.53,24,56
+CN(CCc1ccc2c(c1)OCO2)CC1CCCc2c1ccc(O)c2OC1CC1,CN(CCc1ccc2c(c1)OCO2)CC1CCCc2c1ccc1c2OCO1,evolved_scaffold-hop,evolved_scaffold-hop,0.604,0.759,3.17,5,23 25 26 27 28,395.5,4.26,29,45
+c1cc2c(cc1CCCC1CCCc3c1ccc1c3OCO1)OCO2,CN(CCc1ccc2c(c1)OCO2)CC1CCCc2c1ccc1c2OCO1,evolved_scaffold-hop,evolved_scaffold-hop,0.64,0.817,2.96,11,0 1 2 3 4 5 6 7 22 23 24,338.4,4.59,25,37
+Cc1cc(-n2ncc(=O)[nH]c2=O)cc(C)c1S(=O)(=O)N1CCOCC1,Cc1cc(-n2ncc(=O)[nH]c2=O)cc(Cl)c1S(=O)(=O)N1CCOCC1,evolved_scaffold-hop,evolved_scaffold-hop,0.773,0.788,2.55,1,14,366.4,-0.44,25,49
+Cc1cc(-n2ncc(=O)[nH]c2=O)cc(N2CCCC2)c1S(=O)(=O)N1CCOCC1,Cc1cc(-n2ncc(=O)[nH]c2=O)cc(Cl)c1S(=O)(=O)N1CCOCC1,evolved_scaffold-hop,evolved_scaffold-hop,0.654,0.729,2.75,5,14 15 16 17 18,421.48,-0.15,29,55
+Cc1cc(-n2ncc(=O)[nH]c2=O)cc(O)c1S(=O)(=O)N1CCOCC1,Cc1cc(-n2ncc(=O)[nH]c2=O)cc(Cl)c1S(=O)(=O)N1CCOCC1,evolved_scaffold-hop,evolved_scaffold-hop,0.718,0.706,2.72,1,14,368.37,-1.04,25,49
+Cc1cc(-n2ncc(=O)[nH]c2=O)cc(Cl)c1S(=O)(=O)N1CCCC1,Cc1cc(-n2ncc(=O)[nH]c2=O)cc(Cl)c1S(=O)(=O)N1CCOCC1,evolved_scaffold-hop,evolved_scaffold-hop,0.776,0.854,2.56,0,,370.82,0.67,24,49
+Cc1cc(-n2ncc(=O)[nH]c2=O)cc(Cl)c1S(=O)(=O)N1CCCCC1,Cc1cc(-n2ncc(=O)[nH]c2=O)cc(Cl)c1S(=O)(=O)N1CCOCC1,evolved_scaffold-hop,evolved_scaffold-hop,0.754,0.851,2.55,1,22,384.85,1.06,25,50
+Cc1cc(-n2ncc(=O)[nH]c2=O)cc(S(=O)(=O)N2CCOCC2)c1S(=O)(=O)N1CCOCC1,Cc1cc(-n2ncc(=O)[nH]c2=O)cc(Cl)c1S(=O)(=O)N1CCOCC1,evolved_scaffold-hop,evolved_scaffold-hop,0.699,0.502,2.87,9,14 15 16 17 18 19 20 21 22,501.54,-1.73,33,65
+c1ccc(OC(c2ccccc2)C2CNCCO2)cc1,Fc1cccc(OC(c2ccccc2)C2CNCCO2)c1,evolved_scaffold-hop,evolved_scaffold-hop,0.689,0.926,2.82,0,,269.34,2.8,20,30
+Fc1cccc(OC(c2ccncc2)C2CNCCO2)c1,Fc1cccc(OC(c2ccccc2)C2CNCCO2)c1,evolved_scaffold-hop,evolved_scaffold-hop,0.742,0.937,3.2,1,11,288.32,2.33,21,31
+Fc1ccc2c(c1)N=C(N1CCN(Cc3ccccc3)CC1)c1cc(N3CCCC3)sc1N2,CCc1cc2c(s1)Nc1ccc(F)cc1N=C2N1CCN(Cc2ccccc2)CC1.Cl.Cl,evolved_scaffold-hop,evolved_scaffold-hop,0.677,0.563,2.8,5,25 26 27 28 29,461.61,5.44,33,54
+CCc1cc2c(s1)Nc1ccc(F)cc1N=C2N1CCCC1,CCc1cc2c(s1)Nc1ccc(F)cc1N=C2N1CCN(Cc2ccccc2)CC1.Cl.Cl,evolved_scaffold-hop,evolved_scaffold-hop,0.687,0.827,2.81,0,,315.42,4.68,22,35
+NS(=O)(=O)C(Cc1ccccc1)NC(=O)N1CCCCC1=O,CC(Cc1ccc(S(N)(=O)=O)cc1)NC(=O)N1CCCCC1=O,evolved_scaffold-hop,evolved_scaffold-hop,0.556,0.843,2.99,4,0 1 2 3,325.39,0.57,22,38
+CC(Cc1ccccc1)NC(=O)N1CCCCC1=O,CC(Cc1ccc(S(N)(=O)=O)cc1)NC(=O)N1CCCCC1=O,evolved_scaffold-hop,evolved_scaffold-hop,0.672,0.906,2.42,0,,260.34,2.34,19,29
+CCOC(=O)c1cc2c3cc(OCc4ccccn4)ccc3n(C)c2cn1,CCOC(=O)c1cc2c3cc(OCc4ccccc4)ccc3n(C)c2cn1,evolved_scaffold-hop,evolved_scaffold-hop,0.707,0.505,2.34,1,18,361.4,3.88,27,42
+Cn1c2ccc(OCc3ccccc3)cc2c2cc(C3CC3)ncc21,CCOC(=O)c1cc2c3cc(OCc4ccccc4)ccc3n(C)c2cn1,evolved_scaffold-hop,evolved_scaffold-hop,0.571,0.516,2.22,3,19 20 21,328.42,5.18,25,39
+Cn1c2ccc(OCc3cccnc3)cc2c2cc(C(=O)O)ncc21,CCOC(=O)c1cc2c3cc(OCc4ccccc4)ccc3n(C)c2cn1,evolved_scaffold-hop,evolved_scaffold-hop,0.563,0.619,2.3,1,12,333.35,3.4,25,40
+CCNC(=O)c1ccc(N(Cc2ccc3nc(C)nc(O)c3c2)c2ccccc2)cc1,C#CCN(Cc1ccc2nc(C)nc(O)c2c1)c1ccc(C(=O)NCC)cc1,evolved_scaffold-hop,evolved_scaffold-hop,0.629,0.479,2.41,6,23 24 25 26 27 28,412.49,4.73,31,50
+c1ccc2c(CN3CCCCC3)c[nH]c2c1,c1ccc2c(CCN3CCCCC3)c[nH]c2c1,evolved_scaffold-hop,evolved_scaffold-hop,0.596,0.813,1.74,6,6 7 8 9 10 11,214.31,3.15,16,27
+c1ccc2c(CCCN3CCCCC3)c[nH]c2c1,c1ccc2c(CCN3CCCCC3)c[nH]c2c1,evolved_scaffold-hop,evolved_scaffold-hop,0.732,0.868,1.82,7,7 8 9 10 11 12 13,242.37,3.59,18,29
+c1ccc2c(CCN3CCOCC3)c[nH]c2c1,c1ccc2c(CCN3CCCCC3)c[nH]c2c1,evolved_scaffold-hop,evolved_scaffold-hop,0.714,0.874,1.88,1,10,230.31,2.04,17,28
+CN1CCN(CCc2c[nH]c3ccccc23)CC1,c1ccc2c(CCN3CCCCC3)c[nH]c2c1,evolved_scaffold-hop,evolved_scaffold-hop,0.696,0.89,1.88,2,0 1,243.35,1.96,18,29
+COc1ccc(Cl)cc1C(=O)NCCc1ccc(S(C)=O)c(S(=O)(=O)NC2CCCCC2)c1,CNC(=S)NS(=O)(=O)c1cc(CCNC(=O)c2cc(Cl)ccc2OC)ccc1S(C)=O,evolved_scaffold-hop,evolved_scaffold-hop,0.656,0.533,2.97,6,26 27 28 29 30 31,513.08,3.67,33,58
+CC(CO)(CCn1cnc2c(O)nc(N)nc21)c1ccccc1,CC(C)(CCC(N)=O)CCn1cnc2c(O)nc(N)nc21,evolved_scaffold-hop,evolved_scaffold-hop,0.553,0.657,3.21,7,3 17 18 19 20 21 22,313.36,1.45,23,37
+CC(C)(CCn1cnc2c(O)nc(N)nc21)CC1CC1,CC(C)(CCC(N)=O)CCn1cnc2c(O)nc(N)nc21,evolved_scaffold-hop,evolved_scaffold-hop,0.652,0.874,3.0,3,17 18 19,275.36,2.33,20,34
+O=C(O)c1cn(-c2ccc(F)cc2)c2c(F)c(N3CCCC3)c(F)cc2c1=O,CCNCC1CCN(c2c(F)cc3c(=O)c(C(=O)O)cn(-c4ccc(F)cc4)c3c2F)C1,evolved_scaffold-hop,evolved_scaffold-hop,0.625,0.743,2.42,0,,388.35,3.71,28,51
+O=C(O)c1cn(-c2ccc(F)cc2)c2c(F)c(N3CCOCC3)c(F)cc2c1=O,CCNCC1CCN(c2c(F)cc3c(=O)c(C(=O)O)cn(-c4ccc(F)cc4)c3c2F)C1,evolved_scaffold-hop,evolved_scaffold-hop,0.598,0.727,2.48,1,20,404.34,2.94,29,52
+Cn1c(C(=O)O)c(CC2CC2)n(Cc2ccc(-c3ccccc3-c3nn[nH]n3)cc2)c1=O,CCCc1c(C(=O)O)n(CC(C)C)c(=O)n1Cc1ccc(-c2ccccc2-c2nn[nH]n2)cc1,evolved_scaffold-hop,evolved_scaffold-hop,0.566,0.465,2.67,3,8 9 10,430.47,2.73,32,59
+CCCc1c(C(=O)O)n(CC(C)C)c(=O)n1Cc1ccc(-c2ccccn2)cc1,CCCc1c(C(=O)O)n(CC(C)C)c(=O)n1Cc1ccc(-c2ccccc2-c2nn[nH]n2)cc1,evolved_scaffold-hop,evolved_scaffold-hop,0.559,0.626,2.42,1,26,393.49,4.07,29,50
+CCOC(=O)C1=C(CNC2CC2)NC(C)=C(C(=O)OC)C1c1cccc(Cl)c1Cl,CCOC(=O)C1=C(COCC(O)CO)NC(C)=C(C(=O)OC)C1c1cccc(Cl)c1Cl,evolved_scaffold-hop,evolved_scaffold-hop,0.622,0.632,3.0,4,8 9 10 11,439.34,3.7,29,53
+CCOC(=O)C1=C(Cc2ccccc2)NC(C)=C(C(=O)OC)C1c1cccc(Cl)c1Cl,CCOC(=O)C1=C(COCC(O)CO)NC(C)=C(C(=O)OC)C1c1cccc(Cl)c1Cl,evolved_scaffold-hop,evolved_scaffold-hop,0.598,0.602,2.86,6,8 9 10 11 12 13,460.36,5.19,31,55
+CCOC(=O)C1=C(COCC(O)CO)NC(C)=C(c2ccccc2)C1c1cccc(Cl)c1Cl,CCOC(=O)C1=C(COCC(O)CO)NC(C)=C(C(=O)OC)C1c1cccc(Cl)c1Cl,evolved_scaffold-hop,evolved_scaffold-hop,0.653,0.453,3.36,6,18 19 20 21 22 23,492.4,4.3,33,56
+CCOC(=O)C1=C(COCC(O)c2ccccc2)NC(C)=C(C(=O)OC)C1c1cccc(Cl)c1Cl,CCOC(=O)C1=C(COCC(O)CO)NC(C)=C(C(=O)OC)C1c1cccc(Cl)c1Cl,evolved_scaffold-hop,evolved_scaffold-hop,0.736,0.463,3.31,6,12 13 14 15 16 17,520.41,4.69,35,61
+CCNC(=O)[C@@H]([NH3+])[C@@H](C(=O)N(C)C)c1ccc(-c2ccc3nccn3c2)cc1,CN(C)C(=O)[C@@H](c1ccc(-c2ccc3nccn3c2)cc1)[C@H]([NH3+])C(=O)N1CC[C@H](F)C1,evolved_scaffold-hop,evolved_scaffold-hop,0.622,0.666,3.7,3,0 1 2,380.47,0.92,28,64
+CC(CCc1cccnc1)NCC(O)COc1ccccc1,CC(CCc1ccccc1)NCC(O)COc1ccccc1,evolved_scaffold-hop,evolved_scaffold-hop,0.708,0.747,2.69,1,8,300.4,2.43,22,30
+Cc1ccccc1C(=O)OCC(O)CNC1CCCCC1,Cc1ccccc1C(=O)OCC(O)CNC(C)(C)C,evolved_scaffold-hop,evolved_scaffold-hop,0.567,0.79,2.44,6,15 16 17 18 19 20,291.39,2.44,21,30
+CCC(=O)N(Cc1ccccc1)C1CCN(Cc2ccc(F)cc2)CC1,CCC(=O)N(Cc1ccccc1)C1CCN(Cc2ccccc2)CC1,evolved_scaffold-hop,evolved_scaffold-hop,0.82,0.775,1.93,1,21,354.47,4.23,26,41
+CCC(=O)N(Cc1ccccc1)C1CCN(Cc2cccs2)CC1,CCC(=O)N(Cc1ccccc1)C1CCN(Cc2ccccc2)CC1,evolved_scaffold-hop,evolved_scaffold-hop,0.687,0.787,2.09,1,21,342.51,4.15,24,37
+CCC(=O)N(Cc1ccccc1)C1CCN(c2ccccc2)CC1,CCC(=O)N(Cc1ccccc1)C1CCN(Cc2ccccc2)CC1,evolved_scaffold-hop,evolved_scaffold-hop,0.625,0.827,1.87,6,16 17 18 19 20 21,322.45,4.09,24,37
+CCC(=O)N(Cc1ccccc1)C1CCN(Cc2ccc(CC3CC3)cc2)CC1,CCC(=O)N(Cc1ccccc1)C1CCN(Cc2ccccc2)CC1,evolved_scaffold-hop,evolved_scaffold-hop,0.769,0.63,2.09,4,21 22 23 24,390.57,5.04,29,46
+CCC(=O)N(Cc1ccccc1)C1CCN(Cc2ccc(Nc3ccccn3)cc2)CC1,CCC(=O)N(Cc1ccccc1)C1CCN(Cc2ccccc2)CC1,evolved_scaffold-hop,evolved_scaffold-hop,0.667,0.534,2.18,7,21 22 23 24 25 26 27,428.58,5.23,32,49
+NS(=O)(=O)c1nc2ccc(OCCc3ccccc3)cc2s1,CCOc1ccc2nc(S(N)(=O)=O)sc2c1,evolved_scaffold-hop,evolved_scaffold-hop,0.6,0.777,2.08,6,13 14 15 16 17 18,334.42,2.57,22,36
+NS(=O)(=O)c1nc2ccc(Oc3ccccc3)cc2s1,CCOc1ccc2nc(S(N)(=O)=O)sc2c1,evolved_scaffold-hop,evolved_scaffold-hop,0.557,0.806,2.06,6,11 12 13 14 15 16,306.37,2.74,20,34
+NS(=O)(=O)c1nc2ccc(OCc3cccnc3)cc2s1,CCOc1ccc2nc(S(N)(=O)=O)sc2c1,evolved_scaffold-hop,evolved_scaffold-hop,0.582,0.792,2.25,6,12 13 14 15 16 17,321.38,1.92,21,35
+CC(=O)O[C@H]1C(=O)N(CCN)c2ccccc2S[C@H]1c1ccc(OCC2CC2)cc1,COc1ccc([C@@H]2Sc3ccccc3N(CCN)C(=O)[C@@H]2OC(C)=O)cc1,evolved_scaffold-hop,evolved_scaffold-hop,0.747,0.682,3.28,3,25 26 27,426.54,3.55,30,56
+O=C(c1cccc2ccccc12)c1cn(CN2CCOCC2)c2ccccc12,O=C(c1cccc2ccccc12)c1cn(CCN2CCOCC2)c2ccccc12,evolved_scaffold-hop,evolved_scaffold-hop,0.747,0.502,2.21,6,16 17 18 19 20 21,370.45,4.32,28,43
+O=C(O)Cn1cc(C(=O)c2cccc3ccccc23)c2ccccc21,O=C(c1cccc2ccccc12)c1cn(CCN2CCOCC2)c2ccccc12,evolved_scaffold-hop,evolved_scaffold-hop,0.592,0.573,1.98,2,0 2,329.36,4.11,25,41
+CCCn1cc(C(=O)c2cccc3ccccc23)c2ccccc21,O=C(c1cccc2ccccc12)c1cn(CCN2CCOCC2)c2ccccc12,evolved_scaffold-hop,evolved_scaffold-hop,0.694,0.46,1.92,1,0,313.4,5.44,24,37
+OC(CN1CCOCC1)(Cn1cncn1)c1ccc(F)cc1F,CCc1ccc(CN2CCN(CC(O)(Cn3cncn3)c3ccc(F)cc3F)CC2)cc1,evolved_scaffold-hop,evolved_scaffold-hop,0.63,0.88,3.05,1,6,324.33,0.78,23,35
+O=c1cnn(-c2ccc(S(=O)(=O)N3CCCCC3)c(Cl)c2)c(=O)[nH]1,O=c1cnn(-c2ccc(S(=O)(=O)N3CCSC3)c(Cl)c2)c(=O)[nH]1,evolved_scaffold-hop,evolved_scaffold-hop,0.686,0.858,2.39,2,15 16,370.82,0.75,24,51
+O=c1cnn(-c2ccc(S(=O)(=O)N3CCSC3)c(N3CCCCC3)c2)c(=O)[nH]1,O=c1cnn(-c2ccc(S(=O)(=O)N3CCSC3)c(Cl)c2)c(=O)[nH]1,evolved_scaffold-hop,evolved_scaffold-hop,0.641,0.767,2.87,6,18 19 20 21 22 23,423.52,0.61,28,56
+CN(CCOc1ccccc1)CC(O)COCc1ccncc1,CN(CCOc1ccccc1)CC(O)COCc1ccccc1F,evolved_scaffold-hop,evolved_scaffold-hop,0.6,0.726,2.53,1,20,316.4,1.97,23,31
+CN(Cc1ccc(CCOc2ccccc2)cc1)CC(O)COCc1ccccc1F,CN(CCOc1ccccc1)CC(O)COCc1ccccc1F,evolved_scaffold-hop,evolved_scaffold-hop,0.642,0.467,2.55,15,3 4 5 6 7 8 9 10 11 12 13 14 15 16 17,423.53,4.46,31,43
+O=C(O)c1cccn1-c1cc2nc(OC(=O)C3CCCO3)c(O)nc2cc1C(F)(F)F,O=C(O)c1cccn1-c1cc2nc(O)c(O)nc2cc1C(F)(F)F,evolved_scaffold-hop,evolved_scaffold-hop,0.571,0.597,3.63,7,14 15 16 17 18 19 20,437.33,2.93,31,54
+NS(=O)(=O)c1ccc(CCNC(=O)c2cc(Cl)ccc2OCc2ccccc2)cc1,NS(=O)(=O)c1ccc(CCNC(=O)c2cc(Cl)ccc2OC(F)(F)F)cc1,evolved_scaffold-hop,evolved_scaffold-hop,0.63,0.555,1.91,6,22 23 24 25 26 27,444.94,3.54,30,50
+NS(=O)(=O)c1ccc(CCNC(=O)c2cc(-c3ccccc3)ccc2OC(F)(F)F)cc1,NS(=O)(=O)c1ccc(CCNC(=O)c2cc(Cl)ccc2OC(F)(F)F)cc1,evolved_scaffold-hop,evolved_scaffold-hop,0.658,0.555,2.14,6,16 17 18 19 20 21,464.47,3.87,32,56
+O=C(NCCc1ccncc1)c1cc(Cl)ccc1OC(F)(F)F,NS(=O)(=O)c1ccc(CCNC(=O)c2cc(Cl)ccc2OC(F)(F)F)cc1,evolved_scaffold-hop,evolved_scaffold-hop,0.69,0.901,2.06,1,8,344.72,3.61,23,37
+CCn1c(=O)c2cc(-c3ccccc3)cn2c2ccccc21,CCn1c(=O)c2cc(C=O)cn2c2ccccc21,evolved_scaffold-hop,evolved_scaffold-hop,0.576,0.548,2.07,6,8 9 10 11 12 13,288.35,3.94,22,36
+COc1ccc(-c2c(C)cccc2OCc2cccs2)cc1,COc1ccc(-c2c(C)cccc2OCc2ccccn2)cc1,evolved_scaffold-hop,evolved_scaffold-hop,0.565,0.635,1.92,1,19,310.42,5.31,22,33
+Cc1cccc(OCc2ccccn2)c1-c1ccncc1,COc1ccc(-c2c(C)cccc2OCc2ccccn2)cc1,evolved_scaffold-hop,evolved_scaffold-hop,0.705,0.721,2.0,1,18,276.34,4.03,21,30
+CCCOc1cccc(-c2ccccc2)c1,CCN(CC)CCCOc1cccc(-c2ccccc2)c1,evolved_scaffold-hop,evolved_scaffold-hop,0.635,0.74,1.36,0,,212.29,4.14,16,23
+CCCOc1cccc(-c2cccc(-c3ccccc3)c2)c1,CCN(CC)CCCOc1cccc(-c2ccccc2)c1,evolved_scaffold-hop,evolved_scaffold-hop,0.552,0.575,1.56,6,14 15 16 17 18 19,288.39,5.81,22,34
+O=C(Cc1c(-c2ccc(Cl)cc2)nc2ccccn12)NCC1CC1,CCCNC(=O)Cc1c(-c2ccc(Cl)cc2)nc2ccccn12,evolved_scaffold-hop,evolved_scaffold-hop,0.693,0.77,2.2,3,21 22 23,339.83,3.72,24,41
+CCc1ccc(-c2nc3ccccn3c2CC(=O)NCC2CC2)cc1,CCCNC(=O)Cc1c(-c2ccc(Cl)cc2)nc2ccccn12,evolved_scaffold-hop,evolved_scaffold-hop,0.554,0.749,2.23,5,0 1 20 21 22,333.44,3.63,25,39
+Cc1ccc(-c2nc3ccccn3c2CC(=O)NCC2CC2)cc1,CCCNC(=O)Cc1c(-c2ccc(Cl)cc2)nc2ccccn12,evolved_scaffold-hop,evolved_scaffold-hop,0.556,0.783,2.19,4,0 19 20 21,319.41,3.38,24,38
+COc1ccc(Cc2cc([C@@H]3O[C@H](CF)[C@@H](OC)[C@H](O)[C@H]3O)ccc2-c2ccccc2)cc1,COc1ccc(Cc2cc([C@@H]3O[C@H](CF)[C@@H](OC)[C@H](O)[C@H]3O)ccc2Cl)cc1,evolved_scaffold-hop,evolved_scaffold-hop,0.643,0.565,3.65,6,25 26 27 28 29 30,452.52,4.1,33,74
+COc1ccc(Cc2cc([C@@H]3O[C@H](CF)[C@@H](OC)[C@H](c4ccc(O)cc4)[C@H]3O)ccc2Cl)cc1,COc1ccc(Cc2cc([C@@H]3O[C@H](CF)[C@@H](OC)[C@H](O)[C@H]3O)ccc2Cl)cc1,evolved_scaffold-hop,evolved_scaffold-hop,0.702,0.479,3.87,7,19 20 21 22 23 24 25,486.97,5.21,34,77
+COc1cc2nc(N3CCN(Cc4ccccc4)CC3)nc(N)c2cc1OC,COc1cc2nc(N3CCN(C(=O)/C=C/c4ccccc4)CC3)nc(N)c2cc1OC,evolved_scaffold-hop,evolved_scaffold-hop,0.558,0.73,2.08,6,12 13 14 15 16 17,379.46,2.55,28,42
+COc1ccc(CCN2CCN(CCc3ccccc3)CC2)cc1OC,COc1ccc(CCN2CCN(CCCc3ccccc3)CC2)cc1OC,evolved_scaffold-hop,evolved_scaffold-hop,0.807,0.727,1.77,6,14 15 16 17 18 19,354.49,3.11,26,36
+COc1ccc(CCN2CCN(C)CC2)cc1OC,COc1ccc(CCN2CCN(CCCc3ccccc3)CC2)cc1OC,evolved_scaffold-hop,evolved_scaffold-hop,0.607,0.804,1.72,0,,264.37,1.49,19,27
+COc1cc2c(N)nc(Nc3ccc(F)cc3)nc2cc1OCC1CC1,COc1cc2nc(Nc3ccc(F)cc3)nc(N)c2cc1OC.Cl,evolved_scaffold-hop,evolved_scaffold-hop,0.694,0.699,2.21,3,23 24 25,354.39,3.89,26,40
+Cc1cc2c(N)nc(Nc3ccc(F)cc3)nc2cc1OCC1CC1,COc1cc2nc(Nc3ccc(F)cc3)nc(N)c2cc1OC.Cl,evolved_scaffold-hop,evolved_scaffold-hop,0.558,0.73,2.24,4,0 22 23 24,338.39,4.19,25,39
+COc1cc2c(N)nc(Nc3ccc(F)cc3)nc2cc1Oc1ccncc1,COc1cc2nc(Nc3ccc(F)cc3)nc(N)c2cc1OC.Cl,evolved_scaffold-hop,evolved_scaffold-hop,0.704,0.536,2.28,6,22 23 24 25 26 27,377.38,4.29,28,42
+CCCC1CCCC(CC(=O)O)(CN2CCCC2)C1,CCCC1CCCC(CN)(CC(=O)O)C1,evolved_scaffold-hop,evolved_scaffold-hop,0.559,0.8,3.23,5,13 14 15 16 17,267.41,3.53,19,30
+O=C(NCCn1ccnc1)c1cc2ccccc2o1,O=C(NCCCn1ccnc1)c1cc2ccccc2o1,evolved_scaffold-hop,evolved_scaffold-hop,0.773,0.776,2.12,5,5 6 7 8 9,255.28,2.06,19,28
+O=C(Cn1ccnc1)NC(=O)c1cc2ccccc2o1,O=C(NCCCn1ccnc1)c1cc2ccccc2o1,evolved_scaffold-hop,evolved_scaffold-hop,0.56,0.783,2.24,6,0 3 4 5 6 7,269.26,1.59,20,32
+O=C(NCn1ccnc1)c1cc2ccccc2o1,O=C(NCCCn1ccnc1)c1cc2ccccc2o1,evolved_scaffold-hop,evolved_scaffold-hop,0.652,0.763,2.34,5,4 5 6 7 8,241.25,2.02,18,27
+CN(C(=O)C1CC1)c1ccc(-c2cn3ccccc3n2)cc1,CCC(=O)N[C@H]1CC[C@@H](C(=O)N(C)c2ccc(-c3cn4ccccc4n3)cc2)C1,evolved_scaffold-hop,evolved_scaffold-hop,0.696,0.742,2.24,0,,291.35,3.37,22,38
+Clc1ccc2c(c1)Nc1sc3ccccc3c1C(N1CCCC1)=N2,Fc1ccc2c(c1)Nc1sc3ccccc3c1C(N1CCNCC1)=N2,evolved_scaffold-hop,evolved_scaffold-hop,0.57,0.554,2.68,1,0,353.88,5.79,24,40
+Cc1ccc2c(c1)Nc1sc3ccccc3c1C(N1CCCCC1)=N2,Fc1ccc2c(c1)Nc1sc3ccccc3c1C(N1CCNCC1)=N2,evolved_scaffold-hop,evolved_scaffold-hop,0.557,0.554,2.66,2,0 21,347.49,5.83,25,40
+CCCN(C)Cc1c[nH]c2c(C)cccc12,Cc1cccc2c(CCN(C)C)c[nH]c12,evolved_scaffold-hop,evolved_scaffold-hop,0.554,0.83,2.21,5,0 1 2 3 4,216.33,3.32,16,27
+Cc1cccc2c(CCN(C)Cc3ccccc3)c[nH]c12,Cc1cccc2c(CCN(C)C)c[nH]c12,evolved_scaffold-hop,evolved_scaffold-hop,0.649,0.743,1.99,6,12 13 14 15 16 17,278.4,4.15,21,34
+Cc1cccc2c(CCc3ccccc3)c[nH]c12,Cc1cccc2c(CCN(C)C)c[nH]c12,evolved_scaffold-hop,evolved_scaffold-hop,0.582,0.698,1.81,6,9 10 11 12 13 14,235.33,4.26,18,29
+CC(=O)NCC1CN(c2ccc(-c3ccc(NCC4CC4)c(=O)cc3)cc2)C(=O)O1,CC(=O)NCC1CN(c2ccc(-c3ccc(N4CCOCC4)c(=O)cc3)cc2)C(=O)O1,evolved_scaffold-hop,evolved_scaffold-hop,0.6,0.737,2.87,5,16 17 18 19 20,407.47,3.0,30,54
+CC(=O)NCc1ccc(-c2ccc(N3CCOCC3)c(=O)cc2)cc1,CC(=O)NCC1CN(c2ccc(-c3ccc(N4CCOCC4)c(=O)cc3)cc2)C(=O)O1,evolved_scaffold-hop,evolved_scaffold-hop,0.564,0.928,2.05,5,0 1 2 3 4,338.41,2.19,25,42
+N#CCc1nn(-c2ccccc2)c(-c2ccccc2)c1Cc1ccccc1,CCc1c(CC#N)nn(-c2ccccc2)c1-c1ccccc1,evolved_scaffold-hop,evolved_scaffold-hop,0.672,0.497,2.2,6,21 22 23 24 25 26,349.44,5.2,27,42
+OCCN(CCc1ccccc1)CC(c1ccccc1)c1ccc(Cl)cc1,OCCN(CCO)CC(c1ccc(Cl)cc1)c1ccc(Cl)cc1,evolved_scaffold-hop,evolved_scaffold-hop,0.623,0.565,2.42,6,6 7 8 9 10 11,379.93,5.01,27,40
+OCCN(CCc1ccccc1)CC(c1ccc(Cl)cc1)c1ccc(Cl)cc1,OCCN(CCO)CC(c1ccc(Cl)cc1)c1ccc(Cl)cc1,evolved_scaffold-hop,evolved_scaffold-hop,0.673,0.488,2.08,6,6 7 8 9 10 11,414.38,5.66,28,44
+C[C@@H](Cc1ccc(O)cc1)NC[C@@H](COc1ccc(O)cc1)c1ccccc1,C[C@@H](Cc1ccc(O)cc1)NC[C@H](O)COc1ccc(O)cc1,evolved_scaffold-hop,evolved_scaffold-hop,0.574,0.514,2.87,6,22 23 24 25 26 27,377.48,4.48,28,52
+Oc1nc(-c2ccccc2OCC2CCC2)ncc1-c1nn[nH]n1,C=CCOc1ccccc1-c1ncc(-c2nn[nH]n2)c(O)n1,evolved_scaffold-hop,evolved_scaffold-hop,0.658,0.74,2.63,4,12 13 14 15,324.34,2.21,24,39
+Oc1nc(-c2ccccc2OCc2ccccc2)ncc1-c1nn[nH]n1,C=CCOc1ccccc1-c1ncc(-c2nn[nH]n2)c(O)n1,evolved_scaffold-hop,evolved_scaffold-hop,0.676,0.571,2.39,6,12 13 14 15 16 17,346.35,2.61,26,41
+COCN1CCc2ccc3sc4ccccc4c3c2C1,COC(=N)N1CCc2ccc3sc4ccccc4c3c2C1,evolved_scaffold-hop,evolved_scaffold-hop,0.587,0.704,2.54,0,,283.4,4.02,20,28
+C=CNN1CCc2ccc3sc4ccccc4c3c2C1,COC(=N)N1CCc2ccc3sc4ccccc4c3c2C1,evolved_scaffold-hop,evolved_scaffold-hop,0.553,0.761,2.98,3,0 1 2,280.4,4.06,20,29
+CON1CCc2ccc3sc4ccccc4c3c2C1,COC(=N)N1CCc2ccc3sc4ccccc4c3c2C1,evolved_scaffold-hop,evolved_scaffold-hop,0.62,0.662,2.68,2,0 1,269.37,3.97,19,27
+c1ccc2c(c1)sc1ccc3c(c12)CN(C1CC1)CC3,COC(=N)N1CCc2ccc3sc4ccccc4c3c2C1,evolved_scaffold-hop,evolved_scaffold-hop,0.597,0.63,2.41,3,15 16 17,279.41,4.58,20,36
+COc1cc2nc(S(=O)Cc3ccccc3NC3CCC3)[nH]c2cc1OC,CCNc1ccccc1CS(=O)c1nc2cc(OC)c(OC)cc2[nH]1,evolved_scaffold-hop,evolved_scaffold-hop,0.688,0.646,2.96,4,17 18 19 20,385.49,3.85,27,43
+COc1cc2nc(S(=O)Cc3ccccc3Nc3ccccc3)[nH]c2cc1OC,CCNc1ccccc1CS(=O)c1nc2cc(OC)c(OC)cc2[nH]1,evolved_scaffold-hop,evolved_scaffold-hop,0.696,0.467,2.81,6,17 18 19 20 21 22,407.5,4.63,29,45
+O=c1[nH]n(-c2ccc(F)cc2)c2ccccc12,O=c1[nH]n(-c2ccccc2)c2ccccc12,evolved_scaffold-hop,evolved_scaffold-hop,0.667,0.682,2.02,1,8,228.23,2.46,17,32
+COc1ccc(-n2[nH]c(=O)c3ccccc32)cc1,O=c1[nH]n(-c2ccccc2)c2ccccc12,evolved_scaffold-hop,evolved_scaffold-hop,0.627,0.747,1.97,2,0 1,240.26,2.33,18,33
+O=c1[nH]n(-c2ccsc2)c2ccccc12,O=c1[nH]n(-c2ccccc2)c2ccccc12,evolved_scaffold-hop,evolved_scaffold-hop,0.588,0.666,2.58,1,7,216.26,2.38,15,28
+O=c1[nH]n(-c2ccc(Cl)cc2)c2ccccc12,O=c1[nH]n(-c2ccccc2)c2ccccc12,evolved_scaffold-hop,evolved_scaffold-hop,0.667,0.702,2.01,1,8,244.68,2.97,17,33
+O=c1[nH]n(-c2ccc(-c3ccccc3)cc2)c2ccccc12,O=c1[nH]n(-c2ccccc2)c2ccccc12,evolved_scaffold-hop,evolved_scaffold-hop,0.68,0.594,1.92,6,8 9 10 11 12 13,286.33,3.99,22,40
+CC(C)c1cc(/C=C/c2cccs2)cc(-c2cccnc2)c1O,CC(C)c1cc(/C=C/c2cccs2)cc(C(C)C)c1O,evolved_scaffold-hop,evolved_scaffold-hop,0.578,0.658,2.54,6,15 16 17 18 19 20,321.45,5.81,23,39
+CC(C)c1cc(/C=C/c2cccs2)cc(C(O)c2ccccc2)c1O,CC(C)c1cc(/C=C/c2cccs2)cc(C(C)C)c1O,evolved_scaffold-hop,evolved_scaffold-hop,0.69,0.608,2.92,7,16 17 18 19 20 21 22,350.48,5.83,25,42
+O=C1[C@H]([C@H](O)CO)[C@@H](c2ccc(Oc3ccc(F)cc3)cc2)N1c1ccc(F)cc1,O=C1[C@H]([C@H](O)CO)[C@@H](c2ccc(OCc3ccccc3)cc2)N1c1ccc(F)cc1,evolved_scaffold-hop,evolved_scaffold-hop,0.645,0.605,3.17,7,13 14 15 16 17 18 19,411.4,3.81,30,64
+CCCC(=O)Nc1nccc(-c2c(-c3ccc(F)cc3)nc3cc(C4CC4)ccn23)n1,CCCC(=O)Nc1nccc(-c2c(-c3ccc(F)cc3)nc3cc(CN(C)C)ccn23)n1,evolved_scaffold-hop,evolved_scaffold-hop,0.677,0.469,2.61,3,24 25 26,415.47,5.21,31,54
+CC(=O)Nc1nccc(-c2c(-c3ccc(F)cc3)nc3cc(CN(C)C)ccn23)n1,CCCC(=O)Nc1nccc(-c2c(-c3ccc(F)cc3)nc3cc(CN(C)C)ccn23)n1,evolved_scaffold-hop,evolved_scaffold-hop,0.807,0.55,2.59,0,,404.45,3.62,30,53
+CCCC(=O)Nc1nccc(-c2c(-c3ccccn3)nc3cc(CN(C)C)ccn23)n1,CCCC(=O)Nc1nccc(-c2c(-c3ccc(F)cc3)nc3cc(CN(C)C)ccn23)n1,evolved_scaffold-hop,evolved_scaffold-hop,0.694,0.496,2.72,1,18,415.5,3.65,31,52

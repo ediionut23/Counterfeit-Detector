@@ -1,0 +1,35 @@
+{
+  "total_parents": 150,
+  "total_counterfeits": 267,
+  "tier_mode": "balanced",
+  "tier_stats": {
+    "small": {
+      "count": 140,
+      "mean_parent_mw": 296.3,
+      "mean_counterfeit_mw": 263.8,
+      "mean_similarity": 0.47,
+      "mean_qed": 0.801,
+      "mean_sa_score": 2.093,
+      "mean_edited_atoms": 4.2
+    },
+    "medium": {
+      "count": 79,
+      "mean_parent_mw": 416.0,
+      "mean_counterfeit_mw": 343.3,
+      "mean_similarity": 0.528,
+      "mean_qed": 0.715,
+      "mean_sa_score": 2.529,
+      "mean_edited_atoms": 3.9
+    },
+    "large": {
+      "count": 48,
+      "mean_parent_mw": 617.6,
+      "mean_counterfeit_mw": 501.4,
+      "mean_similarity": 0.603,
+      "mean_qed": 0.491,
+      "mean_sa_score": 3.084,
+      "mean_edited_atoms": 2.9
+    }
+  },
+  "elapsed_seconds": 81.77
+}

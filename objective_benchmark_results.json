@@ -1,0 +1,290 @@
+{
+  "Baseline (Jensen)": {
+    "name": "Formulation 1: Baseline Medicinal (Jensen)",
+    "short_name": "Baseline (Jensen)",
+    "mean_runtime_s": 17.72,
+    "mean_pareto_size": 31.2,
+    "mean_tanimoto": 0.213,
+    "in_band_pct": 13.9,
+    "sweet_spot_pct": 1.9,
+    "mean_qed": 0.734,
+    "mean_sa": 1.32,
+    "mean_alerts": 0.0,
+    "mean_delta_mw": 96.0,
+    "mean_delta_logp": 1.29,
+    "scaffold_preservation_pct": 75.0,
+    "mean_edit_size": 5.8,
+    "mean_p_counterfeit": 0.44,
+    "fooling_rate_pct": 59.7,
+    "top_candidates": [
+      {
+        "drug": "Aspirin",
+        "smiles": "COc1ccccc1-c1ccccc1C(=O)O",
+        "similarity": 0.388,
+        "qed": 0.878,
+        "sa_score": 1.47,
+        "alerts": 0,
+        "delta_mw": 48.1,
+        "delta_logp": 1.75,
+        "scaffold_preserved": true,
+        "edit_size": 8,
+        "p_counterfeit": 0.484,
+        "fitness_vector": [
+          0.0122,
+          0.1223,
+          0.0519
+        ],
+        "sum_fitness": 0.1865
+      },
+      {
+        "drug": "Paracetamol",
+        "smiles": "CCOc1ccc(-c2ccc(NC(C)=O)cc2)cc1",
+        "similarity": 0.4,
+        "qed": 0.904,
+        "sa_score": 1.43,
+        "alerts": 0,
+        "delta_mw": 104.2,
+        "delta_logp": 2.36,
+        "scaffold_preserved": true,
+        "edit_size": 9,
+        "p_counterfeit": 0.479,
+        "fitness_vector": [
+          0.0,
+          0.096,
+          0.0479
+        ],
+        "sum_fitness": 0.1439
+      },
+      {
+        "drug": "Ibuprofen",
+        "smiles": "CC(C)Cc1ccc(-c2ccc(CO)cc2)cc1",
+        "similarity": 0.395,
+        "qed": 0.855,
+        "sa_score": 1.56,
+        "alerts": 0,
+        "delta_mw": 34.1,
+        "delta_logp": 0.97,
+        "scaffold_preserved": true,
+        "edit_size": 8,
+        "p_counterfeit": 0.328,
+        "fitness_vector": [
+          0.0047,
+          0.1454,
+          0.0619
+        ],
+        "sum_fitness": 0.212
+      },
+      {
+        "drug": "Sildenafil",
+        "smiles": "CN1CCN(S(=O)(=O)c2ccc(Nc3ccccc3)cc2)CC1",
+        "similarity": 0.245,
+        "qed": 0.934,
+        "sa_score": 1.75,
+        "alerts": 0,
+        "delta_mw": 143.1,
+        "delta_logp": 0.76,
+        "scaffold_preserved": false,
+        "edit_size": 7,
+        "p_counterfeit": 0.58,
+        "fitness_vector": [
+          0.1549,
+          0.0656,
+          0.0836
+        ],
+        "sum_fitness": 0.3041
+      }
+    ]
+  },
+  "Anti-Shortcut (Thesis)": {
+    "name": "Formulation 2: Anti-Shortcut Bioisosteric",
+    "short_name": "Anti-Shortcut (Thesis)",
+    "mean_runtime_s": 78.1,
+    "mean_pareto_size": 21.5,
+    "mean_tanimoto": 0.417,
+    "in_band_pct": 58.3,
+    "sweet_spot_pct": 23.8,
+    "mean_qed": 0.712,
+    "mean_sa": 2.03,
+    "mean_alerts": 0.128,
+    "mean_delta_mw": 31.7,
+    "mean_delta_logp": 0.52,
+    "scaffold_preservation_pct": 79.6,
+    "mean_edit_size": 4.8,
+    "mean_p_counterfeit": 0.547,
+    "fooling_rate_pct": 44.8,
+    "top_candidates": [
+      {
+        "drug": "Aspirin",
+        "smiles": "O=C(O)Oc1ccccc1C(=O)O",
+        "similarity": 0.667,
+        "qed": 0.534,
+        "sa_score": 1.7,
+        "alerts": 1,
+        "delta_mw": 2.0,
+        "delta_logp": 0.13,
+        "scaffold_preserved": true,
+        "edit_size": 1,
+        "p_counterfeit": 0.64,
+        "fitness_vector": [
+          0.0039,
+          0.1205,
+          0.3869
+        ],
+        "sum_fitness": 0.5113
+      },
+      {
+        "drug": "Paracetamol",
+        "smiles": "CC(=O)Nc1cccc(O)c1",
+        "similarity": 0.41,
+        "qed": 0.636,
+        "sa_score": 1.54,
+        "alerts": 0,
+        "delta_mw": 0.0,
+        "delta_logp": 0.0,
+        "scaffold_preserved": true,
+        "edit_size": 1,
+        "p_counterfeit": 0.278,
+        "fitness_vector": [
+          0.2938,
+          0.0,
+          0.1848
+        ],
+        "sum_fitness": 0.4786
+      },
+      {
+        "drug": "Ibuprofen",
+        "smiles": "CCCc1ccc(C(C)C(=O)O)cc1",
+        "similarity": 0.575,
+        "qed": 0.796,
+        "sa_score": 2.12,
+        "alerts": 0,
+        "delta_mw": 14.0,
+        "delta_logp": 0.25,
+        "scaffold_preserved": true,
+        "edit_size": 0,
+        "p_counterfeit": 0.316,
+        "fitness_vector": [
+          0.0547,
+          0.3978,
+          0.1455
+        ],
+        "sum_fitness": 0.598
+      },
+      {
+        "drug": "Sildenafil",
+        "smiles": "CCOc1ccc(S(=O)(=O)N2CCN(C)CC2)cc1-c1nc2c(OCC)nn(CC)c2c(=O)[nH]1",
+        "similarity": 0.643,
+        "qed": 0.505,
+        "sa_score": 2.8,
+        "alerts": 0,
+        "delta_mw": 16.0,
+        "delta_logp": 0.07,
+        "scaffold_preserved": true,
+        "edit_size": 4,
+        "p_counterfeit": 0.634,
+        "fitness_vector": [
+          0.0114,
+          0.3139,
+          0.303
+        ],
+        "sum_fitness": 0.6283
+      }
+    ]
+  },
+  "Adversarial (GNN)": {
+    "name": "Formulation 3: Adversarial Hardness",
+    "short_name": "Adversarial (GNN)",
+    "mean_runtime_s": 36.98,
+    "mean_pareto_size": 28.0,
+    "mean_tanimoto": 0.287,
+    "in_band_pct": 37.7,
+    "sweet_spot_pct": 7.1,
+    "mean_qed": 0.671,
+    "mean_sa": 1.74,
+    "mean_alerts": 0.08,
+    "mean_delta_mw": 55.8,
+    "mean_delta_logp": 1.85,
+    "scaffold_preservation_pct": 77.8,
+    "mean_edit_size": 7.7,
+    "mean_p_counterfeit": 0.339,
+    "fooling_rate_pct": 81.0,
+    "top_candidates": [
+      {
+        "drug": "Aspirin",
+        "smiles": "CC(C)Oc1ccccc1C(=O)O",
+        "similarity": 0.5,
+        "qed": 0.775,
+        "sa_score": 1.56,
+        "alerts": 0,
+        "delta_mw": 0.0,
+        "delta_logp": 0.86,
+        "scaffold_preserved": true,
+        "edit_size": 1,
+        "p_counterfeit": 0.358,
+        "fitness_vector": [
+          0.0001,
+          0.1343,
+          0.3577
+        ],
+        "sum_fitness": 0.4922
+      },
+      {
+        "drug": "Paracetamol",
+        "smiles": "CC(=O)Nc1ccccc1",
+        "similarity": 0.485,
+        "qed": 0.623,
+        "sa_score": 1.11,
+        "alerts": 0,
+        "delta_mw": 16.0,
+        "delta_logp": 0.29,
+        "scaffold_preserved": true,
+        "edit_size": 0,
+        "p_counterfeit": 0.258,
+        "fitness_vector": [
+          0.048,
+          0.193,
+          0.2585
+        ],
+        "sum_fitness": 0.4994
+      },
+      {
+        "drug": "Ibuprofen",
+        "smiles": "CC(C)c1ccc(C(C)C(=O)O)cc1",
+        "similarity": 0.528,
+        "qed": 0.799,
+        "sa_score": 2.16,
+        "alerts": 0,
+        "delta_mw": 14.0,
+        "delta_logp": 0.08,
+        "scaffold_preserved": true,
+        "edit_size": 1,
+        "p_counterfeit": 0.192,
+        "fitness_vector": [
+          0.0421,
+          0.1456,
+          0.192
+        ],
+        "sum_fitness": 0.3797
+      },
+      {
+        "drug": "Sildenafil",
+        "smiles": "COc1ccc(S(=O)(=O)N2CCN(C)CC2)cc1-c1nc2c(CC(C)=O)nn(C)c2c(=O)[nH]1",
+        "similarity": 0.63,
+        "qed": 0.543,
+        "sa_score": 2.8,
+        "alerts": 0,
+        "delta_mw": 0.0,
+        "delta_logp": 1.21,
+        "scaffold_preserved": true,
+        "edit_size": 1,
+        "p_counterfeit": 0.623,
+        "fitness_vector": [
+          0.0001,
+          0.2985,
+          0.623
+        ],
+        "sum_fitness": 0.9216
+      }
+    ]
+  }
+}

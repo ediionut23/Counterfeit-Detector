@@ -67,6 +67,7 @@ from typing import Callable, Dict, List, Optional, Tuple
 import numpy as np
 from rdkit import Chem, DataStructs, RDLogger
 from rdkit.Chem import AllChem, Descriptors, rdFMCS, rdMolDescriptors
+from rdkit.Chem.Scaffolds import MurckoScaffold
 
 RDLogger.DisableLog("rdApp.*")
 warnings.filterwarnings("ignore")
@@ -91,14 +92,17 @@ except Exception:  # pragma: no cover
 class RuleLibrary:
     """Loads mined MMP rules and exposes them as weighted mutation operators."""
 
-    def __init__(self, rules_py: str):
+    def __init__(self, rules_py: str, category: Optional[str] = None):
         mod = self._load_module(rules_py)
         raw = list(getattr(mod, "MMP_TRANSFORMATIONS"))
         support = dict(getattr(mod, "SUPPORT", {}))
+        self.category = category
         self.names: List[str] = []
         self.reactions: List[AllChem.ChemicalReaction] = []
         self.weights: List[float] = []
         for name, _diff, _cat, react, prod, _cite in raw:
+            if category and _cat != category:
+                continue
             rxn = AllChem.ReactionFromSmarts(f"{react}>>{prod}")
             if rxn is None:
                 continue
@@ -107,7 +111,8 @@ class RuleLibrary:
             self.weights.append(float(support.get(name, 1)))
         w = np.asarray(self.weights, dtype=float)
         self.probs = (w / w.sum()) if w.sum() > 0 else None
-        logger.info(f"Loaded {len(self.names)} mutation rules from {rules_py}")
+        cat_str = f" for category '{category}'" if category else ""
+        logger.info(f"Loaded {len(self.names)} mutation rules{cat_str} from {rules_py}")
 
     @staticmethod
     def _load_module(path: str):
@@ -139,7 +144,7 @@ class RuleLibrary:
 
 
 # ==================================================================
-#  Graph crossover (Jensen 2019 style, via RDKit molzip)
+#  Advanced Graph Crossover Operators
 # ==================================================================
 def _cut_to_fragments(mol: Chem.Mol) -> Optional[Tuple[Chem.Mol, Chem.Mol]]:
     """Break one random acyclic single bond -> two fragments, each carrying a
@@ -166,7 +171,8 @@ def _cut_to_fragments(mol: Chem.Mol) -> Optional[Tuple[Chem.Mol, Chem.Mol]]:
     return tagged[0], tagged[1]
 
 
-def crossover(smiles_a: str, smiles_b: str) -> Optional[str]:
+def crossover_jensen(smiles_a: str, smiles_b: str, **kwargs) -> Optional[str]:
+    """Baseline Jensen 2019: random acyclic cut and random fragment join."""
     ma, mb = Chem.MolFromSmiles(smiles_a), Chem.MolFromSmiles(smiles_b)
     if ma is None or mb is None:
         return None
@@ -177,11 +183,187 @@ def crossover(smiles_a: str, smiles_b: str) -> Optional[str]:
     piece_b = fb[random.randint(0, 1)]
     try:
         combined = Chem.CombineMols(piece_a, piece_b)
-        child = Chem.molzip(combined)  # joins the two map-1 dummies
+        child = Chem.molzip(combined)
         Chem.SanitizeMol(child)
         return Chem.MolToSmiles(child)
     except Exception:
         return None
+
+
+def crossover_mass_balanced(smiles_a: str, smiles_b: str, target_mw: Optional[float] = None, **kwargs) -> Optional[str]:
+    """Mass-Balanced: selects fragment pairing that minimizes drift from parent MW."""
+    ma, mb = Chem.MolFromSmiles(smiles_a), Chem.MolFromSmiles(smiles_b)
+    if ma is None or mb is None:
+        return None
+    if target_mw is None:
+        target_mw = (Descriptors.MolWt(ma) + Descriptors.MolWt(mb)) / 2.0
+
+    fa, fb = _cut_to_fragments(ma), _cut_to_fragments(mb)
+    if fa is None or fb is None:
+        return None
+
+    candidates = []
+    for pa in fa:
+        for pb in fb:
+            try:
+                comb = Chem.CombineMols(pa, pb)
+                child = Chem.molzip(comb)
+                Chem.SanitizeMol(child)
+                mw = Descriptors.MolWt(child)
+                diff = abs(mw - target_mw)
+                candidates.append((diff, Chem.MolToSmiles(child)))
+            except Exception:
+                continue
+
+    if not candidates:
+        return None
+    candidates.sort(key=lambda x: x[0])
+    return candidates[0][1]
+
+
+def crossover_brics(smiles_a: str, smiles_b: str, target_mw: Optional[float] = None, **kwargs) -> Optional[str]:
+    """BRICS Retrosynthetic: recombines only on synthetically accessible bonds."""
+    from rdkit.Chem import BRICS
+    ma, mb = Chem.MolFromSmiles(smiles_a), Chem.MolFromSmiles(smiles_b)
+    if ma is None or mb is None:
+        return None
+    if target_mw is None:
+        target_mw = (Descriptors.MolWt(ma) + Descriptors.MolWt(mb)) / 2.0
+
+    try:
+        frags_a = list(BRICS.BRICSDecompose(ma, returnMols=True))
+        frags_b = list(BRICS.BRICSDecompose(mb, returnMols=True))
+    except Exception:
+        return crossover_mass_balanced(smiles_a, smiles_b, target_mw=target_mw)
+
+    if len(frags_a) < 2 or len(frags_b) < 2:
+        return crossover_mass_balanced(smiles_a, smiles_b, target_mw=target_mw)
+
+    random.shuffle(frags_a)
+    random.shuffle(frags_b)
+    
+    candidates = []
+    for fa in frags_a[:3]:
+        for fb in frags_b[:3]:
+            try:
+                builder = BRICS.BRICSBuild([fa, fb])
+                for count, child in enumerate(builder):
+                    if count >= 3:
+                        break
+                    try:
+                        Chem.SanitizeMol(child)
+                        smi = Chem.MolToSmiles(child)
+                        if smi and Chem.MolFromSmiles(smi) is not None:
+                            diff = abs(Descriptors.MolWt(child) - target_mw)
+                            candidates.append((diff, smi))
+                    except Exception:
+                        continue
+            except Exception:
+                continue
+
+    if candidates:
+        candidates.sort(key=lambda x: x[0])
+        return candidates[0][1]
+
+    return crossover_mass_balanced(smiles_a, smiles_b, target_mw=target_mw)
+
+
+def crossover_scaffold_preserving(smiles_a: str, smiles_b: str, target_mw: Optional[float] = None, **kwargs) -> Optional[str]:
+    """Scaffold-Preserving: locks Murcko core and swaps peripheral R-groups."""
+    from rdkit.Chem.Scaffolds import MurckoScaffold
+    ma, mb = Chem.MolFromSmiles(smiles_a), Chem.MolFromSmiles(smiles_b)
+    if ma is None or mb is None:
+        return None
+    if target_mw is None:
+        target_mw = (Descriptors.MolWt(ma) + Descriptors.MolWt(mb)) / 2.0
+
+    try:
+        scaf_a = MurckoScaffold.GetScaffoldForMol(ma)
+        if scaf_a.GetNumAtoms() == 0 or scaf_a.GetNumAtoms() == ma.GetNumAtoms():
+            return crossover_mass_balanced(smiles_a, smiles_b, target_mw=target_mw)
+
+        scaf_match = set(ma.GetSubstructMatch(scaf_a))
+        exo_bonds = []
+        for b in ma.GetBonds():
+            b_idx = b.GetIdx()
+            begin, end = b.GetBeginAtomIdx(), b.GetEndAtomIdx()
+            if (begin in scaf_match and end not in scaf_match) or (end in scaf_match and begin not in scaf_match):
+                if b.GetBondType() == Chem.BondType.SINGLE and not b.IsInRing():
+                    exo_bonds.append(b_idx)
+
+        if not exo_bonds:
+            return crossover_mass_balanced(smiles_a, smiles_b, target_mw=target_mw)
+
+        frag_mol_a = Chem.FragmentOnBonds(ma, [random.choice(exo_bonds)], addDummies=True)
+        frags_a = Chem.GetMolFrags(frag_mol_a, asMols=True, sanitizeFrags=True)
+        if len(frags_a) != 2:
+            return crossover_mass_balanced(smiles_a, smiles_b, target_mw=target_mw)
+
+        core_frag = None
+        for f in frags_a:
+            if f.GetNumAtoms() >= scaf_a.GetNumAtoms() * 0.7:
+                core_frag = f
+                break
+        if core_frag is None:
+            core_frag = frags_a[0]
+
+        rw_core = Chem.RWMol(core_frag)
+        for atom in rw_core.GetAtoms():
+            if atom.GetAtomicNum() == 0:
+                atom.SetAtomMapNum(1)
+                atom.SetIsotope(0)
+        core_tagged = rw_core.GetMol()
+
+        cut_bonds_b = [b.GetIdx() for b in mb.GetBonds()
+                       if b.GetBondType() == Chem.BondType.SINGLE and not b.IsInRing()]
+        if not cut_bonds_b:
+            return crossover_mass_balanced(smiles_a, smiles_b, target_mw=target_mw)
+
+        frag_mol_b = Chem.FragmentOnBonds(mb, [random.choice(cut_bonds_b)], addDummies=True)
+        frags_b = Chem.GetMolFrags(frag_mol_b, asMols=True, sanitizeFrags=True)
+        if len(frags_b) != 2:
+            return crossover_mass_balanced(smiles_a, smiles_b, target_mw=target_mw)
+
+        r_frag = min(frags_b, key=lambda m: m.GetNumHeavyAtoms())
+        rw_r = Chem.RWMol(r_frag)
+        for atom in rw_r.GetAtoms():
+            if atom.GetAtomicNum() == 0:
+                atom.SetAtomMapNum(1)
+                atom.SetIsotope(0)
+        r_tagged = rw_r.GetMol()
+
+        comb = Chem.CombineMols(core_tagged, r_tagged)
+        child = Chem.molzip(comb)
+        Chem.SanitizeMol(child)
+        return Chem.MolToSmiles(child)
+    except Exception:
+        return crossover_mass_balanced(smiles_a, smiles_b, target_mw=target_mw)
+
+
+def crossover_hybrid_adaptive(smiles_a: str, smiles_b: str, target_mw: Optional[float] = None, **kwargs) -> Optional[str]:
+    """Hybrid-Adaptive: 45% scaffold preservation, 35% BRICS, 20% mass-balanced."""
+    roll = random.random()
+    if roll < 0.45:
+        res = crossover_scaffold_preserving(smiles_a, smiles_b, target_mw=target_mw)
+        if res: return res
+    if roll < 0.80:
+        res = crossover_brics(smiles_a, smiles_b, target_mw=target_mw)
+        if res: return res
+    return crossover_mass_balanced(smiles_a, smiles_b, target_mw=target_mw)
+
+
+CROSSOVER_OPS = {
+    "hybrid": crossover_hybrid_adaptive,
+    "mass-balanced": crossover_mass_balanced,
+    "scaffold": crossover_scaffold_preserving,
+    "brics": crossover_brics,
+    "jensen": crossover_jensen,
+}
+
+
+def crossover(smiles_a: str, smiles_b: str, op: str = "hybrid", target_mw: Optional[float] = None) -> Optional[str]:
+    fn = CROSSOVER_OPS.get(op, crossover_hybrid_adaptive)
+    return fn(smiles_a, smiles_b, target_mw=target_mw)
 
 
 # ==================================================================
@@ -257,40 +439,113 @@ def shape_similarity_3d(parent_mol: Chem.Mol, child_smiles: str) -> Optional[flo
 
 
 class Objectives:
-    """Vector of minimization objectives for one candidate vs. the parent."""
+    """Vector of minimization objectives for one candidate vs. the parent.
+    Supports 3 profiles:
+      - 'anti-shortcut': Property-invariance, target-centered proximity & scaffold preservation (Formulation 2 - Recommended)
+      - 'adversarial': Chemical feasibility manifold + GNN detector deception probability (Formulation 3)
+      - 'baseline': Jensen 2019 flat band + QED + SA (Formulation 1)
+    """
 
-    def __init__(self, parent_smiles: str, sim_lo: float, sim_hi: float,
-                 adversarial: Optional[Callable[[str], float]] = None):
+    def __init__(self, parent_smiles: str, sim_lo: float = 0.4, sim_hi: float = 0.9,
+                 adversarial: Optional[Callable[[str], float]] = None,
+                 profile: str = "anti-shortcut"):
         self.parent_smiles = parent_smiles
         self.parent_mol = Chem.MolFromSmiles(parent_smiles)
         self.parent_fp = morgan(self.parent_mol)
+        self.parent_mw = float(Descriptors.MolWt(self.parent_mol))
+        self.parent_logp = float(Descriptors.MolLogP(self.parent_mol))
+        self.parent_atoms = self.parent_mol.GetNumHeavyAtoms()
+        
+        scaf = MurckoScaffold.GetScaffoldForMol(self.parent_mol)
+        self.parent_scaffold = scaf if scaf.GetNumAtoms() > 0 else None
+        
         self.sim_lo, self.sim_hi = sim_lo, sim_hi
         self.adversarial = adversarial
-        self.n_obj = 4 if adversarial else 3
+        self.profile = profile
+
+        if profile == "adversarial" and adversarial:
+            self.obj_names = ["proximity_mass", "feasibility", "p_counterfeit"]
+            self.n_obj = 3
+        elif profile == "anti-shortcut":
+            self.obj_names = ["proximity_scaffold", "anti_shortcut_drift", "plausibility_sparsity"]
+            if adversarial:
+                self.obj_names.append("p_counterfeit")
+            self.n_obj = len(self.obj_names)
+        else: # baseline
+            self.obj_names = ["band_penalty", "implausibility", "sa_over_10"]
+            if adversarial:
+                self.obj_names.append("p_counterfeit")
+            self.n_obj = len(self.obj_names)
 
     def evaluate(self, smiles: str) -> List[float]:
         mol = Chem.MolFromSmiles(smiles)
-        # Invalid / degenerate candidates get the worst score on every axis.
         if mol is None or mol.GetNumHeavyAtoms() < 5:
             return [1.0] * self.n_obj
         sim = tanimoto(self.parent_fp, morgan(mol))
-        # identical molecule is useless as a "counterfeit"
         if sim >= 0.999:
             return [1.0] * self.n_obj
 
-        band = max(0.0, self.sim_lo - sim) + max(0.0, sim - self.sim_hi)
-        # objective 2 = medicinal implausibility: low drug-likeness AND any
-        # PAINS/Brenk structural alert both push it up (worse).
-        plausibility_obj = 1.0 - float(Descriptors.qed(mol))
-        n_alerts = structural_alerts(mol)
-        if n_alerts:
-            plausibility_obj = min(1.0, plausibility_obj + 0.3 * min(n_alerts, 3))
-        sa_obj = ((sascorer.calculateScore(mol) - 1.0) / 9.0) if sascorer else 0.0
-        sa_obj = min(max(sa_obj, 0.0), 1.0)
-        objs = [band, plausibility_obj, sa_obj]
-        if self.adversarial:
-            objs.append(float(self.adversarial(smiles)))  # P(counterfeit): low = fools detector
-        return objs
+        # -----------------------------------------------------------
+        # Profile 1: Anti-Shortcut & Bioisosteric Sparsity (Recommended)
+        # -----------------------------------------------------------
+        if self.profile == "anti-shortcut":
+            # f1: Target proximity (sweet-spot around 0.70) + Scaffold Retention
+            target_pen = 3.5 * ((sim - 0.70) ** 2)
+            scaf_pen = 0.0
+            if self.parent_scaffold is not None and not mol.HasSubstructMatch(self.parent_scaffold):
+                scaf_pen = 0.35
+            f1 = min(1.0, target_pen + scaf_pen)
+
+            # f2: Anti-Shortcut Property Invariance (|ΔMW| & |ΔLogP|)
+            delta_mw = abs(Descriptors.MolWt(mol) - self.parent_mw)
+            delta_logp = abs(Descriptors.MolLogP(mol) - self.parent_logp)
+            f2 = min(1.0, (delta_mw / 60.0) + (delta_logp / 1.5))
+
+            # f3: Composite Plausibility, SA, Alerts & Local Edit Sparsity
+            plaus = 1.0 - float(Descriptors.qed(mol))
+            sa = ((sascorer.calculateScore(mol) - 1.0) / 9.0) if sascorer else 0.0
+            sa = min(max(sa, 0.0), 1.0)
+            alerts = structural_alerts(mol)
+            atom_diff = abs(mol.GetNumHeavyAtoms() - self.parent_atoms)
+            sparsity_pen = min(1.0, atom_diff / 5.0)
+
+            f3 = min(1.0, 0.45 * plaus + 0.35 * sa + 0.15 * min(alerts, 2) + 0.05 * sparsity_pen)
+            objs = [float(f1), float(f2), float(f3)]
+            if self.adversarial:
+                objs.append(float(self.adversarial(smiles)))
+            return objs
+
+        # -----------------------------------------------------------
+        # Profile 2: Adversarial Hardness
+        # -----------------------------------------------------------
+        elif self.profile == "adversarial" and self.adversarial:
+            band = max(0.0, self.sim_lo - sim) + max(0.0, sim - self.sim_hi)
+            delta_mw = abs(Descriptors.MolWt(mol) - self.parent_mw)
+            f1 = min(1.0, band + 0.3 * (delta_mw / 100.0))
+
+            plaus = 1.0 - float(Descriptors.qed(mol))
+            sa = ((sascorer.calculateScore(mol) - 1.0) / 9.0) if sascorer else 0.0
+            alerts = structural_alerts(mol)
+            f2 = min(1.0, 0.5 * plaus + 0.35 * sa + 0.15 * min(alerts, 3))
+
+            f3 = float(self.adversarial(smiles))
+            return [float(f1), float(f2), float(f3)]
+
+        # -----------------------------------------------------------
+        # Profile 3: Baseline Jensen 2019
+        # -----------------------------------------------------------
+        else:
+            band = max(0.0, self.sim_lo - sim) + max(0.0, sim - self.sim_hi)
+            plausibility_obj = 1.0 - float(Descriptors.qed(mol))
+            n_alerts = structural_alerts(mol)
+            if n_alerts:
+                plausibility_obj = min(1.0, plausibility_obj + 0.3 * min(n_alerts, 3))
+            sa_obj = ((sascorer.calculateScore(mol) - 1.0) / 9.0) if sascorer else 0.0
+            sa_obj = min(max(sa_obj, 0.0), 1.0)
+            objs = [float(band), float(plausibility_obj), float(sa_obj)]
+            if self.adversarial:
+                objs.append(float(self.adversarial(smiles)))
+            return objs
 
 
 def edited_atoms(parent_smiles: str, child_smiles: str) -> List[int]:
@@ -382,9 +637,119 @@ def load_detector_scorer(results_dir: str = "HGT_Enhanced_Results"
 # ==================================================================
 #  pymoo wiring — custom operators over SMILES objects
 # ==================================================================
+def build_and_run_probabilistic_crowding(parent_smiles: str, rule_lib: RuleLibrary, objectives: Objectives,
+                                        pop_size: int, generations: int, seed: int,
+                                        crossover_op: str = "mass-balanced",
+                                        compute_shape: bool = False) -> List[Dict]:
+    """Mengshoel & Goldberg (1999) Probabilistic Crowding for Molecular Niching & Diversity."""
+    random.seed(seed)
+    np.random.seed(seed)
+    parent_mw = Descriptors.MolWt(objectives.parent_mol) if objectives.parent_mol else 250.0
+
+    def get_fitness(smi: str) -> float:
+        objs = objectives.evaluate(smi)
+        cost = sum(objs)
+        return 1.0 / (cost + 1e-4)
+
+    # Initial Population seeded with mutations
+    pop = []
+    for _ in range(pop_size):
+        s = parent_smiles
+        for _ in range(random.randint(1, 3)):
+            s = rule_lib.mutate(s)
+        pop.append(s)
+
+    all_history = set(pop)
+    logger.info(f"Running Probabilistic Crowding (Mengshoel & Goldberg 1999) ({crossover_op}): pop={pop_size}, generations={generations}")
+
+    for gen in range(generations):
+        random.shuffle(pop)
+        new_pop = []
+        for i in range(0, len(pop) - 1, 2):
+            p1, p2 = pop[i], pop[i + 1]
+            
+            # Crossover & Mutation
+            c1 = crossover(p1, p2, op=crossover_op, target_mw=parent_mw) or p1
+            c2 = crossover(p2, p1, op=crossover_op, target_mw=parent_mw) or p2
+            
+            if random.random() < 0.6:
+                c1 = rule_lib.mutate(c1)
+            if random.random() < 0.6:
+                c2 = rule_lib.mutate(c2)
+
+            all_history.add(c1)
+            all_history.add(c2)
+
+            m1, m2 = Chem.MolFromSmiles(p1), Chem.MolFromSmiles(p2)
+            mc1, mc2 = Chem.MolFromSmiles(c1), Chem.MolFromSmiles(c2)
+
+            if None in (m1, m2, mc1, mc2):
+                new_pop.extend([p1, p2])
+                continue
+
+            fp1, fp2 = morgan(m1), morgan(m2)
+            fpc1, fpc2 = morgan(mc1), morgan(mc2)
+
+            # Structural distance matching on Tanimoto: d(x, y) = 1 - Tanimoto(x, y)
+            d_direct = (1.0 - tanimoto(fp1, fpc1)) + (1.0 - tanimoto(fp2, fpc2))
+            d_cross  = (1.0 - tanimoto(fp1, fpc2)) + (1.0 - tanimoto(fp2, fpc1))
+
+            pairs = [(p1, c1), (p2, c2)] if d_direct <= d_cross else [(p1, c2), (p2, c1)]
+
+            for p_cand, c_cand in pairs:
+                f_p = get_fitness(p_cand)
+                f_c = get_fitness(c_cand)
+                # Mengshoel & Goldberg Probabilistic Tournament: P(child wins) = f(c) / (f(c) + f(p))
+                p_win = f_c / (f_c + f_p + 1e-9)
+                winner = c_cand if random.random() < p_win else p_cand
+                new_pop.append(winner)
+
+        pop = new_pop
+
+    # Format candidates
+    front = []
+    obj_names = getattr(objectives, "obj_names", ["band_penalty", "implausibility", "sa_over_10"])
+
+    seen = set()
+    for smi in all_history:
+        if smi in seen or Chem.MolFromSmiles(smi) is None:
+            continue
+        seen.add(smi)
+        mol = Chem.MolFromSmiles(smi)
+        sim = tanimoto(objectives.parent_fp, morgan(mol))
+        if sim >= 0.999:
+            continue
+        fi = objectives.evaluate(smi)
+        edits = edited_atoms(parent_smiles, smi)
+        rec = {
+            "smiles": smi,
+            "similarity_to_parent": round(sim, 3),
+            "qed": round(float(Descriptors.qed(mol)), 3),
+            "sa_score": round(sascorer.calculateScore(mol), 2) if sascorer else None,
+            "structural_alerts": structural_alerts(mol),
+            "objectives": {n: round(float(v), 4) for n, v in zip(obj_names, fi)},
+            "edited_atoms": edits,
+            **edit_metrics(parent_smiles, smi, edits),
+        }
+        if compute_shape:
+            rec["shape_similarity_3d"] = shape_similarity_3d(objectives.parent_mol, smi)
+        front.append(rec)
+
+    front.sort(key=lambda d: sum(d["objectives"].values()))
+    return front
+
+
 def build_and_run(parent_smiles: str, rule_lib: RuleLibrary, objectives: Objectives,
                   pop_size: int, generations: int, seed: int,
+                  crossover_op: str = "hybrid",
+                  algorithm: str = "nsga2",
                   compute_shape: bool = False) -> List[Dict]:
+    if algorithm == "probabilistic-crowding":
+        return build_and_run_probabilistic_crowding(parent_smiles, rule_lib, objectives,
+                                                   pop_size=pop_size, generations=generations,
+                                                   seed=seed, crossover_op=crossover_op,
+                                                   compute_shape=compute_shape)
+
     from pymoo.core.problem import ElementwiseProblem
     from pymoo.core.sampling import Sampling
     from pymoo.core.crossover import Crossover
@@ -392,6 +757,8 @@ def build_and_run(parent_smiles: str, rule_lib: RuleLibrary, objectives: Objecti
     from pymoo.core.duplicate import ElementwiseDuplicateElimination
     from pymoo.algorithms.moo.nsga2 import NSGA2
     from pymoo.optimize import minimize
+
+    parent_mw = Descriptors.MolWt(objectives.parent_mol) if objectives.parent_mol else 250.0
 
     class MolProblem(ElementwiseProblem):
         def __init__(self):
@@ -421,7 +788,7 @@ def build_and_run(parent_smiles: str, rule_lib: RuleLibrary, objectives: Objecti
             for m in range(n_matings):
                 a, b = X[0, m, 0], X[1, m, 0]
                 for o in range(self.n_offsprings):
-                    child = crossover(a, b)
+                    child = crossover(a, b, op=crossover_op, target_mw=parent_mw)
                     Y[o, m, 0] = child if child is not None else (a if o == 0 else b)
             return Y
 
@@ -440,7 +807,7 @@ def build_and_run(parent_smiles: str, rule_lib: RuleLibrary, objectives: Objecti
         def is_equal(self, a, b):
             return a.X[0] == b.X[0]
 
-    algorithm = NSGA2(
+    ga_algo = NSGA2(
         pop_size=pop_size,
         sampling=MolSampling(),
         crossover=MolCrossover(),
@@ -448,18 +815,16 @@ def build_and_run(parent_smiles: str, rule_lib: RuleLibrary, objectives: Objecti
         eliminate_duplicates=SmilesDuplicate(),
     )
 
-    logger.info(f"Running NSGA-II: pop={pop_size}, generations={generations}, "
+    logger.info(f"Running NSGA-II ({crossover_op} crossover): pop={pop_size}, generations={generations}, "
                 f"objectives={objectives.n_obj}")
-    res = minimize(MolProblem(), algorithm, ("n_gen", generations),
+    res = minimize(MolProblem(), ga_algo, ("n_gen", generations),
                    seed=seed, verbose=False)
 
     # Collect the Pareto front
     front = []
     X = np.atleast_2d(res.X)
     F = np.atleast_2d(res.F)
-    obj_names = ["band_penalty", "implausibility", "sa_over_10"]
-    if objectives.n_obj == 4:
-        obj_names.append("p_counterfeit")
+    obj_names = getattr(objectives, "obj_names", ["band_penalty", "implausibility", "sa_over_10"])
     seen = set()
     for xi, fi in zip(X, F):
         smi = xi[0]
@@ -501,8 +866,14 @@ def main():
     p.add_argument("--sim-hi", type=float, default=0.9, help="Upper Tanimoto band")
     p.add_argument("--adversarial", action="store_true",
                    help="Add the trained detector as a 4th, adversarial objective")
+    p.add_argument("--objective-profile", choices=["anti-shortcut", "adversarial", "baseline"],
+                   default="anti-shortcut", help="Multi-objective function formulation profile (default: anti-shortcut)")
     p.add_argument("--no-shape", action="store_true",
                    help="Skip 3D shape similarity on the Pareto front (faster)")
+    p.add_argument("--algorithm", choices=["nsga2", "probabilistic-crowding"],
+                   default="nsga2", help="GA search algorithm (default: nsga2)")
+    p.add_argument("--crossover-op", choices=["hybrid", "mass-balanced", "scaffold", "brics", "jensen"],
+                   default="hybrid", help="Graph crossover operator (default: hybrid)")
     p.add_argument("--seed", type=int, default=42)
     p.add_argument("--out", default="evolved_counterfeits.json")
     args = p.parse_args()
@@ -521,10 +892,13 @@ def main():
 
     rule_lib = RuleLibrary(args.rules)
     adv = load_detector_scorer() if args.adversarial else None
-    objectives = Objectives(canon_parent, args.sim_lo, args.sim_hi, adversarial=adv)
+    objectives = Objectives(canon_parent, args.sim_lo, args.sim_hi, adversarial=adv,
+                            profile=args.objective_profile)
 
     front = build_and_run(canon_parent, rule_lib, objectives,
                           pop_size=args.pop, generations=args.generations, seed=args.seed,
+                          crossover_op=args.crossover_op,
+                          algorithm=args.algorithm,
                           compute_shape=not args.no_shape)
 
     out = {

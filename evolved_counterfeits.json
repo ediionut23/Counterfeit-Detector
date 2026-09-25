@@ -1,0 +1,454 @@
+{
+  "parent_smiles": "CC(=O)Oc1ccccc1C(=O)O",
+  "similarity_band": [
+    0.4,
+    0.9
+  ],
+  "n_objectives": 3,
+  "pareto_front_size": 17,
+  "front": [
+    {
+      "smiles": "COc1ccccc1C(=O)O",
+      "similarity_to_parent": 0.568,
+      "qed": 0.696,
+      "sa_score": 1.28,
+      "structural_alerts": 0,
+      "objectives": {
+        "band_penalty": 0.0,
+        "implausibility": 0.3039,
+        "sa_over_10": 0.0308
+      },
+      "edited_atoms": [],
+      "edit_size": 0,
+      "delta_logp": 0.08,
+      "delta_mw": -28.0,
+      "delta_tpsa": -17.1
+    },
+    {
+      "smiles": "NCCOc1ccccc1C(=O)O",
+      "similarity_to_parent": 0.435,
+      "qed": 0.718,
+      "sa_score": 1.67,
+      "structural_alerts": 0,
+      "objectives": {
+        "band_penalty": 0.0,
+        "implausibility": 0.2825,
+        "sa_over_10": 0.0749
+      },
+      "edited_atoms": [
+        0
+      ],
+      "edit_size": 1,
+      "delta_logp": -0.59,
+      "delta_mw": 1.0,
+      "delta_tpsa": 8.9,
+      "scaffold_edit_fraction": 0.0,
+      "edit_location": "periphery"
+    },
+    {
+      "smiles": "O=C(O)c1ccc(-c2ccc(F)cc2)cc1",
+      "similarity_to_parent": 0.184,
+      "qed": 0.837,
+      "sa_score": 1.32,
+      "structural_alerts": 0,
+      "objectives": {
+        "band_penalty": 0.2163,
+        "implausibility": 0.1635,
+        "sa_over_10": 0.0361
+      },
+      "edited_atoms": [
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13
+      ],
+      "edit_size": 7,
+      "delta_logp": 1.88,
+      "delta_mw": 36.1,
+      "delta_tpsa": -26.3,
+      "scaffold_edit_fraction": 0.86,
+      "edit_location": "scaffold"
+    },
+    {
+      "smiles": "O=C(O)c1ccc(-c2ccc(Cl)cc2)cc1",
+      "similarity_to_parent": 0.16,
+      "qed": 0.857,
+      "sa_score": 1.32,
+      "structural_alerts": 0,
+      "objectives": {
+        "band_penalty": 0.24,
+        "implausibility": 0.1428,
+        "sa_over_10": 0.0352
+      },
+      "edited_atoms": [
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13
+      ],
+      "edit_size": 7,
+      "delta_logp": 2.4,
+      "delta_mw": 52.5,
+      "delta_tpsa": -26.3,
+      "scaffold_edit_fraction": 0.86,
+      "edit_location": "scaffold"
+    },
+    {
+      "smiles": "COc1ccccc1C(=O)OCCO",
+      "similarity_to_parent": 0.302,
+      "qed": 0.725,
+      "sa_score": 1.61,
+      "structural_alerts": 0,
+      "objectives": {
+        "band_penalty": 0.0981,
+        "implausibility": 0.275,
+        "sa_over_10": 0.0672
+      },
+      "edited_atoms": [
+        11,
+        12,
+        13
+      ],
+      "edit_size": 3,
+      "delta_logp": -0.47,
+      "delta_mw": 16.0,
+      "delta_tpsa": -7.8,
+      "scaffold_edit_fraction": 0.0,
+      "edit_location": "periphery"
+    },
+    {
+      "smiles": "CC(=O)c1ccccc1OC1CCCCC1",
+      "similarity_to_parent": 0.309,
+      "qed": 0.724,
+      "sa_score": 1.78,
+      "structural_alerts": 0,
+      "objectives": {
+        "band_penalty": 0.0909,
+        "implausibility": 0.2756,
+        "sa_over_10": 0.0871
+      },
+      "edited_atoms": [
+        0,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "edit_size": 7,
+      "delta_logp": 2.29,
+      "delta_mw": 38.1,
+      "delta_tpsa": -37.3,
+      "scaffold_edit_fraction": 0.86,
+      "edit_location": "scaffold"
+    },
+    {
+      "smiles": "CC(=O)c1ccccc1C(=O)CCO",
+      "similarity_to_parent": 0.292,
+      "qed": 0.734,
+      "sa_score": 1.94,
+      "structural_alerts": 0,
+      "objectives": {
+        "band_penalty": 0.1083,
+        "implausibility": 0.2655,
+        "sa_over_10": 0.1044
+      },
+      "edited_atoms": [
+        0,
+        1,
+        2,
+        11,
+        12,
+        13
+      ],
+      "edit_size": 6,
+      "delta_logp": 0.14,
+      "delta_mw": 12.1,
+      "delta_tpsa": -9.2,
+      "scaffold_edit_fraction": 0.0,
+      "edit_location": "periphery"
+    },
+    {
+      "smiles": "CCOC(=O)c1ccccc1",
+      "similarity_to_parent": 0.229,
+      "qed": 0.601,
+      "sa_score": 1.14,
+      "structural_alerts": 0,
+      "objectives": {
+        "band_penalty": 0.1708,
+        "implausibility": 0.3987,
+        "sa_over_10": 0.015
+      },
+      "edited_atoms": [
+        0,
+        1
+      ],
+      "edit_size": 2,
+      "delta_logp": 0.55,
+      "delta_mw": -30.0,
+      "delta_tpsa": -37.3,
+      "scaffold_edit_fraction": 0.0,
+      "edit_location": "periphery"
+    },
+    {
+      "smiles": "Oc1ccc(-c2ccc(O)cc2)cc1",
+      "similarity_to_parent": 0.095,
+      "qed": 0.718,
+      "sa_score": 1.3,
+      "structural_alerts": 0,
+      "objectives": {
+        "band_penalty": 0.3048,
+        "implausibility": 0.2815,
+        "sa_over_10": 0.0333
+      },
+      "edited_atoms": [
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "edit_size": 7,
+      "delta_logp": 1.45,
+      "delta_mw": 6.1,
+      "delta_tpsa": -23.1,
+      "scaffold_edit_fraction": 0.86,
+      "edit_location": "scaffold"
+    },
+    {
+      "smiles": "Cc1ccccc1-c1ccccc1C",
+      "similarity_to_parent": 0.14,
+      "qed": 0.626,
+      "sa_score": 1.26,
+      "structural_alerts": 0,
+      "objectives": {
+        "band_penalty": 0.2605,
+        "implausibility": 0.3744,
+        "sa_over_10": 0.0294
+      },
+      "edited_atoms": [
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13
+      ],
+      "edit_size": 7,
+      "delta_logp": 2.66,
+      "delta_mw": 2.1,
+      "delta_tpsa": -63.6,
+      "scaffold_edit_fraction": 0.86,
+      "edit_location": "scaffold"
+    },
+    {
+      "smiles": "Clc1ccccc1-c1ccccc1",
+      "similarity_to_parent": 0.118,
+      "qed": 0.635,
+      "sa_score": 1.19,
+      "structural_alerts": 0,
+      "objectives": {
+        "band_penalty": 0.2824,
+        "implausibility": 0.3654,
+        "sa_over_10": 0.0209
+      },
+      "edited_atoms": [
+        0,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "edit_size": 7,
+      "delta_logp": 2.7,
+      "delta_mw": 8.5,
+      "delta_tpsa": -63.6,
+      "scaffold_edit_fraction": 0.86,
+      "edit_location": "scaffold"
+    },
+    {
+      "smiles": "Fc1ccc(-c2ccc(F)cc2)cc1",
+      "similarity_to_parent": 0.095,
+      "qed": 0.644,
+      "sa_score": 1.07,
+      "structural_alerts": 0,
+      "objectives": {
+        "band_penalty": 0.3048,
+        "implausibility": 0.3563,
+        "sa_over_10": 0.0079
+      },
+      "edited_atoms": [
+        0,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "edit_size": 8,
+      "delta_logp": 2.32,
+      "delta_mw": 10.0,
+      "delta_tpsa": -63.6,
+      "scaffold_edit_fraction": 0.75,
+      "edit_location": "scaffold"
+    },
+    {
+      "smiles": "Clc1ccc(-c2ccc(Cl)cc2)cc1",
+      "similarity_to_parent": 0.07,
+      "qed": 0.659,
+      "sa_score": 1.05,
+      "structural_alerts": 0,
+      "objectives": {
+        "band_penalty": 0.3302,
+        "implausibility": 0.341,
+        "sa_over_10": 0.0059
+      },
+      "edited_atoms": [
+        0,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "edit_size": 8,
+      "delta_logp": 3.35,
+      "delta_mw": 42.9,
+      "delta_tpsa": -63.6,
+      "scaffold_edit_fraction": 0.75,
+      "edit_location": "scaffold"
+    },
+    {
+      "smiles": "Fc1ccccc1-c1ccccc1",
+      "similarity_to_parent": 0.118,
+      "qed": 0.617,
+      "sa_score": 1.18,
+      "structural_alerts": 0,
+      "objectives": {
+        "band_penalty": 0.2824,
+        "implausibility": 0.3828,
+        "sa_over_10": 0.0202
+      },
+      "edited_atoms": [
+        0,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "edit_size": 7,
+      "delta_logp": 2.18,
+      "delta_mw": -8.0,
+      "delta_tpsa": -63.6,
+      "scaffold_edit_fraction": 0.86,
+      "edit_location": "scaffold"
+    },
+    {
+      "smiles": "Fc1ccc(-c2ccc(Cl)cc2)cc1",
+      "similarity_to_parent": 0.08,
+      "qed": 0.658,
+      "sa_score": 1.23,
+      "structural_alerts": 0,
+      "objectives": {
+        "band_penalty": 0.32,
+        "implausibility": 0.3422,
+        "sa_over_10": 0.0254
+      },
+      "edited_atoms": [
+        0,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "edit_size": 8,
+      "delta_logp": 2.84,
+      "delta_mw": 26.5,
+      "delta_tpsa": -63.6,
+      "scaffold_edit_fraction": 0.75,
+      "edit_location": "scaffold"
+    },
+    {
+      "smiles": "Cc1ccc(-c2ccc(Cl)cc2)cc1",
+      "similarity_to_parent": 0.082,
+      "qed": 0.646,
+      "sa_score": 1.2,
+      "structural_alerts": 0,
+      "objectives": {
+        "band_penalty": 0.3184,
+        "implausibility": 0.3536,
+        "sa_over_10": 0.0217
+      },
+      "edited_atoms": [
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "edit_size": 7,
+      "delta_logp": 3.01,
+      "delta_mw": 22.5,
+      "delta_tpsa": -63.6,
+      "scaffold_edit_fraction": 0.86,
+      "edit_location": "scaffold"
+    },
+    {
+      "smiles": "Fc1ccc(-c2ccc(-c3ccc(F)cc3)cc2)cc1",
+      "similarity_to_parent": 0.093,
+      "qed": 0.59,
+      "sa_score": 1.0,
+      "structural_alerts": 0,
+      "objectives": {
+        "band_penalty": 0.307,
+        "implausibility": 0.4098,
+        "sa_over_10": 0.0
+      },
+      "edited_atoms": [
+        0,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17
+      ],
+      "edit_size": 14,
+      "delta_logp": 3.99,
+      "delta_mw": 86.1,
+      "delta_tpsa": -63.6,
+      "scaffold_edit_fraction": 0.86,
+      "edit_location": "scaffold"
+    }
+  ]
+}

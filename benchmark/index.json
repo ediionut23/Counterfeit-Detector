@@ -1,458 +1,1622 @@
 {
   "category_bioisostere": {
     "name": "category_bioisostere",
-    "n_total": 3998,
-    "n_authentic": 1999,
-    "n_counterfeit": 1999,
+    "n_total": 65546,
+    "n_authentic": 32773,
+    "n_counterfeit": 32773,
     "balance": 1.0,
     "shortcut_metrics": {
-      "cohens_d_mw": 0.002,
-      "cohens_d_heavy_atoms": 0.017,
-      "cohens_d_smiles_length": 0.044,
-      "trivial_lr_accuracy": 0.499
+      "cohens_d_mw": 0.029,
+      "cohens_d_heavy_atoms": 0.029,
+      "cohens_d_smiles_length": 0.069,
+      "trivial_lr_accuracy": 0.511
     },
     "split_counts": {
-      "train": 3198,
-      "val": 399,
-      "test": 401
-    },
-    "conformers_written": 150
-  },
-  "category_homologation": {
-    "name": "category_homologation",
-    "n_total": 3998,
-    "n_authentic": 1999,
-    "n_counterfeit": 1999,
-    "balance": 1.0,
-    "shortcut_metrics": {
-      "cohens_d_mw": 0.011,
-      "cohens_d_heavy_atoms": 0.002,
-      "cohens_d_smiles_length": 0.035,
-      "trivial_lr_accuracy": 0.503
-    },
-    "split_counts": {
-      "train": 3198,
-      "val": 399,
-      "test": 401
-    },
-    "conformers_written": 150
-  },
-  "category_scaffold-hop": {
-    "name": "category_scaffold-hop",
-    "n_total": 3998,
-    "n_authentic": 1999,
-    "n_counterfeit": 1999,
-    "balance": 1.0,
-    "shortcut_metrics": {
-      "cohens_d_mw": 0.043,
-      "cohens_d_heavy_atoms": 0.083,
-      "cohens_d_smiles_length": 0.031,
-      "trivial_lr_accuracy": 0.525
-    },
-    "split_counts": {
-      "train": 3198,
-      "val": 399,
-      "test": 401
-    },
-    "conformers_written": 150
+      "train": 52438,
+      "val": 6554,
+      "test": 6554
+    }
   },
   "category_halogen-walk": {
     "name": "category_halogen-walk",
-    "n_total": 3930,
-    "n_authentic": 1965,
-    "n_counterfeit": 1965,
+    "n_total": 43900,
+    "n_authentic": 21950,
+    "n_counterfeit": 21950,
     "balance": 1.0,
     "shortcut_metrics": {
-      "cohens_d_mw": 0.059,
-      "cohens_d_heavy_atoms": 0.027,
-      "cohens_d_smiles_length": 0.025,
+      "cohens_d_mw": 0.004,
+      "cohens_d_heavy_atoms": 0.041,
+      "cohens_d_smiles_length": 0.066,
       "trivial_lr_accuracy": 0.547
     },
     "split_counts": {
-      "train": 3144,
-      "val": 393,
-      "test": 393
+      "train": 35121,
+      "val": 4390,
+      "test": 4389
+    }
+  },
+  "category_homologation": {
+    "name": "category_homologation",
+    "n_total": 81644,
+    "n_authentic": 40822,
+    "n_counterfeit": 40822,
+    "balance": 1.0,
+    "shortcut_metrics": {
+      "cohens_d_mw": 0.044,
+      "cohens_d_heavy_atoms": 0.032,
+      "cohens_d_smiles_length": 0.073,
+      "trivial_lr_accuracy": 0.519
     },
-    "conformers_written": 150
+    "split_counts": {
+      "train": 65316,
+      "val": 8165,
+      "test": 8163
+    }
+  },
+  "category_scaffold-hop": {
+    "name": "category_scaffold-hop",
+    "n_total": 64576,
+    "n_authentic": 32288,
+    "n_counterfeit": 32288,
+    "balance": 1.0,
+    "shortcut_metrics": {
+      "cohens_d_mw": 0.03,
+      "cohens_d_heavy_atoms": 0.01,
+      "cohens_d_smiles_length": 0.07,
+      "trivial_lr_accuracy": 0.546
+    },
+    "split_counts": {
+      "train": 51660,
+      "val": 6457,
+      "test": 6459
+    }
   },
   "category_other": {
     "name": "category_other",
-    "n_total": 3992,
-    "n_authentic": 1996,
-    "n_counterfeit": 1996,
+    "n_total": 26644,
+    "n_authentic": 13322,
+    "n_counterfeit": 13322,
     "balance": 1.0,
     "shortcut_metrics": {
-      "cohens_d_mw": 0.003,
-      "cohens_d_heavy_atoms": 0.005,
-      "cohens_d_smiles_length": 0.028,
-      "trivial_lr_accuracy": 0.523
+      "cohens_d_mw": 0.027,
+      "cohens_d_heavy_atoms": 0.012,
+      "cohens_d_smiles_length": 0.048,
+      "trivial_lr_accuracy": 0.531
     },
     "split_counts": {
-      "train": 3193,
-      "val": 399,
-      "test": 400
-    },
-    "conformers_written": 150
+      "train": 21316,
+      "val": 2664,
+      "test": 2664
+    }
   },
-  "subcategory_bioisostere.add-O": {
-    "name": "subcategory_bioisostere.add-O",
-    "n_total": 1470,
-    "n_authentic": 735,
-    "n_counterfeit": 735,
+  "subcategory_bioisostere.Cl->N": {
+    "name": "subcategory_bioisostere.Cl->N",
+    "n_total": 1600,
+    "n_authentic": 800,
+    "n_counterfeit": 800,
     "balance": 1.0,
     "shortcut_metrics": {
-      "cohens_d_mw": 0.014,
-      "cohens_d_heavy_atoms": 0.011,
-      "cohens_d_smiles_length": 0.03,
-      "trivial_lr_accuracy": 0.494
+      "cohens_d_mw": 0.043,
+      "cohens_d_heavy_atoms": 0.038,
+      "cohens_d_smiles_length": 0.149,
+      "trivial_lr_accuracy": 0.517
     },
     "split_counts": {
-      "train": 1176,
-      "val": 147,
-      "test": 147
-    },
-    "conformers_written": 150
+      "train": 1280,
+      "val": 160,
+      "test": 160
+    }
   },
-  "subcategory_bioisostere.add-N": {
-    "name": "subcategory_bioisostere.add-N",
-    "n_total": 318,
-    "n_authentic": 159,
-    "n_counterfeit": 159,
+  "subcategory_bioisostere.O->F": {
+    "name": "subcategory_bioisostere.O->F",
+    "n_total": 1598,
+    "n_authentic": 799,
+    "n_counterfeit": 799,
     "balance": 1.0,
     "shortcut_metrics": {
       "cohens_d_mw": 0.067,
-      "cohens_d_heavy_atoms": 0.035,
-      "cohens_d_smiles_length": 0.041,
-      "trivial_lr_accuracy": 0.427
+      "cohens_d_heavy_atoms": 0.058,
+      "cohens_d_smiles_length": 0.078,
+      "trivial_lr_accuracy": 0.515
     },
     "split_counts": {
-      "train": 254,
-      "val": 31,
-      "test": 33
-    },
-    "conformers_written": 150
+      "train": 1278,
+      "val": 159,
+      "test": 161
+    }
   },
-  "subcategory_bioisostere.unsaturation-change": {
-    "name": "subcategory_bioisostere.unsaturation-change",
-    "n_total": 970,
-    "n_authentic": 485,
-    "n_counterfeit": 485,
+  "subcategory_bioisostere.O->S": {
+    "name": "subcategory_bioisostere.O->S",
+    "n_total": 1596,
+    "n_authentic": 798,
+    "n_counterfeit": 798,
     "balance": 1.0,
     "shortcut_metrics": {
-      "cohens_d_mw": 0.0,
-      "cohens_d_heavy_atoms": 0.006,
-      "cohens_d_smiles_length": 0.006,
-      "trivial_lr_accuracy": 0.478
+      "cohens_d_mw": 0.022,
+      "cohens_d_heavy_atoms": 0.069,
+      "cohens_d_smiles_length": 0.077,
+      "trivial_lr_accuracy": 0.603
     },
     "split_counts": {
-      "train": 776,
-      "val": 97,
-      "test": 97
-    },
-    "conformers_written": 150
+      "train": 1276,
+      "val": 159,
+      "test": 161
+    }
   },
-  "subcategory_bioisostere.F->O": {
-    "name": "subcategory_bioisostere.F->O",
-    "n_total": 180,
-    "n_authentic": 90,
-    "n_counterfeit": 90,
+  "subcategory_bioisostere.add-F": {
+    "name": "subcategory_bioisostere.add-F",
+    "n_total": 1596,
+    "n_authentic": 798,
+    "n_counterfeit": 798,
     "balance": 1.0,
     "shortcut_metrics": {
-      "cohens_d_mw": 0.038,
-      "cohens_d_heavy_atoms": 0.021,
-      "cohens_d_smiles_length": 0.011,
-      "trivial_lr_accuracy": 0.463
+      "cohens_d_mw": 0.04,
+      "cohens_d_heavy_atoms": 0.068,
+      "cohens_d_smiles_length": 0.099,
+      "trivial_lr_accuracy": 0.511
     },
     "split_counts": {
-      "train": 144,
-      "val": 18,
-      "test": 18
-    },
-    "conformers_written": 149
+      "train": 1276,
+      "val": 159,
+      "test": 161
+    }
   },
-  "subcategory_bioisostere.N->O": {
-    "name": "subcategory_bioisostere.N->O",
-    "n_total": 162,
-    "n_authentic": 81,
-    "n_counterfeit": 81,
+  "subcategory_bioisostere.add-S": {
+    "name": "subcategory_bioisostere.add-S",
+    "n_total": 1600,
+    "n_authentic": 800,
+    "n_counterfeit": 800,
     "balance": 1.0,
     "shortcut_metrics": {
-      "cohens_d_mw": 0.026,
-      "cohens_d_heavy_atoms": 0.039,
-      "cohens_d_smiles_length": 0.071,
-      "trivial_lr_accuracy": 0.429
+      "cohens_d_mw": 0.031,
+      "cohens_d_heavy_atoms": 0.045,
+      "cohens_d_smiles_length": 0.05,
+      "trivial_lr_accuracy": 0.575
     },
     "split_counts": {
-      "train": 129,
-      "val": 16,
-      "test": 17
-    },
-    "conformers_written": 150
+      "train": 1280,
+      "val": 160,
+      "test": 160
+    }
   },
-  "subcategory_homologation.grow-single": {
-    "name": "subcategory_homologation.grow-single",
-    "n_total": 1842,
-    "n_authentic": 921,
-    "n_counterfeit": 921,
+  "subcategory_bioisostere.remove-N": {
+    "name": "subcategory_bioisostere.remove-N",
+    "n_total": 1594,
+    "n_authentic": 797,
+    "n_counterfeit": 797,
     "balance": 1.0,
     "shortcut_metrics": {
-      "cohens_d_mw": 0.023,
-      "cohens_d_heavy_atoms": 0.026,
+      "cohens_d_mw": 0.081,
+      "cohens_d_heavy_atoms": 0.067,
+      "cohens_d_smiles_length": 0.078,
+      "trivial_lr_accuracy": 0.528
+    },
+    "split_counts": {
+      "train": 1275,
+      "val": 159,
+      "test": 160
+    }
+  },
+  "subcategory_bioisostere.remove-O": {
+    "name": "subcategory_bioisostere.remove-O",
+    "n_total": 1590,
+    "n_authentic": 795,
+    "n_counterfeit": 795,
+    "balance": 1.0,
+    "shortcut_metrics": {
+      "cohens_d_mw": 0.051,
+      "cohens_d_heavy_atoms": 0.002,
       "cohens_d_smiles_length": 0.039,
-      "trivial_lr_accuracy": 0.51
+      "trivial_lr_accuracy": 0.543
     },
     "split_counts": {
-      "train": 1473,
-      "val": 184,
-      "test": 185
-    },
-    "conformers_written": 150
+      "train": 1272,
+      "val": 159,
+      "test": 159
+    }
   },
-  "subcategory_homologation.shrink-single": {
-    "name": "subcategory_homologation.shrink-single",
-    "n_total": 316,
-    "n_authentic": 158,
-    "n_counterfeit": 158,
-    "balance": 1.0,
-    "shortcut_metrics": {
-      "cohens_d_mw": 0.049,
-      "cohens_d_heavy_atoms": 0.046,
-      "cohens_d_smiles_length": 0.08,
-      "trivial_lr_accuracy": 0.453
-    },
-    "split_counts": {
-      "train": 252,
-      "val": 31,
-      "test": 33
-    },
-    "conformers_written": 150
-  },
-  "subcategory_homologation.grow-short": {
-    "name": "subcategory_homologation.grow-short",
-    "n_total": 1624,
-    "n_authentic": 812,
-    "n_counterfeit": 812,
+  "subcategory_halogen-walk.F->Cl": {
+    "name": "subcategory_halogen-walk.F->Cl",
+    "n_total": 1596,
+    "n_authentic": 798,
+    "n_counterfeit": 798,
     "balance": 1.0,
     "shortcut_metrics": {
       "cohens_d_mw": 0.007,
-      "cohens_d_heavy_atoms": 0.001,
-      "cohens_d_smiles_length": 0.009,
-      "trivial_lr_accuracy": 0.523
+      "cohens_d_heavy_atoms": 0.061,
+      "cohens_d_smiles_length": 0.09,
+      "trivial_lr_accuracy": 0.551
     },
     "split_counts": {
-      "train": 1299,
-      "val": 162,
-      "test": 163
-    },
-    "conformers_written": 150
+      "train": 1276,
+      "val": 159,
+      "test": 161
+    }
   },
-  "subcategory_homologation.grow-long": {
-    "name": "subcategory_homologation.grow-long",
-    "n_total": 184,
-    "n_authentic": 92,
-    "n_counterfeit": 92,
+  "subcategory_halogen-walk.add-Br": {
+    "name": "subcategory_halogen-walk.add-Br",
+    "n_total": 1544,
+    "n_authentic": 772,
+    "n_counterfeit": 772,
     "balance": 1.0,
     "shortcut_metrics": {
-      "cohens_d_mw": 0.012,
-      "cohens_d_heavy_atoms": 0.04,
-      "cohens_d_smiles_length": 0.026,
-      "trivial_lr_accuracy": 0.482
+      "cohens_d_mw": 0.086,
+      "cohens_d_heavy_atoms": 0.074,
+      "cohens_d_smiles_length": 0.134,
+      "trivial_lr_accuracy": 0.703
     },
     "split_counts": {
-      "train": 147,
-      "val": 18,
-      "test": 19
-    },
-    "conformers_written": 149
+      "train": 1235,
+      "val": 154,
+      "test": 155
+    }
   },
-  "subcategory_scaffold-hop.aromatize": {
-    "name": "subcategory_scaffold-hop.aromatize",
-    "n_total": 2358,
-    "n_authentic": 1179,
-    "n_counterfeit": 1179,
+  "subcategory_halogen-walk.count-change": {
+    "name": "subcategory_halogen-walk.count-change",
+    "n_total": 1594,
+    "n_authentic": 797,
+    "n_counterfeit": 797,
     "balance": 1.0,
     "shortcut_metrics": {
-      "cohens_d_mw": 0.068,
-      "cohens_d_heavy_atoms": 0.122,
-      "cohens_d_smiles_length": 0.018,
-      "trivial_lr_accuracy": 0.554
+      "cohens_d_mw": 0.018,
+      "cohens_d_heavy_atoms": 0.055,
+      "cohens_d_smiles_length": 0.107,
+      "trivial_lr_accuracy": 0.48
     },
     "split_counts": {
-      "train": 1886,
-      "val": 235,
-      "test": 237
-    },
-    "conformers_written": 150
+      "train": 1275,
+      "val": 159,
+      "test": 160
+    }
   },
-  "subcategory_scaffold-hop.add-ring": {
-    "name": "subcategory_scaffold-hop.add-ring",
-    "n_total": 1234,
-    "n_authentic": 617,
-    "n_counterfeit": 617,
+  "subcategory_halogen-walk.remove-Cl": {
+    "name": "subcategory_halogen-walk.remove-Cl",
+    "n_total": 1592,
+    "n_authentic": 796,
+    "n_counterfeit": 796,
     "balance": 1.0,
     "shortcut_metrics": {
       "cohens_d_mw": 0.038,
-      "cohens_d_heavy_atoms": 0.056,
-      "cohens_d_smiles_length": 0.039,
-      "trivial_lr_accuracy": 0.526
+      "cohens_d_heavy_atoms": 0.019,
+      "cohens_d_smiles_length": 0.104,
+      "trivial_lr_accuracy": 0.6
     },
     "split_counts": {
-      "train": 987,
-      "val": 123,
-      "test": 124
-    },
-    "conformers_written": 150
+      "train": 1273,
+      "val": 159,
+      "test": 160
+    }
   },
-  "subcategory_scaffold-hop.ring-heteroatom-swap": {
-    "name": "subcategory_scaffold-hop.ring-heteroatom-swap",
-    "n_total": 344,
-    "n_authentic": 172,
-    "n_counterfeit": 172,
+  "subcategory_homologation.shrink-short": {
+    "name": "subcategory_homologation.shrink-short",
+    "n_total": 1586,
+    "n_authentic": 793,
+    "n_counterfeit": 793,
     "balance": 1.0,
     "shortcut_metrics": {
-      "cohens_d_mw": 0.008,
-      "cohens_d_heavy_atoms": 0.037,
-      "cohens_d_smiles_length": 0.04,
-      "trivial_lr_accuracy": 0.51
+      "cohens_d_mw": 0.084,
+      "cohens_d_heavy_atoms": 0.059,
+      "cohens_d_smiles_length": 0.095,
+      "trivial_lr_accuracy": 0.521
     },
     "split_counts": {
-      "train": 275,
-      "val": 34,
-      "test": 35
-    },
-    "conformers_written": 150
+      "train": 1268,
+      "val": 158,
+      "test": 160
+    }
   },
-  "subcategory_halogen-walk.add-Cl": {
-    "name": "subcategory_halogen-walk.add-Cl",
-    "n_total": 1208,
-    "n_authentic": 604,
-    "n_counterfeit": 604,
+  "subcategory_scaffold-hop.remove-ring": {
+    "name": "subcategory_scaffold-hop.remove-ring",
+    "n_total": 1596,
+    "n_authentic": 798,
+    "n_counterfeit": 798,
     "balance": 1.0,
     "shortcut_metrics": {
-      "cohens_d_mw": 0.079,
-      "cohens_d_heavy_atoms": 0.04,
-      "cohens_d_smiles_length": 0.055,
-      "trivial_lr_accuracy": 0.614
+      "cohens_d_mw": 0.081,
+      "cohens_d_heavy_atoms": 0.062,
+      "cohens_d_smiles_length": 0.064,
+      "trivial_lr_accuracy": 0.524
     },
     "split_counts": {
-      "train": 966,
-      "val": 120,
-      "test": 122
-    },
-    "conformers_written": 149
+      "train": 1276,
+      "val": 159,
+      "test": 161
+    }
   },
-  "subcategory_halogen-walk.add-I": {
-    "name": "subcategory_halogen-walk.add-I",
-    "n_total": 222,
-    "n_authentic": 111,
-    "n_counterfeit": 111,
+  "subcategory_scaffold-hop.ring-resize": {
+    "name": "subcategory_scaffold-hop.ring-resize",
+    "n_total": 1600,
+    "n_authentic": 800,
+    "n_counterfeit": 800,
     "balance": 1.0,
     "shortcut_metrics": {
-      "cohens_d_mw": 0.263,
-      "cohens_d_heavy_atoms": 0.105,
-      "cohens_d_smiles_length": 0.105,
-      "trivial_lr_accuracy": 0.657
-    },
-    "split_counts": {
-      "train": 177,
-      "val": 22,
-      "test": 23
-    },
-    "conformers_written": 150
-  },
-  "subcategory_halogen-walk.add-F": {
-    "name": "subcategory_halogen-walk.add-F",
-    "n_total": 1534,
-    "n_authentic": 767,
-    "n_counterfeit": 767,
-    "balance": 1.0,
-    "shortcut_metrics": {
-      "cohens_d_mw": 0.021,
-      "cohens_d_heavy_atoms": 0.004,
-      "cohens_d_smiles_length": 0.026,
+      "cohens_d_mw": 0.039,
+      "cohens_d_heavy_atoms": 0.027,
+      "cohens_d_smiles_length": 0.115,
       "trivial_lr_accuracy": 0.529
     },
     "split_counts": {
-      "train": 1227,
-      "val": 153,
-      "test": 154
-    },
-    "conformers_written": 150
+      "train": 1280,
+      "val": 160,
+      "test": 160
+    }
   },
-  "subcategory_halogen-walk.Cl->F": {
-    "name": "subcategory_halogen-walk.Cl->F",
-    "n_total": 410,
-    "n_authentic": 205,
-    "n_counterfeit": 205,
+  "subcategory_homologation.grow-short": {
+    "name": "subcategory_homologation.grow-short",
+    "n_total": 33116,
+    "n_authentic": 16558,
+    "n_counterfeit": 16558,
     "balance": 1.0,
     "shortcut_metrics": {
-      "cohens_d_mw": 0.028,
-      "cohens_d_heavy_atoms": 0.016,
-      "cohens_d_smiles_length": 0.009,
-      "trivial_lr_accuracy": 0.447
+      "cohens_d_mw": 0.034,
+      "cohens_d_heavy_atoms": 0.022,
+      "cohens_d_smiles_length": 0.064,
+      "trivial_lr_accuracy": 0.515
     },
     "split_counts": {
-      "train": 328,
-      "val": 41,
-      "test": 41
-    },
-    "conformers_written": 150
+      "train": 26492,
+      "val": 3311,
+      "test": 3313
+    }
   },
-  "subcategory_other.other": {
-    "name": "subcategory_other.other",
-    "n_total": 3992,
-    "n_authentic": 1996,
-    "n_counterfeit": 1996,
+  "subcategory_homologation.grow-single": {
+    "name": "subcategory_homologation.grow-single",
+    "n_total": 39084,
+    "n_authentic": 19542,
+    "n_counterfeit": 19542,
+    "balance": 1.0,
+    "shortcut_metrics": {
+      "cohens_d_mw": 0.047,
+      "cohens_d_heavy_atoms": 0.035,
+      "cohens_d_smiles_length": 0.072,
+      "trivial_lr_accuracy": 0.513
+    },
+    "split_counts": {
+      "train": 31268,
+      "val": 3908,
+      "test": 3908
+    }
+  },
+  "subcategory_homologation.shrink-single": {
+    "name": "subcategory_homologation.shrink-single",
+    "n_total": 5624,
+    "n_authentic": 2812,
+    "n_counterfeit": 2812,
+    "balance": 1.0,
+    "shortcut_metrics": {
+      "cohens_d_mw": 0.051,
+      "cohens_d_heavy_atoms": 0.033,
+      "cohens_d_smiles_length": 0.051,
+      "trivial_lr_accuracy": 0.528
+    },
+    "split_counts": {
+      "train": 4499,
+      "val": 562,
+      "test": 563
+    }
+  },
+  "subcategory_homologation.grow-long": {
+    "name": "subcategory_homologation.grow-long",
+    "n_total": 2914,
+    "n_authentic": 1457,
+    "n_counterfeit": 1457,
     "balance": 1.0,
     "shortcut_metrics": {
       "cohens_d_mw": 0.003,
-      "cohens_d_heavy_atoms": 0.005,
-      "cohens_d_smiles_length": 0.028,
+      "cohens_d_heavy_atoms": 0.018,
+      "cohens_d_smiles_length": 0.041,
+      "trivial_lr_accuracy": 0.533
+    },
+    "split_counts": {
+      "train": 2331,
+      "val": 291,
+      "test": 292
+    }
+  },
+  "subcategory_halogen-walk.add-F": {
+    "name": "subcategory_halogen-walk.add-F",
+    "n_total": 17002,
+    "n_authentic": 8501,
+    "n_counterfeit": 8501,
+    "balance": 1.0,
+    "shortcut_metrics": {
+      "cohens_d_mw": 0.012,
+      "cohens_d_heavy_atoms": 0.033,
+      "cohens_d_smiles_length": 0.055,
+      "trivial_lr_accuracy": 0.53
+    },
+    "split_counts": {
+      "train": 13601,
+      "val": 1700,
+      "test": 1701
+    }
+  },
+  "subcategory_halogen-walk.add-Cl": {
+    "name": "subcategory_halogen-walk.add-Cl",
+    "n_total": 10168,
+    "n_authentic": 5084,
+    "n_counterfeit": 5084,
+    "balance": 1.0,
+    "shortcut_metrics": {
+      "cohens_d_mw": 0.03,
+      "cohens_d_heavy_atoms": 0.065,
+      "cohens_d_smiles_length": 0.051,
+      "trivial_lr_accuracy": 0.603
+    },
+    "split_counts": {
+      "train": 8134,
+      "val": 1016,
+      "test": 1018
+    }
+  },
+  "subcategory_halogen-walk.Cl->F": {
+    "name": "subcategory_halogen-walk.Cl->F",
+    "n_total": 5420,
+    "n_authentic": 2710,
+    "n_counterfeit": 2710,
+    "balance": 1.0,
+    "shortcut_metrics": {
+      "cohens_d_mw": 0.013,
+      "cohens_d_heavy_atoms": 0.024,
+      "cohens_d_smiles_length": 0.074,
       "trivial_lr_accuracy": 0.523
     },
     "split_counts": {
-      "train": 3193,
-      "val": 399,
-      "test": 400
-    },
-    "conformers_written": 150
+      "train": 4336,
+      "val": 542,
+      "test": 542
+    }
   },
-  "evolved": {
-    "name": "evolved",
-    "n_total": 1072,
-    "n_authentic": 536,
-    "n_counterfeit": 536,
+  "subcategory_halogen-walk.Br->Cl": {
+    "name": "subcategory_halogen-walk.Br->Cl",
+    "n_total": 160,
+    "n_authentic": 80,
+    "n_counterfeit": 80,
     "balance": 1.0,
     "shortcut_metrics": {
-      "cohens_d_mw": 0.046,
-      "cohens_d_heavy_atoms": 0.014,
-      "cohens_d_smiles_length": 0.05,
-      "trivial_lr_accuracy": 0.516
+      "cohens_d_mw": 0.006,
+      "cohens_d_heavy_atoms": 0.049,
+      "cohens_d_smiles_length": 0.064,
+      "trivial_lr_accuracy": 0.458
     },
     "split_counts": {
-      "train": 857,
-      "val": 107,
-      "test": 108
-    },
-    "conformers_written": 150
+      "train": 128,
+      "val": 16,
+      "test": 16
+    }
   },
-  "pooled": {
-    "name": "pooled",
-    "n_total": 20912,
-    "n_authentic": 10456,
-    "n_counterfeit": 10456,
+  "subcategory_halogen-walk.remove-F": {
+    "name": "subcategory_halogen-walk.remove-F",
+    "n_total": 2884,
+    "n_authentic": 1442,
+    "n_counterfeit": 1442,
+    "balance": 1.0,
+    "shortcut_metrics": {
+      "cohens_d_mw": 0.062,
+      "cohens_d_heavy_atoms": 0.026,
+      "cohens_d_smiles_length": 0.043,
+      "trivial_lr_accuracy": 0.613
+    },
+    "split_counts": {
+      "train": 2307,
+      "val": 288,
+      "test": 289
+    }
+  },
+  "subcategory_halogen-walk.F->Br": {
+    "name": "subcategory_halogen-walk.F->Br",
+    "n_total": 140,
+    "n_authentic": 70,
+    "n_counterfeit": 70,
+    "balance": 1.0,
+    "shortcut_metrics": {
+      "cohens_d_mw": 0.098,
+      "cohens_d_heavy_atoms": 0.148,
+      "cohens_d_smiles_length": 0.101,
+      "trivial_lr_accuracy": 0.81
+    },
+    "split_counts": {
+      "train": 112,
+      "val": 14,
+      "test": 14
+    }
+  },
+  "subcategory_halogen-walk.Cl->Br": {
+    "name": "subcategory_halogen-walk.Cl->Br",
+    "n_total": 82,
+    "n_authentic": 41,
+    "n_counterfeit": 41,
+    "balance": 1.0,
+    "shortcut_metrics": {
+      "cohens_d_mw": 0.087,
+      "cohens_d_heavy_atoms": 0.043,
+      "cohens_d_smiles_length": 0.172,
+      "trivial_lr_accuracy": 0.8
+    },
+    "split_counts": {
+      "train": 65,
+      "val": 8,
+      "test": 9
+    }
+  },
+  "subcategory_halogen-walk.remove-Br": {
+    "name": "subcategory_halogen-walk.remove-Br",
+    "n_total": 194,
+    "n_authentic": 97,
+    "n_counterfeit": 97,
+    "balance": 1.0,
+    "shortcut_metrics": {
+      "cohens_d_mw": 0.033,
+      "cohens_d_heavy_atoms": 0.005,
+      "cohens_d_smiles_length": 0.149,
+      "trivial_lr_accuracy": 0.475
+    },
+    "split_counts": {
+      "train": 155,
+      "val": 19,
+      "test": 20
+    }
+  },
+  "subcategory_halogen-walk.Br->F": {
+    "name": "subcategory_halogen-walk.Br->F",
+    "n_total": 190,
+    "n_authentic": 95,
+    "n_counterfeit": 95,
+    "balance": 1.0,
+    "shortcut_metrics": {
+      "cohens_d_mw": 0.007,
+      "cohens_d_heavy_atoms": 0.041,
+      "cohens_d_smiles_length": 0.069,
+      "trivial_lr_accuracy": 0.368
+    },
+    "split_counts": {
+      "train": 152,
+      "val": 19,
+      "test": 19
+    }
+  },
+  "subcategory_bioisostere.add-N": {
+    "name": "subcategory_bioisostere.add-N",
+    "n_total": 7368,
+    "n_authentic": 3684,
+    "n_counterfeit": 3684,
+    "balance": 1.0,
+    "shortcut_metrics": {
+      "cohens_d_mw": 0.025,
+      "cohens_d_heavy_atoms": 0.01,
+      "cohens_d_smiles_length": 0.037,
+      "trivial_lr_accuracy": 0.51
+    },
+    "split_counts": {
+      "train": 5894,
+      "val": 736,
+      "test": 738
+    }
+  },
+  "subcategory_bioisostere.Cl->O": {
+    "name": "subcategory_bioisostere.Cl->O",
+    "n_total": 2780,
+    "n_authentic": 1390,
+    "n_counterfeit": 1390,
+    "balance": 1.0,
+    "shortcut_metrics": {
+      "cohens_d_mw": 0.012,
+      "cohens_d_heavy_atoms": 0.012,
+      "cohens_d_smiles_length": 0.102,
+      "trivial_lr_accuracy": 0.523
+    },
+    "split_counts": {
+      "train": 2224,
+      "val": 278,
+      "test": 278
+    }
+  },
+  "subcategory_bioisostere.unsaturation-change": {
+    "name": "subcategory_bioisostere.unsaturation-change",
+    "n_total": 9422,
+    "n_authentic": 4711,
+    "n_counterfeit": 4711,
+    "balance": 1.0,
+    "shortcut_metrics": {
+      "cohens_d_mw": 0.022,
+      "cohens_d_heavy_atoms": 0.011,
+      "cohens_d_smiles_length": 0.027,
+      "trivial_lr_accuracy": 0.513
+    },
+    "split_counts": {
+      "train": 7537,
+      "val": 942,
+      "test": 943
+    }
+  },
+  "subcategory_bioisostere.add-O": {
+    "name": "subcategory_bioisostere.add-O",
+    "n_total": 21718,
+    "n_authentic": 10859,
+    "n_counterfeit": 10859,
+    "balance": 1.0,
+    "shortcut_metrics": {
+      "cohens_d_mw": 0.022,
+      "cohens_d_heavy_atoms": 0.02,
+      "cohens_d_smiles_length": 0.06,
+      "trivial_lr_accuracy": 0.503
+    },
+    "split_counts": {
+      "train": 17374,
+      "val": 2171,
+      "test": 2173
+    }
+  },
+  "subcategory_bioisostere.N->O": {
+    "name": "subcategory_bioisostere.N->O",
+    "n_total": 2820,
+    "n_authentic": 1410,
+    "n_counterfeit": 1410,
+    "balance": 1.0,
+    "shortcut_metrics": {
+      "cohens_d_mw": 0.041,
+      "cohens_d_heavy_atoms": 0.032,
+      "cohens_d_smiles_length": 0.057,
+      "trivial_lr_accuracy": 0.507
+    },
+    "split_counts": {
+      "train": 2256,
+      "val": 282,
+      "test": 282
+    }
+  },
+  "subcategory_bioisostere.N->Cl": {
+    "name": "subcategory_bioisostere.N->Cl",
+    "n_total": 140,
+    "n_authentic": 70,
+    "n_counterfeit": 70,
+    "balance": 1.0,
+    "shortcut_metrics": {
+      "cohens_d_mw": 0.146,
+      "cohens_d_heavy_atoms": 0.003,
+      "cohens_d_smiles_length": 0.039,
+      "trivial_lr_accuracy": 0.5
+    },
+    "split_counts": {
+      "train": 112,
+      "val": 14,
+      "test": 14
+    }
+  },
+  "subcategory_bioisostere.F->O": {
+    "name": "subcategory_bioisostere.F->O",
+    "n_total": 4056,
+    "n_authentic": 2028,
+    "n_counterfeit": 2028,
+    "balance": 1.0,
+    "shortcut_metrics": {
+      "cohens_d_mw": 0.065,
+      "cohens_d_heavy_atoms": 0.008,
+      "cohens_d_smiles_length": 0.093,
+      "trivial_lr_accuracy": 0.597
+    },
+    "split_counts": {
+      "train": 3244,
+      "val": 405,
+      "test": 407
+    }
+  },
+  "subcategory_bioisostere.add-N/O": {
+    "name": "subcategory_bioisostere.add-N/O",
+    "n_total": 1042,
+    "n_authentic": 521,
+    "n_counterfeit": 521,
+    "balance": 1.0,
+    "shortcut_metrics": {
+      "cohens_d_mw": 0.029,
+      "cohens_d_heavy_atoms": 0.034,
+      "cohens_d_smiles_length": 0.073,
+      "trivial_lr_accuracy": 0.447
+    },
+    "split_counts": {
+      "train": 833,
+      "val": 104,
+      "test": 105
+    }
+  },
+  "subcategory_bioisostere.F->S": {
+    "name": "subcategory_bioisostere.F->S",
+    "n_total": 266,
+    "n_authentic": 133,
+    "n_counterfeit": 133,
+    "balance": 1.0,
+    "shortcut_metrics": {
+      "cohens_d_mw": 0.043,
+      "cohens_d_heavy_atoms": 0.016,
+      "cohens_d_smiles_length": 0.066,
+      "trivial_lr_accuracy": 0.575
+    },
+    "split_counts": {
+      "train": 212,
+      "val": 26,
+      "test": 28
+    }
+  },
+  "subcategory_bioisostere.N->F": {
+    "name": "subcategory_bioisostere.N->F",
+    "n_total": 214,
+    "n_authentic": 107,
+    "n_counterfeit": 107,
+    "balance": 1.0,
+    "shortcut_metrics": {
+      "cohens_d_mw": 0.012,
+      "cohens_d_heavy_atoms": 0.016,
+      "cohens_d_smiles_length": 0.018,
+      "trivial_lr_accuracy": 0.523
+    },
+    "split_counts": {
+      "train": 171,
+      "val": 21,
+      "test": 22
+    }
+  },
+  "subcategory_bioisostere.F->N": {
+    "name": "subcategory_bioisostere.F->N",
+    "n_total": 238,
+    "n_authentic": 119,
+    "n_counterfeit": 119,
     "balance": 1.0,
     "shortcut_metrics": {
       "cohens_d_mw": 0.016,
-      "cohens_d_heavy_atoms": 0.007,
+      "cohens_d_heavy_atoms": 0.04,
+      "cohens_d_smiles_length": 0.003,
+      "trivial_lr_accuracy": 0.333
+    },
+    "split_counts": {
+      "train": 190,
+      "val": 23,
+      "test": 25
+    }
+  },
+  "subcategory_bioisostere.F->O/S": {
+    "name": "subcategory_bioisostere.F->O/S",
+    "n_total": 86,
+    "n_authentic": 43,
+    "n_counterfeit": 43,
+    "balance": 1.0,
+    "shortcut_metrics": {
+      "cohens_d_mw": 0.047,
+      "cohens_d_heavy_atoms": 0.089,
+      "cohens_d_smiles_length": 0.199,
+      "trivial_lr_accuracy": 0.538
+    },
+    "split_counts": {
+      "train": 68,
+      "val": 8,
+      "test": 10
+    }
+  },
+  "subcategory_bioisostere.Cl->S": {
+    "name": "subcategory_bioisostere.Cl->S",
+    "n_total": 274,
+    "n_authentic": 137,
+    "n_counterfeit": 137,
+    "balance": 1.0,
+    "shortcut_metrics": {
+      "cohens_d_mw": 0.016,
+      "cohens_d_heavy_atoms": 0.072,
+      "cohens_d_smiles_length": 0.153,
+      "trivial_lr_accuracy": 0.554
+    },
+    "split_counts": {
+      "train": 219,
+      "val": 27,
+      "test": 28
+    }
+  },
+  "subcategory_bioisostere.add-F/O": {
+    "name": "subcategory_bioisostere.add-F/O",
+    "n_total": 240,
+    "n_authentic": 120,
+    "n_counterfeit": 120,
+    "balance": 1.0,
+    "shortcut_metrics": {
+      "cohens_d_mw": 0.006,
+      "cohens_d_heavy_atoms": 0.12,
+      "cohens_d_smiles_length": 0.083,
+      "trivial_lr_accuracy": 0.597
+    },
+    "split_counts": {
+      "train": 192,
+      "val": 24,
+      "test": 24
+    }
+  },
+  "subcategory_bioisostere.O->N": {
+    "name": "subcategory_bioisostere.O->N",
+    "n_total": 376,
+    "n_authentic": 188,
+    "n_counterfeit": 188,
+    "balance": 1.0,
+    "shortcut_metrics": {
+      "cohens_d_mw": 0.063,
+      "cohens_d_heavy_atoms": 0.014,
+      "cohens_d_smiles_length": 0.065,
+      "trivial_lr_accuracy": 0.54
+    },
+    "split_counts": {
+      "train": 300,
+      "val": 37,
+      "test": 39
+    }
+  },
+  "subcategory_bioisostere.add-N/S": {
+    "name": "subcategory_bioisostere.add-N/S",
+    "n_total": 346,
+    "n_authentic": 173,
+    "n_counterfeit": 173,
+    "balance": 1.0,
+    "shortcut_metrics": {
+      "cohens_d_mw": 0.019,
+      "cohens_d_heavy_atoms": 0.074,
+      "cohens_d_smiles_length": 0.01,
+      "trivial_lr_accuracy": 0.606
+    },
+    "split_counts": {
+      "train": 276,
+      "val": 34,
+      "test": 36
+    }
+  },
+  "subcategory_bioisostere.O->Cl": {
+    "name": "subcategory_bioisostere.O->Cl",
+    "n_total": 376,
+    "n_authentic": 188,
+    "n_counterfeit": 188,
+    "balance": 1.0,
+    "shortcut_metrics": {
+      "cohens_d_mw": 0.011,
+      "cohens_d_heavy_atoms": 0.055,
+      "cohens_d_smiles_length": 0.052,
+      "trivial_lr_accuracy": 0.575
+    },
+    "split_counts": {
+      "train": 300,
+      "val": 37,
+      "test": 39
+    }
+  },
+  "subcategory_bioisostere.F->N/O": {
+    "name": "subcategory_bioisostere.F->N/O",
+    "n_total": 96,
+    "n_authentic": 48,
+    "n_counterfeit": 48,
+    "balance": 1.0,
+    "shortcut_metrics": {
+      "cohens_d_mw": 0.104,
+      "cohens_d_heavy_atoms": 0.019,
+      "cohens_d_smiles_length": 0.215,
+      "trivial_lr_accuracy": 0.414
+    },
+    "split_counts": {
+      "train": 76,
+      "val": 9,
+      "test": 11
+    }
+  },
+  "subcategory_bioisostere.N/O->F": {
+    "name": "subcategory_bioisostere.N/O->F",
+    "n_total": 32,
+    "n_authentic": 16,
+    "n_counterfeit": 16,
+    "balance": 1.0,
+    "shortcut_metrics": {
+      "cohens_d_mw": 0.069,
+      "cohens_d_heavy_atoms": 0.057,
+      "cohens_d_smiles_length": 0.094,
+      "trivial_lr_accuracy": 0.3
+    },
+    "split_counts": {
+      "train": 25,
+      "val": 3,
+      "test": 4
+    }
+  },
+  "subcategory_bioisostere.Cl->N/O": {
+    "name": "subcategory_bioisostere.Cl->N/O",
+    "n_total": 78,
+    "n_authentic": 39,
+    "n_counterfeit": 39,
+    "balance": 1.0,
+    "shortcut_metrics": {
+      "cohens_d_mw": 0.038,
+      "cohens_d_heavy_atoms": 0.011,
+      "cohens_d_smiles_length": 0.202,
+      "trivial_lr_accuracy": 0.625
+    },
+    "split_counts": {
+      "train": 62,
+      "val": 7,
+      "test": 9
+    }
+  },
+  "subcategory_bioisostere.Cl->O/S": {
+    "name": "subcategory_bioisostere.Cl->O/S",
+    "n_total": 48,
+    "n_authentic": 24,
+    "n_counterfeit": 24,
+    "balance": 1.0,
+    "shortcut_metrics": {
+      "cohens_d_mw": 0.133,
+      "cohens_d_heavy_atoms": 0.078,
+      "cohens_d_smiles_length": 0.169,
+      "trivial_lr_accuracy": 0.467
+    },
+    "split_counts": {
+      "train": 38,
+      "val": 4,
+      "test": 6
+    }
+  },
+  "subcategory_bioisostere.N->S": {
+    "name": "subcategory_bioisostere.N->S",
+    "n_total": 452,
+    "n_authentic": 226,
+    "n_counterfeit": 226,
+    "balance": 1.0,
+    "shortcut_metrics": {
+      "cohens_d_mw": 0.034,
+      "cohens_d_heavy_atoms": 0.067,
+      "cohens_d_smiles_length": 0.041,
+      "trivial_lr_accuracy": 0.603
+    },
+    "split_counts": {
+      "train": 361,
+      "val": 45,
+      "test": 46
+    }
+  },
+  "subcategory_bioisostere.Br->O": {
+    "name": "subcategory_bioisostere.Br->O",
+    "n_total": 112,
+    "n_authentic": 56,
+    "n_counterfeit": 56,
+    "balance": 1.0,
+    "shortcut_metrics": {
+      "cohens_d_mw": 0.027,
+      "cohens_d_heavy_atoms": 0.019,
+      "cohens_d_smiles_length": 0.131,
+      "trivial_lr_accuracy": 0.529
+    },
+    "split_counts": {
+      "train": 89,
+      "val": 11,
+      "test": 12
+    }
+  },
+  "subcategory_bioisostere.add-O/S": {
+    "name": "subcategory_bioisostere.add-O/S",
+    "n_total": 146,
+    "n_authentic": 73,
+    "n_counterfeit": 73,
+    "balance": 1.0,
+    "shortcut_metrics": {
+      "cohens_d_mw": 0.007,
+      "cohens_d_heavy_atoms": 0.073,
+      "cohens_d_smiles_length": 0.075,
+      "trivial_lr_accuracy": 0.5
+    },
+    "split_counts": {
+      "train": 116,
+      "val": 14,
+      "test": 16
+    }
+  },
+  "subcategory_bioisostere.Br->N": {
+    "name": "subcategory_bioisostere.Br->N",
+    "n_total": 64,
+    "n_authentic": 32,
+    "n_counterfeit": 32,
+    "balance": 1.0,
+    "shortcut_metrics": {
+      "cohens_d_mw": 0.068,
+      "cohens_d_heavy_atoms": 0.066,
+      "cohens_d_smiles_length": 0.25,
+      "trivial_lr_accuracy": 0.5
+    },
+    "split_counts": {
+      "train": 51,
+      "val": 6,
+      "test": 7
+    }
+  },
+  "subcategory_bioisostere.remove-N/O": {
+    "name": "subcategory_bioisostere.remove-N/O",
+    "n_total": 54,
+    "n_authentic": 27,
+    "n_counterfeit": 27,
+    "balance": 1.0,
+    "shortcut_metrics": {
+      "cohens_d_mw": 0.025,
+      "cohens_d_heavy_atoms": 0.054,
+      "cohens_d_smiles_length": 0.007,
+      "trivial_lr_accuracy": 0.647
+    },
+    "split_counts": {
+      "train": 43,
+      "val": 5,
+      "test": 6
+    }
+  },
+  "subcategory_bioisostere.Cl->F/S": {
+    "name": "subcategory_bioisostere.Cl->F/S",
+    "n_total": 88,
+    "n_authentic": 44,
+    "n_counterfeit": 44,
+    "balance": 1.0,
+    "shortcut_metrics": {
+      "cohens_d_mw": 0.052,
+      "cohens_d_heavy_atoms": 0.144,
+      "cohens_d_smiles_length": 0.054,
+      "trivial_lr_accuracy": 0.407
+    },
+    "split_counts": {
+      "train": 70,
+      "val": 8,
+      "test": 10
+    }
+  },
+  "subcategory_bioisostere.F->N/O/S": {
+    "name": "subcategory_bioisostere.F->N/O/S",
+    "n_total": 32,
+    "n_authentic": 16,
+    "n_counterfeit": 16,
+    "balance": 1.0,
+    "shortcut_metrics": {
+      "cohens_d_mw": 0.054,
+      "cohens_d_heavy_atoms": 0.156,
+      "cohens_d_smiles_length": 0.139,
+      "trivial_lr_accuracy": 0.5
+    },
+    "split_counts": {
+      "train": 25,
+      "val": 3,
+      "test": 4
+    }
+  },
+  "subcategory_bioisostere.N->O/S": {
+    "name": "subcategory_bioisostere.N->O/S",
+    "n_total": 74,
+    "n_authentic": 37,
+    "n_counterfeit": 37,
+    "balance": 1.0,
+    "shortcut_metrics": {
+      "cohens_d_mw": 0.015,
+      "cohens_d_heavy_atoms": 0.088,
+      "cohens_d_smiles_length": 0.068,
+      "trivial_lr_accuracy": 0.522
+    },
+    "split_counts": {
+      "train": 59,
+      "val": 7,
+      "test": 8
+    }
+  },
+  "subcategory_bioisostere.O->Br": {
+    "name": "subcategory_bioisostere.O->Br",
+    "n_total": 46,
+    "n_authentic": 23,
+    "n_counterfeit": 23,
+    "balance": 1.0,
+    "shortcut_metrics": {
+      "cohens_d_mw": 0.12,
+      "cohens_d_heavy_atoms": 0.069,
+      "cohens_d_smiles_length": 0.123,
+      "trivial_lr_accuracy": 0.714
+    },
+    "split_counts": {
+      "train": 36,
+      "val": 4,
+      "test": 6
+    }
+  },
+  "subcategory_bioisostere.add-Cl": {
+    "name": "subcategory_bioisostere.add-Cl",
+    "n_total": 120,
+    "n_authentic": 60,
+    "n_counterfeit": 60,
+    "balance": 1.0,
+    "shortcut_metrics": {
+      "cohens_d_mw": 0.054,
+      "cohens_d_heavy_atoms": 0.042,
+      "cohens_d_smiles_length": 0.047,
+      "trivial_lr_accuracy": 0.417
+    },
+    "split_counts": {
+      "train": 96,
+      "val": 12,
+      "test": 12
+    }
+  },
+  "subcategory_bioisostere.Cl->F/O": {
+    "name": "subcategory_bioisostere.Cl->F/O",
+    "n_total": 38,
+    "n_authentic": 19,
+    "n_counterfeit": 19,
+    "balance": 1.0,
+    "shortcut_metrics": {
+      "cohens_d_mw": 0.08,
+      "cohens_d_heavy_atoms": 0.202,
+      "cohens_d_smiles_length": 0.137,
+      "trivial_lr_accuracy": 0.167
+    },
+    "split_counts": {
+      "train": 30,
+      "val": 3,
+      "test": 5
+    }
+  },
+  "subcategory_scaffold-hop.add-ring": {
+    "name": "subcategory_scaffold-hop.add-ring",
+    "n_total": 20142,
+    "n_authentic": 10071,
+    "n_counterfeit": 10071,
+    "balance": 1.0,
+    "shortcut_metrics": {
+      "cohens_d_mw": 0.033,
+      "cohens_d_heavy_atoms": 0.012,
+      "cohens_d_smiles_length": 0.077,
+      "trivial_lr_accuracy": 0.54
+    },
+    "split_counts": {
+      "train": 16113,
+      "val": 2014,
+      "test": 2015
+    }
+  },
+  "subcategory_scaffold-hop.ring-heteroatom-swap": {
+    "name": "subcategory_scaffold-hop.ring-heteroatom-swap",
+    "n_total": 5562,
+    "n_authentic": 2781,
+    "n_counterfeit": 2781,
+    "balance": 1.0,
+    "shortcut_metrics": {
+      "cohens_d_mw": 0.029,
+      "cohens_d_heavy_atoms": 0.02,
+      "cohens_d_smiles_length": 0.064,
+      "trivial_lr_accuracy": 0.539
+    },
+    "split_counts": {
+      "train": 4449,
+      "val": 556,
+      "test": 557
+    }
+  },
+  "subcategory_scaffold-hop.aromatize": {
+    "name": "subcategory_scaffold-hop.aromatize",
+    "n_total": 37798,
+    "n_authentic": 18899,
+    "n_counterfeit": 18899,
+    "balance": 1.0,
+    "shortcut_metrics": {
+      "cohens_d_mw": 0.024,
+      "cohens_d_heavy_atoms": 0.035,
+      "cohens_d_smiles_length": 0.067,
+      "trivial_lr_accuracy": 0.561
+    },
+    "split_counts": {
+      "train": 30239,
+      "val": 3779,
+      "test": 3780
+    }
+  },
+  "subcategory_scaffold-hop.saturate": {
+    "name": "subcategory_scaffold-hop.saturate",
+    "n_total": 122,
+    "n_authentic": 61,
+    "n_counterfeit": 61,
+    "balance": 1.0,
+    "shortcut_metrics": {
+      "cohens_d_mw": 0.029,
+      "cohens_d_heavy_atoms": 0.137,
+      "cohens_d_smiles_length": 0.012,
+      "trivial_lr_accuracy": 0.541
+    },
+    "split_counts": {
+      "train": 97,
+      "val": 12,
+      "test": 13
+    }
+  },
+  "subcategory_other.other": {
+    "name": "subcategory_other.other",
+    "n_total": 26644,
+    "n_authentic": 13322,
+    "n_counterfeit": 13322,
+    "balance": 1.0,
+    "shortcut_metrics": {
+      "cohens_d_mw": 0.027,
+      "cohens_d_heavy_atoms": 0.012,
+      "cohens_d_smiles_length": 0.048,
+      "trivial_lr_accuracy": 0.531
+    },
+    "split_counts": {
+      "train": 21316,
+      "val": 2664,
+      "test": 2664
+    }
+  },
+  "subcategory_bioisostere.add-O/P": {
+    "name": "subcategory_bioisostere.add-O/P",
+    "n_total": 26,
+    "n_authentic": 13,
+    "n_counterfeit": 13,
+    "balance": 1.0,
+    "shortcut_metrics": {
+      "cohens_d_mw": 0.26,
+      "cohens_d_heavy_atoms": 0.086,
+      "cohens_d_smiles_length": 0.174,
+      "trivial_lr_accuracy": 0.375
+    },
+    "split_counts": {
+      "train": 20,
+      "val": 2,
+      "test": 4
+    }
+  },
+  "subcategory_bioisostere.add-P": {
+    "name": "subcategory_bioisostere.add-P",
+    "n_total": 736,
+    "n_authentic": 368,
+    "n_counterfeit": 368,
+    "balance": 1.0,
+    "shortcut_metrics": {
+      "cohens_d_mw": 0.061,
+      "cohens_d_heavy_atoms": 0.077,
+      "cohens_d_smiles_length": 0.041,
+      "trivial_lr_accuracy": 0.624
+    },
+    "split_counts": {
+      "train": 588,
+      "val": 73,
+      "test": 75
+    }
+  },
+  "subcategory_bioisostere.add-F/S": {
+    "name": "subcategory_bioisostere.add-F/S",
+    "n_total": 54,
+    "n_authentic": 27,
+    "n_counterfeit": 27,
+    "balance": 1.0,
+    "shortcut_metrics": {
+      "cohens_d_mw": 0.015,
+      "cohens_d_heavy_atoms": 0.229,
+      "cohens_d_smiles_length": 0.094,
+      "trivial_lr_accuracy": 0.529
+    },
+    "split_counts": {
+      "train": 43,
+      "val": 5,
+      "test": 6
+    }
+  },
+  "subcategory_bioisostere.add-Cl/O": {
+    "name": "subcategory_bioisostere.add-Cl/O",
+    "n_total": 26,
+    "n_authentic": 13,
+    "n_counterfeit": 13,
+    "balance": 1.0,
+    "shortcut_metrics": {
+      "cohens_d_mw": 0.221,
+      "cohens_d_heavy_atoms": 0.014,
+      "cohens_d_smiles_length": 0.129,
+      "trivial_lr_accuracy": 0.625
+    },
+    "split_counts": {
+      "train": 20,
+      "val": 2,
+      "test": 4
+    }
+  },
+  "subcategory_bioisostere.add-F/P": {
+    "name": "subcategory_bioisostere.add-F/P",
+    "n_total": 38,
+    "n_authentic": 19,
+    "n_counterfeit": 19,
+    "balance": 1.0,
+    "shortcut_metrics": {
+      "cohens_d_mw": 0.06,
+      "cohens_d_heavy_atoms": 0.168,
+      "cohens_d_smiles_length": 0.08,
+      "trivial_lr_accuracy": 0.417
+    },
+    "split_counts": {
+      "train": 30,
+      "val": 3,
+      "test": 5
+    }
+  },
+  "subcategory_bioisostere.add-N/P": {
+    "name": "subcategory_bioisostere.add-N/P",
+    "n_total": 64,
+    "n_authentic": 32,
+    "n_counterfeit": 32,
+    "balance": 1.0,
+    "shortcut_metrics": {
+      "cohens_d_mw": 0.023,
+      "cohens_d_heavy_atoms": 0.056,
+      "cohens_d_smiles_length": 0.084,
+      "trivial_lr_accuracy": 0.4
+    },
+    "split_counts": {
+      "train": 51,
+      "val": 6,
+      "test": 7
+    }
+  },
+  "subcategory_bioisostere.add-P/S": {
+    "name": "subcategory_bioisostere.add-P/S",
+    "n_total": 24,
+    "n_authentic": 12,
+    "n_counterfeit": 12,
+    "balance": 1.0,
+    "shortcut_metrics": {
+      "cohens_d_mw": 0.16,
+      "cohens_d_heavy_atoms": 0.054,
+      "cohens_d_smiles_length": 0.077,
+      "trivial_lr_accuracy": 0.125
+    },
+    "split_counts": {
+      "train": 19,
+      "val": 2,
+      "test": 3
+    }
+  },
+  "subcategory_bioisostere.O->I": {
+    "name": "subcategory_bioisostere.O->I",
+    "n_total": 40,
+    "n_authentic": 20,
+    "n_counterfeit": 20,
+    "balance": 1.0,
+    "shortcut_metrics": {
+      "cohens_d_mw": 0.083,
+      "cohens_d_heavy_atoms": 0.141,
+      "cohens_d_smiles_length": 0.077,
+      "trivial_lr_accuracy": 0.5
+    },
+    "split_counts": {
+      "train": 32,
+      "val": 4,
+      "test": 4
+    }
+  },
+  "subcategory_bioisostere.F->P": {
+    "name": "subcategory_bioisostere.F->P",
+    "n_total": 32,
+    "n_authentic": 16,
+    "n_counterfeit": 16,
+    "balance": 1.0,
+    "shortcut_metrics": {
+      "cohens_d_mw": 0.079,
+      "cohens_d_heavy_atoms": 0.079,
+      "cohens_d_smiles_length": 0.032,
+      "trivial_lr_accuracy": 0.5
+    },
+    "split_counts": {
+      "train": 25,
+      "val": 3,
+      "test": 4
+    }
+  },
+  "subcategory_halogen-walk.add-I": {
+    "name": "subcategory_halogen-walk.add-I",
+    "n_total": 966,
+    "n_authentic": 483,
+    "n_counterfeit": 483,
+    "balance": 1.0,
+    "shortcut_metrics": {
+      "cohens_d_mw": 0.176,
+      "cohens_d_heavy_atoms": 0.059,
+      "cohens_d_smiles_length": 0.068,
+      "trivial_lr_accuracy": 0.652
+    },
+    "split_counts": {
+      "train": 772,
+      "val": 96,
+      "test": 98
+    }
+  },
+  "subcategory_halogen-walk.Br->I": {
+    "name": "subcategory_halogen-walk.Br->I",
+    "n_total": 24,
+    "n_authentic": 12,
+    "n_counterfeit": 12,
+    "balance": 1.0,
+    "shortcut_metrics": {
+      "cohens_d_mw": 0.324,
+      "cohens_d_heavy_atoms": 0.269,
+      "cohens_d_smiles_length": 0.384,
+      "trivial_lr_accuracy": 0.875
+    },
+    "split_counts": {
+      "train": 19,
+      "val": 2,
+      "test": 3
+    }
+  },
+  "subcategory_halogen-walk.F->I": {
+    "name": "subcategory_halogen-walk.F->I",
+    "n_total": 426,
+    "n_authentic": 213,
+    "n_counterfeit": 213,
+    "balance": 1.0,
+    "shortcut_metrics": {
+      "cohens_d_mw": 0.166,
+      "cohens_d_heavy_atoms": 0.049,
+      "cohens_d_smiles_length": 0.071,
+      "trivial_lr_accuracy": 0.633
+    },
+    "split_counts": {
+      "train": 340,
+      "val": 42,
+      "test": 44
+    }
+  },
+  "subcategory_halogen-walk.Cl->I": {
+    "name": "subcategory_halogen-walk.Cl->I",
+    "n_total": 242,
+    "n_authentic": 121,
+    "n_counterfeit": 121,
+    "balance": 1.0,
+    "shortcut_metrics": {
+      "cohens_d_mw": 0.268,
+      "cohens_d_heavy_atoms": 0.004,
+      "cohens_d_smiles_length": 0.068,
+      "trivial_lr_accuracy": 0.658
+    },
+    "split_counts": {
+      "train": 193,
+      "val": 24,
+      "test": 25
+    }
+  },
+  "evolved": {
+    "name": "evolved",
+    "n_total": 94380,
+    "n_authentic": 47190,
+    "n_counterfeit": 47190,
+    "balance": 1.0,
+    "shortcut_metrics": {
+      "cohens_d_mw": 0.084,
+      "cohens_d_heavy_atoms": 0.058,
+      "cohens_d_smiles_length": 0.131,
+      "trivial_lr_accuracy": 0.526
+    },
+    "split_counts": {
+      "train": 75505,
+      "val": 9439,
+      "test": 9436
+    }
+  },
+  "pooled": {
+    "name": "pooled",
+    "n_total": 114824,
+    "n_authentic": 57412,
+    "n_counterfeit": 57412,
+    "balance": 1.0,
+    "shortcut_metrics": {
+      "cohens_d_mw": 0.054,
+      "cohens_d_heavy_atoms": 0.044,
+      "cohens_d_smiles_length": 0.109,
+      "trivial_lr_accuracy": 0.519
+    },
+    "split_counts": {
+      "train": 91862,
+      "val": 11482,
+      "test": 11480
+    }
+  },
+  "evolved_bioisostere": {
+    "name": "evolved_bioisostere",
+    "n_total": 2166,
+    "n_authentic": 1083,
+    "n_counterfeit": 1083,
+    "balance": 1.0,
+    "shortcut_metrics": {
+      "cohens_d_mw": 0.059,
+      "cohens_d_heavy_atoms": 0.006,
+      "cohens_d_smiles_length": 0.044,
+      "trivial_lr_accuracy": 0.505
+    },
+    "split_counts": {
+      "train": 1732,
+      "val": 216,
+      "test": 218
+    }
+  },
+  "evolved_halogen-walk": {
+    "name": "evolved_halogen-walk",
+    "n_total": 1800,
+    "n_authentic": 900,
+    "n_counterfeit": 900,
+    "balance": 1.0,
+    "shortcut_metrics": {
+      "cohens_d_mw": 0.016,
+      "cohens_d_heavy_atoms": 0.0,
+      "cohens_d_smiles_length": 0.036,
+      "trivial_lr_accuracy": 0.493
+    },
+    "split_counts": {
+      "train": 1440,
+      "val": 180,
+      "test": 180
+    }
+  },
+  "evolved_homologation": {
+    "name": "evolved_homologation",
+    "n_total": 2476,
+    "n_authentic": 1238,
+    "n_counterfeit": 1238,
+    "balance": 1.0,
+    "shortcut_metrics": {
+      "cohens_d_mw": 0.045,
+      "cohens_d_heavy_atoms": 0.02,
+      "cohens_d_smiles_length": 0.048,
+      "trivial_lr_accuracy": 0.533
+    },
+    "split_counts": {
+      "train": 1980,
+      "val": 247,
+      "test": 249
+    }
+  },
+  "evolved_scaffold-hop": {
+    "name": "evolved_scaffold-hop",
+    "n_total": 1184,
+    "n_authentic": 592,
+    "n_counterfeit": 592,
+    "balance": 1.0,
+    "shortcut_metrics": {
+      "cohens_d_mw": 0.042,
+      "cohens_d_heavy_atoms": 0.027,
       "cohens_d_smiles_length": 0.039,
       "trivial_lr_accuracy": 0.522
     },
     "split_counts": {
-      "train": 16730,
-      "val": 2092,
-      "test": 2090
+      "train": 947,
+      "val": 118,
+      "test": 119
+    }
+  },
+  "evolved_other": {
+    "name": "evolved_other",
+    "n_total": 1276,
+    "n_authentic": 638,
+    "n_counterfeit": 638,
+    "balance": 1.0,
+    "shortcut_metrics": {
+      "cohens_d_mw": 0.056,
+      "cohens_d_heavy_atoms": 0.002,
+      "cohens_d_smiles_length": 0.015,
+      "trivial_lr_accuracy": 0.512
     },
-    "conformers_written": 150
+    "split_counts": {
+      "train": 1020,
+      "val": 127,
+      "test": 129
+    }
+  },
+  "evolved_category_conditioned_all": {
+    "name": "evolved_category_conditioned_all",
+    "n_total": 8784,
+    "n_authentic": 4392,
+    "n_counterfeit": 4392,
+    "balance": 1.0,
+    "shortcut_metrics": {
+      "cohens_d_mw": 0.041,
+      "cohens_d_heavy_atoms": 0.002,
+      "cohens_d_smiles_length": 0.047,
+      "trivial_lr_accuracy": 0.524
+    },
+    "split_counts": {
+      "train": 7027,
+      "val": 878,
+      "test": 879
+    }
   }
 }
