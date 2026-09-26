@@ -1,0 +1,49 @@
+2026-08-14 12:26:05,801 | INFO | Authentic pool: 7724 molecules
+2026-08-14 12:26:18,256 | INFO | Assembling 22 datasets: ['category_bioisostere', 'category_halogen-walk', 'category_homologation', 'category_other', 'category_scaffold-hop', 'evolved', 'pooled', 'subcategory_bioisostere.add-N', 'subcategory_bioisostere.add-O', 'subcategory_bioisostere.add-P', 'subcategory_bioisostere.unsaturation-change', 'subcategory_halogen-walk.Cl->F', 'subcategory_halogen-walk.F->Cl', 'subcategory_halogen-walk.add-Cl', 'subcategory_halogen-walk.add-F', 'subcategory_homologation.grow-short', 'subcategory_homologation.grow-single', 'subcategory_homologation.shrink-single', 'subcategory_other.other', 'subcategory_scaffold-hop.add-ring', 'subcategory_scaffold-hop.aromatize', 'subcategory_scaffold-hop.ring-heteroatom-swap']
+2026-08-14 12:26:23,202 | INFO |     split sizes: {'train': 2384, 'val': 298, 'test': 298}
+2026-08-14 12:26:37,422 | INFO |   [category_bioisostere] 2980 mols (1:1), LR acc=0.553, conformers=149
+2026-08-14 12:26:39,726 | INFO |     split sizes: {'train': 2390, 'val': 298, 'test': 300}
+2026-08-14 12:26:53,600 | INFO |   [category_homologation] 2988 mols (1:1), LR acc=0.528, conformers=150
+2026-08-14 12:26:55,989 | INFO |     split sizes: {'train': 2398, 'val': 299, 'test': 301}
+2026-08-14 12:27:09,634 | INFO |   [category_scaffold-hop] 2998 mols (1:1), LR acc=0.531, conformers=150
+2026-08-14 12:27:11,860 | INFO |     split sizes: {'train': 2393, 'val': 299, 'test': 300}
+2026-08-14 12:27:22,836 | INFO |   [category_halogen-walk] 2992 mols (1:1), LR acc=0.599, conformers=150
+2026-08-14 12:27:23,599 | INFO |     split sizes: {'train': 673, 'val': 84, 'test': 85}
+2026-08-14 12:27:35,086 | INFO |   [category_other] 842 mols (1:1), LR acc=0.553, conformers=150
+2026-08-14 12:27:35,561 | INFO |     split sizes: {'train': 446, 'val': 55, 'test': 57}
+2026-08-14 12:27:50,286 | INFO |   [subcategory_bioisostere.unsaturation-change] 558 mols (1:1), LR acc=0.482, conformers=150
+2026-08-14 12:27:51,394 | INFO |     split sizes: {'train': 1088, 'val': 136, 'test': 136}
+2026-08-14 12:28:06,059 | INFO |   [subcategory_bioisostere.add-O] 1360 mols (1:1), LR acc=0.502, conformers=150
+2026-08-14 12:28:06,247 | INFO |     split sizes: {'train': 132, 'val': 16, 'test': 18}
+2026-08-14 12:28:24,734 | INFO |   [subcategory_bioisostere.add-N] 166 mols (1:1), LR acc=0.44, conformers=150
+2026-08-14 12:28:25,134 | INFO |     split sizes: {'train': 371, 'val': 46, 'test': 47}
+2026-08-14 12:29:01,445 | INFO |   [subcategory_bioisostere.add-P] 464 mols (1:1), LR acc=0.607, conformers=149
+2026-08-14 12:29:02,252 | INFO |     split sizes: {'train': 790, 'val': 98, 'test': 100}
+2026-08-14 12:29:16,669 | INFO |   [subcategory_homologation.grow-short] 988 mols (1:1), LR acc=0.515, conformers=150
+2026-08-14 12:29:18,059 | INFO |     split sizes: {'train': 1427, 'val': 178, 'test': 179}
+2026-08-14 12:29:31,427 | INFO |   [subcategory_homologation.grow-single] 1784 mols (1:1), LR acc=0.55, conformers=150
+2026-08-14 12:29:31,648 | INFO |     split sizes: {'train': 176, 'val': 22, 'test': 22}
+2026-08-14 12:29:41,590 | INFO |   [subcategory_homologation.shrink-single] 220 mols (1:1), LR acc=0.47, conformers=150
+2026-08-14 12:29:42,560 | INFO |     split sizes: {'train': 944, 'val': 118, 'test': 118}
+2026-08-14 12:29:57,762 | INFO |   [subcategory_scaffold-hop.add-ring] 1180 mols (1:1), LR acc=0.582, conformers=150
+2026-08-14 12:29:58,435 | INFO |     split sizes: {'train': 708, 'val': 88, 'test': 90}
+2026-08-14 12:30:08,254 | INFO |   [subcategory_scaffold-hop.ring-heteroatom-swap] 886 mols (1:1), LR acc=0.575, conformers=150
+2026-08-14 12:30:08,958 | INFO |     split sizes: {'train': 635, 'val': 79, 'test': 80}
+2026-08-14 12:30:39,637 | INFO |   [subcategory_scaffold-hop.aromatize] 794 mols (1:1), LR acc=0.552, conformers=149
+2026-08-14 12:30:40,942 | INFO |     split sizes: {'train': 1371, 'val': 171, 'test': 172}
+2026-08-14 12:31:11,676 | INFO |   [subcategory_halogen-walk.add-Cl] 1714 mols (1:1), LR acc=0.617, conformers=149
+2026-08-14 12:31:12,106 | INFO |     split sizes: {'train': 433, 'val': 54, 'test': 55}
+2026-08-14 12:31:23,127 | INFO |   [subcategory_halogen-walk.add-F] 542 mols (1:1), LR acc=0.436, conformers=150
+2026-08-14 12:31:23,402 | INFO |     split sizes: {'train': 249, 'val': 31, 'test': 32}
+2026-08-14 12:31:33,577 | INFO |   [subcategory_halogen-walk.Cl->F] 312 mols (1:1), LR acc=0.5, conformers=150
+2026-08-14 12:31:33,777 | INFO |     split sizes: {'train': 140, 'val': 17, 'test': 19}
+2026-08-14 12:31:45,746 | INFO |   [subcategory_halogen-walk.F->Cl] 176 mols (1:1), LR acc=0.491, conformers=150
+2026-08-14 12:31:46,417 | INFO |     split sizes: {'train': 673, 'val': 84, 'test': 85}
+2026-08-14 12:31:58,949 | INFO |   [subcategory_other.other] 842 mols (1:1), LR acc=0.553, conformers=150
+2026-08-14 12:31:59,854 | INFO |     split sizes: {'train': 912, 'val': 114, 'test': 114}
+2026-08-14 12:32:06,786 | INFO |   [evolved] 1140 mols (1:1), LR acc=0.52, conformers=150
+2026-08-14 12:32:16,546 | INFO |     split sizes: {'train': 10396, 'val': 1299, 'test': 1299}
+2026-08-14 12:32:29,846 | INFO |   [pooled] 12994 mols (1:1), LR acc=0.498, conformers=150
+2026-08-14 12:32:29,847 | INFO | ============================================================
+2026-08-14 12:32:29,847 | INFO | Built 22 benchmark datasets -> benchmark/
+2026-08-14 12:32:29,847 | INFO | Worst trivial-LR accuracy across datasets: 0.617 (target ~0.5 = no shortcut)

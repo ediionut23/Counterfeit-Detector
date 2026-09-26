@@ -456,3 +456,35 @@ python evaluate_generalization.py --sample 250
 ```
 
 Every step is deterministic given `--seed` (default 42).
+
+---
+
+## 10. Environment & large files on GitHub
+
+**Python environment.** No `venv/` is committed (platform-specific compiled
+binaries, ~1GB, wouldn't run on another machine anyway). Recreate it with:
+```bash
+python3 -m venv venv && source venv/bin/activate
+pip install -r requirements.txt
+```
+
+**Files too large for git, stored zstd-compressed instead.** GitHub hard-blocks
+any file over 100MB. Three files exceed that; each is committed as a
+`zstd -19` compressed sibling (`zstd -d` to restore):
+
+| Original (not in git) | Compressed (in git) |
+|---|---|
+| `intelligent_pharma_50k_v2.pt` (209MB) | `intelligent_pharma_50k_v2.pt.zst` (12MB) |
+| `mmp_mining_100k/mined.mmpdb` (311MB) | `mmp_mining_100k/mined.mmpdb.zst` (66MB) |
+| `mmp_mining_100k/fragments.fragdb` (255MB) | `mmp_mining_100k/fragments.fragdb.zst` (38MB) |
+
+```bash
+zstd -d intelligent_pharma_50k_v2.pt.zst
+zstd -d mmp_mining_100k/mined.mmpdb.zst
+zstd -d mmp_mining_100k/fragments.fragdb.zst
+```
+
+`benchmark/conformers_full.sdf` (439MB) is not re-added this way — its
+gzip-compressed twin `benchmark/conformers_full.sdf.gz` (16MB, already in the
+repo) carries the same data losslessly; restore with
+`gunzip -k benchmark/conformers_full.sdf.gz`.

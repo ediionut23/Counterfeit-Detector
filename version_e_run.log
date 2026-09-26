@@ -1,0 +1,225 @@
+2026-08-14 12:18:37,146 | INFO | Loaded 131 mutation rules from mined_transformations.py
+2026-08-14 12:18:38,521 | INFO | Loaded 200 unique authentic parents
+2026-08-14 12:18:38,984 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:18:39,914 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:18:40,777 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:18:41,860 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:18:42,534 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:18:43,987 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:18:44,671 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:18:45,392 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:18:46,197 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:18:47,116 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:18:47,961 | INFO |   ...10/200 parents, 28 counterfeits so far (0 fool the detector)
+2026-08-14 12:18:47,962 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:18:48,802 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:18:49,893 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:18:50,883 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:18:51,837 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:18:53,094 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:18:54,814 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:18:55,987 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:18:57,298 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:18:58,514 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:18:59,722 | INFO |   ...20/200 parents, 60 counterfeits so far (0 fool the detector)
+2026-08-14 12:18:59,722 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:19:01,001 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:19:02,328 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:19:04,636 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:19:06,733 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:19:07,969 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:19:10,176 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:19:14,031 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:19:15,312 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:19:16,472 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:19:17,771 | INFO |   ...30/200 parents, 88 counterfeits so far (0 fool the detector)
+2026-08-14 12:19:17,772 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:19:19,066 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:19:20,508 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:19:22,090 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:19:24,025 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:19:26,551 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:19:28,131 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:19:29,253 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:19:30,662 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:19:32,404 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:19:34,474 | INFO |   ...40/200 parents, 123 counterfeits so far (0 fool the detector)
+2026-08-14 12:19:34,474 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:19:35,769 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:20:05,460 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:20:06,727 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:20:09,264 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:20:13,202 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:20:15,115 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:20:17,176 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:20:18,382 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:20:20,017 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:20:22,117 | INFO |   ...50/200 parents, 144 counterfeits so far (0 fool the detector)
+2026-08-14 12:20:22,117 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:20:23,241 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:20:24,378 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:20:28,827 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:20:30,203 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:20:31,472 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:20:33,062 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:20:34,312 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:20:35,486 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:20:36,582 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:20:37,784 | INFO |   ...60/200 parents, 172 counterfeits so far (0 fool the detector)
+2026-08-14 12:20:37,784 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:20:39,136 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:20:40,592 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:20:42,150 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:20:43,269 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:20:44,426 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:20:45,717 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:20:46,796 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:20:48,670 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:20:51,010 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:20:55,074 | INFO |   ...70/200 parents, 202 counterfeits so far (0 fool the detector)
+2026-08-14 12:20:55,075 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:20:56,744 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:20:58,397 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:21:02,053 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:21:03,546 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:21:04,906 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:21:06,134 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:21:07,419 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:21:08,816 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:21:10,227 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:21:11,363 | INFO |   ...80/200 parents, 226 counterfeits so far (0 fool the detector)
+2026-08-14 12:21:11,364 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:21:15,156 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:21:16,506 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:21:17,862 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:21:19,423 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:21:20,619 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:21:21,939 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:21:25,377 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:21:29,529 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:21:31,184 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:21:32,591 | INFO |   ...90/200 parents, 251 counterfeits so far (0 fool the detector)
+2026-08-14 12:21:32,592 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:21:33,974 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:21:35,281 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:21:36,479 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:21:37,613 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:21:40,203 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:21:41,390 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:21:42,825 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:21:44,633 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:21:45,768 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:21:47,428 | INFO |   ...100/200 parents, 280 counterfeits so far (0 fool the detector)
+2026-08-14 12:21:47,429 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:21:48,663 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:21:50,206 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:21:51,520 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:21:53,058 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:21:54,726 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:21:56,641 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:21:58,249 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:21:59,503 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:22:00,944 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:22:02,046 | INFO |   ...110/200 parents, 313 counterfeits so far (0 fool the detector)
+2026-08-14 12:22:02,046 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:22:03,339 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:22:04,453 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:22:06,133 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:22:07,272 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:22:08,535 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:22:09,880 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:22:11,954 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:22:13,405 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:22:14,612 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:22:16,570 | INFO |   ...120/200 parents, 336 counterfeits so far (0 fool the detector)
+2026-08-14 12:22:16,571 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:22:17,903 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:22:19,503 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:22:20,809 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:22:21,915 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:22:29,602 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:22:30,814 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:22:33,359 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:22:34,613 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:22:36,218 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:22:37,638 | INFO |   ...130/200 parents, 361 counterfeits so far (0 fool the detector)
+2026-08-14 12:22:37,639 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:22:38,866 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:22:40,155 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:22:41,563 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:22:43,375 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:22:44,542 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:22:46,589 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:22:48,316 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:22:49,682 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:22:51,377 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:22:55,577 | INFO |   ...140/200 parents, 393 counterfeits so far (0 fool the detector)
+2026-08-14 12:22:55,578 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:22:56,910 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:22:58,378 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:23:01,538 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:23:02,686 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:23:04,027 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:23:05,182 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:23:08,740 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:23:10,094 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:23:13,841 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:23:15,057 | INFO |   ...150/200 parents, 419 counterfeits so far (0 fool the detector)
+2026-08-14 12:23:15,058 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:23:16,246 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:23:17,391 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:23:18,672 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:23:23,131 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:23:24,261 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:23:25,428 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:23:26,729 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:23:28,198 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:23:29,539 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:23:30,728 | INFO |   ...160/200 parents, 451 counterfeits so far (0 fool the detector)
+2026-08-14 12:23:30,728 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:23:32,154 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:23:33,510 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:23:34,616 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:23:36,534 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:23:45,820 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:23:47,064 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:23:48,995 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:23:50,617 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:23:52,056 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:23:53,686 | INFO |   ...170/200 parents, 485 counterfeits so far (0 fool the detector)
+2026-08-14 12:23:53,687 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:23:54,924 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:23:56,105 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:24:00,812 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:24:02,897 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:24:05,760 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:24:07,574 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:24:08,867 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:24:10,095 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:24:11,735 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:24:12,717 | INFO |   ...180/200 parents, 511 counterfeits so far (0 fool the detector)
+2026-08-14 12:24:12,717 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:24:14,194 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:24:15,920 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:24:17,342 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:24:18,941 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:24:21,937 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:24:23,221 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:24:26,571 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:24:27,889 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:24:29,185 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:24:30,468 | INFO |   ...190/200 parents, 546 counterfeits so far (0 fool the detector)
+2026-08-14 12:24:30,469 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:24:31,627 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:24:33,243 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:24:34,464 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:24:35,786 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:24:37,003 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:24:38,128 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:24:39,467 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:24:40,674 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:24:41,953 | INFO | Running NSGA-II: pop=30, generations=15, objectives=3
+2026-08-14 12:24:43,011 | INFO |   ...200/200 parents, 571 counterfeits so far (0 fool the detector)
+2026-08-14 12:24:43,016 | INFO | ============================================================
+2026-08-14 12:24:43,016 | INFO | Version E built: 571 evolved counterfeits from 200 parents -> version_e/
+2026-08-14 12:24:43,016 | INFO |   fooling the detector (P<0.5): 0 (0%)

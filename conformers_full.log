@@ -1,0 +1,16 @@
+2026-08-14 12:53:22,957 | INFO | Embedding 14300 unique molecules on 7 workers ...
+2026-08-14 12:54:37,997 | INFO |   1000/14300 processed, 1000 embedded
+2026-08-14 12:55:39,311 | INFO |   2000/14300 processed, 1999 embedded
+2026-08-14 12:57:13,521 | INFO |   3000/14300 processed, 2998 embedded
+2026-08-14 12:58:55,675 | INFO |   4000/14300 processed, 3997 embedded
+2026-08-14 13:15:23,843 | INFO |   5000/14300 processed, 4994 embedded
+2026-08-14 13:31:03,753 | INFO |   6000/14300 processed, 5994 embedded
+2026-08-14 13:32:05,628 | INFO |   7000/14300 processed, 6994 embedded
+2026-08-14 13:34:47,378 | INFO |   8000/14300 processed, 7994 embedded
+2026-08-14 13:38:18,966 | INFO |   9000/14300 processed, 8991 embedded
+2026-08-14 13:42:34,494 | INFO |   10000/14300 processed, 9990 embedded
+2026-08-14 13:45:08,938 | INFO |   11000/14300 processed, 10988 embedded
+2026-08-14 13:46:34,254 | INFO |   12000/14300 processed, 11987 embedded
+2026-08-14 13:47:42,974 | INFO |   13000/14300 processed, 12987 embedded
+2026-08-14 13:49:04,581 | INFO |   14000/14300 processed, 13986 embedded
+2026-08-14 13:51:55,325 | INFO | Done: 14277/14300 embedded (99.8%) -> benchmark/conformers_full.sdf

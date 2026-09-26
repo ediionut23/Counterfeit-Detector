@@ -1,0 +1,20 @@
+2026-08-14 11:14:14,944 | INFO | Detector loaded (best_model_f1_0.8176.pt, hidden=192, 9 node types): adversarial objective ENABLED.
+2026-08-14 11:14:14,945 | INFO | Scoring Version R (in-distribution) ...
+2026-08-14 11:14:28,165 | INFO | Scoring Version M per category ...
+2026-08-14 11:15:01,034 | INFO | Scoring Version E (evolved adversarial) ...
+2026-08-14 11:15:05,103 | INFO | ==============================================================
+2026-08-14 11:15:05,103 | INFO | COUNTERFEIT DETECTION RATE  (higher = detector catches them)
+2026-08-14 11:15:05,103 | INFO | --------------------------------------------------------------
+2026-08-14 11:15:05,103 | INFO |   set                             n   detect%    mean P
+2026-08-14 11:15:05,103 | INFO |   R  hand-written (in-dist)     250     97.6%     0.671
+2026-08-14 11:15:05,103 | INFO |   M  other                      250     97.2%     0.649
+2026-08-14 11:15:05,103 | INFO |   M  bioisostere                250     97.6%     0.675
+2026-08-14 11:15:05,103 | INFO |   M  scaffold-hop               250     98.4%     0.669
+2026-08-14 11:15:05,103 | INFO |   M  halogen-walk               250     98.4%     0.695
+2026-08-14 11:15:05,103 | INFO |   M  homologation               250     98.8%     0.661
+2026-08-14 11:15:05,104 | INFO |   E  evolved adversarial        152     94.7%      0.64
+2026-08-14 11:15:05,104 | INFO | --------------------------------------------------------------
+2026-08-14 11:15:05,104 | INFO |   Worst-category gap vs in-distribution R: 0.4 percentage points
+2026-08-14 11:15:05,104 | INFO |   E vs R gap: 2.9 pts (white-box; upper bound on vulnerability)
+2026-08-14 11:15:05,104 | INFO | ==============================================================
+2026-08-14 11:15:05,104 | INFO | Saved -> generalization_results.json
