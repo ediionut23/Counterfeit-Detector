@@ -72,5 +72,6 @@ url-normalize==2.2.1
 urllib3==2.6.3
 uvicorn==0.46.0
 wrapt==2.3.0
+xgboost==3.4.1
 xxhash==3.6.0
 yarl==1.23.0

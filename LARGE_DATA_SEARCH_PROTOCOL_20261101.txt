@@ -1,0 +1,102 @@
+Căutare extinsă autorizată: parametri, arhitecturi și repetări pe set mare
+
+Actualizare7noiembrie2026: continuarea și controlul termic actual sunt descrise
+în RESEARCH_CONTINUATION_20261107.txt și active_research_run.json. Secțiunile
+istorice de mai jos despre generare paralelă/6procese și test automat au fost
+înlocuite de antrenare separată, selecție finală pe validare și inventar secvențial.
+
+Plan activ: large_model_search_plan.json
+Inventar independent: million_inventory_plan.json
+Destinații curente: active_research_run.json
+
+Condiția de dimensiune este verificată automat înaintea căutării și pentru
+comenzile generate ulterior: exact 161.157 identități de antrenare și 191.701
+exemple în total. Validare: 13.756; test: 16.788. Toate configurațiile folosesc
+aceleași molecule, etichete, ponderi și împărțiri fixate. Nu se folosesc subseturi
+de date pentru screening; se schimbă doar bugetul de epoci. Dovada verificării
+efective este large_model_search_preflight.json și full_cohort_guard.json.
+
+Configurații inițiale, toate cu seed 42:
+GATv2 (8):
+  gatv2_base:                 96 canale, 3 straturi, 4 heads, ponderi unitare;
+  gatv2_base_weighted:        aceeași capacitate, ponderi ierarhice pe train;
+  gatv2_base_deep:           128 canale, 4 straturi, LR 0,0007;
+  gatv2_jk:                 128 canale, 3 straturi, JK, LayerNorm;
+  gatv2_attention_weighted:  128 canale, 4 straturi, 8 heads, atenție la pooling;
+  gatv2_jk_attention:        128 canale, 4 straturi, JK și pooling cu atenție;
+  gatv2_max_weighted:         96 canale, 3 straturi, mean/max pooling;
+  gatv2_jk_wide:             192 canale, 4 straturi, 8 heads, JK și mean/max.
+Ratele de învățare, regularizarea, normalizarea și dropouturile sunt fixate
+explicit în plan pentru fiecare configurație. JK combină reprezentările
+obținute la mai multe adâncimi; mecanismul de selecție nu citește testul.
+
+Geometrice (4), comparații pereche cu și fără unghiuri:
+  geometric_distance:          64 canale, 3 interacțiuni, 16 baze radiale;
+  geometric_distance_weighted: 96 canale, 4 interacțiuni, 32 baze radiale;
+  geometric_angular:           corespondentul de 64 canale cu informație angulară;
+  geometric_angular_weighted:  corespondentul de 96 canale cu informație angulară.
+Unghiurile provin din vectorii coordonatelor 3D existente. Agregatele direcționale
+de ordinul întâi și al doilea intră în reprezentările atomice și filtrele de
+mesaje, cu cost liniar în numărul de muchii. Nu se inventează coordonate și nu
+se afirmă că această implementare este DimeNet. Testele verifică invarianta la
+rotație/translație, sensibilitatea la unghiuri/distanțe și gradienții finiți.
+
+Politica de calcul și selecție
+1. Screening pe întregul train, maximum 20 de epoci, în ordine alternată între
+   GATv2 și geometric. Astfel, ambele familii încep devreme.
+2. Primele două configurații din fiecare familie după F1 de validare continuă
+   din last.pt până la maximum 100 de epoci. Rankingul de screening și copiile
+   checkpointurilor/probabilităților sunt păstrate înainte de continuare.
+3. Oprirea timpurie cu patience 12 se respectă și la reluare: un model deja
+   oprit nu primește epoci suplimentare prin simpla mărire a limitei.
+4. Configurația câștigătoare la seed 42 este fixată înaintea a două repetări
+   independente, cu seedurile 43 și 44, fiecare pe toate cele 161.157 molecule.
+5. Se compară pe validare modelele individuale și media egală a probabilităților
+   celor trei seeduri ale configurației câștigătoare. Pragul F1 se alege numai
+   pe validare, după o regulă de egalitate predeclarată.
+6. Se fixează un singur candidat final per familie. Testul se rulează abia după
+   fixarea membrilor, hashurilor, adaptorului de inferență și pragului. Pentru
+   un ansamblu se calculează exclusiv metricile ansamblului, fără a folosi
+   scorurile individuale de test pentru selecție.
+
+Există 12 configurații inițiale și până la 4 modele suplimentare pentru repetarea
+seedurilor. Promovarea continuă modelele existente. Durata totală depinde de
+oprirea timpurie și poate depăși o noapte; coada poate continua independent.
+Ținta F1 >= 0,85 nu este garantată și nu schimbă setul de test sau etichetele.
+
+Calitate și interpretare
+Cohorta strictă și geometriile convergente rămân cele din protocolul anterior.
+Etichetele reprezintă originea moleculară publică/generată, fără dovadă că un
+produs este autentic sau contrafăcut în lumea reală. Repetarea experimentelor
+pe validare poate produce optimism de selecție; rezultatul final este scorul
+modelului fixat pe test, raportat separat de performanța de validare.
+
+Persistență și procese
+Generarea spre 1M continuă cu 6 procese, independent de căutarea modelelor.
+Se rulează cel mult un antrenor cu 2 threaduri CPU în același timp. Modelele
+folosesc cache-urile complete pregătite pe disc. Nu se așteaptă generarea de
+conformeri 3D pentru toate cele 1M molecule: cohortei fixate îi sunt disponibile
+deja coordonatele 3D și aceeași listă de exemple pentru comparația cu GATv2.
+
+Checkpointurile best.pt/last.pt, optimizerul, schedulerul și RNG se salvează
+atomic după fiecare epocă. Starea etapelor, seedurile, comenzile, checkpointurile
+și selecțiile sunt reluabile și versionate. Lockurile împiedică rulări duplicate.
+Coada veche a fost oprită înaintea oricărei antrenări/evaluări; datele și cacheurile
+sale au fost păstrate. Fișierul handoff.json păstrează legătura între versiuni.
+
+Progres:
+  training_runs/large_search_20261101/progress.json
+  training_runs/large_search_20261101/progress_report.txt
+  training_runs/large_search_20261101/supervisor.log
+  molecule_bank_1m/overnight_inventory_20261101/progress.json
+
+Monitorizarea urmează automat active_research_run.json:
+  ./venv/bin/python monitor_overnight_research.py --watch
+
+Reluare fără dublarea etapelor active:
+  ./venv/bin/python run_large_model_search.py --plan large_model_search_plan.json --detach
+  ./venv/bin/python run_overnight_research.py --plan million_inventory_plan.json --detach
+
+STOP în directorul fiecărei cozi împiedică lansarea etapei următoare. Pentru
+generare există separat molecule_bank_1m/STOP_GENERATION. Modelele salvate și
+datele deja confirmate tranzacțional rămân disponibile.

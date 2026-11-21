@@ -1,0 +1,142 @@
+Rulare autonomă pornită la 1 noiembrie 2026, Europe/Bucharest
+
+ACTUALIZARE: după autorizarea mai multor experimente, coada inițială descrisă
+mai jos a fost înlocuită înainte de antrenare/test cu cele două cozi indicate
+în active_research_run.json. Protocolul activ extins este documentat în
+LARGE_DATA_SEARCH_PROTOCOL_20261101.txt și large_model_search_plan.json.
+
+Obiective și stare reală
+Ținta băncii este de minimum 1.000.000 de identități moleculare unice. Starea
+curentă, numerele și etapa activă se citesc din molecule_bank_1m/progress.json
+și training_runs/overnight_20261101/progress.json. Acest document nu afirmă
+că ținta de volum sau F1 a fost deja atinsă. Procesul detașat rulează local,
+independent de fereastra conversației, cu menținerea calculatorului activ.
+
+Algoritmii M și E
+1. Registrul ChEMBL păstrează nume, ID, sursă, statut, forme originale și
+   identitate normalizată. Există 1.638 de referințe eligibile pentru generare;
+   alte aliasuri și excluderile sunt păstrate separat. Statutul din ChEMBL nu
+   certifică autenticitatea unui produs comercial.
+2. M aplică reguli MMP compatibile cu structura. Păstrează regulile executate,
+   intermediarii reali și referința inițială. Căutarea permite până la 1/2/3
+   etape pentru benzile near/intermediate/distant; nu presupune că fiecare
+   rezultat are exact acest număr de transformări.
+3. E folosește NSGA-II, populație 128 și 4 generații în profilul de producție.
+   Crossoverul mass-balanced evită explozia combinatorială BRICS observată în
+   primele verificări. Istoricul E conține evenimentele producătoare imediate
+   executate, fără a pretinde o genealogie completă. Categoria solicitată a
+   operatorului nu certifică automat categoria chimică a perechii finale.
+4. Fitnessul are ponderi și ținte configurabile. Benzile de similaritate sunt
+   [0,75;0,98], [0,50;0,80], [0,30;0,60], cu ținte 0,88/0,65/0,45. Benzile se
+   suprapun și descriu straturi de căutare; nu sunt clase exclusive naturale.
+5. Generarea urmărește deficitul M/E, categoria și dificultatea, apoi
+   subcategoriile aplicabile pentru M. Părinții care trec profilul de bază
+   sunt prioritizați: 628 fezabili, 217 intermediari și 793 mai puțin fezabili.
+   Nu se relaxează filtrele pentru a completa artificial o categorie.
+6. Filtrele noilor candidați: QED >= 0,35; SA <= 4,2; zero alerte PAINS/Brenk;
+   10–70 atomi grei; masă 150–800 Da; structură validă fără radicali;
+   similaritate recalculată după normalizare; excluderea cazurilor externe.
+   Aceste filtre sunt euristici computaționale, nu dovadă de sinteză,
+   stabilitate experimentală sau siguranță biologică.
+7. Diversitatea limitează contribuția unei referințe și a unui schelet nou,
+   iar E selectează copii cu similaritate pereche de maximum 0,95.
+
+Identitate, scenarii și proveniență
+Identitatea folosește RDKit Cleanup, FragmentParent și Uncharger, cu stereo
+păstrat în SMILES izomeric canonic. Sărurile/alte forme sunt surse ale aceleiași
+identități active. Relațiile, observațiile de amestec și conformerii nu cresc
+numărul de molecule. Originile publică/generată și metodele M/E pot coexista;
+numerele acestora nu trebuie adunate ca și cum ar fi mulțimi disjuncte.
+
+build_bank_scenarios.py produce substituții cu compuși cunoscuți, amestecuri,
+absența API-ului și variații relative de cantitate, în tabelul samples. Unitățile
+relative nu inventează doze clinice. Aceste observații sintetice sunt distincte
+de cazurile reale confirmate, păstrate în real_world_falsification/v1.
+
+Defectul de indexare a istoricului E pentru stereocentre simetrice imposibile a
+fost corectat: cheia folosește aceeași recanonicalizare ca arhiva, iar ieșirea
+originală a operatorului rămâne în eveniment. Cele 53 de relații afectate au
+fost recuperate prin reluarea deterministă a 15 joburi, fără inventarea regulilor
+și fără schimbarea identităților. Artefactul și evenimentul de reparație sunt
+în molecule_bank_1m/e_history_replay_repair_1793559219580244000.json și SQLite.
+Un audit ulterior al celor 7.016 relații noi existente atunci a trecut fără erori.
+
+Persistență și audit
+SQLite WAL salvează tranzacțional molecule, surse, descriptorii normalizați,
+relații și starea joburilor după fiecare lot. Seedurile Python/NumPy/pymoo,
+configurațiile, regulile, sursele, codul și holdout-ul sunt fixate prin hashuri.
+Joburile au un buget de timp de 90 secunde. Coordonatorul are lock exclusiv.
+La atingerea țintei, coada importă contextele E rămase, salvează scenariile,
+rulează auditul complet și exportă banca, apoi pregătește sharduri de grafuri 2D.
+Aceste sharduri nu conțin coordonate 3D inventate pentru noua bancă.
+
+Datele vechi nu sunt declarate retrospectiv conforme cu toate filtrele noi.
+Auditul distinge validitatea identității, descriptorii, istoricul și profilul
+de calitate aplicat efectiv. Erorile de import sunt păstrate, inclusiv cele
+15 rânduri de catalog și 9 relații M care nu au putut fi importate corect.
+Părinții vechi fără identificare verificabilă nu primesc nume inventate.
+
+Protocolul modelelor
+Cohorta fixată înaintea rezultatelor este:
+balanced_datasets/training_200k/overnight_strict_converged_v2
+191.701 exemple comune pentru GATv2 2D și GNN geometric 3D:
+  train: 161.157 = 80.081 referințe publice + 81.076 analogi generați;
+  val:    13.756 = 6.878 + 6.878;
+  test:   16.788 = 8.394 + 8.394.
+Nu există suprapuneri de conectivitate sau schelet normalizat între partiții,
+inclusiv între părinții declarați și moleculele observate. Au fost eliminate
+ambiguitățile de etichetă, duplicatele, cazurile externe și grafurile lipsă.
+Filtrul comun suplimentar a eliminat 105 geometrii neconvergente și 13 rânduri
+pentru rebalansarea deterministă a validării/testului. Energiile sunt finite.
+
+Geometriile sunt conformeri ETKDG optimizați cu câmpuri de forță, nu coordonate
+experimentale. Modelul geometric recalculează distanțele din poziții și folosește
+mesaje cu baze radiale pe vecinii spațiali, cutoff 4,5 Å, maximum 24 de vecini.
+Predicția este invariantă la rotație/translație; distanțele schimbate afectează
+mesajele. Acesta este un model scalar de tip SchNet, nu o simulare moleculară.
+
+Planul predeclarat conține trei GATv2 și două configurații geometrice, cu cel
+mult 80, respectiv 60 de epoci și oprire timpurie. Configurațiile weighted
+folosesc ponderi calculate numai din train: masă egală pentru clase, metode
+M/E și subcategorii în interiorul metodei. Configurațiile unweighted sunt
+comparații cu ponderi unitare; evaluarea este întotdeauna neponderată.
+
+Modelele și pragul F1 sunt selectate exclusiv pe validare. Cea mai bună
+configurație din fiecare familie primește o singură evaluare de test, blocată
+pe checkpoint și cohortă prin hash. F1 >= 0,85 este o țintă de cercetare;
+un rezultat sub țintă rămâne raportat, fără schimbarea testului sau etichetelor.
+Acest benchmark distinge originea moleculară publică/generată. Un detector de
+contrafaceri reale are în plus nevoie de referința declarată, compoziția
+observată și evaluare pe observații reale cu controale adecvate.
+
+Modelele, optimizerul, schedulerul, RNG, istoricul și metricile sunt salvate
+atomic la fiecare epocă în best.pt și last.pt. Probabilitățile și metricile pe
+subgrupuri sunt păstrate separat. Reluarea exactă și lockurile au trecut
+fixture-uri, inclusiv comparația antrenare continuă versus reluare și moartea
+supervisorului în timp ce etapa rulează. Nu s-au folosit metrici de test pentru
+selecție. Grafurile sunt încărcate din sharduri/cache mmap de pe disc.
+
+Operare
+Planul și hashurile: overnight_research_plan.json
+Supervisor: run_overnight_research.py
+Raport actualizat: training_runs/overnight_20261101/progress_report.txt
+Progres structurat: training_runs/overnight_20261101/progress.json
+Loguri: training_runs/overnight_20261101/*.log și molecule_bank_1m/*.log
+
+Monitorizare în terminal:
+  cd /Users/itanasa/Counterfeit-Detector
+  ./venv/bin/python monitor_overnight_research.py --watch
+
+Reluarea cozii (refuză un al doilea supervisor activ):
+  ./venv/bin/python run_overnight_research.py --plan overnight_research_plan.json --detach
+
+Fișierul training_runs/overnight_20261101/STOP împiedică etapele următoare;
+fișierul molecule_bank_1m/STOP_GENERATION oprește generarea după joburile active.
+Aceste fișiere nu anulează checkpointurile deja salvate. La o eroare, cauza
+rămâne în progres/log; coada nu declară succesul și nu fabrică rezultate.
+
+Surse tehnice primare
+https://arxiv.org/abs/2105.14491
+https://pytorch-geometric.readthedocs.io/en/2.5.1/_modules/torch_geometric/nn/conv/gatv2_conv.html
+https://github.com/pyg-team/pytorch_geometric/blob/master/torch_geometric/nn/models/schnet.py
+https://rdkit.org/docs/GettingStartedInPython.html

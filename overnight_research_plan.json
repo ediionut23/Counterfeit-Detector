@@ -1,0 +1,428 @@
+{
+  "schema_version": 1,
+  "workspace": "/Users/itanasa/Counterfeit-Detector",
+  "out_dir": "training_runs/overnight_20261101",
+  "bank_db": "molecule_bank_1m/bank.sqlite",
+  "target_unique_molecules": 1000000,
+  "target_f1": 0.85,
+  "generation_command": [
+    "/Users/itanasa/Counterfeit-Detector/venv/bin/python",
+    "expand_million_bank.py",
+    "--workers",
+    "6"
+  ],
+  "stages": [
+    {
+      "id": "legacy_context_01",
+      "command": [
+        "/Users/itanasa/Counterfeit-Detector/venv/bin/python",
+        "import_legacy_bank_relations.py",
+        "--db",
+        "molecule_bank_1m/bank.sqlite",
+        "--input",
+        "version_ga/supplements/bioisostere_seed20261025/counterfeits_evolved_bioisostere.csv",
+        "--method",
+        "E"
+      ]
+    },
+    {
+      "id": "legacy_context_02",
+      "command": [
+        "/Users/itanasa/Counterfeit-Detector/venv/bin/python",
+        "import_legacy_bank_relations.py",
+        "--db",
+        "molecule_bank_1m/bank.sqlite",
+        "--input",
+        "version_ga/supplements/halogen-walk_seed20261025/counterfeits_evolved_halogen-walk.csv",
+        "--method",
+        "E"
+      ]
+    },
+    {
+      "id": "legacy_context_03",
+      "command": [
+        "/Users/itanasa/Counterfeit-Detector/venv/bin/python",
+        "import_legacy_bank_relations.py",
+        "--db",
+        "molecule_bank_1m/bank.sqlite",
+        "--input",
+        "version_ga/supplements/halogen-walk_seed20261026/counterfeits_evolved_halogen-walk.csv",
+        "--method",
+        "E"
+      ]
+    },
+    {
+      "id": "legacy_context_04",
+      "command": [
+        "/Users/itanasa/Counterfeit-Detector/venv/bin/python",
+        "import_legacy_bank_relations.py",
+        "--db",
+        "molecule_bank_1m/bank.sqlite",
+        "--input",
+        "version_ga/supplements/homologation_seed20261027/counterfeits_evolved_homologation.csv",
+        "--method",
+        "E"
+      ]
+    },
+    {
+      "id": "legacy_context_05",
+      "command": [
+        "/Users/itanasa/Counterfeit-Detector/venv/bin/python",
+        "import_legacy_bank_relations.py",
+        "--db",
+        "molecule_bank_1m/bank.sqlite",
+        "--input",
+        "version_ga/supplements/other_seed20261028/counterfeits_evolved_other.csv",
+        "--method",
+        "E"
+      ]
+    },
+    {
+      "id": "legacy_context_06",
+      "command": [
+        "/Users/itanasa/Counterfeit-Detector/venv/bin/python",
+        "import_legacy_bank_relations.py",
+        "--db",
+        "molecule_bank_1m/bank.sqlite",
+        "--input",
+        "version_ga/supplements/scaffold-hop_seed20261025/counterfeits_evolved_scaffold-hop.csv",
+        "--method",
+        "E"
+      ]
+    },
+    {
+      "id": "composition_scenarios",
+      "command": [
+        "/Users/itanasa/Counterfeit-Detector/venv/bin/python",
+        "build_bank_scenarios.py",
+        "--db",
+        "molecule_bank_1m/bank.sqlite"
+      ]
+    },
+    {
+      "id": "audit_and_export_bank",
+      "command": [
+        "/Users/itanasa/Counterfeit-Detector/venv/bin/python",
+        "audit_export_million_bank.py",
+        "--db",
+        "molecule_bank_1m/bank.sqlite",
+        "--out",
+        "molecule_bank_1m/release",
+        "--minimum",
+        "1000000",
+        "--workers",
+        "4",
+        "--descriptor-sample",
+        "4096"
+      ]
+    },
+    {
+      "id": "disk_graph_shards",
+      "command": [
+        "/Users/itanasa/Counterfeit-Detector/venv/bin/python",
+        "bank_graph_shards.py",
+        "prepare",
+        "--db",
+        "molecule_bank_1m/bank.sqlite",
+        "--out",
+        "molecule_bank_1m/graphs_2d",
+        "--shard-size",
+        "2048"
+      ]
+    }
+  ],
+  "families": [
+    {
+      "id": "gatv2",
+      "runs": [
+        {
+          "id": "gatv2_unweighted",
+          "out_dir": "training_runs/overnight_20261101/gatv2_unweighted",
+          "command": [
+            "/Users/itanasa/Counterfeit-Detector/venv/bin/python",
+            "train_gatv2_experiment.py",
+            "--dataset-csv",
+            "balanced_datasets/training_200k/overnight_strict_converged_v2/dataset.csv",
+            "--graph-index",
+            "balanced_datasets/training_200k/overnight_strict_converged_v2/graph_index.csv",
+            "--split-manifest",
+            "balanced_datasets/training_200k/overnight_strict_converged_v2/manifest.json",
+            "--cache-dir",
+            "training_cache/gatv2_overnight_v2",
+            "--heads",
+            "4",
+            "--batch-size",
+            "128",
+            "--epochs",
+            "80",
+            "--patience",
+            "12",
+            "--threads",
+            "2",
+            "--device",
+            "cpu",
+            "--selection-metric",
+            "f1",
+            "--test-lock",
+            "training_runs/overnight_20261101/gatv2_test_lock.json",
+            "--no-test",
+            "--out-dir",
+            "training_runs/overnight_20261101/gatv2_unweighted",
+            "--hidden",
+            "96",
+            "--layers",
+            "3",
+            "--dropout",
+            "0.2",
+            "--lr",
+            "0.001",
+            "--weight-mode",
+            "none",
+            "--seed",
+            "42"
+          ]
+        },
+        {
+          "id": "gatv2_weighted",
+          "out_dir": "training_runs/overnight_20261101/gatv2_weighted",
+          "command": [
+            "/Users/itanasa/Counterfeit-Detector/venv/bin/python",
+            "train_gatv2_experiment.py",
+            "--dataset-csv",
+            "balanced_datasets/training_200k/overnight_strict_converged_v2/dataset.csv",
+            "--graph-index",
+            "balanced_datasets/training_200k/overnight_strict_converged_v2/graph_index.csv",
+            "--split-manifest",
+            "balanced_datasets/training_200k/overnight_strict_converged_v2/manifest.json",
+            "--cache-dir",
+            "training_cache/gatv2_overnight_v2",
+            "--heads",
+            "4",
+            "--batch-size",
+            "128",
+            "--epochs",
+            "80",
+            "--patience",
+            "12",
+            "--threads",
+            "2",
+            "--device",
+            "cpu",
+            "--selection-metric",
+            "f1",
+            "--test-lock",
+            "training_runs/overnight_20261101/gatv2_test_lock.json",
+            "--no-test",
+            "--out-dir",
+            "training_runs/overnight_20261101/gatv2_weighted",
+            "--hidden",
+            "96",
+            "--layers",
+            "3",
+            "--dropout",
+            "0.2",
+            "--lr",
+            "0.001",
+            "--weight-mode",
+            "row",
+            "--seed",
+            "42"
+          ]
+        },
+        {
+          "id": "gatv2_deep",
+          "out_dir": "training_runs/overnight_20261101/gatv2_deep",
+          "command": [
+            "/Users/itanasa/Counterfeit-Detector/venv/bin/python",
+            "train_gatv2_experiment.py",
+            "--dataset-csv",
+            "balanced_datasets/training_200k/overnight_strict_converged_v2/dataset.csv",
+            "--graph-index",
+            "balanced_datasets/training_200k/overnight_strict_converged_v2/graph_index.csv",
+            "--split-manifest",
+            "balanced_datasets/training_200k/overnight_strict_converged_v2/manifest.json",
+            "--cache-dir",
+            "training_cache/gatv2_overnight_v2",
+            "--heads",
+            "4",
+            "--batch-size",
+            "128",
+            "--epochs",
+            "80",
+            "--patience",
+            "12",
+            "--threads",
+            "2",
+            "--device",
+            "cpu",
+            "--selection-metric",
+            "f1",
+            "--test-lock",
+            "training_runs/overnight_20261101/gatv2_test_lock.json",
+            "--no-test",
+            "--out-dir",
+            "training_runs/overnight_20261101/gatv2_deep",
+            "--hidden",
+            "128",
+            "--layers",
+            "4",
+            "--dropout",
+            "0.15",
+            "--lr",
+            "0.0007",
+            "--weight-mode",
+            "none",
+            "--seed",
+            "43"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "geometric",
+      "runs": [
+        {
+          "id": "geometric_unweighted",
+          "out_dir": "training_runs/overnight_20261101/geometric_unweighted",
+          "command": [
+            "/Users/itanasa/Counterfeit-Detector/venv/bin/python",
+            "train_geometric_gnn.py",
+            "--root",
+            "balanced_datasets/training_200k/3d",
+            "--graph-index",
+            "balanced_datasets/training_200k/overnight_strict_converged_v2/graph_index.csv",
+            "--cache-root",
+            "training_cache/geometric_overnight_v2",
+            "--cutoff",
+            "4.5",
+            "--max-neighbors",
+            "24",
+            "--batch-size",
+            "64",
+            "--epochs",
+            "60",
+            "--patience",
+            "10",
+            "--threads",
+            "2",
+            "--selection",
+            "val_f1",
+            "--test-lock",
+            "training_runs/overnight_20261101/geometric_test_lock.json",
+            "--no-test",
+            "--out",
+            "training_runs/overnight_20261101/geometric_unweighted",
+            "--hidden",
+            "64",
+            "--interactions",
+            "3",
+            "--radial-basis",
+            "16",
+            "--lr",
+            "0.001",
+            "--weight-mode",
+            "none",
+            "--seed",
+            "42"
+          ]
+        },
+        {
+          "id": "geometric_weighted",
+          "out_dir": "training_runs/overnight_20261101/geometric_weighted",
+          "command": [
+            "/Users/itanasa/Counterfeit-Detector/venv/bin/python",
+            "train_geometric_gnn.py",
+            "--root",
+            "balanced_datasets/training_200k/3d",
+            "--graph-index",
+            "balanced_datasets/training_200k/overnight_strict_converged_v2/graph_index.csv",
+            "--cache-root",
+            "training_cache/geometric_overnight_v2",
+            "--cutoff",
+            "4.5",
+            "--max-neighbors",
+            "24",
+            "--batch-size",
+            "64",
+            "--epochs",
+            "60",
+            "--patience",
+            "10",
+            "--threads",
+            "2",
+            "--selection",
+            "val_f1",
+            "--test-lock",
+            "training_runs/overnight_20261101/geometric_test_lock.json",
+            "--no-test",
+            "--out",
+            "training_runs/overnight_20261101/geometric_weighted",
+            "--hidden",
+            "96",
+            "--interactions",
+            "4",
+            "--radial-basis",
+            "32",
+            "--lr",
+            "0.0007",
+            "--weight-mode",
+            "row",
+            "--seed",
+            "42"
+          ]
+        }
+      ]
+    }
+  ],
+  "file_pins": {
+    "run_overnight_research.py": "682695f37dc454279d69dc4acbe9d90aa6c71f646413e818f89b56978e9ef9b8",
+    "expand_million_bank.py": "e935fbfe7f0efed663a094caf7726d83ce7c8513b1ef004b482275781c345d25",
+    "scalable_bank_store.py": "f4cc462ba11f0d866736c1823d6c46e320b3540e4505a7551aa8e47df6725919",
+    "evolutionary_generator.py": "5fcd3e19ee37b90037d7f622df27a560e5a1cc28f6efc6b4e163aa0b6d2ada4a",
+    "evolve_category_pilot.py": "71871f267229da29e469a031b6cbf82f2ee66f20af0e927a0582ab584a86c748",
+    "m_proposal_engine.py": "d9d1aa3ea8f99e051199b2ce4da36fc8fe5d1795590b59f64077b00052ffe21e",
+    "million_bank_config.json": "94f45dd17073f3f4be14fe0936a712d93bc5b5b78f6705f5c6d9db43f0864096",
+    "mined_transformations.py": "9e685732c93ca61ffc61bf6465e8ed2dfca143b5e14dca927225a382284839ee",
+    "named_reference_registry.py": "385b832703f4893457c23b16f2f9e1cc6a39381a82e635c2265eb8db5522fe09",
+    "import_legacy_bank_relations.py": "01c0e6a566702f7279f198e46ebb7056877beb2745aff69cb4ea90809c1e85d4",
+    "build_bank_scenarios.py": "62ff2c0a1337e3398613c5e778d3cc1ba3b102814e2d73388799f2f9ad484463",
+    "audit_export_million_bank.py": "282ada78340e35dd2c6a99608586090e08474e0ee49d66bcf55d03a79100b122",
+    "bank_graph_shards.py": "b728c467717e8a4208250a23ad68b4a558a5f110216f10195c3871d56bf6d006",
+    "train_gnn.py": "6ffafed2ed5ac3f93569e7ae53afe489ee111745c1593759da95cbbb8467314d",
+    "train_gatv2_experiment.py": "198bb0b562b6aa010644d36b1aa62edfaafa9d7d1e4a06c0335cc75d7acdc783",
+    "train_geometric_gnn.py": "41ca366bf3ce416f7e9f9450ff8e86ac7ebc2829e82a435ed8618dbc9c025ecb",
+    "real_world_falsification/v1/external_holdout.json": "3bd46620c25f49ec0c556cfb2382e5d3c37547a51fb3a0de09f000daca32657b",
+    "balanced_datasets/training_200k/overnight_strict_converged_v2/manifest.json": "3d847d3acc1da1826e0e455c4cf685eb702a4a41cac6355983a2f93d413d8e21",
+    "balanced_datasets/training_200k/overnight_strict_converged_v2/dataset.csv": "f84d39e9c1cfff21b15e04f1dc499edf17a6a32d0c714020feaa11e5e55a368f",
+    "balanced_datasets/training_200k/overnight_strict_converged_v2/graph_index.csv": "4eca4fce593a71e20a744e017b79bb8d06da842d78406c1ce4d8bbac2e953fd3"
+  },
+  "training_cohort": {
+    "directory": "balanced_datasets/training_200k/overnight_strict_converged_v2",
+    "rows": 191701,
+    "train_rows": 161157,
+    "split_label_counts": {
+      "train": {
+        "1": 81076,
+        "0": 80081
+      },
+      "val": {
+        "1": 6878,
+        "0": 6878
+      },
+      "test": {
+        "1": 8394,
+        "0": 8394
+      }
+    },
+    "cohort_sha256": "041936ffe7ad260c110d4bc8e9226d4622d3d0e79ae023b89cae2d1b789e5126"
+  },
+  "scientific_policy": {
+    "task": "public-reference molecular origin versus generated analogue origin; not verified medicine fraud",
+    "bank_role": "1M is inventory size; supervised experiments use the frozen common 191k cohort with existing 3D assets",
+    "geometry": "converged finite-energy predicted ETKDG/force-field conformers, not experimental coordinates",
+    "selection": "predeclared 3 GATv2 + 2 geometric configurations, validation F1 only; one locked test per family",
+    "target": "F1 >= 0.85 is a research target, never guaranteed or enforced by label/test changes",
+    "weights": "trial names identify hierarchical train-row weighting or unit weights; heldout evaluation unweighted",
+    "checkpointing": "atomic best/last model+optimizer+scheduler+RNG each epoch; SQLite transaction each generation job"
+  }
+}

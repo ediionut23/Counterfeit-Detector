@@ -12,6 +12,7 @@ the central `benchmark/` suite with:
 from __future__ import annotations
 
 import csv
+import argparse
 import json
 import logging
 from pathlib import Path
@@ -48,10 +49,16 @@ def load_counterfeits_csv(csv_path: Path, cat_tag: str) -> List[Dict]:
 
 
 def main():
-    bench_dir = Path("benchmark")
-    in_dir = Path("version_e_categories")
-    auth_path = "public_molecules_100k.smi"
-    if not Path(auth_path).exists():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--out", type=Path, default=Path("benchmark"))
+    parser.add_argument("--input", type=Path, default=Path("version_e_categories"))
+    parser.add_argument("--authentic", default="public_molecules_100k.smi")
+    args = parser.parse_args()
+
+    bench_dir = args.out
+    in_dir = args.input
+    auth_path = args.authentic
+    if not Path(auth_path).exists() and auth_path == "public_molecules_100k.smi":
         auth_path = "public_molecules.smi"
 
     logger.info("Loading authentic library...")

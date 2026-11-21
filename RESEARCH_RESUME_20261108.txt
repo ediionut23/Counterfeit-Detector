@@ -1,0 +1,24 @@
+Reluare — 8 noiembrie 2026, Europe/Bucharest
+
+La verificarea de la 09:45, procesele anterioare nu mai existau. Wrapperul modelului
+a consemnat SIGTERM (cod −15) la 08:53:30. Cauza externă a închiderii nu este stabilită.
+Checkpointurile au fost păstrate: GATv2 seed 44, ultima epocă 37, cea mai bună epocă 37,
+F1 validare 0.8113416321, bad_epochs 0 / patience 12. Optimizerul, schedulerul, RNG și
+istoricul celor 37 epoci sunt prezente. Reluarea începe cu epoca 38, folosind aceeași
+configurație și toate cele 161157 molecule de antrenare.
+
+S-au verificat dispariția proceselor vechi, eliberarea lockurilor, checkpointul și
+hashurile tuturor planurilor. Starea anterioară este arhivată în:
+  training_runs/large_search_20261101/recovery_20261108T074603/
+Raport verificabil:
+  reports/research_resume_20261108.json
+
+Au fost repornite coada de validare, thermal_guard_cool_v2.py și cele două procese
+care așteaptă finalizarea modelelor. Generatorul rămâne oprit în timpul antrenării;
+pașii de selecție, test final și inventar secvențial sunt cei fixați la 7 noiembrie.
+Politica de răcire rămâne 15s calcul / 45s pauză (5s/55s în fair/unknown), cu lease
+exclusiv care împiedică generarea în paralel. Nu s-au modificat surse sau planuri
+fixate prin hash și nu s-a evaluat setul de test.
+
+Destinațiile și PID-urile actuale: active_research_run.json.
+Monitor: ./venv/bin/python monitor_overnight_research.py --watch

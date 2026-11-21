@@ -4,5 +4,8 @@ __pycache__/
 *.pyc
 intelligent_pharma_50k_v2.pt
 benchmark/conformers_full.sdf
+final_dataset/conformers_extra.partial.sdf
+benchmark_regen/
 mmp_mining_100k/mined.mmpdb
 mmp_mining_100k/fragments.fragdb
+research_runs/**/models*/

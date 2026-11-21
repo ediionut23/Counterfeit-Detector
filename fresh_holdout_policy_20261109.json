@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "policy_id": "fresh_group_holdout_v1",
+  "created_at": "2026-11-09T09:55:23.372535+00:00",
+  "purpose": "Independent assessment after current reused-validation Ax HPO; no candidate or threshold selection on this cohort",
+  "status": "declared_not_yet_built_or_feasibility_verified",
+  "bank_requires_completed_audit": true,
+  "target_rows": 20000,
+  "label_quotas": {
+    "public_reference": 10000,
+    "generated": 10000
+  },
+  "generated_method_quotas": {
+    "M_only": 5000,
+    "E_only": 5000
+  },
+  "seed": 20261109,
+  "selection_order": "stable identity hash with fixed seed after whole-group exclusion; no model scores used",
+  "exposed_cohorts": [
+    "balanced_datasets/training_200k/overnight_strict_converged_v2"
+  ],
+  "exclude_exposed_splits": [
+    "train",
+    "val",
+    "test"
+  ],
+  "group_exclusion": [
+    "normalized observed identity and connectivity",
+    "normalized declared-parent identity and connectivity",
+    "observed and declared-parent scaffold groups"
+  ],
+  "external_holdout": "real_world_falsification/v1/external_holdout.json",
+  "external_holdout_sha256": "3bd46620c25f49ec0c556cfb2382e5d3c37547a51fb3a0de09f000daca32657b",
+  "duplicate_molecule_ids_permitted": false,
+  "conformer_variants_count_as_new_molecules": false,
+  "chemical_qc_unchanged": true,
+  "threshold_frozen_from_development_validation": true,
+  "if_insufficient_groups": "report insufficiency; do not relax group exclusion, duplicate rows, or substitute the previous test",
+  "geometry_generation": "after IDs and metadata are reserved; predicted conformers with recorded QC",
+  "test_evaluation": "one frozen single model and validation-selected threshold; report distribution separately from historical benchmark"
+}

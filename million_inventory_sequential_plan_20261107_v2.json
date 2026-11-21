@@ -1,0 +1,313 @@
+{
+  "schema_version": 1,
+  "workspace": "/Users/itanasa/Counterfeit-Detector",
+  "out_dir": "molecule_bank_1m/sequential_inventory_20261107_v2",
+  "bank_db": "molecule_bank_1m/bank.sqlite",
+  "target_unique_molecules": 1000000,
+  "target_f1": 0.85,
+  "generation_command": [
+    "/usr/sbin/taskpolicy",
+    "-c",
+    "utility",
+    "/Users/itanasa/Counterfeit-Detector/venv/bin/python",
+    "ensure_yield_bank.py",
+    "--db",
+    "molecule_bank_1m/bank.sqlite",
+    "--config",
+    "million_bank_sequential_cool_config_20261107.json",
+    "--workers",
+    "1"
+  ],
+  "stages": [
+    {
+      "id": "ensure_named_category_coverage",
+      "command": [
+        "/usr/sbin/taskpolicy",
+        "-c",
+        "utility",
+        "/Users/itanasa/Counterfeit-Detector/venv/bin/python",
+        "ensure_yield_bank.py",
+        "--db",
+        "molecule_bank_1m/bank.sqlite",
+        "--config",
+        "million_bank_sequential_cool_config_20261107.json",
+        "--workers",
+        "1"
+      ]
+    },
+    {
+      "id": "legacy_context_01",
+      "command": [
+        "/Users/itanasa/Counterfeit-Detector/venv/bin/python",
+        "cool_bank_stage.py",
+        "--state",
+        "molecule_bank_1m/sequential_inventory_20261107_v2/cooling/legacy_context_01.json",
+        "--",
+        "/usr/sbin/taskpolicy",
+        "-c",
+        "utility",
+        "/Users/itanasa/Counterfeit-Detector/venv/bin/python",
+        "import_legacy_bank_relations.py",
+        "--db",
+        "molecule_bank_1m/bank.sqlite",
+        "--input",
+        "version_ga/supplements/bioisostere_seed20261025/counterfeits_evolved_bioisostere.csv",
+        "--method",
+        "E"
+      ]
+    },
+    {
+      "id": "legacy_context_02",
+      "command": [
+        "/Users/itanasa/Counterfeit-Detector/venv/bin/python",
+        "cool_bank_stage.py",
+        "--state",
+        "molecule_bank_1m/sequential_inventory_20261107_v2/cooling/legacy_context_02.json",
+        "--",
+        "/usr/sbin/taskpolicy",
+        "-c",
+        "utility",
+        "/Users/itanasa/Counterfeit-Detector/venv/bin/python",
+        "import_legacy_bank_relations.py",
+        "--db",
+        "molecule_bank_1m/bank.sqlite",
+        "--input",
+        "version_ga/supplements/halogen-walk_seed20261025/counterfeits_evolved_halogen-walk.csv",
+        "--method",
+        "E"
+      ]
+    },
+    {
+      "id": "legacy_context_03",
+      "command": [
+        "/Users/itanasa/Counterfeit-Detector/venv/bin/python",
+        "cool_bank_stage.py",
+        "--state",
+        "molecule_bank_1m/sequential_inventory_20261107_v2/cooling/legacy_context_03.json",
+        "--",
+        "/usr/sbin/taskpolicy",
+        "-c",
+        "utility",
+        "/Users/itanasa/Counterfeit-Detector/venv/bin/python",
+        "import_legacy_bank_relations.py",
+        "--db",
+        "molecule_bank_1m/bank.sqlite",
+        "--input",
+        "version_ga/supplements/halogen-walk_seed20261026/counterfeits_evolved_halogen-walk.csv",
+        "--method",
+        "E"
+      ]
+    },
+    {
+      "id": "legacy_context_04",
+      "command": [
+        "/Users/itanasa/Counterfeit-Detector/venv/bin/python",
+        "cool_bank_stage.py",
+        "--state",
+        "molecule_bank_1m/sequential_inventory_20261107_v2/cooling/legacy_context_04.json",
+        "--",
+        "/usr/sbin/taskpolicy",
+        "-c",
+        "utility",
+        "/Users/itanasa/Counterfeit-Detector/venv/bin/python",
+        "import_legacy_bank_relations.py",
+        "--db",
+        "molecule_bank_1m/bank.sqlite",
+        "--input",
+        "version_ga/supplements/homologation_seed20261027/counterfeits_evolved_homologation.csv",
+        "--method",
+        "E"
+      ]
+    },
+    {
+      "id": "legacy_context_05",
+      "command": [
+        "/Users/itanasa/Counterfeit-Detector/venv/bin/python",
+        "cool_bank_stage.py",
+        "--state",
+        "molecule_bank_1m/sequential_inventory_20261107_v2/cooling/legacy_context_05.json",
+        "--",
+        "/usr/sbin/taskpolicy",
+        "-c",
+        "utility",
+        "/Users/itanasa/Counterfeit-Detector/venv/bin/python",
+        "import_legacy_bank_relations.py",
+        "--db",
+        "molecule_bank_1m/bank.sqlite",
+        "--input",
+        "version_ga/supplements/other_seed20261028/counterfeits_evolved_other.csv",
+        "--method",
+        "E"
+      ]
+    },
+    {
+      "id": "legacy_context_06",
+      "command": [
+        "/Users/itanasa/Counterfeit-Detector/venv/bin/python",
+        "cool_bank_stage.py",
+        "--state",
+        "molecule_bank_1m/sequential_inventory_20261107_v2/cooling/legacy_context_06.json",
+        "--",
+        "/usr/sbin/taskpolicy",
+        "-c",
+        "utility",
+        "/Users/itanasa/Counterfeit-Detector/venv/bin/python",
+        "import_legacy_bank_relations.py",
+        "--db",
+        "molecule_bank_1m/bank.sqlite",
+        "--input",
+        "version_ga/supplements/scaffold-hop_seed20261025/counterfeits_evolved_scaffold-hop.csv",
+        "--method",
+        "E"
+      ]
+    },
+    {
+      "id": "composition_scenarios",
+      "command": [
+        "/Users/itanasa/Counterfeit-Detector/venv/bin/python",
+        "cool_bank_stage.py",
+        "--state",
+        "molecule_bank_1m/sequential_inventory_20261107_v2/cooling/composition_scenarios.json",
+        "--",
+        "/usr/sbin/taskpolicy",
+        "-c",
+        "utility",
+        "/Users/itanasa/Counterfeit-Detector/venv/bin/python",
+        "build_bank_scenarios.py",
+        "--db",
+        "molecule_bank_1m/bank.sqlite"
+      ]
+    },
+    {
+      "id": "audit_and_export_bank",
+      "command": [
+        "/Users/itanasa/Counterfeit-Detector/venv/bin/python",
+        "cool_bank_stage.py",
+        "--state",
+        "molecule_bank_1m/sequential_inventory_20261107_v2/cooling/audit_and_export_bank.json",
+        "--",
+        "/usr/sbin/taskpolicy",
+        "-c",
+        "utility",
+        "/Users/itanasa/Counterfeit-Detector/venv/bin/python",
+        "audit_export_million_bank.py",
+        "--db",
+        "molecule_bank_1m/bank.sqlite",
+        "--out",
+        "molecule_bank_1m/release",
+        "--minimum",
+        "1000000",
+        "--workers",
+        "1",
+        "--descriptor-sample",
+        "4096"
+      ]
+    },
+    {
+      "id": "disk_graph_shards",
+      "command": [
+        "/Users/itanasa/Counterfeit-Detector/venv/bin/python",
+        "cool_bank_stage.py",
+        "--state",
+        "molecule_bank_1m/sequential_inventory_20261107_v2/cooling/disk_graph_shards.json",
+        "--",
+        "/usr/sbin/taskpolicy",
+        "-c",
+        "utility",
+        "/Users/itanasa/Counterfeit-Detector/venv/bin/python",
+        "bank_graph_shards.py",
+        "prepare",
+        "--db",
+        "molecule_bank_1m/bank.sqlite",
+        "--out",
+        "molecule_bank_1m/graphs_2d",
+        "--shard-size",
+        "2048"
+      ]
+    }
+  ],
+  "families": [],
+  "file_pins": {
+    "run_overnight_research.py": "682695f37dc454279d69dc4acbe9d90aa6c71f646413e818f89b56978e9ef9b8",
+    "expand_million_bank.py": "e935fbfe7f0efed663a094caf7726d83ce7c8513b1ef004b482275781c345d25",
+    "scalable_bank_store.py": "f4cc462ba11f0d866736c1823d6c46e320b3540e4505a7551aa8e47df6725919",
+    "evolutionary_generator.py": "5fcd3e19ee37b90037d7f622df27a560e5a1cc28f6efc6b4e163aa0b6d2ada4a",
+    "evolve_category_pilot.py": "71871f267229da29e469a031b6cbf82f2ee66f20af0e927a0582ab584a86c748",
+    "m_proposal_engine.py": "d9d1aa3ea8f99e051199b2ce4da36fc8fe5d1795590b59f64077b00052ffe21e",
+    "million_bank_config.json": "94f45dd17073f3f4be14fe0936a712d93bc5b5b78f6705f5c6d9db43f0864096",
+    "mined_transformations.py": "9e685732c93ca61ffc61bf6465e8ed2dfca143b5e14dca927225a382284839ee",
+    "named_reference_registry.py": "385b832703f4893457c23b16f2f9e1cc6a39381a82e635c2265eb8db5522fe09",
+    "import_legacy_bank_relations.py": "01c0e6a566702f7279f198e46ebb7056877beb2745aff69cb4ea90809c1e85d4",
+    "build_bank_scenarios.py": "62ff2c0a1337e3398613c5e778d3cc1ba3b102814e2d73388799f2f9ad484463",
+    "audit_export_million_bank.py": "282ada78340e35dd2c6a99608586090e08474e0ee49d66bcf55d03a79100b122",
+    "bank_graph_shards.py": "b728c467717e8a4208250a23ad68b4a558a5f110216f10195c3871d56bf6d006",
+    "train_gnn.py": "6ffafed2ed5ac3f93569e7ae53afe489ee111745c1593759da95cbbb8467314d",
+    "train_gatv2_experiment.py": "198bb0b562b6aa010644d36b1aa62edfaafa9d7d1e4a06c0335cc75d7acdc783",
+    "train_geometric_gnn.py": "41ca366bf3ce416f7e9f9450ff8e86ac7ebc2829e82a435ed8618dbc9c025ecb",
+    "real_world_falsification/v1/external_holdout.json": "3bd46620c25f49ec0c556cfb2382e5d3c37547a51fb3a0de09f000daca32657b",
+    "balanced_datasets/training_200k/overnight_strict_converged_v2/manifest.json": "3d847d3acc1da1826e0e455c4cf685eb702a4a41cac6355983a2f93d413d8e21",
+    "balanced_datasets/training_200k/overnight_strict_converged_v2/dataset.csv": "f84d39e9c1cfff21b15e04f1dc499edf17a6a32d0c714020feaa11e5e55a368f",
+    "balanced_datasets/training_200k/overnight_strict_converged_v2/graph_index.csv": "4eca4fce593a71e20a744e017b79bb8d06da842d78406c1ce4d8bbac2e953fd3",
+    "run_cool_generation.py": "329ca0d1bb64079127531e056c459bd826cd6c99e8fc0fa12b825da484b9a579",
+    "make_cool_inventory_plan.py": "4995d492a86a2146768bcf1f85fac830b0826ed8e443ffff76a682f33d41d3ef",
+    "expand_yield_aware_bank.py": "90c1a50f151d3cd6e8f270fefecd7e994ffa666797e8bfda54c19e386d25c835",
+    "generation_job_host.py": "6bffbd4a47b3c0fb5b05564616e84052925010ef5e214cebaff3c390a6337c05",
+    "yield_aware_scheduling.py": "f23982217dafdd191387975edfe69b63248dce130759e57df3bf0464ca9b4e93",
+    "million_bank_yield_config.json": "50bf75ac91523f0217457e6e01090a9875388609641c2ba474a19972f97f974f",
+    "ensure_yield_bank.py": "41447f267e6820d6edd44564b22a4536308f39563f61d15cd88701268c820f2c",
+    "make_yield_inventory_plan.py": "236c6b33c2f674041853ea33503e24c24b32b64f25486112220ae98462670949",
+    "million_bank_sequential_cool_config_20261107.json": "1f609357b76defe36db25e6542e207877c6eb6aa2ef03ec2afc319930bc8d173",
+    "make_sequential_inventory_plan.py": "2e9d07349278904219b5ca6ed3380b547b5c2e8872fe1db2e39ec47730814623",
+    "defer_sequential_inventory.py": "7bd7042df0e27d3bef65ca1a26b5678b30a23e6d74b8572eadc42d4625665e66",
+    "cool_bank_stage.py": "3d54dcb10aa9b04b60e93e2cfaf0361bb2f28852ff1cbb125b088d434b7cd05b",
+    "thermal_guard.py": "211683d21cdaabcec680403d0bfe7f8ef07176a6f45657b908c8b0ea58aca4c5",
+    "make_sequential_inventory_plan_v2.py": "6303907a7696349229c2093b747aafb2418aef3e11e1c2dfb520da6f8509ad1c"
+  },
+  "training_cohort": {
+    "directory": "balanced_datasets/training_200k/overnight_strict_converged_v2",
+    "rows": 191701,
+    "train_rows": 161157,
+    "split_label_counts": {
+      "train": {
+        "1": 81076,
+        "0": 80081
+      },
+      "val": {
+        "1": 6878,
+        "0": 6878
+      },
+      "test": {
+        "1": 8394,
+        "0": 8394
+      }
+    },
+    "cohort_sha256": "041936ffe7ad260c110d4bc8e9226d4622d3d0e79ae023b89cae2d1b789e5126"
+  },
+  "scientific_policy": {
+    "task": "public-reference molecular origin versus generated analogue origin; not verified medicine fraud",
+    "bank_role": "1M is inventory size; supervised experiments use the frozen common 191k cohort with existing 3D assets",
+    "geometry": "converged finite-energy predicted ETKDG/force-field conformers, not experimental coordinates",
+    "selection": "Inventory only, deferred until all declared model and inference work is done; model scores do not change chemistry",
+    "target": "F1 >= 0.85 is a research target, never guaranteed or enforced by label/test changes",
+    "weights": "trial names identify hierarchical train-row weighting or unit weights; heldout evaluation unweighted",
+    "checkpointing": "atomic best/last model+optimizer+scheduler+RNG each epoch; SQLite transaction each generation job"
+  },
+  "supersedes_plan_sha256": "0c50841d82dc43a1787361083e8ed46c0ec557eb0f4982c2fde8b95d501bdcbb",
+  "resource_policy": {
+    "generation_workers": 1,
+    "audit_workers": 1,
+    "priority": "utility",
+    "new_generation_job_requires": "nominal thermal state; recovery after120s nominal",
+    "generation_rest_seconds": 60,
+    "training_parameters_changed": false,
+    "reason": "Sequential work after training; one chemistry child with60s interjob rest; unchanged chemical gates",
+    "generation_compute_children": 1,
+    "hard_native_deadline_seconds": 90,
+    "initial_generation_requires": "validation_complete + pinned ready marker + exclusive model locks +120s nominal",
+    "overlap_with_training": false,
+    "downstream_stages_nominal_duty": "15s compute/45s rest",
+    "downstream_stages_fair_or_unknown_duty": "5s compute/55s rest",
+    "downstream_stages_recovery_seconds": 120,
+    "downstream_subprocess_workers_pause_together": true
+  }
+}

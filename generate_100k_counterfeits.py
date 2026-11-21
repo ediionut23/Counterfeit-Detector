@@ -191,29 +191,38 @@ def generate_100k(parents: List[str], by_cat: Dict[str, List[Dict]],
                   target_total: int = 100000,
                   sim_lo: float = 0.40, sim_hi: float = 0.98,
                   qed_min: float = 0.35, max_sa: float = 3.8,
-                  seed: int = 42) -> Tuple[List[Dict], Dict]:
+                  seed: int = 42,
+                  excluded_smiles: Optional[Set[str]] = None,
+                  attempts_per_parent: int = 6) -> Tuple[List[Dict], Dict]:
     rng = random.Random(seed)
     np_rng = np.random.RandomState(seed)
 
     categories = list(by_cat.keys())
-    # Baseline allocation per category: ~20k per category, adjust dynamically
-    target_per_cat = {
+    # Preserve the 100k category proportions for any requested target.
+    base_allocation = {
         "bioisostere": 25000,
         "scaffold-hop": 22000,
         "homologation": 20000,
         "halogen-walk": 20000,
         "other": 13000,
     }
-    # Ensure targets sum up to target_total
-    allocated = sum(target_per_cat.values())
-    if allocated != target_total:
-        target_per_cat["bioisostere"] += (target_total - allocated)
+    if target_total <= 0:
+        raise ValueError("target_total must be positive")
+    unknown = set(by_cat) - set(base_allocation)
+    if unknown:
+        raise ValueError(f"No target allocation for categories: {sorted(unknown)}")
+    total_weight = sum(base_allocation[c] for c in by_cat)
+    raw_allocation = {c: target_total * base_allocation[c] / total_weight for c in by_cat}
+    target_per_cat = {c: int(raw_allocation[c]) for c in by_cat}
+    remaining = target_total - sum(target_per_cat.values())
+    for cat in sorted(by_cat, key=lambda c: (raw_allocation[c] - target_per_cat[c], c), reverse=True)[:remaining]:
+        target_per_cat[cat] += 1
 
     logger.info("Target distribution across categories:")
     for cat, tgt in target_per_cat.items():
         logger.info(f"   • {cat:<14s}: {tgt:,} counterfeits")
 
-    global_seen: Set[str] = set()
+    global_seen: Set[str] = set(parents) | set(excluded_smiles or ())
     category_rows: Dict[str, List[Dict]] = defaultdict(list)
     t0 = time.time()
 
@@ -239,8 +248,8 @@ def generate_100k(parents: List[str], by_cat: Dict[str, List[Dict]],
             parent_fp = morgan(parent_mol)
             parent_mw = Descriptors.MolWt(parent_mol)
 
-            # Attempt 6 rule applications per parent
-            for _ in range(6):
+            # More attempts per parent support larger, globally deduplicated extensions.
+            for _ in range(attempts_per_parent):
                 if len(category_rows[cat]) >= target:
                     break
                 rule = rules[int(np_rng.choice(len(rules), p=probs))]
@@ -257,7 +266,9 @@ def generate_100k(parents: List[str], by_cat: Dict[str, List[Dict]],
                 # Filters - evaluated in order of computational cost:
                 # 1. Anti-shortcut mass drift (instant float check)
                 child_mw = Descriptors.MolWt(child)
-                if abs(child_mw - parent_mw) > 80.0:
+                heavy_atoms = child.GetNumHeavyAtoms()
+                if (heavy_atoms < 10 or heavy_atoms > 70 or child_mw < 150.0
+                        or child_mw > 800.0 or abs(child_mw - parent_mw) > 80.0):
                     continue
 
                 # 2. Tanimoto band (fast bit-vector)
@@ -339,7 +350,7 @@ def generate_100k(parents: List[str], by_cat: Dict[str, List[Dict]],
                     continue
                 p_fp = morgan(p_mol)
                 p_mw = Descriptors.MolWt(p_mol)
-                for _ in range(4):
+                for _ in range(max(4, attempts_per_parent // 2)):
                     if len(all_rows) >= target_total:
                         break
                     rule = rules[int(np_rng.choice(len(rules), p=probs))]
@@ -353,7 +364,9 @@ def generate_100k(parents: List[str], by_cat: Dict[str, List[Dict]],
                     if canon == p_smi or canon in global_seen:
                         continue
                     child_mw = Descriptors.MolWt(child)
-                    if abs(child_mw - p_mw) > 80.0:
+                    heavy_atoms = child.GetNumHeavyAtoms()
+                    if (heavy_atoms < 10 or heavy_atoms > 70 or child_mw < 150.0
+                            or child_mw > 800.0 or abs(child_mw - p_mw) > 80.0):
                         continue
                     sim = tanimoto(p_fp, morgan(child))
                     if sim < sim_lo or sim > sim_hi:
@@ -482,6 +495,10 @@ def main():
     p.add_argument("--max-sa", type=float, default=3.8, help="Max SA score (default 3.8)")
     p.add_argument("--out-dir", default="counterfeits_100k", help="Output directory")
     p.add_argument("--seed", type=int, default=42, help="Random seed")
+    p.add_argument("--attempts-per-parent", type=int, default=6,
+                   help="Rule applications per parent and broad category (default: 6)")
+    p.add_argument("--exclude-csv", action="append", default=[],
+                   help="Existing counterfeit CSV to exclude by counterfeit_smiles; repeatable")
     args = p.parse_args()
 
     random.seed(args.seed)
@@ -504,11 +521,23 @@ def main():
 
     by_cat = load_rules_by_category(args.rules)
     parents = load_parents(parents_path, seed=args.seed)
+    excluded = set()
+    for source in args.exclude_csv:
+        with open(source, newline="") as stream:
+            reader = csv.DictReader(stream)
+            if "counterfeit_smiles" not in (reader.fieldnames or []):
+                raise ValueError(f"Missing counterfeit_smiles column: {source}")
+            excluded.update(row["counterfeit_smiles"] for row in reader
+                            if row.get("counterfeit_smiles"))
+    logger.info("Excluding %s existing counterfeit SMILES and %s authentic parents",
+                len(excluded), len(parents))
 
     rows, summary = generate_100k(parents, by_cat, target_total=args.target,
                                   sim_lo=args.sim_lo, sim_hi=args.sim_hi,
                                   qed_min=args.qed_min, max_sa=args.max_sa,
-                                  seed=args.seed)
+                                  seed=args.seed, excluded_smiles=excluded,
+                                  attempts_per_parent=args.attempts_per_parent)
+    summary["excluded_existing_smiles"] = len(excluded)
 
     export_dataset(rows, summary, Path(args.out_dir))
 

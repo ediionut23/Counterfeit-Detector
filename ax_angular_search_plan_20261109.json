@@ -1,0 +1,232 @@
+{
+  "schema_version": 1,
+  "protocol": "ax_angular_validation_only_v1",
+  "test_evaluation": false,
+  "workspace": "/Users/itanasa/Counterfeit-Detector",
+  "out_dir": "training_runs/ax_angular_20261109",
+  "experiment_name": "angular_gnn_ax_20261109_v1",
+  "bank_db": "molecule_bank_1m/bank.sqlite",
+  "target_unique_molecules": 1000000,
+  "target_f1": 0.85,
+  "families": [],
+  "stages": [],
+  "training_cohort": {
+    "directory": "balanced_datasets/training_200k/overnight_strict_converged_v2",
+    "rows": 191701,
+    "train_rows": 161157,
+    "split_label_counts": {
+      "train": {
+        "1": 81076,
+        "0": 80081
+      },
+      "val": {
+        "1": 6878,
+        "0": 6878
+      },
+      "test": {
+        "1": 8394,
+        "0": 8394
+      }
+    },
+    "cohort_sha256": "041936ffe7ad260c110d4bc8e9226d4622d3d0e79ae023b89cae2d1b789e5126"
+  },
+  "file_pins": {
+    "run_ax_geometry_search.py": "e448744cefcd21eaa11f5b2061495cca9e047e6e0d54f6db62b556f707dbea5e",
+    "make_ax_geometry_search_plan.py": "1c7279db84c2423c5865d3eeef5f1ef665545a58600ce2e5bbb3c4bcdb4fe768",
+    "run_overnight_research.py": "682695f37dc454279d69dc4acbe9d90aa6c71f646413e818f89b56978e9ef9b8",
+    "enforce_large_training_cohort.py": "0f9ddab5d2028b6ec4458cb4731529230e3d849f3db827422ab277692f5e2c8b",
+    "audit_overnight_training_split.py": "b1c6481831dcedc43dae00bb392f7efc00ab3f8411fd8faa401cc73e5af6339a",
+    "train_geometric_variants.py": "b98c5dd4d0ca3c5f70a91c089b65bab505353776d03f18fb2b2763aa13819ed5",
+    "train_geometric_gnn.py": "41ca366bf3ce416f7e9f9450ff8e86ac7ebc2829e82a435ed8618dbc9c025ecb",
+    "geometric_angular_model.py": "34d743411665162a2f216052d8da643f81a39fe7804c759686b7400755766b9e",
+    "thermal_guard_ax.py": "e6ca37929374c31551bcf863b340b0268169a668613029fe6987242e50ae8d04",
+    "thermal_guard_cool_v2.py": "0cbc133bd3d3a16e85c644bfa929a0a6e8f837aca34396515bc195a7d3e2fa4c",
+    "thermal_guard.py": "211683d21cdaabcec680403d0bfe7f8ef07176a6f45657b908c8b0ea58aca4c5",
+    "balanced_datasets/training_200k/overnight_strict_converged_v2/dataset.csv": "f84d39e9c1cfff21b15e04f1dc499edf17a6a32d0c714020feaa11e5e55a368f",
+    "balanced_datasets/training_200k/overnight_strict_converged_v2/graph_index.csv": "4eca4fce593a71e20a744e017b79bb8d06da842d78406c1ce4d8bbac2e953fd3",
+    "balanced_datasets/training_200k/overnight_strict_converged_v2/manifest.json": "3d847d3acc1da1826e0e455c4cf685eb702a4a41cac6355983a2f93d413d8e21",
+    ".hpo_runtime/ax_1_3_1/runtime_manifest.json": "b3ab4ca9cf08773fbf7491a8858bd162eb5d3ba1ecf038efbe29a27deb348c84",
+    "fresh_holdout_policy_20261109.json": "6e3962de93c58a8d4c2e4348341ca8ed9b29bd8042c803bd1756267af85e86b5",
+    "training_runs/large_search_20261101/geometric_angular/configuration.json": "cf9ebc2694061cd98a0681024bb46ab8c3329abd52848bc7361c0747aac168aa",
+    "training_runs/large_search_20261101/geometric_angular/history.json": "9e3d645fcf968bde98ea6cd16ed40d768444581e14e3d3c0621f7a0d948ca813",
+    "training_runs/large_search_20261101/geometric_angular/summary.json": "44c5bd6981ad0fed9ce97ca1bb161b03a6ab22e9bf3346a9edb1ce371040595c",
+    "training_runs/large_search_20261101/geometric_angular/best.pt": "f4ab08bd8482b79bce0dcc2be94f07669bcc92950e89f9f08931f4b54cb4a3f9",
+    "training_runs/large_search_20261101/geometric_champion_seed43/configuration.json": "22052c1eaad40aa6f9f29df94d28fed7a1ba322806eacfe657a3a310817397cf",
+    "training_runs/large_search_20261101/geometric_champion_seed43/history.json": "76f14b9925b3701e156c32ec1704d1666615e5437cf51bee05411563fa39b5a3",
+    "training_runs/large_search_20261101/geometric_champion_seed43/summary.json": "d2698a178e9ee4c835f58e3045e1f661046f86f95beb48d4a75c56884af6c8e8",
+    "training_runs/large_search_20261101/geometric_champion_seed43/best.pt": "19dd00744126ff43d014c8d0c5e6a949e066f48adf7c55b8d9a3a4d3b6a3c563",
+    "training_runs/large_search_20261101/geometric_champion_seed44/configuration.json": "f5a19adba3074e540a537034cd117eb271c003e077fe83c38ac66ab328126b9b",
+    "training_runs/large_search_20261101/geometric_champion_seed44/history.json": "2d5b3d26b3d0286dee7937fa02177bcad506d3cf165821e3985c933500762251",
+    "training_runs/large_search_20261101/geometric_champion_seed44/summary.json": "4cd92cf42e41f068e48a883e555bcc602f4f1072b8e9ef5d24512d97672012d7",
+    "training_runs/large_search_20261101/geometric_champion_seed44/best.pt": "62e250b00325d0fd8b34091454eef132f7a0ffaff495bbaeb9b5bc647b93552a"
+  },
+  "ax_runtime": {
+    "version": "1.3.1",
+    "directory": ".hpo_runtime/ax_1_3_1/site-packages",
+    "manifest": ".hpo_runtime/ax_1_3_1/runtime_manifest.json",
+    "manifest_sha256": "b3ab4ca9cf08773fbf7491a8858bd162eb5d3ba1ecf038efbe29a27deb348c84"
+  },
+  "parameter_space": {
+    "lr": {
+      "kind": "range",
+      "bounds": [
+        0.0003,
+        0.0012
+      ],
+      "log": true
+    },
+    "dropout": {
+      "kind": "range",
+      "bounds": [
+        0.05,
+        0.3
+      ],
+      "log": false
+    },
+    "weight_decay": {
+      "kind": "range",
+      "bounds": [
+        1e-06,
+        0.001
+      ],
+      "log": true
+    },
+    "hidden": {
+      "kind": "choice",
+      "values": [
+        64,
+        96,
+        128
+      ]
+    },
+    "interactions": {
+      "kind": "choice",
+      "values": [
+        2,
+        3,
+        4
+      ]
+    },
+    "angular_basis": {
+      "kind": "choice",
+      "values": [
+        4,
+        6,
+        8,
+        12
+      ]
+    }
+  },
+  "template_command": [
+    "/Users/itanasa/Counterfeit-Detector/venv/bin/python",
+    "train_geometric_variants.py",
+    "--root",
+    "balanced_datasets/training_200k/3d",
+    "--graph-index",
+    "balanced_datasets/training_200k/overnight_strict_converged_v2/graph_index.csv",
+    "--cache-root",
+    "training_cache/geometric_overnight_v2",
+    "--out",
+    "/Users/itanasa/Counterfeit-Detector/training_runs/ax_angular_20261109/guard_template",
+    "--geometry-variant",
+    "angular",
+    "--radial-basis",
+    "16",
+    "--angular-basis",
+    "6",
+    "--cutoff",
+    "4.5",
+    "--max-neighbors",
+    "24",
+    "--hidden",
+    "64",
+    "--interactions",
+    "3",
+    "--dropout",
+    "0.1",
+    "--lr",
+    "0.001",
+    "--weight-decay",
+    "0.00001",
+    "--batch-size",
+    "64",
+    "--epochs",
+    "40",
+    "--patience",
+    "15",
+    "--scheduler-patience",
+    "3",
+    "--seed",
+    "42",
+    "--threads",
+    "2",
+    "--num-workers",
+    "0",
+    "--device",
+    "cpu",
+    "--weight-mode",
+    "none",
+    "--selection",
+    "val_f1",
+    "--no-test",
+    "--test-lock",
+    "/Users/itanasa/Counterfeit-Detector/training_runs/ax_angular_20261109/UNUSED_test_lock.json"
+  ],
+  "search_policy": {
+    "new_trials": 8,
+    "sobol_trials": 4,
+    "screen_epochs": 40,
+    "promote_count": 2,
+    "final_epochs": 100,
+    "patience": 15,
+    "training_seed": 42,
+    "repeat_seeds": [
+      43,
+      44
+    ],
+    "ax_seed": 42,
+    "selection_metric": "validation_f1"
+  },
+  "historical_baseline": {
+    "history": "training_runs/large_search_20261101/geometric_angular/history.json",
+    "configuration": "training_runs/large_search_20261101/geometric_angular/configuration.json",
+    "checkpoint": "training_runs/large_search_20261101/geometric_angular/best.pt",
+    "parameters": {
+      "lr": 0.001,
+      "dropout": 0.1,
+      "weight_decay": 1e-05,
+      "hidden": 64,
+      "interactions": 3,
+      "angular_basis": 6
+    },
+    "repeat_summaries": [
+      "training_runs/large_search_20261101/geometric_angular/summary.json",
+      "training_runs/large_search_20261101/geometric_champion_seed43/summary.json",
+      "training_runs/large_search_20261101/geometric_champion_seed44/summary.json"
+    ],
+    "warm_observation_budget": 40,
+    "baseline_patience": 12,
+    "new_patience": 15,
+    "comparison_limit": "Historical protocol differs in patience; comparison is not a pure causal hyperparameter estimate"
+  },
+  "scientific_policy": {
+    "objective": "best validation F1 within equal40-epoch screening budget or early stop",
+    "final_candidate": "one configuration and one seed42 model; no ensemble",
+    "incumbent_retention": "Keep baseline unless challenger improves both seed42 F1 and the three-seed mean by more than1e-6",
+    "fresh_holdout_policy": "fresh_holdout_policy_20261109.json",
+    "old_test_already_consulted": true,
+    "new_independent_assessment_required": true,
+    "test_predictions_read_during_search": false
+  },
+  "resource_policy": {
+    "generation_during_training": false,
+    "trainer_threads": 2,
+    "ax_helper_threads": 1,
+    "compute_seconds": 15,
+    "rest_seconds": 45,
+    "serial_stage_scripts": [
+      "train_geometric_variants.py",
+      "run_ax_geometry_search.py"
+    ]
+  }
+}

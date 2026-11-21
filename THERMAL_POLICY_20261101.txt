@@ -1,0 +1,41 @@
+Profil de calcul redus, activat la cererea utilizatorului
+
+Generarea cu 6 procese a fost oprită după salvarea loturilor active și reluată
+prin million_inventory_cool_plan.json, cu un singur worker. Auditul folosește
+tot un worker. Comenzile inventarului rulează cu prioritate background.
+Aceste modificări încetinesc execuția; nu schimbă regulile chimice, seedurile,
+setul de 161.157 molecule de antrenare sau hiperparametrii modelelor.
+
+run_cool_generation.py verifică presiunea termică macOS înaintea fiecărui job.
+La fair/serious/critical sau stare necunoscută nu începe alt job până când
+starea este nominal timp de 30 secunde. Așteptarea are loc înaintea alarmei
+jobului și înaintea inițializării RNG. Există minimum o secundă între joburi.
+Un test izolat cu 2 joburi și un worker a trecut fără schimbarea motorului.
+
+thermal_guard.py verifică procesele acestui proiect prin UID, PID, momentul
+creării, executabil, argumente și lanțul coordonator/wrapper/worker. Controlează
+doar antrenorii și calculul modelelor, fără a suspenda generatorul ori aplicații
+străine. Nu modifică fișierele de antrenare sau checkpointurile.
+
+Politica pentru antrenare/inferență:
+  nominal:       60 secunde calcul / 30 secunde pauză;
+  fair/unknown:  15 secunde calcul / 45 secunde pauză;
+  serious/critical: pauză până la 60 secunde consecutive în stare nominal.
+Antrenorul păstrează limita de 2 fire CPU. Pauza SIGSTOP păstrează starea în
+memorie; SIGCONT o reia. Ledgerul păstrează identitatea procesului suspendat,
+iar repornirea sau închiderea guardului încearcă reluarea doar a acelui proces.
+Testele izolate au verificat pauza/reluarea, SIGTERM, recuperarea după SIGKILL
+și respingerea unui PID reutilizat. Activarea pe producție folosește permisiuni
+pentru semnale între procese și nu atinge procese neidentificate.
+
+Monitorul citește ProcessInfo.thermalState, nu o temperatură în grade Celsius.
+Starea nominală nu garantează că carcasa este rece sau că ventilatoarele sunt
+silențioase; profilul reduce solicitarea și reacționează la presiunea termică.
+
+Stare: training_runs/thermal_guard/state.json
+Evenimente de pauză/reluare: training_runs/thermal_guard/state.events.jsonl
+Politica generatorului: molecule_bank_1m/thermal_control/generation_policy.json
+Monitorizare: ./venv/bin/python monitor_overnight_research.py --watch
+
+Sursă primară Apple:
+https://developer.apple.com/library/archive/documentation/Performance/Conceptual/power_efficiency_guidelines_osx/RespondToThermalStateChanges.html

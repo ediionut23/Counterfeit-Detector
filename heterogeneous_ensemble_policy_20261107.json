@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "policy_id": "heterogeneous_fixed_candidates_v1_20261107",
+  "declared_before_remaining_seed_results": true,
+  "cohort_sha256": "041936ffe7ad260c110d4bc8e9226d4622d3d0e79ae023b89cae2d1b789e5126",
+  "selection_uses": "validation_only",
+  "aggregation": "fixed_weight_probability_mean",
+  "threshold_policy": "maximum validation F1; ties choose largest threshold",
+  "candidate_tie_policy": "declared candidate order",
+  "all_members_required_for_final": true,
+  "members": [
+    {
+      "id": "gat42",
+      "run_dir": "gatv2_jk_attention",
+      "family": "gatv2",
+      "seed": 42,
+      "trainer": "train_gatv2_search.py",
+      "inference_adapter": "train_gatv2_search.py"
+    },
+    {
+      "id": "gat43",
+      "run_dir": "gatv2_champion_seed43",
+      "family": "gatv2",
+      "seed": 43,
+      "trainer": "train_gatv2_search.py",
+      "inference_adapter": "train_gatv2_search.py"
+    },
+    {
+      "id": "gat44",
+      "run_dir": "gatv2_champion_seed44",
+      "family": "gatv2",
+      "seed": 44,
+      "trainer": "train_gatv2_search.py",
+      "inference_adapter": "train_gatv2_search.py"
+    },
+    {
+      "id": "gat_wide42",
+      "run_dir": "gatv2_jk_wide",
+      "family": "gatv2",
+      "seed": 42,
+      "trainer": "train_gatv2_search.py",
+      "inference_adapter": "train_gatv2_search.py"
+    },
+    {
+      "id": "geo42",
+      "run_dir": "geometric_angular",
+      "family": "geometric",
+      "seed": 42,
+      "trainer": "train_geometric_variants.py",
+      "inference_adapter": "train_geometric_variants.py"
+    },
+    {
+      "id": "geo43",
+      "run_dir": "geometric_champion_seed43",
+      "family": "geometric",
+      "seed": 43,
+      "trainer": "train_geometric_variants.py",
+      "inference_adapter": "train_geometric_variants.py"
+    },
+    {
+      "id": "geo44",
+      "run_dir": "geometric_champion_seed44",
+      "family": "geometric",
+      "seed": 44,
+      "trainer": "train_geometric_variants.py",
+      "inference_adapter": "train_geometric_variants.py"
+    },
+    {
+      "id": "geo_distance42",
+      "run_dir": "geometric_distance",
+      "family": "geometric",
+      "seed": 42,
+      "trainer": "train_geometric_gnn.py",
+      "inference_adapter": "train_geometric_variants.py"
+    }
+  ],
+  "candidates": [
+    {
+      "id": "single_gat42",
+      "weights": {
+        "gat42": "1"
+      }
+    },
+    {
+      "id": "single_gat43",
+      "weights": {
+        "gat43": "1"
+      }
+    },
+    {
+      "id": "single_gat44",
+      "weights": {
+        "gat44": "1"
+      }
+    },
+    {
+      "id": "single_gat_wide42",
+      "weights": {
+        "gat_wide42": "1"
+      }
+    },
+    {
+      "id": "single_geo42",
+      "weights": {
+        "geo42": "1"
+      }
+    },
+    {
+      "id": "single_geo43",
+      "weights": {
+        "geo43": "1"
+      }
+    },
+    {
+      "id": "single_geo44",
+      "weights": {
+        "geo44": "1"
+      }
+    },
+    {
+      "id": "single_geo_distance42",
+      "weights": {
+        "geo_distance42": "1"
+      }
+    },
+    {
+      "id": "gat_seed_mean",
+      "weights": {
+        "gat42": "1/3",
+        "gat43": "1/3",
+        "gat44": "1/3"
+      }
+    },
+    {
+      "id": "geo_seed_mean",
+      "weights": {
+        "geo42": "1/3",
+        "geo43": "1/3",
+        "geo44": "1/3"
+      }
+    },
+    {
+      "id": "gat_geo_50_50",
+      "weights": {
+        "gat42": "1/6",
+        "gat43": "1/6",
+        "gat44": "1/6",
+        "geo42": "1/6",
+        "geo43": "1/6",
+        "geo44": "1/6"
+      }
+    },
+    {
+      "id": "gat_geo_75_25",
+      "weights": {
+        "gat42": "1/4",
+        "gat43": "1/4",
+        "gat44": "1/4",
+        "geo42": "1/12",
+        "geo43": "1/12",
+        "geo44": "1/12"
+      }
+    },
+    {
+      "id": "gat_geo_25_75",
+      "weights": {
+        "gat42": "1/12",
+        "gat43": "1/12",
+        "gat44": "1/12",
+        "geo42": "1/4",
+        "geo43": "1/4",
+        "geo44": "1/4"
+      }
+    },
+    {
+      "id": "gat_mean75_wide25",
+      "weights": {
+        "gat42": "1/4",
+        "gat43": "1/4",
+        "gat44": "1/4",
+        "gat_wide42": "1/4"
+      }
+    },
+    {
+      "id": "four_blocks_equal",
+      "weights": {
+        "gat42": "1/12",
+        "gat43": "1/12",
+        "gat44": "1/12",
+        "geo42": "1/12",
+        "geo43": "1/12",
+        "geo44": "1/12",
+        "gat_wide42": "1/4",
+        "geo_distance42": "1/4"
+      }
+    },
+    {
+      "id": "all_members_equal",
+      "weights": {
+        "gat42": "1/8",
+        "gat43": "1/8",
+        "gat44": "1/8",
+        "gat_wide42": "1/8",
+        "geo42": "1/8",
+        "geo43": "1/8",
+        "geo44": "1/8",
+        "geo_distance42": "1/8"
+      }
+    }
+  ],
+  "exploratory_policy": "completed available singles and equal mean of all available completed members only; not eligible for final test",
+  "interpretation": "Synthetic molecular origin benchmark; validation-selected scores are optimistic and are not held-out test evidence."
+}

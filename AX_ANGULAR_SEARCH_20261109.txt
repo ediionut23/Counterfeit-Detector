@@ -1,0 +1,64 @@
+Ax — optimizarea unei singure arhitecturi geometrice cu unghiuri
+
+Protocol: ax_angular_search_plan_20261109.json.
+Surse noi: run_ax_geometry_search.py, make_ax_geometry_search_plan.py,
+check_ax_geometry_search.py. Trainerele și arhitectura anterioare sunt păstrate.
+
+Fiecare rulare folosește toate cele161157 molecule de antrenare,13756 validare,
+cu aceeași cohortă strictă și coordonate3D. Parametrii fixați sunt RBF16,
+cutoff4.5Å, maximum24 vecini, atomi grei, batch64, loss fără ponderi pe rând,
+2 fire CPU. Modelul păstrează LayerNorm/SiLU și poolingul anterior.
+
+Ax1.3.1 este izolat în.hpo_runtime/ax_1_3_1/site-packages. Fișierele instalate
+sunt verificate după manifest; trainerele nu primesc PYTHONPATH către acest
+director. Ax folosește1 fir CPU, în procese separate care pot fi răcite de guard.
+
+Sunt opt încercări NOI: patru Sobol, apoi patru Bayesian/fast, în ordine serială.
+Domeniu: LR[3e-4,1.2e-3] log; dropout[.05,.30]; weight decay[1e-6,1e-3] log;
+hidden64/96/128; interacțiuni2/3/4; baze angulare4/6/8/12.
+Seedul Ax și seedul de antrenare sunt42. Prima etapă permite40 epoci și patience15.
+Obiectivul este cel mai bun F1 de validare din această etapă; pragul este ales
+exclusiv pe validare de trainerul existent. Cele mai bune două configurații
+continuă din last.pt până la maximum100 epoci, respectând aceeași oprire timpurie.
+
+Observația istorică atașată lui Ax este maximul F1 al seedului42 numai în primele
+40 epoci; scorul de la epoca47 nu intră în acest obiectiv. Această observație nu
+înlocuiește niciuna dintre cele opt încercări noi și nu scurtează cele patru Sobol.
+
+Cel mai bun challenger nou este ales după promovare, pe validare, cu egalități
+rezolvate după ordinea încercărilor. Dacă nu depășește modelul istoric seed42,
+modelul vechi și statisticile celor trei seeduri sunt păstrate. Dacă îl depășește,
+challengerul este repetat cu seedurile43 și44. Înlocuiește incumbentul numai dacă
+atât seed42, cât și media celor trei seeduri îmbunătățesc F1 cu mai mult de1e-6.
+În raport, statisticile modelului ales sunt separate de cele ale challengerului.
+Comparația cu baseline-ul istoric nu este pur cauzală: patience vechi12 vs nou15.
+
+Se alege o configurație și un checkpoint seed42. Acest protocol NU construiește
+un ansamblu și nu evaluează testul. Testul anterior a fost deja consultat;
+fresh_holdout_policy_20261109.json descrie evaluarea independentă viitoare,
+a cărei fezabilitate nu este încă demonstrată. Nu se relaxează excluderile dacă
+nu există suficiente exemple. Etichetele rămân origine publică/generată, fără
+validare a contrafacerilor reale de produse farmaceutice.
+
+Persistență: înaintea oricărei antrenări, Ax snapshot și ledgerul candidatului
+sunt publicate împreună atomic în ax_bundle.json. Ask/tell reluate sunt idempotente.
+Erorile de checksum, ordinea inconsistentă sau un al doilea candidat în lucru
+opresc fluxul. Checkpointurile modelului includ optimizer/scheduler/RNG.
+Snapshoturile și scorurile etapei40 sunt păstrate înaintea promovării; o promovare
+întreruptă nu determină repetarea screeningului sau un al doilea Ax tell.
+
+Toate etapele trec verificarea cohortei complete și rulează prin coada durabilă.
+Fișierele de implementare, date și control termic sunt fixate prin hash.
+Directorul tuturor încercărilor/repetărilor este expus în adaptive_run_dirs.
+La final se publică validation_complete, final_single_model_selection.json și
+ALLOW_INVENTORY.json pentru continuarea separată a băncii. Generarea și antrenarea
+trebuie lansate prin fluxul cu excludere mutuală și pauzele termice active.
+
+Verificări: zece teste cu simulări acoperă ask/tell întrerupt, checksumuri,
+bugete, respingerea testului, workflow complet, reluarea unei promovări incomplete
+și păstrarea incumbentului. Verificarea cu Ax real folosește numai observații
+sintetice și confirmă Sobol×4→MBM×4 plus save/load după fiecare observație;
+nu antrenează molecule și nu citește predicții de test.
+
+API oficial: https://ax.dev/docs/recipes/influence-gs-choice/
+API/date existente: https://ax.dev/docs/next/recipes/existing-data/

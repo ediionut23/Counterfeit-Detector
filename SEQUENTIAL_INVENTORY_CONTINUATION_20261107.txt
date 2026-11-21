@@ -1,0 +1,61 @@
+Conservative inventory continuation prepared 2026-11-07
+
+No inventory work is launched by the plan maker. It writes only new files:
+  million_bank_sequential_cool_config_20261107.json
+  million_inventory_sequential_plan_20261107.json
+The output is molecule_bank_1m/sequential_inventory_20261107. Original plans,
+source files, database, process records, and active pointers are untouched.
+
+Only execution cooling differs from the previous yield-aware configuration:
+one chemistry child, at least60s rest between jobs,120s sustained nominal
+pressure after elevated/unknown pressure. The native deadline stays90s.
+The deferred launcher additionally requires120s nominal before initial launch.
+Nominal is macOS thermal pressure, not a measured case temperature.
+
+Chemistry, reference registry, quality gates, difficulty bands, diversity caps,
+method/category floors and adaptive scheduler policy are unchanged. The full
+config participates in production_config_hash: this cooling change creates a
+new job configuration, supersedes old pending/running jobs, and initializes
+new-config scheduling history. Completed molecules, relations, identities and
+database-wide deduplication/diversity counts remain. It may retry deterministic
+proposals from round0; duplicates are rejected, not counted again. No old job
+is relabelled as completed.
+
+The deferred launcher requires all of:
+  - model progress status validation_complete;
+  - a ready marker with status done, matching protocol_sha256 and model_out_dir;
+  - no manual cooling hold (paused/pause_intended);
+  - free original model queue/trainer locks, held for the full inventory run;
+  - no model process verified by queue token or exact stage command/spec;
+  - free generation and chemistry leases;
+  - unchanged pinned plan, sources and inputs;
+  -120s sustained nominal thermal pressure.
+The root training guard separately holds the chemistry lease while models run.
+The ready marker is intended to follow heterogeneous selection and any final
+model inference, so validation_complete alone cannot start generation early.
+
+Failed/stopped model research fails closed without launching inventory. The
+launcher never signals a PID and never removes an arbitrary STOP. With explicit
+--release-cooling-stop it may remove only the exact STOP_GENERATION file created
+by the Nov3 manual hold, verified against that hold's preexisting=false record
+and original contents. The old inventory queue STOP is retained. A STOP in the
+new output keeps it waiting. Once inventory is active, SIGTERM to the waiter
+creates drain STOP files and retains model locks until inventory exits.
+
+Preparation:
+  ./venv/bin/python check_sequential_inventory.py
+  ./venv/bin/python make_sequential_inventory_plan.py
+
+Deferred launch (root supplies frozen plan/protocol hashes and final marker):
+  ./venv/bin/python defer_sequential_inventory.py \
+    --plan million_inventory_sequential_plan_20261107.json \
+    --plan-sha256 PLAN_SHA256 \
+    --model-progress training_runs/large_search_20261101/progress.json \
+    --ready-marker research_continuation_20261107/ALLOW_INVENTORY.json \
+    --protocol-sha256 PROTOCOL_SHA256 --release-cooling-stop --detach
+
+Progress: new output/deferred_waiter.json and deferred_waiter.log. After launch,
+the existing durable queue's progress.json/supervisor.log track generation,
+coverage completion, legacy context imports, composition scenarios, full-bank
+audit/export and2D graph preparation. No1M release is claimed before those
+checks actually finish.

@@ -1,0 +1,54 @@
+Bounded bank generation — 2026-11-09
+
+Reason for this version
+The previous conservative run completed134 jobs but only1 E job;133 M jobs
+produced zero new molecules. Deficient M-category priority was unconditional,
+and each5–80ms failed M job paid approximately60 seconds rest. This was a
+scheduling/cooling inefficiency, not a native hang or a relaxation of chemistry.
+
+New isolated files
+  expand_bounded_cool_bank.py
+  bounded_bank_scheduling.py
+  accumulated_generation_cooling.py
+
+The runner is a new explicit fork of expand_yield_aware_bank.py. Frozen chemistry
+workers, normalization, quality filters, reference/scaffold caps, holdout,
+deduplication, operator histories and actual M/E identities are unchanged.
+The new files enter the production configuration's implementation hashes.
+
+Allocation
+Before1M, deterministic allocations target25% coverage work,15% exploration,
+60% volume yield. Method floors use job counts, not millisecond CPU ratios.
+Yield scores include estimated cooling wall cost. Category coverage remains
+distinct named molecule/category membership, separately from globally new
+molecules. Once volume is complete, remaining original category floors still
+must be met; no count or taxonomy is invented to satisfy a floor.
+
+At most25% of M jobs explicitly target a fine subtype. The remaining jobs search
+the same actual broad operator category, allowing mixed subtypes across depths.
+Known zero-yield reference/category/subtype pairs are deferred after2 complete
+attempts. Observed feasibility and logarithmically scaled coverage replace raw
+legacy fine-count domination. Produced subcategories/history remain those of the
+unchanged engine, never a requested label assigned after generation.
+
+Cooling
+The single native compute child and90s hard deadline are unchanged. Short-job,
+coordinator, pressure-probe and status-write wall time accumulates toward15s
+nominal /5s fair-or-unknown active budgets. Cooling debt is3x /11x work; minimum
+interjob rest is0.05s. Serious/critical pressure requires120s sustained nominal.
+Native chemistry is never SIGSTOPped. A single native job can overrun the budget
+up to its90s deadline; its full cooling debt must be repaid before any next job.
+Thus this is a conservative long-run duty policy, not a guarantee that every
+15s sliding window or the case temperature stays below a measured threshold.
+
+Checks
+Nine mocked/temporary-SQLite tests cover bounded allocation, persistent failure
+history, tiny-job cooling, coordinator/control overhead, native timeout90→270s
+cooling debt, fair startup and120s recovery. A real temporary-bank run executed
+both M/E with a tiny declared pilot population. M broad ALECTINIB halogen/near
+produced5 accepted molecules,5 relations and5 nonempty histories; E produced0
+with pop8/generation1. The production bank was never written by these tests.
+Original runner, scheduler and native-host source hashes remained unchanged.
+
+No production process was launched or signalled by this implementation task.
+The parent orchestration owns the graceful handoff, pinned plan and restart.

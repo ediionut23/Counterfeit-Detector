@@ -1,0 +1,98 @@
+Reluarea cercetării — 7 noiembrie 2026, Europe/Bucharest
+
+Destinațiile și procesele actuale se citesc din active_research_run.json.
+Monitor în terminal:
+  ./venv/bin/python monitor_overnight_research.py --watch
+
+Starea la reluare
+Procesele suspendate la 3 noiembrie nu mai existau la verificarea din 7 noiembrie.
+Nu s-au trimis semnale PID-urilor vechi. Lockurile cozii, etapei, trainerului și
+generatorului erau libere. Etapa rămasă cu status running a fost reconciliată
+explicit ca întreruptă, cu dovezile originale arhivate în:
+  training_runs/large_search_20261101/recovery_20261107T074230/
+Ultimul checkpoint geometric seed 43 conținea epoca 4 încheiată. Calculul parțial
+al epocii 5 a fost refăcut; antrenarea a reluat de la last.pt cu aceeași configurație,
+optimizer, scheduler și RNG. Epoca5 s-a încheiat cu F1 validare 0.7832715 și s-a
+salvat un checkpoint nou. Nicio modificare a datelor, spliturilor sau trainerelor
+fixate prin hash nu a fost necesară pentru reluare.
+
+Datele folosite pentru toate modelele
+Cohortă comună 2D/3D: 191701 molecule; train 161157, val 13756, test 16788.
+Ambele generatoare M și E sunt prezente. Toate rulările folosesc întregul train;
+nu s-au folosit subseturi mici pentru selecția arhitecturilor.
+  balanced_datasets/training_200k/overnight_strict_converged_v2/
+  cohort_sha256=041936ffe7ad260c110d4bc8e9226d4622d3d0e79ae023b89cae2d1b789e5126
+Împărțirile stricte și geometriile convergente sunt păstrate. Val/test sunt
+echilibrate între etichete; train păstrează distribuția cohortei filtrate și are
+ponderi ierarhice disponibile. Experimentele compară folosirea acestor ponderi
+cu ponderi unitare; variantele cu ponderi unitare au avut rezultate mai bune în
+căutarea curentă. F1 se calculează fără ponderi pe validare/test, cu prag ales pe val.
+
+Etapele automate
+1. run_validation_continuation.py continuă repetarea geometrică seed 43, apoi
+   GATv2 seed 44 și geometric seed 44, cu oprire timpurie și maximum 100 epoci.
+   Păstrează toate rezultatele anterioare și alege și ansamblurile per familie
+   exclusiv pe validare. Termină cu validation_complete și nu rulează testul.
+   Protocol: research_continuation_protocol_20261107.json.
+2. defer_research_followup_v2.py așteaptă finalizarea și eliberarea cozii.
+   Plan: research_followup_plan_20261107_v2.json.
+   finish_heterogeneous_research.py cere toate cele 8 modele declarate și compară
+   16 candidați fixați înaintea noilor rezultate. Ponderile sunt fracții fixe;
+   nu se optimizează ponderi sau praguri pe test. Membrii, hashurile și pragul
+   sunt fixați înaintea unui singur test al candidatului final.
+3. Numai după rezultatul final salvat se publică:
+   research_continuation_20261107/ALLOW_INVENTORY.json.
+   Continuarea băncii așteaptă acest marker, toate lockurile modelelor libere și
+   revenirea susținută la presiune termică nominală. Configurația inventarului
+   și PID-ul procesului de așteptare sunt în active_research_run.json.
+   Plan activ: million_inventory_sequential_plan_20261107_v2.json.
+   defer_sequential_inventory.py este pornit și așteaptă; generatorul este oprit
+   în etapa curentă. Configurația păstrează un copil, 60s pauză între joburi și
+   120s nominal după presiune ridicată. cool_bank_stage.py aplică 15s/45s întregului
+   grup de procese la import, scenarii, audit/export și pregătirea grafurilor.
+   Schimbarea configurației termice creează o nouă istorie a joburilor; moleculele
+   și relațiile deja confirmate rămân, iar deduplicarea persistă.
+
+Rezultate salvate înaintea repetărilor rămase
+GATv2 JK+attention seed 42: F1 validare 82.62%, AUC 89.23%.
+Repetare GATv2 seed 43: F1 validare 82.34%.
+Geometric cu unghiuri seed 42: F1 validare 81.80%.
+Media exploratorie a 5 modele deja încheiate: F1 validare 84.05%, AUC 90.97%,
+precision 78.37%, recall 90.62%, FPR 25.01%, pe 13756 exemple de validare.
+Acest rezultat exploratoriu este marcat explicit neeligibil pentru test:
+  training_runs/heterogeneous_20261107/exploratory_selection/selection.json
+Politica finală cere 8 modele și 16 candidați:
+  heterogeneous_ensemble_policy_20261107.json
+Ținta 85% nu este încă atinsă. Nu există încă scor final de test pentru această
+continuare; nici banca 1M nu este încă finalizată. La reluare banca avea 931817
+molecule unice, dintre care 423596 asociate M și 386271 asociate E; originile se
+pot suprapune. Banca include și molecule de referință și este diferită de cohortă.
+
+Controlul încălzirii
+thermal_guard_cool_v2.py verifică identitățile de proces, comenzile, tokenurile,
+lanțurile de părinți și lockurile etapelor. În nominal: 15s calcul/45s pauză;
+în fair/unknown: 5s calcul/55s pauză. După serious/critical cere 120s nominal.
+Păstrează 2 fire ale trainerului, conform checkpointului; reduce timpul activ.
+Guardul deține exclusiv bank.chemistry.lock pe durata modelelor/inferenței, astfel
+încât generatorul nu poate porni în paralel. Procesele orfane verificate rămân
+în pauză până la recuperare controlată. Transferul V1→V2 este documentat în:
+  research_continuation_20261107/guard_v2_handoff.json
+macOS raportează presiune termică; nu avem o măsurare în grade Celsius a carcasei.
+Generatorul continuă ulterior separat, cu un singur copil de calcul, pauze mai
+lungi și aceleași filtre chimice, deduplicare, holdout și proveniență.
+
+Persistență și verificare
+Checkpointuri atomice best.pt/last.pt după fiecare epocă; progres intermediar
+în JSON și comenzi/ieșiri în loguri. SQLite păstrează tranzacțional moleculele,
+relațiile și joburile. Protocoalele, politicile și implementările sunt fixate prin
+hash. Versiunile bibliotecilor: research_continuation_20261107/environment.json.
+Au trecut verificările pentru reluarea numai pe validare, alinierea predicțiilor,
+ponderile fixe, blocarea testului înaintea selecției, eșecuri fără marker de gata,
+procese orfane și închiderea normală a supravegherii. Verificările folosesc exemple
+izolate; nu au efectuat inferență sau evaluare de test pe datele de producție.
+
+Interpretare
+Etichetele descriu originea moleculară publică/generată. Aceste scoruri nu
+validează încă detectarea produselor contrafăcute reale. Conformerii 3D sunt
+predicții optimizate, nu măsurători experimentale. Noile molecule din bancă nu
+au toate geometrii 3D; comparația geometrică folosește cohorta fixată existentă.

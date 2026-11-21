@@ -181,6 +181,8 @@ def main():
     p.add_argument("--workers", type=int, default=min(8, (os.cpu_count() or 4)))
     p.add_argument("--out", default="version_e")
     p.add_argument("--seed", type=int, default=42)
+    p.add_argument("--exclude-csv", action="append", default=[],
+                   help="Existing counterfeit CSV to exclude by counterfeit_smiles; repeatable")
     args = p.parse_args()
 
     random.seed(args.seed)
@@ -207,6 +209,19 @@ def main():
 
     t0 = time.time()
     global_seen: set = set()
+    if args.from_pt:
+        global_seen.update(parents)
+    else:
+        with open(args.parents) as stream:
+            global_seen.update(line.split()[0] for line in stream if line.strip())
+    for source in args.exclude_csv:
+        with open(source, newline="") as stream:
+            reader = csv.DictReader(stream)
+            if "counterfeit_smiles" not in (reader.fieldnames or []):
+                raise ValueError(f"Missing counterfeit_smiles column: {source}")
+            global_seen.update(row["counterfeit_smiles"] for row in reader
+                               if row.get("counterfeit_smiles"))
+    logger.info("Excluding %s existing/authentic SMILES", len(global_seen))
     rows: List[Dict] = []
     n_fooling = 0
 
@@ -257,6 +272,8 @@ def main():
 
             if len(rows) >= args.target_count:
                 logger.info(f"🎯 Target count of {args.target_count} counterfeits reached! Concluding generation.")
+                for pending in futures:
+                    pending.cancel()
                 break
 
     # Final summary save

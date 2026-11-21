@@ -51,6 +51,7 @@ import numpy as np
 from rdkit import Chem, RDLogger
 from rdkit.Chem import Descriptors, rdMolDescriptors, AllChem
 from rdkit.Chem.Scaffolds import MurckoScaffold
+from repair_edited_atoms import edited_child_atoms, source_mask_needs_repair as invalid_edit_mask
 
 RDLogger.DisableLog("rdApp.*")
 logging.basicConfig(level=logging.INFO, format="%(asctime)s | %(levelname)s | %(message)s")
@@ -110,7 +111,7 @@ def property_match(auth: List[Dict], fake: List[Dict],
         f_by[bin_of(r)].append(r)
 
     keep_a, keep_f = [], []
-    for b in set(a_by) | set(f_by):
+    for b in sorted(set(a_by) | set(f_by)):
         a, f = a_by.get(b, []), f_by.get(b, [])
         k = min(len(a), len(f))
         if k == 0:
@@ -159,24 +160,29 @@ def scaffold_split(rows: List[Dict], frac=(0.8, 0.1, 0.1), seed: int = 42) -> No
     groups = defaultdict(list)
     for r in rows:
         ref = r.get("parent_smiles") or r["smiles"]
-        groups[murcko(ref)].append(r)
+        groups[r.get("scaffold") or murcko(ref)].append(r)
+    names = ("train", "val", "test")
+    totals = {label: sum(int(r["label"]) == label for r in rows) for label in (0, 1)}
+    targets = {name: {label: fraction * totals[label] for label in (0, 1)}
+               for name, fraction in zip(names, frac)}
+    counts = {name: {0: 0, 1: 0} for name in names}
     scaffs = list(groups.values())
     random.Random(seed).shuffle(scaffs)
-    n = len(rows)
-    n_train, n_val = int(frac[0] * n), int(frac[1] * n)
-    counts = {"train": 0, "val": 0, "test": 0}
     for grp in sorted(scaffs, key=len, reverse=True):
-        # greedily place each scaffold family in the split that is most under quota
-        if counts["train"] < n_train:
-            split = "train"
-        elif counts["val"] < n_val:
-            split = "val"
-        else:
-            split = "test"
+        group_counts = {label: sum(int(r["label"]) == label for r in grp)
+                        for label in (0, 1)}
+
+        def added_error(name):
+            return sum((counts[name][label] + group_counts[label] - targets[name][label]) ** 2
+                       - (counts[name][label] - targets[name][label]) ** 2
+                       for label in (0, 1))
+
+        split = min(names, key=added_error)
         for r in grp:
             r["split"] = split
-        counts[split] += len(grp)
-    logger.info(f"    split sizes: {counts}")
+        for label in (0, 1):
+            counts[split][label] += group_counts[label]
+    logger.info(f"    split label counts: {counts}")
 
 
 # ------------------------------------------------------------------
@@ -257,7 +263,7 @@ def load_counterfeit_slices(min_subcat: int) -> Dict[str, List[Dict]]:
     evolved: List[Dict] = []
     pooled: List[Dict] = []
 
-    for f in glob.glob("version_m/counterfeits_*.csv"):
+    for f in sorted(glob.glob("version_m/counterfeits_*.csv")):
         if f.endswith("counterfeits_all.csv"):
             continue
         for r in csv.DictReader(open(f)):
@@ -317,7 +323,10 @@ def assemble_one(name: str, counterfeits: List[Dict], authentic_pool: List[Dict]
         seen.add(r["smiles"])
         fake.append(r)
 
-    auth_matched, fake_matched = property_match(authentic_pool, fake, seed=seed)
+    # A generated structure can also occur in the authentic pool. Keeping it in
+    # both classes creates contradictory labels and can leak across splits.
+    eligible_auth = [r for r in authentic_pool if r["smiles"] not in seen]
+    auth_matched, fake_matched = property_match(eligible_auth, fake, seed=seed)
     k = min(len(auth_matched), len(fake_matched))
     if k < 20:
         logger.warning(f"  [{name}] too small after matching (k={k}); skipped")
@@ -326,6 +335,12 @@ def assemble_one(name: str, counterfeits: List[Dict], authentic_pool: List[Dict]
     rng.shuffle(auth_matched)
     rng.shuffle(fake_matched)
     auth_matched, fake_matched = auth_matched[:k], fake_matched[:k]
+
+    for row in fake_matched:
+        if invalid_edit_mask(row):
+            indices = edited_child_atoms(row["parent_smiles"], row["smiles"])
+            if indices:
+                row["edited_atoms"] = " ".join(map(str, indices))
 
     metrics = shortcut_metrics(auth_matched, fake_matched)
 
@@ -339,7 +354,8 @@ def assemble_one(name: str, counterfeits: List[Dict], authentic_pool: List[Dict]
     ds_dir = outdir / name
     ds_dir.mkdir(parents=True, exist_ok=True)
     with open(ds_dir / "dataset.csv", "w", newline="") as fh:
-        w = csv.DictWriter(fh, fieldnames=COLS, extrasaction="ignore")
+        w = csv.DictWriter(fh, fieldnames=COLS, extrasaction="ignore",
+                           lineterminator="\n")
         w.writeheader()
         for r in rows:
             w.writerow(r)
@@ -354,6 +370,11 @@ def assemble_one(name: str, counterfeits: List[Dict], authentic_pool: List[Dict]
         "shortcut_metrics": metrics,
         "split_counts": {s: sum(1 for r in rows if r["split"] == s)
                          for s in ("train", "val", "test")},
+        "split_label_counts": {
+            s: {label: sum(1 for r in rows if r["split"] == s and str(r["label"]) == label)
+                for label in ("0", "1")}
+            for s in ("train", "val", "test")
+        },
         "conformers_written": n_conf,
     }
     (ds_dir / "summary.json").write_text(json.dumps(summary, indent=2))

@@ -3,6 +3,20 @@
 Document de pregătire pentru discuția cu coordonatorii (prof. Breabăn, asist. Cornei).
 Termenii tehnici sunt în engleză (ca în propunere); explicațiile în română.
 
+> **Actualizare 26.09.2026:** snapshotul curent are 90 de dataseturi și
+> 781.692 de rânduri. Baseline-urile RF pentru `evolved`, `pooled`, cele
+> patru categorii mari și experimentul M→E strict au fost rerulate.
+> Rezultatele GIN pe categoriile mari rămân istorice; există o comparație nouă
+> GIN/GCN/GAT pe subcategoria Cl→F. Arhiva 3D acoperă 99,9312% dintre molecule; vezi `WIKI.md` și
+> `benchmark/README.md`.
+
+**Banca modulară nouă:** `final_dataset/` conține câte un rând pentru fiecare
+analog sintetic unic, relațiile cu părinții autentici și fișiere separate pe
+metodă/categorie/subcategorie. `final_dataset/summary.json` și `audit.json`
+dau numerele finale și verificările; `final_dataset/README.md` descrie formatul.
+Cele 90 de CSV-uri echilibrate din `benchmark/` sunt instantanee mai vechi de
+evaluare, iar suma rândurilor lor nu reprezintă molecule contrafăcute unice.
+
 ---
 
 ## PARTEA 1 — Ce este, de fapt, datasetul
@@ -73,9 +87,9 @@ mutație cu reguli MMP) sub **NSGA-II** multi-obiectiv. **Combină** edituri,
 | **Reguli minate** (nu 21 scrise de mână) | data-driven, cu dovadă de realism (support); catalogul crește automat cu date |
 | **Version E (evolutiv)** | un catalog fix are plafon; un contrafăcător real nu e limitat la o listă |
 | **Property matching (DUD-E)** | ca niciun clasificator să nu separe pe greutate/mărime → forțează semnal structural |
-| **Scaffold split** (nu random) | testezi pe schelete nevăzute → măsori învățarea *editului*, nu memorarea scaffold-urilor |
+| **Split pe scaffoldul părintelui** (nu random) | ține familia părinte–analog în același split; scaffoldul structurii analogului poate apărea în alte splituri, deci raportez separat un test mai strict |
 | **Conformeri 3D** | pentru experimentele geometrice (C1/C3) |
-| **Atomii editați (ground-truth)** | permit scorarea explicabilității (explanation accuracy, Fidelity, Sparsity) "gratis" |
+| **Atomii editați** | permit evaluarea explicațiilor; pentru substituțiile halogenice reversibile verificăm exact locul editării, iar măștile MCS ambigue se raportează separat |
 | **E model-free la benchmark** | un dataset trebuie să fie independent de model, reproductibil |
 
 ---
@@ -85,10 +99,10 @@ mutație cu reguli MMP) sub **NSGA-II** multi-obiectiv. **Combină** edituri,
 - **Molecule reale de mining:** ~58.600 (ChEMBL + PubChem)
 - **Catalog:** 1.732.359 reguli brute → **3.257 reguli** filtrate (support median ridicat)
 - **Version M:** 50.000 contrafaceri (10k × 5 categorii)
-- **Version E:** ~1.900 contrafaceri evoluate (mic, e nivelul greu)
-- **Benchmark:** 44 dataset-uri (5 categorii + subcategorii + evolved + pooled)
-- **pooled:** ~97.000 molecule (1:1 autentic:contrafăcut)
-- **Conformeri 3D:** ~105.000 molecule, ~100% coverage
+- **Benchmark E:** 46.251 contrafaceri evoluate după asamblare și matching
+- **Benchmark:** 90 dataseturi, 781.692 de rânduri în total
+- **pooled:** 104.718 molecule (1:1 autentic:contrafăcut)
+- **Conformeri 3D:** 249.803/249.975 molecule (99,9312%), arhivate în 5 fișiere gzip cu chei `smiles`
 
 **Categoriile:** bioisostere, scaffold-hop, halogen-walk, homologation, other.
 
@@ -96,18 +110,27 @@ mutație cu reguli MMP) sub **NSGA-II** multi-obiectiv. **Combină** edituri,
 
 ## PARTEA 5 — Validarea (dovezile, nu presupunerile)
 
-**Realism** (`audit_realism.py`): contrafacerile sunt valide/unice/noi ~100%,
-similaritate cu părintele ~0.6-0.7 (bandă realistă), QED egal cu al medicamentelor
-reale, **fără shortcut de proprietate** (LR trivial ~0.5).
+**Realism** (`audit_realism.py`): în cele 90 de seturi, contrafacerile sunt
+valide și unice în fiecare set. Noutatea față de biblioteca autentică completă
+este 0,983 pentru E și 0,976 pentru pooled; într-o subcategorie cu 80 de
+contrafaceri scade la 0,738. Similaritatea medie cu părintele este 0,628 pe E.
+Matchingul reduce shortcut-urile de proprietate, dar unele subcategorii mici
+au încă scoruri LR triviale ridicate; verifică `summary.json` și mărimea
+eșantionului în `realism_audit.json` pentru fiecare.
 
 **Învățabilitate** (`train_baseline.py`, `train_gnn.py`), pe split scaffold:
-- **M**: fingerprint AUC 0.80-0.95, GNN 0.97 → **învățabil, semnal structural**.
-- **E**: 0.53 pe puține date → **0.67** pe 2× date → **greu dar învățabil**.
-- property-only ~0.5 → **nu e shortcut**.
+- **M, snapshotul curent:** fingerprint AUC 0,872–0,952 pe cele patru categorii mari.
+- **E, snapshotul curent:** fingerprint AUC **0,902**, F1 **0,825**, FNR **0,150**.
+- **property-only:** AUC 0,521 pe E, dar până la 0,592 pe halogen-walk.
+- **GIN/GCN/GAT pe Cl→F:** AUC mediu pe 3 seeduri 0,973 / 0,973 / 0,979;
+  RF și XGBoost obțin 0,984 / 0,983, tot pe 3 seeduri.
+- **M→E strict:** sursă M comună fără conflicte, test E fără schele/SMILES
+  văzute: RF AUC **0,866 ± 0,002**, F1 **0,756 ± 0,006**, FNR **0,287 ± 0,004**;
+  XGBoost AUC **0,810 ± 0,005**, F1 **0,680 ± 0,008**, FNR **0,395 ± 0,010**
+  pe 572 exemple, trei seeduri.
 
-**Constatarea cheie:** gap-ul **M ≈ 0.95 vs E ≈ 0.67** = *detectorii prind
-modificările enumerate, dar se chinuie cu cele descoperite evolutiv.* Asta e
-întrebarea centrală a benchmark-ului, cu răspuns măsurat.
+**Constatarea curentă:** la scară mai mare, E nu mai are AUC 0,67; Random
+Forest ajunge la **0,902**. Gap-ul vechi M–E era specific versiunilor mici.
 
 ---
 
@@ -121,7 +144,8 @@ modificările enumerate, dar se chinuie cu cele descoperite evolutiv.* Asta e
    moleculă plauzibilă; în alt context ar putea fi un analog legitim.
 3. **E parțial mai ușor decât realitatea** — property matching-ul poate lăsa
    mici shortcut-uri reziduale pe unele subcategorii (le raportăm).
-4. **E (evoluat) e mic** — generarea evolutivă e scumpă (NSGA-II per părinte).
+4. **E (evoluat) e costisitor** — generarea NSGA-II per părinte rămâne scumpă,
+   chiar dacă versiunea curentă are 46.251 contrafaceri după matching.
 5. **Un singur autor/paper până acum** (DSAA, sub review) — de aici nevoia de
    benchmark ca să devină comparabil.
 
@@ -164,25 +188,40 @@ diversitate. Nu comprim într-o sumă ponderată (ar fi arbitrar).
 **Î: Cum eviți shortcut-urile? De unde știi că modelul nu trișează pe greutate?**
 R: Property matching stil DUD-E: potrivesc autentice și contrafaceri pe MW/heavy/
 lungime. Raportez Cohen's d (~0) și acuratețea unui LR trivial pe acele
-proprietăți (~0.5 = nu se separă). Deci semnalul trebuie să vină din structură.
+proprietăți (~0.5 = nu se separă pe acele variabile). Un scor aproape de 0,5
+susține interpretarea că semnalul util vine din structură.
+În snapshotul curent verific fiecare subcategorie separat; unele păstrează
+shortcut-uri reziduale, deci nu presupun că matchingul le-a eliminat complet.
 
 **Î: De ce scaffold split și nu random?**
 R: Un split random lasă modelul să memoreze scaffold-uri și să pară bun fals.
-Scaffold split (familii disjuncte, MoleculeNet/OGB) testează pe schelete
-nevăzute → măsoară dacă a învățat *editul*. Dovada: pe E, GNN-ul dă 0.90 pe val
-(same-scaffold) dar 0.67 pe test (scaffold nevăzut) — random ar fi mințit.
+Splitul pe scaffoldul părintelui ține familiile de origine separate și reduce
+memorarea lor; singur nu demonstrează că modelul a învățat
+*editul*. În snapshotul curent, train/val/test
+sunt disjuncte pe scaffoldul stocat și fiecare split păstrează balansul 1:1.
+Auditul arată că 17,55% din rândurile E de test au scaffoldul structurii proprii
+prezent în train/validare; `benchmark/strict_child_scaffold/` oferă un test E
+mai strict. Vechiul
+rezultat GNN 0,90 pe val și 0,67 pe test provenea dintr-un set mai mic.
+Pentru M→E folosesc un set M derivat cu split global și un subset E filtrat;
+spliturile originale ale categoriilor nu se pot concatena direct.
 
 **Î: Cum faci balansul 1:1 dacă un părinte dă 10 contrafaceri?**
 R: Raportul "1 părinte : N falsuri" e la generare, irelevant pentru balans.
 Balansul 1:1 e la asamblare: iau **la fel de multe molecule autentice câte
 contrafaceri**, molecule *separate* de părinți, property-matched. Părintele e
-reținut doar ca origine (pentru split + ground-truth).
+reținut doar ca origine (pentru split și identificarea editării). Pentru
+evaluarea explicațiilor la nivel de atom folosesc subsetul din
+`benchmark/verified_edits/`: 23.826 perechi cu un loc unic de editare
+reversibilă. Celelalte măști pot fi aproximative și nu constituie automat
+ground truth exact.
 
 ### C. Realism / validitate (cele mai probabile)
 
 **Î: Sunt realiste contrafacerile astea? Sau inventezi molecule?**
-R: Le-am *măsurat* (audit_realism.py): valide/unice/noi ~100%, similaritate cu
-părintele ~0.65 (bandă realistă, nu clone, nu random), QED egal cu autenticele.
+R: Le-am *măsurat* (audit_realism.py): valide/unice în fiecare set, noutate
+0,983 pe E și 0,976 pe pooled, similaritate medie cu părintele 0,628 pe E.
+Unele subcategorii mici au noutate și proprietăți mai puțin uniforme.
 Regulile vin din perechi de medicamente reale (support median mare). Deci
 ancorate în chimie reală, nu inventate.
 
@@ -193,22 +232,24 @@ benchmark E e **model-free**). Iar întrebarea de generalizare o testez R/M→E
 (antrenezi pe unele, testezi pe altele).
 
 **Î: De unde știi că nu e doar zgomot (moleculele indistinctibile)?**
-R: Testul de învățabilitate: pe scaffold-uri nevăzute, fingerprint-ul dă AUC
-0.8-0.95 pe M → există semnal real. Iar property-only ~0.5 → nu e shortcut de
-proprietate.
+R: Pe scaffoldurile părinților nevăzute, fingerprint-ul dă AUC 0,872–0,952 pe categoriile
+M mari și 0,902 pe E. Property-only dă 0,521 pe E, dar ajunge la 0,592 pe
+halogen-walk; semnalul structural este real, iar shortcut-urile reziduale se
+raportează separat.
 
-**Î: De ce ai puține molecule evoluate (E)?**
-R: E e scump — fiecare părinte cere o rulare NSGA-II completă, apoi păstrez doar
-frontul Pareto filtrat (in-band + druglike + dedup) → ~2-3/părinte. E nivelul
-*greu, descoperit*, gândit să fie mic și dificil, nu produs în masă. Scalabil cu
-mai mulți părinți dacă e nevoie.
+**Î: De ce este costisitoare generarea moleculelor evoluate (E)?**
+R: Fiecare părinte cere o rulare NSGA-II, apoi păstrez doar frontul Pareto
+filtrat (in-band + druglike + dedup). Versiunea curentă are 46.251
+contrafaceri E după matching, dar generarea rămâne mai scumpă decât aplicarea
+regulilor MMP.
 
 ### D. Comparație cu literatura
 
 **Î: Cu ce diferă de DUD-E / decoys?**
 R: DUD-E generează *decoys* (molecule diferite, matched pe proprietăți). Aici
 contrafacerile sunt *derivate din* medicament printr-un edit local cunoscut —
-avem și ground-truth-ul atomilor modificați. Am împrumutat de la DUD-E doar
+avem și indicii atomilor modificați, cu locul verificat exact acolo unde o
+substituție inversă unică reconstruiește părintele. Am împrumutat de la DUD-E doar
 protocolul de property-matching anti-shortcut.
 
 **Î: Legătura cu activity cliffs (MoleculeACE)?**
@@ -233,8 +274,10 @@ contrafacere e o modificare subtilă, nu o rescriere).
 **Î: Ce faci cu regulile care nu se aplică?** → Filtrate; doar cele compilabile
 RDKit + care produc molecule druglike ajung în dataset.
 
-**Î: Cum garantezi reproductibilitatea?** → Totul determinist cu `--seed` (42);
-cod, split-uri fixe, catalog, mediu versionat — se re-derivă orice număr.
+**Î: Cum garantezi reproductibilitatea?** → Datele se reconstruiesc exact cu
+sursele arhivate, manifestul măștilor și split-urile fixe; experimentele salvează
+semințele, numărul de fire CPU și versiunile pachetelor. Un seed singur nu
+garantează rezultate identice pe orice hardware.
 
 **Î: Ce metrici raportezi?** → FNR (un fals ratat e eroarea costisitoare) întâi,
 apoi Precision/Recall/F1, plus AUC — și **per categorie**, nu doar media.
@@ -244,10 +287,12 @@ apoi Precision/Recall/F1, plus AUC — și **per categorie**, nu doar media.
 ## Cheat-sheet: 5 lucruri de spus sigur
 
 1. **"Eticheta e atribuită, nu măsurată"** — arată că înțelegi natura problemei.
-2. **"Property matching + scaffold split"** — arată că eviți shortcut-urile și
-   testezi onest.
+2. **"Property matching + split pe scaffoldul părintelui + audit al
+   scaffoldului analogului"** — arată ce controlezi și ce suprapunere rămâne;
+   testul E strict elimină acea suprapunere.
 3. **"Support-ul din mining = realism data-driven"** — regulile-s reale, nu
    inventate.
-4. **"Gap M vs E măsurat (0.95 vs 0.67)"** — ai un rezultat, nu doar date.
+4. **"E ajunge la AUC 0,902 la scara actuală"** — rezultatul vechi de 0,67
+   nu se aplică snapshotului curent.
 5. **Limitarea onestă:** "nu există date de falsuri reale; folosim proxy-ul de
    analogi reali + validăm realismul." — onestitatea impresionează.

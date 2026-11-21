@@ -1,0 +1,102 @@
+{
+  "schema_version": 1,
+  "target_unique_molecules": 1000000,
+  "seed": 20261031,
+  "reference_csv": "molecule_bank_1m/reference_registry/eligible_seeds.csv",
+  "rules_path": "mined_transformations.py",
+  "holdout": "real_world_falsification/v1/external_holdout.json",
+  "categories": [
+    "bioisostere",
+    "halogen-walk",
+    "scaffold-hop",
+    "homologation",
+    "other"
+  ],
+  "difficulty_bands": {
+    "near": {
+      "sim_lo": 0.75,
+      "sim_hi": 0.98,
+      "similarity_target": 0.88,
+      "m_depth": 1
+    },
+    "intermediate": {
+      "sim_lo": 0.5,
+      "sim_hi": 0.8,
+      "similarity_target": 0.65,
+      "m_depth": 2
+    },
+    "distant": {
+      "sim_lo": 0.3,
+      "sim_hi": 0.6,
+      "similarity_target": 0.45,
+      "m_depth": 3
+    }
+  },
+  "quality": {
+    "qed_min": 0.35,
+    "max_sa": 4.2,
+    "max_alerts": 0,
+    "min_heavy_atoms": 10,
+    "max_heavy_atoms": 70,
+    "min_mw": 150.0,
+    "max_mw": 800.0
+  },
+  "evolution": {
+    "pop": 128,
+    "generations": 4,
+    "max_candidates": 128,
+    "crossover_op": "mass-balanced",
+    "max_pairwise_similarity": 0.95
+  },
+  "mutation": {
+    "max_candidates": 100,
+    "beam_width": 32,
+    "max_rule_applications_per_node": 96,
+    "max_products_per_rule": 128
+  },
+  "diversity": {
+    "max_named_molecules_per_reference": 1000,
+    "max_new_molecules_per_child_scaffold": 3000
+  },
+  "max_rounds": 5,
+  "job_timeout_seconds": 90,
+  "scenario": "synthetic_structural_analogue_substitution",
+  "molecule_count_basis": "unique canonical isomeric active-moiety SMILES after cleanup/fragment-parent/uncharging; forms, relations, samples and conformers do not count as additional molecules",
+  "yield_scheduler": {
+    "version": "bounded_coverage_wall_v1",
+    "exploration_fraction": 0.15,
+    "history_window": 32,
+    "smoothing_seconds": 60,
+    "minimum_active_time_share": {
+      "E": 0,
+      "M": 0
+    },
+    "minimum_named_category_unique": {
+      "E": 20000,
+      "M": 1000
+    },
+    "method_parity_bonus": 0.0,
+    "coverage_fraction": 0.25,
+    "minimum_job_share": {
+      "E": 0.25,
+      "M": 0.1
+    },
+    "wall_overhead_seconds": 0.25,
+    "fine_target_fraction": 0.25,
+    "fine_pair_zero_skip_after": 2
+  },
+  "execution_policy": {
+    "version": "accumulated_active_wall_v1",
+    "compute_children": 1,
+    "hard_wall_seconds": 90,
+    "thermal_gate": "accumulated25pct_nominal;fair5of60;120snominalrecovery;longjobdebt_repaid",
+    "nominal_rest_seconds": 0.05,
+    "sustained_nominal_seconds": 120,
+    "python_hash_seed": 0,
+    "minimum_rest_seconds": 0.05,
+    "nominal_active_budget_seconds": 15,
+    "nominal_rest_ratio": 3,
+    "fair_active_budget_seconds": 5,
+    "fair_rest_ratio": 11
+  }
+}

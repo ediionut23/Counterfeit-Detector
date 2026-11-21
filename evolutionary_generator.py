@@ -57,10 +57,12 @@ import argparse
 import importlib.util
 import json
 import logging
+import math
 import os
 import random
 import sys
 import warnings
+from collections import OrderedDict
 from pathlib import Path
 from typing import Callable, Dict, List, Optional, Tuple
 
@@ -99,7 +101,12 @@ class RuleLibrary:
         self.category = category
         self.names: List[str] = []
         self.reactions: List[AllChem.ChemicalReaction] = []
+        self.reactant_queries: List[Chem.Mol] = []
         self.weights: List[float] = []
+        self.operation_events = None
+        self.operation_events_by_child = {}
+        self.applicable_rule_sampling = False
+        self.applicability_cache = OrderedDict()
         for name, _diff, _cat, react, prod, _cite in raw:
             if category and _cat != category:
                 continue
@@ -108,7 +115,10 @@ class RuleLibrary:
                 continue
             self.names.append(name)
             self.reactions.append(rxn)
-            self.weights.append(float(support.get(name, 1)))
+            self.reactant_queries.append(rxn.GetReactantTemplate(0))
+            # Temper rule support: common mined transformations remain more
+            # likely, while lower-frequency chemistry is not crowded out.
+            self.weights.append(float(support.get(name, 1)) ** 0.5)
         w = np.asarray(self.weights, dtype=float)
         self.probs = (w / w.sum()) if w.sum() > 0 else None
         cat_str = f" for category '{category}'" if category else ""
@@ -121,13 +131,49 @@ class RuleLibrary:
         spec.loader.exec_module(mod)  # type: ignore
         return mod
 
+    def applicable_indices(self, smiles: str, mol=None) -> List[int]:
+        """Cache exact reactant-pattern compatibility, not predicted chemistry."""
+        if smiles in self.applicability_cache:
+            self.applicability_cache.move_to_end(smiles)
+            return self.applicability_cache[smiles]
+        mol = mol if mol is not None else Chem.MolFromSmiles(smiles)
+        indices = []
+        if mol is not None:
+            for i, query in enumerate(self.reactant_queries):
+                try:
+                    if mol.HasSubstructMatch(query):
+                        indices.append(i)
+                except Exception:
+                    continue
+        self.applicability_cache[smiles] = indices
+        if len(self.applicability_cache) > 4096:
+            self.applicability_cache.popitem(last=False)
+        return indices
+
     def mutate(self, smiles: str, max_tries: int = 12) -> str:
         mol = Chem.MolFromSmiles(smiles)
         if mol is None:
             return smiles
-        idxs = np.arange(len(self.reactions))
+        if self.applicable_rule_sampling:
+            idxs = np.asarray(self.applicable_indices(smiles, mol), dtype=int)
+            if not len(idxs):
+                return smiles
+            weights = np.asarray([self.weights[i] for i in idxs], dtype=float)
+            probs = weights / weights.sum() if weights.sum() > 0 else None
+        else:
+            idxs, probs = np.arange(len(self.reactions)), self.probs
+            if not len(idxs):
+                return smiles
         for _ in range(max_tries):
-            i = int(np.random.choice(idxs, p=self.probs))
+            i = int(np.random.choice(idxs, p=probs))
+            # Most category rules cannot apply to most molecules. Check the
+            # reactant pattern first; this avoids spending reaction calls on
+            # inapplicable operators and reduces no-op offspring.
+            try:
+                if not mol.HasSubstructMatch(self.reactant_queries[i]):
+                    continue
+            except Exception:
+                continue
             try:
                 products = self.reactions[i].RunReactants((mol,))
             except Exception:
@@ -137,10 +183,49 @@ class RuleLibrary:
             cand = random.choice(products)[0]
             try:
                 Chem.SanitizeMol(cand)
-                return Chem.MolToSmiles(cand)
+                result = Chem.MolToSmiles(cand)
+                if result != smiles:
+                    _record_operation_event(self, {"operator": "mutation", "rule_name": self.names[i],
+                        "mutation_rule_category": self.category, "input_smiles": [smiles],
+                        "output_smiles": result})
+                return result
             except Exception:
                 continue
         return smiles  # no applicable rule -> unchanged (crossover may still act)
+
+
+def _start_operation_trace(rule_lib, enabled: bool) -> None:
+    rule_lib.operation_events = [] if enabled else None
+    rule_lib.operation_events_by_child = {}
+
+
+def _record_operation_event(rule_lib, event: Dict) -> None:
+    """Record executed successful operators, without claiming full ancestry."""
+    events = getattr(rule_lib, "operation_events", None)
+    if events is None:
+        return
+    record = {"operation_index": len(events), **event}
+    events.append(record)
+    # Re-parsing removes impossible stereocentres in symmetric crossover
+    # products. The search archive does the same round trip; index by that
+    # identity while retaining the operator's actual original output above.
+    mol=Chem.MolFromSmiles(event["output_smiles"])
+    lookup=Chem.MolToSmiles(mol,isomericSmiles=True) if mol is not None else event["output_smiles"]
+    record["canonical_output_smiles"]=lookup
+    rule_lib.operation_events_by_child.setdefault(lookup, []).append(record)
+
+
+def _operation_provenance(rule_lib, smiles: str) -> Dict:
+    if getattr(rule_lib, "operation_events", None) is None:
+        return {}
+    mol=Chem.MolFromSmiles(smiles)
+    lookup=Chem.MolToSmiles(mol,isomericSmiles=True) if mol is not None else smiles
+    events = getattr(rule_lib, "operation_events_by_child", {}).get(lookup, [])
+    return {
+        "operator_history": events,
+        "operator_history_status": "recorded_immediate_producer_events_not_complete_ancestry",
+        "search_operation_event_count": len(rule_lib.operation_events),
+    }
 
 
 # ==================================================================
@@ -448,9 +533,38 @@ class Objectives:
 
     def __init__(self, parent_smiles: str, sim_lo: float = 0.4, sim_hi: float = 0.9,
                  adversarial: Optional[Callable[[str], float]] = None,
-                 profile: str = "anti-shortcut"):
+                 profile: str = "anti-shortcut", similarity_target: float = 0.70,
+                 scaffold_penalty: float = 0.35,
+                 fitness_weights: Optional[Dict[str, float]] = None):
+        if not (0 <= sim_lo < sim_hi <= 1):
+            raise ValueError("Similarity bounds must satisfy 0 <= sim_lo < sim_hi <= 1")
+        if not math.isfinite(similarity_target) or not 0 <= similarity_target <= 1:
+            raise ValueError("similarity_target must be finite and in [0, 1]")
+        if not math.isfinite(scaffold_penalty) or not 0 <= scaffold_penalty <= 1:
+            raise ValueError("scaffold_penalty must be finite and in [0, 1]")
+        if profile not in {"anti-shortcut", "baseline", "adversarial"}:
+            raise ValueError(f"Unknown fitness profile: {profile}")
+        defaults = {"proximity": 3.5, "mw": 1.0 / 60.0, "logp": 1.0 / 1.5,
+                    "qed": 0.45, "sa": 0.35, "alerts": 0.15, "sparsity": 0.05}
+        if fitness_weights is not None:
+            if not isinstance(fitness_weights, dict):
+                raise ValueError("fitness_weights must be a mapping")
+            unknown = set(fitness_weights) - defaults.keys()
+            if unknown:
+                raise ValueError(f"Unknown fitness weights: {sorted(unknown)}")
+            for name, value in fitness_weights.items():
+                if isinstance(value, bool) or not isinstance(value, (int, float)) or not math.isfinite(value) or value < 0:
+                    raise ValueError(f"Fitness weight {name} must be finite and nonnegative")
+                defaults[name] = float(value)
+        if sum(defaults[k] for k in ("qed", "sa", "alerts", "sparsity")) <= 0:
+            raise ValueError("At least one plausibility fitness weight must be positive")
+        self.similarity_target = similarity_target
+        self.scaffold_penalty = scaffold_penalty
+        self.fitness_weights = defaults
         self.parent_smiles = parent_smiles
         self.parent_mol = Chem.MolFromSmiles(parent_smiles)
+        if self.parent_mol is None:
+            raise ValueError("Invalid parent SMILES")
         self.parent_fp = morgan(self.parent_mol)
         self.parent_mw = float(Descriptors.MolWt(self.parent_mol))
         self.parent_logp = float(Descriptors.MolLogP(self.parent_mol))
@@ -490,16 +604,17 @@ class Objectives:
         # -----------------------------------------------------------
         if self.profile == "anti-shortcut":
             # f1: Target proximity (sweet-spot around 0.70) + Scaffold Retention
-            target_pen = 3.5 * ((sim - 0.70) ** 2)
+            w = self.fitness_weights
+            target_pen = w["proximity"] * ((sim - self.similarity_target) ** 2)
             scaf_pen = 0.0
             if self.parent_scaffold is not None and not mol.HasSubstructMatch(self.parent_scaffold):
-                scaf_pen = 0.35
+                scaf_pen = self.scaffold_penalty
             f1 = min(1.0, target_pen + scaf_pen)
 
             # f2: Anti-Shortcut Property Invariance (|ΔMW| & |ΔLogP|)
             delta_mw = abs(Descriptors.MolWt(mol) - self.parent_mw)
             delta_logp = abs(Descriptors.MolLogP(mol) - self.parent_logp)
-            f2 = min(1.0, (delta_mw / 60.0) + (delta_logp / 1.5))
+            f2 = min(1.0, w["mw"] * delta_mw + w["logp"] * delta_logp)
 
             # f3: Composite Plausibility, SA, Alerts & Local Edit Sparsity
             plaus = 1.0 - float(Descriptors.qed(mol))
@@ -509,7 +624,8 @@ class Objectives:
             atom_diff = abs(mol.GetNumHeavyAtoms() - self.parent_atoms)
             sparsity_pen = min(1.0, atom_diff / 5.0)
 
-            f3 = min(1.0, 0.45 * plaus + 0.35 * sa + 0.15 * min(alerts, 2) + 0.05 * sparsity_pen)
+            f3 = min(1.0, w["qed"] * plaus + w["sa"] * sa
+                     + w["alerts"] * min(alerts, 2) + w["sparsity"] * sparsity_pen)
             objs = [float(f1), float(f2), float(f3)]
             if self.adversarial:
                 objs.append(float(self.adversarial(smiles)))
@@ -640,10 +756,13 @@ def load_detector_scorer(results_dir: str = "HGT_Enhanced_Results"
 def build_and_run_probabilistic_crowding(parent_smiles: str, rule_lib: RuleLibrary, objectives: Objectives,
                                         pop_size: int, generations: int, seed: int,
                                         crossover_op: str = "mass-balanced",
-                                        compute_shape: bool = False) -> List[Dict]:
+                                        compute_shape: bool = False,
+                                        archive_history: bool = False,
+                                        record_operations: bool = False) -> List[Dict]:
     """Mengshoel & Goldberg (1999) Probabilistic Crowding for Molecular Niching & Diversity."""
     random.seed(seed)
     np.random.seed(seed)
+    _start_operation_trace(rule_lib, record_operations)
     parent_mw = Descriptors.MolWt(objectives.parent_mol) if objectives.parent_mol else 250.0
 
     def get_fitness(smi: str) -> float:
@@ -669,8 +788,13 @@ def build_and_run_probabilistic_crowding(parent_smiles: str, rule_lib: RuleLibra
             p1, p2 = pop[i], pop[i + 1]
             
             # Crossover & Mutation
-            c1 = crossover(p1, p2, op=crossover_op, target_mw=parent_mw) or p1
-            c2 = crossover(p2, p1, op=crossover_op, target_mw=parent_mw) or p2
+            crossed1 = crossover(p1, p2, op=crossover_op, target_mw=parent_mw)
+            crossed2 = crossover(p2, p1, op=crossover_op, target_mw=parent_mw)
+            c1, c2 = crossed1 or p1, crossed2 or p2
+            for inputs, produced in (([p1, p2], crossed1), ([p2, p1], crossed2)):
+                if produced is not None:
+                    _record_operation_event(rule_lib, {"operator": "crossover", "crossover_operator": crossover_op,
+                        "input_smiles": inputs, "output_smiles": produced})
             
             if random.random() < 0.6:
                 c1 = rule_lib.mutate(c1)
@@ -720,17 +844,22 @@ def build_and_run_probabilistic_crowding(parent_smiles: str, rule_lib: RuleLibra
         if sim >= 0.999:
             continue
         fi = objectives.evaluate(smi)
-        edits = edited_atoms(parent_smiles, smi)
+        # Computing MCS masks for every candidate in a full trajectory archive
+        # is expensive. The category runner reconstructs masks only after its
+        # chemical and diversity filters have selected final rows.
+        edits = [] if archive_history else edited_atoms(parent_smiles, smi)
         rec = {
             "smiles": smi,
-            "similarity_to_parent": round(sim, 3),
-            "qed": round(float(Descriptors.qed(mol)), 3),
-            "sa_score": round(sascorer.calculateScore(mol), 2) if sascorer else None,
+            "similarity_to_parent": round(sim, 8),
+            "qed": round(float(Descriptors.qed(mol)), 8),
+            "sa_score": round(sascorer.calculateScore(mol), 6) if sascorer else None,
             "structural_alerts": structural_alerts(mol),
             "objectives": {n: round(float(v), 4) for n, v in zip(obj_names, fi)},
             "edited_atoms": edits,
-            **edit_metrics(parent_smiles, smi, edits),
+            **_operation_provenance(rule_lib, smi),
         }
+        if not archive_history:
+            rec.update(edit_metrics(parent_smiles, smi, edits))
         if compute_shape:
             rec["shape_similarity_3d"] = shape_similarity_3d(objectives.parent_mol, smi)
         front.append(rec)
@@ -743,12 +872,18 @@ def build_and_run(parent_smiles: str, rule_lib: RuleLibrary, objectives: Objecti
                   pop_size: int, generations: int, seed: int,
                   crossover_op: str = "hybrid",
                   algorithm: str = "nsga2",
-                  compute_shape: bool = False) -> List[Dict]:
+                  compute_shape: bool = False,
+                  archive_history: bool = False,
+                  record_operations: bool = False) -> List[Dict]:
     if algorithm == "probabilistic-crowding":
         return build_and_run_probabilistic_crowding(parent_smiles, rule_lib, objectives,
                                                    pop_size=pop_size, generations=generations,
                                                    seed=seed, crossover_op=crossover_op,
-                                                   compute_shape=compute_shape)
+                                                   compute_shape=compute_shape,
+                                                   archive_history=archive_history,
+                                                   record_operations=record_operations)
+
+    _start_operation_trace(rule_lib, record_operations)
 
     from pymoo.core.problem import ElementwiseProblem
     from pymoo.core.sampling import Sampling
@@ -763,9 +898,17 @@ def build_and_run(parent_smiles: str, rule_lib: RuleLibrary, objectives: Objecti
     class MolProblem(ElementwiseProblem):
         def __init__(self):
             super().__init__(n_var=1, n_obj=objectives.n_obj, n_constr=0)
+            # NSGA-II's final population forgets useful feasible molecules from
+            # earlier generations. Keep a per-run archive so downstream
+            # category generation can choose from the full search trajectory.
+            self.candidate_archive: Dict[str, List[float]] = {}
 
         def _evaluate(self, x, out, *a, **k):
-            out["F"] = np.array(objectives.evaluate(x[0]), dtype=float)
+            smiles = x[0]
+            values = np.array(objectives.evaluate(smiles), dtype=float)
+            out["F"] = values
+            if archive_history and Chem.MolFromSmiles(smiles) is not None:
+                self.candidate_archive[Chem.MolToSmiles(Chem.MolFromSmiles(smiles))] = values.tolist()
 
     class MolSampling(Sampling):
         def _do(self, problem, n_samples, **kwargs):
@@ -790,6 +933,9 @@ def build_and_run(parent_smiles: str, rule_lib: RuleLibrary, objectives: Objecti
                 for o in range(self.n_offsprings):
                     child = crossover(a, b, op=crossover_op, target_mw=parent_mw)
                     Y[o, m, 0] = child if child is not None else (a if o == 0 else b)
+                    if child is not None:
+                        _record_operation_event(rule_lib, {"operator": "crossover", "crossover_operator": crossover_op,
+                            "input_smiles": [a, b], "output_smiles": child})
             return Y
 
     class MolMutation(Mutation):
@@ -817,13 +963,24 @@ def build_and_run(parent_smiles: str, rule_lib: RuleLibrary, objectives: Objecti
 
     logger.info(f"Running NSGA-II ({crossover_op} crossover): pop={pop_size}, generations={generations}, "
                 f"objectives={objectives.n_obj}")
-    res = minimize(MolProblem(), ga_algo, ("n_gen", generations),
+    problem = MolProblem()
+    res = minimize(problem, ga_algo, ("n_gen", generations),
                    seed=seed, verbose=False)
 
     # Collect the Pareto front
     front = []
-    X = np.atleast_2d(res.X)
-    F = np.atleast_2d(res.F)
+    if archive_history and problem.candidate_archive:
+        # Preserve the full unique search trajectory. The caller applies its
+        # strict chemical gates, then chooses a diverse subset; a single final
+        # Pareto front often discards viable candidates that complement one
+        # another chemically.
+        archive = list(problem.candidate_archive.items())
+        vals = np.asarray([v for _, v in archive], dtype=float)
+        X = np.asarray([[smiles] for smiles, _ in archive], dtype=object)
+        F = vals
+    else:
+        X = np.atleast_2d(res.X)
+        F = np.atleast_2d(res.F)
     obj_names = getattr(objectives, "obj_names", ["band_penalty", "implausibility", "sa_over_10"])
     seen = set()
     for xi, fi in zip(X, F):
@@ -833,17 +990,22 @@ def build_and_run(parent_smiles: str, rule_lib: RuleLibrary, objectives: Objecti
         seen.add(smi)
         mol = Chem.MolFromSmiles(smi)
         sim = tanimoto(objectives.parent_fp, morgan(mol))
-        edits = edited_atoms(parent_smiles, smi)
+        # The category runner annotates only its accepted, diversity-filtered
+        # rows. Avoid expensive MCS/property-edit annotations for the full
+        # search archive; keep the same convention as the crowding backend.
+        edits = [] if archive_history else edited_atoms(parent_smiles, smi)
         rec = {
             "smiles": smi,
-            "similarity_to_parent": round(sim, 3),
-            "qed": round(float(Descriptors.qed(mol)), 3),
-            "sa_score": round(sascorer.calculateScore(mol), 2) if sascorer else None,
+            "similarity_to_parent": round(sim, 8),
+            "qed": round(float(Descriptors.qed(mol)), 8),
+            "sa_score": round(sascorer.calculateScore(mol), 6) if sascorer else None,
             "structural_alerts": structural_alerts(mol),
             "objectives": {n: round(float(v), 4) for n, v in zip(obj_names, fi)},
             "edited_atoms": edits,
-            **edit_metrics(parent_smiles, smi, edits),
+            **_operation_provenance(rule_lib, smi),
         }
+        if not archive_history:
+            rec.update(edit_metrics(parent_smiles, smi, edits))
         if compute_shape:
             rec["shape_similarity_3d"] = shape_similarity_3d(objectives.parent_mol, smi)
         front.append(rec)

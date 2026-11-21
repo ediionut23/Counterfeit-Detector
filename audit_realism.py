@@ -22,10 +22,9 @@ Realism (are they plausible counterfeits of a real drug?)
 Bias (is the task trivially separable = artificial enrichment / analogue bias?)
   - prop_shortcut   : accuracy of a logistic regression on MW/heavy/length only
                       (target ~0.5 = classes not separable on gross properties)
-  - fp_separability : accuracy + ROC-AUC of a Random-Forest on Morgan
-                      fingerprints (this IS the fingerprint baseline of C2; very
-                      high = the edit is a fingerprint giveaway, moderate =
-                      genuine but non-trivial signal)
+  - fp_separability : accuracy + ROC-AUC of a Random-Forest on a random
+                      diagnostic subsample. This is not the fixed scaffold
+                      baseline; use train_baseline.py for that comparison.
 
 Usage
 -----
@@ -37,7 +36,6 @@ from __future__ import annotations
 
 import argparse
 import csv
-import glob
 import json
 import logging
 import os
@@ -86,7 +84,8 @@ def scaffold(smiles: str) -> str:
         return smiles
 
 
-def audit_dataset(path: Path, sample: int, seed: int) -> Dict:
+def audit_dataset(path: Path, sample: int, seed: int, jobs: int = -1,
+                  authentic_reference: set[str] | None = None) -> Dict:
     rows = list(csv.DictReader(open(path)))
     auth = [r for r in rows if r["label"] == "0"]
     fake = [r for r in rows if r["label"] == "1"]
@@ -95,7 +94,8 @@ def audit_dataset(path: Path, sample: int, seed: int) -> Dict:
     rng = random.Random(seed)
 
     fake_smi = [r["smiles"] for r in fake]
-    auth_smi = set(r["smiles"] for r in auth)
+    auth_smi = (authentic_reference if authentic_reference is not None
+                else set(r["smiles"] for r in auth))
 
     # --- generation quality ---
     valid = [s for s in fake_smi if Chem.MolFromSmiles(s) is not None]
@@ -159,7 +159,7 @@ def audit_dataset(path: Path, sample: int, seed: int) -> Dict:
 
     Xf = fp_array([r["smiles"] for r in a + f])
     Xtr, Xte, ytr, yte = train_test_split(Xf, y, test_size=0.3, stratify=y, random_state=seed)
-    rf = RandomForestClassifier(n_estimators=200, n_jobs=-1, random_state=seed).fit(Xtr, ytr)
+    rf = RandomForestClassifier(n_estimators=200, n_jobs=jobs, random_state=seed).fit(Xtr, ytr)
     fp_acc = round(float(rf.score(Xte, yte)), 3)
     try:
         fp_auc = round(float(roc_auc_score(yte, rf.predict_proba(Xte)[:, 1])), 3)
@@ -171,6 +171,7 @@ def audit_dataset(path: Path, sample: int, seed: int) -> Dict:
         "validity": round(len(valid) / len(fake_smi), 3),
         "uniqueness": round(len(uniq) / len(fake_smi), 3),
         "novelty": round(novelty, 3),
+        "n_authentic_reference": len(auth_smi),
         "scaffold_diversity": round(len(scaffs) / max(len(uniq), 1), 3),
         "sim_to_parent_mean": round(float(np.nanmean(sims)), 3),
         "sim_band_0.4_0.7": band(0.4, 0.7),
@@ -181,6 +182,8 @@ def audit_dataset(path: Path, sample: int, seed: int) -> Dict:
         "prop_shortcut_acc": prop_acc,
         "fp_separability_acc": fp_acc,
         "fp_separability_auc": fp_auc,
+        "diagnostic_sample_per_class": k,
+        "diagnostic_split": "random_70_30",
     }
 
 
@@ -190,21 +193,36 @@ def main():
     ap.add_argument("--datasets", nargs="*", default=None,
                     help="Dataset names to audit (default: all)")
     ap.add_argument("--sample", type=int, default=800, help="Max per class for classifiers")
+    ap.add_argument("--jobs", type=int, default=-1, help="Random Forest worker count")
+    ap.add_argument("--authentic", type=Path, default=Path("public_molecules_100k.smi"),
+                    help="Full authentic library for novelty, not matched negatives")
     ap.add_argument("--seed", type=int, default=42)
     ap.add_argument("--out", default="benchmark/realism_audit.json")
     args = ap.parse_args()
+
+    authentic_reference = set()
+    with args.authentic.open() as stream:
+        for line in stream:
+            fields = line.split()
+            if not fields:
+                continue
+            mol = Chem.MolFromSmiles(fields[0])
+            if mol is not None:
+                authentic_reference.add(Chem.MolToSmiles(mol))
+    logger.info(f"Novelty reference: {len(authentic_reference):,} authentic molecules")
 
     paths = []
     if args.datasets:
         paths = [Path(args.root) / d / "dataset.csv" for d in args.datasets]
     else:
-        paths = [Path(p) for p in sorted(glob.glob(f"{args.root}/*/dataset.csv"))]
+        paths = sorted(Path(args.root).rglob("dataset.csv"))
 
     results = {}
     for p in paths:
-        name = p.parent.name
+        name = str(p.parent.relative_to(args.root))
         logger.info(f"Auditing {name} ...")
-        r = audit_dataset(p, args.sample, args.seed)
+        r = audit_dataset(p, args.sample, args.seed, jobs=args.jobs,
+                          authentic_reference=authentic_reference)
         if r:
             results[name] = r
 

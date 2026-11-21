@@ -1,0 +1,71 @@
+MODEL GEOMETRIC CU CHIMIE COMUNĂ GATv2 — 10 NOIEMBRIE 2026
+
+Stare: implementat și verificat pe fixture-uri mici și3 molecule reale din TRAIN. Pregătirea completă și antrenarea acestei versiuni NU au fost lansate. Campania Ax existentă continuă pe versiunea istorică.
+
+CE S-A ADĂUGAT
+- Aceleași21 caracteristici atomice și14 caracteristici ale legăturilor covalente ca în GATv2 recent, plus embeddingul elementului.
+- Numărul hidrogenilor și gradul atomului sunt extrase din referința canonică fără hidrogenii expliciți adăugați pentru3D; astfel se elimină problema câmpului H constantzero documentată anterior.
+- Mapare explicită, cu stereochimie, între atomii referinței canonice GAT și ordinea originală a atomilor grei din NPZ. Se verifică elementele, coordonatele SDF/NPZ, conectivitatea și chimia sursei.
+- Coordonatele existente din NPZ sunt păstrate; nu se generează și nu se optimizează alte conformații.
+- Două relații distincte: legături chimice covalente și vecinătăți spațiale. Un vecin necovalent nu este codificat ca «alt tip de legătură».
+- În fiecare bloc, caracteristicile covalente intră într-un MLP de filtrare și modulează efectiv mesajele. Distanțele/contextul unghiular au un canal separat.
+
+VARIANTE
+geometry_variant=none: canalul chimic, fără consum de coordonate/vecinătăți spațiale.
+geometry_variant=distance: chimie +distante/RBF.
+geometry_variant=angular: chimie +distante/RBF +rezumate unghiulare.
+Configurație inițială: hidden64,3blocuri,RBF16,angular_basis6,cutoff4.5Å,max24vecini spațiali,batch64,dropout0.1,AdamW LR0.001/WD0.00001,LayerNorm.
+Pooling molecular: media +suma scalată cu sqrt(număr atomi), ca în modelul geometric anterior. Nu s-au adăugat JK sau attention pooling în această versiune.
+Adăugarea geometriei adaugă și parametri: comparația celor3 variante nu este egalizată strict după numărul de parametri.
+
+FIȘIERE NOI
+shared_molecular_features_v2.py — featurizare și aliniere.
+prepare_shared_geometric_features_v2.py — cacheuri sidecar versionate, atomice, reluabile la nivel de shard.
+geometric_bond_model_v2.py — modelul cu mesaje chimice și spațiale.
+shared_geometry_resources_v2.py — lease comun și buget termic conservator.
+train_shared_geometric_v2.py — trainer validation-only, cu motorul istoric reutilizat prin hookuri locale procesului.
+check_shared_geometric_v2.py — verificări de corectitudine și siguranță.
+
+DATE ȘI PROTOCOL
+Cohorta rămâne overnight_strict_converged_v2:161157train/13756val/16788test,191701total.
+SHAcohortă:041936ffe7ad260c110d4bc8e9226d4622d3d0e79ae023b89cae2d1b789e5126.
+Trainerul implicit cere minimum150000 molecule TRAIN și SHAcohortei declarat; cacheurile parțiale nu sunt acceptate la antrenare.
+Pregătirea chimiei este implicit numaiTRAIN/VAL; nicio inferență sau metrică nouă peTEST.
+Geometria este prezisăETKDG/MMFF/UFF, nu măsurată experimental. Etichetele rămân referință publică versus analog generat, nu contrafaceri clinice confirmate.
+
+PROTECȚIA PROGRESULUI ȘI A LAPTOPULUI
+CLI-urile respectă același bank.chemistry.lock ca Ax/generarea. Dacă alt proces deține lease-ul, noul job refuză pornirea; nu semnalează sau oprește acel proces.
+CPU1–2threads,0loaderworkers; buget nominal15s calcul cu3x pauză, fair/unknown5s cu11x pauză, recuperare120s după presiune serioasă/critică. Operațiile native sunt nepreemptive și rambursează integral timpul depășit.
+Hashurile geometriei sunt verificate în chunkuri8MB cu contabilizare termică; lucrul radius este măsurat pe moleculă.
+best.pt/last.pt,optimizer/scheduler/RNG,history și predicțiile de validare folosesc mecanismele atomice ale trainerului existent. Resume cere aceeași configurație/surse/cohortă și pereche best/last coerentă.
+Outputurile istorice/incompatibile sunt refuzate înaintea publicării stării; pregătirea-only are fișier separat prepared_data_summary.json.
+
+VERIFICĂRI EFECTUATE
+-21metode:20trecute și1sărită explicit, cea pentru un cache real complet încă nepregătit. ExecuțieCPU1, aproximativ1.35s pentru suite, pe fixture-uri mici, fără antrenare.
+-Paritate exactă cu encoderul GAT21/14, hidrogeni/grad, aliniere/permutări/stereochimie și respingerea surselor incompatibile.
+-Gradient nenul prin caracteristicile legăturilor și schimbarea outputului la modificarea lor; folosirea conexiunilor necovalente prin ramura spațială.
+-Invarianță la rotație/translație/permutare, batching și respingerea muchiilor între molecule; grafuri fără muchii și salvare/reîncărcare.
+-Protecție outputuri vechi, restaurare hookuri, lease concurent refuzat, cache incomplet refuzat, checkpointuri best/last coerente.
+-Probă reală limitată:3moleculeTRAIN din shard_000, abatere maximăSDF–NPZ4.9814748764032135e-05Å. Manifestul acestei probe arecomplete=false și nu este eligibil pentru antrenare.
+-Verificare disponibilitate: toatecele14sharduri sursăTRAIN/VAL au NPZ și SDF asociat; aceasta nu înlocuiește auditul chimic complet.
+-Toatecele11sursePython fixate de planulAx existent și hashul planului însuși au rămas neschimbate.
+
+RAPOARTE
+reports/shared_geometric_v2_checks_20261110.json
+reports/shared_geometric_v2_real_alignment_probe_20261110.json
+reports/shared_geometric_v2_input_availability_20261110.json
+reports/shared_geometric_v2_legacy_integrity_20261110.json
+
+PREGĂTIRE COMPLETĂ, CÂND LEASE-UL DE CALCUL ESTE LIBER
+./venv/bin/python prepare_shared_geometric_features_v2.py --graph-index balanced_datasets/training_200k/overnight_strict_converged_v2/graph_index.csv --cache-root training_cache/shared_geometric_v2 --splits train val
+
+ANTRENARE VALIDATION-ONLY PE SETUL MARE
+./venv/bin/python train_shared_geometric_v2.py --geometry-variant angular --shared-feature-cache training_cache/shared_geometric_v2 --epochs 100 --patience 15 --seed 42 --threads 2 --out training_runs/shared_chemical_geometry_20261110/angular_seed42 --no-test
+Trainerul poate pregăti și verifica singur sidecarurile lipsă, sub același lease/buget termic. Pentru controale se folosesc geometry-variant=none/distance și directoare de output distincte.
+
+RELUARE
+Aceeași comandă/configurație, adăugând --resume training_runs/shared_chemical_geometry_20261110/angular_seed42/last.pt.
+
+LIMITĂRI DESCHISE
+Este necesar SDF-ul ordonat asociat NPZ-ului. Exemplele canonice cu H izotopic explicit/dummy care nu se potrivesc selecției heavy-only sunt refuzate explicit; nu sunt eliminate în tăcere.
+Pregătirea/alinierea întregii cohorte nu a fost efectuată încă. Noul model nu are încă scorF1. Rezultatele istorice81.80%geometricvalidare și84.20%ansamblutest nu se atribuie versiunii noi.

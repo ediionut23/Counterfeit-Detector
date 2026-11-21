@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "protocol_id": "resume_20261107_cool_validation_v1",
+  "mode": "validation_only",
+  "test_evaluation": false,
+  "created_at": "2026-11-07T07:43:12.004035+00:00",
+  "workspace": "/Users/itanasa/Counterfeit-Detector",
+  "out_dir": "training_runs/large_search_20261101",
+  "plan_sha256": "35a9ba55045dfd9bace0eb787fa22abc8546c615164e3e74833b4ab4557f062b",
+  "training_cohort_sha256": "041936ffe7ad260c110d4bc8e9226d4622d3d0e79ae023b89cae2d1b789e5126",
+  "source_pins": {
+    "run_validation_continuation.py": "7b27d3735544d64a1a49a3add2b625ef3903f1ac9b475ca985e6fa86468adfad",
+    "run_large_model_search.py": "3210f606cf99e6e242c16e8d679b6547ec290a8f828009edfa0bcddd26bf62f4",
+    "run_overnight_research.py": "682695f37dc454279d69dc4acbe9d90aa6c71f646413e818f89b56978e9ef9b8",
+    "select_validation_ensemble.py": "10e839863f68ef9e44664ba760f353cc87326a82cc1e90c10ad7fbc93ab6e5b0",
+    "enforce_large_training_cohort.py": "0f9ddab5d2028b6ec4458cb4731529230e3d849f3db827422ab277692f5e2c8b",
+    "thermal_guard.py": "211683d21cdaabcec680403d0bfe7f8ef07176a6f45657b908c8b0ea58aca4c5",
+    "thermal_guard_cool.py": "6498ad659c483e117a2f5e11a3cfde8c07d0c65e2320c2e4bfe3f4bbb44df316",
+    "heterogeneous_ensemble_policy_20261107.json": "95cf859a671d93d7db53e1e89f35350a614c225313a934b6d84e97a7ca10c152"
+  },
+  "thermal_policy": {
+    "compute_seconds": 15,
+    "rest_seconds": 45,
+    "fair_compute_seconds": 5,
+    "fair_rest_seconds": 55,
+    "sustained_nominal_seconds": 120,
+    "training_threads": 2,
+    "generation_during_training": false,
+    "generation_exclusion": "exclusive bank.chemistry.lock held by guard"
+  },
+  "ensemble_policy": "heterogeneous_ensemble_policy_20261107.json",
+  "test_policy": "Finish repetitions and compare frozen validation candidates before any final test; no target score guaranteed",
+  "inventory_ready_marker": "research_continuation_20261107/ALLOW_INVENTORY.json"
+}

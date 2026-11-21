@@ -1,0 +1,38 @@
+Downstream bank cooling, prepared2026-11-07
+
+Plan: million_inventory_sequential_plan_20261107_v2.json
+Output: molecule_bank_1m/sequential_inventory_20261107_v2
+The prior sequential plan and generation configuration are preserved.
+
+Generation still uses one native chemistry child,60s minimum between jobs,
+120s nominal recovery and unchanged chemistry/QC/scheduler. Its90s native
+watchdog must not be combined with SIGSTOP pauses, so generation and its
+ensure_named_category_coverage gate are not wrapped.
+
+Every later legacy import, scenario builder, full bank audit/export and2D
+graph preparation command instead runs under cool_bank_stage.py. The wrapper
+owns the same exclusive bank chemistry lease used by the training guard and
+generator. It starts exactly its declared command in a new process group,
+verifies the live child UID, parent, executable, argv and birth identity, and
+pauses/resumes that group with15s compute/45s rest at nominal pressure.
+Fair/unknown pressure uses5s compute/55s rest. Serious/critical pressure holds
+the group until120s nominal. Worker subprocesses pause in the same group.
+
+Signal intents and member birth identities are saved before group signals.
+Each signal rechecks the original leader identity/group. Cached worker birth
+identities permit cleanup if their parent exits first. Controlled termination
+continues only the verified owned group before TERM, so paused children can
+exit. The chemistry lease is inherited by the main child and remains held if
+the wrapper dies unexpectedly; no unrelated application is signalled.
+
+The CLI rejects generation commands, scripts outside the workspace, another
+Python executable and explicit worker counts above1. macOS nominal pressure
+is not a measured case temperature.
+
+Verification: check_cool_bank_stage.py passes pressure/recovery fixtures, an
+actual parent+worker observed paused together in Darwin SSTOP, real STOP/CONT,
+termination while paused, reaping/lease release, and rejection of generation.
+Tests use temporary files and newly spawned tiny fixture processes only.
+
+The plan was prepared only. No production process was launched, and no prior
+plan, database, active pointer or production progress was changed.
